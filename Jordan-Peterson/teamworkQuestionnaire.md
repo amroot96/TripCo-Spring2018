@@ -1,4 +1,4 @@
-# Teamwork Questionnaire for _yournamehere_
+# Teamwork Questionnaire for _Jordan-Peterson_
 
 1. __What is your personality type?__
    * ENTJ
