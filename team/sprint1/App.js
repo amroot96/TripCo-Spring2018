@@ -47,6 +47,13 @@ var Calculator = function (_React$Component) {
       return React.createElement(
         "form",
         { className: "form-inline", onSubmit: this.calc },
+        "Degrees",
+        React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
+          value: this.state.operand1, onChange: this.updateOperand1 }),
+        "Minutes",
+        React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
+          value: this.state.operand1, onChange: this.updateOperand1 }),
+        "Seconds",
         React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
           value: this.state.operand1, onChange: this.updateOperand1 }),
         React.createElement(
@@ -54,6 +61,16 @@ var Calculator = function (_React$Component) {
           { className: "btn btn-secondary mr-sm-2", disabled: true },
           "to"
         ),
+        React.createElement("br", null),
+        React.createElement("br", null),
+        React.createElement("br", null),
+        "Degrees",
+        React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
+          value: this.state.operand2, onChange: this.updateOperand2 }),
+        "Minutes",
+        React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
+          value: this.state.operand2, onChange: this.updateOperand2 }),
+        "Seconds",
         React.createElement("input", { type: "text", className: "text-right form-control mr-sm-2",
           value: this.state.operand2, onChange: this.updateOperand2 }),
         React.createElement(
