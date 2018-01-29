@@ -4,6 +4,7 @@ class Calculator extends React.Component {
     /* state variables */
     this.state = { 
       sum: "",
+      format: "",
       operand1: "", 
       operand2: "", 
       
@@ -39,6 +40,7 @@ class Calculator extends React.Component {
     /* must bind all functions in constructor */
     this.updateOperand1 = this.updateOperand1.bind(this);
     this.updateOperand2 = this.updateOperand2.bind(this);
+    this.setFormat = this.setFormat.bind(this);
   }
 
   updateOperand1(event) {
@@ -120,11 +122,29 @@ class Calculator extends React.Component {
     }
     this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
  }
-
+  
+  setFormat(event){
+    this.setState({format: event.target.value});
+  }
+  
   render() {
     /* a simple form with text input and a submit button  */
     return (
       <form className="form-inline" onSubmit={this.calc}>
+        <div>
+          <p>
+            Select Input Format
+          </p>
+          <p>
+            <select value={this.state.format} onChange={this.setFormat}>
+              <option disbled>Choose One...</option>
+              <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
+              <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
+              <option value="2">DD [ 40.446° N 79.982° W ]</option>
+              <option value="3">FP [ 40.445 -79.982 ]</option>
+            </select>
+          </p>
+        </div>
         Start
         <input type="text" className="text-right form-control mr-sm-2" 
           value={this.state.operand1} onChange={this.updateOperand1}/> 
@@ -140,7 +160,6 @@ class Calculator extends React.Component {
         <input type="text" className="text-right form-control mr-sm-2" 
           value={this.state.sum} disabled/>
       </form>
-
     )
   } 
 }
@@ -150,7 +169,7 @@ class Application extends React.Component {
     /* separate the page layout from the calculator function */
     return (
       <div className="jumbotron">
-        <h3>CS 314 - Distance Calculator t07</h3>
+        <h3>CS 314 - Distance Calculator t07 - Jackalope</h3>
         <hr/>
         <Calculator />
       </div>  
