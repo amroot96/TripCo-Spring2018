@@ -25,7 +25,7 @@ class Calculator extends React.Component {
     this.setState({operand1 : event.target.value});
     
      /* splits the string at the degree symbol and rest is the rest of the line */
-    var [deg, rest] = event.target.value.split('?');
+    var [deg, rest] = event.target.value.split('°');
      /* Changes the state of degrees*/
     this.setState({degreesInput1: deg});
          /* splits the string at the single qoute symbol and rest is the rest of the line */
@@ -58,7 +58,7 @@ class Calculator extends React.Component {
     this.setState({operand2 : event.target.value});
     
      /* splits the string at the degree symbol and rest is the rest of the line */
-    var [deg, rest] = event.target.value.split('?');
+    var [deg, rest] = event.target.value.split('°');
      /* Changes the state of degrees*/
     this.setState({degreesInput2: deg});
          /* splits the string at the single qoute symbol and rest is the rest of the line */
