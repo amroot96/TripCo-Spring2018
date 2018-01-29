@@ -78,8 +78,7 @@ class Calculator extends React.Component {
         this.setState({floatInput1: lat});
         this.setState({floatInput2: long});
     }
-
-       
+    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})    
   }
 
   updateOperand2(event) {
@@ -119,6 +118,7 @@ class Calculator extends React.Component {
         this.setState({floatInput3: lat});
         this.setState({floatInput4: long});
     }
+    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
  }
 
   render() {
