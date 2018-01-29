@@ -1,0 +1,125 @@
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    /* state variables */
+    this.state = { 
+      sum: "",
+      operand1: "", 
+      operand2: "", 
+      degreesInput1:"",
+      minutesInput1:"",
+      secondsInput1:"",
+      directionInput1:"",
+      degreesInput2:"",
+      minutesInput2:"",
+      secondsInput2:"",
+      directionInput2:"",
+    };
+    /* must bind all functions in constructor */
+    this.updateOperand1 = this.updateOperand1.bind(this);
+    this.updateOperand2 = this.updateOperand2.bind(this);
+  }
+
+  updateOperand1(event) {
+    /* update the value of operand 1.  needs validation */
+    this.setState({operand1 : event.target.value});
+    
+     /* splits the string at the degree symbol and rest is the rest of the line */
+    var [deg, rest] = event.target.value.split('?');
+     /* Changes the state of degrees*/
+    this.setState({degreesInput1: deg});
+         /* splits the string at the single qoute symbol and rest is the rest of the line */
+        if(rest.includes('\'')){
+              var [min, rest] = rest.split('\'');
+               /* Changes the state of minutes */
+               this.setState({minutesInput1: min});
+
+               if(rest.includes('"')){
+                  var [sec, dir] = rest.split('"');
+                  /* Changes the state of seconds */
+                  this.setState({secondsInput1: sec});
+                 /* Changes the state of direction */
+                  this.setState({directionInput1: dir}); 
+               }
+               /* No Seconds changes state of direction */
+               else{
+                    this.setState({directionInput1:                           rest});
+               }     
+         }
+         else{
+                                                                     this.setState({directionInput1:                           rest});
+         }
+
+       
+  }
+
+  updateOperand2(event) {
+    /* update the value of operand 2.  needs validation */
+    this.setState({operand2 : event.target.value});
+    
+     /* splits the string at the degree symbol and rest is the rest of the line */
+    var [deg, rest] = event.target.value.split('?');
+     /* Changes the state of degrees*/
+    this.setState({degreesInput2: deg});
+         /* splits the string at the single qoute symbol and rest is the rest of the line */
+        if(rest.includes('\'')){
+              var [min, rest] = rest.split('\'');
+               /* Changes the state of minutes */
+               this.setState({minutesInput2: min});
+
+               if(rest.includes('"')){
+                  var [sec, dir] = rest.split('"');
+                  /* Changes the state of seconds */
+                  this.setState({secondsInput2: sec});
+                 /* Changes the state of direction */
+                  this.setState({directionInput2: dir}); 
+               }
+               /* No Seconds changes state of direction */
+               else{
+                    this.setState({directionInput2:                           rest});
+               }     
+         }
+         else{
+                                                                     this.setState({directionInput2:                           rest});
+         }
+    
+ }
+
+  render() {
+    /* a simple form with text input and a submit button  */
+    return (
+      <form className="form-inline" onSubmit={this.calc}>
+        Start
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand1} onChange={this.updateOperand1}/> 
+        
+        <button className="btn btn-secondary mr-sm-2" disabled>to</button>
+        End
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand2} onChange={this.updateOperand2}/> 
+
+        <button className="btn btn-primary mr-sm-2" type="submit" value="submit" 
+          disabled>=</button>
+
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.sum} disabled/>
+      </form>
+
+    )
+  } 
+}
+
+class Application extends React.Component {
+  render() {
+    /* separate the page layout from the calculator function */
+    return (
+      <div className="jumbotron">
+        <h3>CS 314 - Distance Calculator t07</h3>
+        <hr/>
+        <Calculator />
+      </div>  
+    )
+  }
+}
+
+ReactDOM.render(<Application  />, document.getElementById("application"));
