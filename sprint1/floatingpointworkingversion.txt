@@ -1,0 +1,101 @@
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dist: "",
+      lat1: "",
+      long1: "",
+      lat2: "",
+      long2: "",
+      units: "",
+      radius: "",
+      format: ""
+    };
+    this.setUnits = this.setUnits.bind(this);
+    this.setFormat = this.setFormat.bind(this);
+    this.calc = this.calc.bind(this);
+    this.updateOperand1 = this.updateOperand1.bind(this);
+    this.updateOperand2 = this.updateOperand2.bind(this);
+    this.toRadians = this.toRadians.bind(this);
+  }
+toRadians(angle) {
+    return angle * (Math.PI / 180);
+}
+setFormat(event){
+    this.setState({format: event.target.value});
+}
+setUnits(event){
+  this.setState({units: event.target.value});
+  if(event.target.value == 0) {
+   this.setState({radius: Number(3958.7613)});
+  } else {
+   this.setState({radius: Number(6371.0088)});
+  }
+}
+updateOperand1(event) {
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+    }
+    this.setState({lat1: this.toRadians(lat)});
+    this.setState({long1: this.toRadians(long)});
+}
+updateOperand2(event) {
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+    }
+    this.setState({lat2: this.toRadians(lat)});
+    this.setState({long2: this.toRadians(long)});   
+ }
+calc(event) {
+    this.setState({dist : Number(this.state.radius*Math.acos(Math.sin(this.state.lat1)*Math.sin(this.state.lat2)+Math.cos(this.state.lat1)*Math.cos(this.state.lat2)*Math.cos(this.state.long2-this.state.long1)))})
+    event.preventDefault();
+}
+
+render() {
+    return (
+      <form className="form-inline" onSubmit={this.calc}>
+        <div>
+          <p> Select Input Format </p> <p>
+            <select value={this.state.format} onChange={this.setFormat}>
+              <option disbled>Choose One...</option>
+              <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
+              <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
+              <option value="2">DD [ 40.446° N 79.982° W ]</option>
+              <option value="3">FP [ 40.445 -79.982 ]</option>
+            </select> </p>
+          <p> Select Distance Units </p> <p>
+            <select value={this.state.units} onChange={this.setUnits}>
+              <option disbled>Choose One...</option>
+              <option value="0">Miles</option>
+              <option value="1">Kilometers</option>
+            </select> </p>
+        </div>
+        <div>
+        </div>
+        Start:
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand1} onChange={this.updateOperand1}/> 
+        End:
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand2} onChange={this.updateOperand2}/> 
+        <button className="btn btn-primary mr-sm-2" enabled>Calculate</button>
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.dist} disabled/>
+      </form>
+    )
+  } 
+}
+
+class Application extends React.Component {
+  render() {
+    return (
+      <div className="jumbotron">
+        <h3>CS 314 - Distance Calculator t07 - Jackalope</h3>
+        <hr/>
+        <Calculator />
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<Application  />, document.getElementById("application"));
