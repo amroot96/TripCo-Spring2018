@@ -150,7 +150,7 @@ class Calculator extends React.Component {
     this.setState({format: event.target.value});
   }
   calc(event) {
-    this.setState({dist : Number(this.state.radius*Math.acos(Math.sin(this.state.lat1)*Math.sin(this.state.lat2)+Math.cos(this.state.lat1)*Math.cos(this.state.lat2)*Math.cos(this.state.long2-this.state.long1)))})
+    this.setState({dist : Math.round(this.state.radius*Math.acos(Math.sin(this.state.lat1)*Math.sin(this.state.lat2)+Math.cos(this.state.lat1)*Math.cos(this.state.lat2)*Math.cos(this.state.long2-this.state.long1)))})
     event.preventDefault();
 }
 setUnits(event){
