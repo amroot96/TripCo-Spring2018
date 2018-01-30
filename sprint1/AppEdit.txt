@@ -7,33 +7,17 @@ class Calculator extends React.Component {
       format: "",
       operand1: "", 
       operand2: "", 
-      
-      /* Input One's Latitude */
-      degreesInput1:"",
-      minutesInput1:"",
-      secondsInput1:"",
-      directionInput1:"",
-      floatInput1:"",
-      
-      /* Input One's Longitude */
-      degreesInput2:"",
-      minutesInput2:"",
-      secondsInput2:"",
-      directionInput2:"",
-      floatInput2:"",
-      
-      /* Input Two's Latitude */
-      degreesInput3:"",
-      minutesInput3:"",
-      secondsInput3:"",
-      directionInput3:"",
+      start: "",  
+      degreesInput:"",
+      minutesInput:"",
+      secondsInput:"",
+      /* Start Latitude */
+      floatInput1:"",      
+      /* Start Longitude */
+      floatInput2:"",     
+      /* End Latitude */
       floatInput3:"",
-      
-      /* Input Two's Longitude */
-      degreesInput4:"",
-      minutesInput4:"",
-      secondsInput4:"",
-      directionInput4:"",
+      /* End Longitude */
       floatInput4:""
       
     };
@@ -44,116 +28,61 @@ class Calculator extends React.Component {
   }
 
   updateOperand1(event) {
-    if(format==0){
-      
-    }
     /* update the value of operand 1.  needs validation */
     this.setState({operand1 : event.target.value});
-   
-    /* check if in degree or floating point */
-    if(event.target.value.includes('°')){
-          /* splits the string at the degree symbol and rest is the rest of the line */
-          var [deg, rest] = event.target.value.split('°');
-          /* Changes the state of degrees*/
-          this.setState({degreesInput1: deg});
-          /* splits the string at the single qoute symbol and rest is the rest of the line */
-          if(rest.includes('\'')){
-              var [min, rest] = rest.split('\'');
-               /* Changes the state of minutes */
-               this.setState({minutesInput1: min});
-
-               if(rest.includes('"')){
-                  var [sec, dir] = rest.split('"');
-                  /* Changes the state of seconds */
-                  this.setState({secondsInput1: sec});
-                 /* Changes the state of direction */
-                  this.setState({directionInput1: dir}); 
-               }
-               /* No Seconds changes state of direction */
-               else{
-                    this.setState({directionInput1: rest});
-               }     
-          }
-          else{
-              this.setState({directionInput1: rest});
-          }
-     }
-    else{
-        var [lat, long] = event.target.value.split(' ');
-        this.setState({floatInput1: lat});
-        this.setState({floatInput2: long});
+    if(parseInt(format)==0){
+      DMS(event, 'true');
     }
     this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})    
   }
 
-  updateOperand2(event) {
-    
+  updateOperand2(event) {   
     /* update the value of operand 2.  needs validation */
     this.setState({operand2 : event.target.value});
-    
-    /* check if in degree or floating point */
-    if(event.target.value.includes('°')){
-         /* splits the string at the degree symbol and rest is the rest of the line */
-        var [deg, rest] = event.target.value.split('°');
-        /* Changes the state of degrees*/
-        this.setState({degreesInput3: deg});
-             /* splits the string at the single qoute symbol and rest is the rest of the line */
-            if(rest.includes('\'')){
-              var [min, rest] = rest.split('\'');
-               /* Changes the state of minutes */
-               this.setState({minutesInput3: min});
-
-               if(rest.includes('"')){
-                  var [sec, dir] = rest.split('"');
-                  /* Changes the state of seconds */
-                  this.setState({secondsInput3: sec});
-                 /* Changes the state of direction */
-                  this.setState({directionInput3: dir}); 
-               }
-               /* No Seconds changes state of direction */
-               else{
-                    this.setState({directionInput3: rest});
-               }     
-            }
-          else{
-            this.setState({directionInput3: rest});
-          }
+    if(parseInt(format)==0){
+      DMS(event, 'false');
     }
-    else{
-        var [lat, long] = event.target.value.split(' ');
-        this.setState({floatInput3: lat});
-        this.setState({floatInput4: long});
-    } 
     this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
  }
   
-  DMS(event){
+ DMS(event, start){
     temp_long: "";
     if(event.target.value.includes('N')){
       var [lat, long] = event.target.value.split('N');
       this.setState({temp_long: long});
-      var[deg, rest] = lat.split('°'); /* get degrees for latitude */
-      this.setState({degreesInput1: deg});
-      var [min, rest] = rest.split('\''); /* get minutes for latitude */
-      this.setState({minutesInput1: min});
-      var [sec, dir] = rest.split('"'); /* get seconds for latitude */
-      this.setState({secondsInput1: sec});
-      floatInput1 = degreesInput1 + (minutesInput1/60) + (secondsInput1/3600); /* change latitude to floating point */
-    }else if(event.target.value.includes('S')){
+      splitDMS(lat);
+      if(start == 'true'){ floatInput1 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+      else{ floatInput3 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
       
+    }else if(event.target.value.includes('S')){
+      var [lat, long] = event.target.value.split('S');
+      this.setState({temp_long: long});
+      splitDMS(lat);
+      if(start == 'true'){ floatInput1 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600));}
+      else{ floatInput3 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
     }
     
     if(temp_long.includes('W')){
-      var [deg, rest] = temp_long.split('°'); /* get degrees for longitude */
-      this.setState({degreesInput1: deg});
-      var [min, rest] = rest.split('\''); /* get minutes for latitude */
-      this.setState({minutesInput1: min});
-      var [sec, dir] = rest.split('"'); /* get seconds for latitude */
-      this.setState({secondsInput1: sec});
-      floatInput2 = -1 * (degreesInput1 + (minutesInput1/60) + (secondsInput1/3600)); /* change longitude to floating point, negative due to being west */
-    }else if(temp_long.includes('E')){
+      splitDMS(temp_long);
+      if(start == 'true'){ floatInput2 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
+      else{ floatInput4 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
       
+    }else if(temp_long.includes('E')){
+      splitDMS(temp_long);
+      if(start == 'true'){
+        floatInput2 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+      else{ floatInput4 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
     }
+    
+  }
+  
+  splitDMS(DMS){
+      var [deg, rest] = DMS.split('°'); /* get degrees */
+      this.setState({degreesInput: deg});
+      var [min, rest] = rest.split('\''); /* get minutes */
+      this.setState({minutesInput: min});
+      var [sec, dir] = rest.split('"'); /* get seconds */
+      this.setState({secondsInput: sec});
   }
   
   setFormat(event){
