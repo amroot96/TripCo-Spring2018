@@ -3,11 +3,17 @@ class Calculator extends React.Component {
     super(props);
     /* state variables */
     this.state = { 
-      sum: "",
+      dist: "",
       format: "",
       operand1: "", 
       operand2: "", 
-      start: "",  
+      start: "",
+      radius: "",
+      units: "",
+      lat1: "",
+      long1: "",
+      lat2: "",
+      long2: "",
       degreesInput:"",
       minutesInput:"",
       secondsInput:"",
@@ -27,24 +33,35 @@ class Calculator extends React.Component {
     this.setFormat = this.setFormat.bind(this);
     this.DMS = this.DMS.bind(this);
     this.splitDMS = this.splitDMS.bind(this);
+    this.calc = this.calc.bind(this);
+    this.setUnits = this.setUnits.bind(this);
+    this.toRadians = this.toRadians.bind(this);
   }
 
   updateOperand1(event) {
     /* update the value of operand 1.  needs validation */
     this.setState({operand1 : event.target.value});
-    if(this.state.format==0){
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+      this.setState({lat1: this.toRadians(lat)});
+      this.setState({long1: this.toRadians(long)});
+    }
+    else if(this.state.format==0){
       this.DMS(event, 'true');
     }
-    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})    
   }
 
   updateOperand2(event) {   
     /* update the value of operand 2.  needs validation */
     this.setState({operand2 : event.target.value});
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+      this.setState({lat2: this.toRadians(lat)});
+      this.setState({long2: this.toRadians(long)});
+    }
    /* if(this.state.format==0){
       this.DMS(event, 'false');
     }*/
-    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
  }
   
  DMS(event, start){
@@ -90,7 +107,21 @@ class Calculator extends React.Component {
   setFormat(event){
     this.setState({format: event.target.value});
   }
-  
+  calc(event) {
+    this.setState({dist : Number(this.state.radius*Math.acos(Math.sin(this.state.lat1)*Math.sin(this.state.lat2)+Math.cos(this.state.lat1)*Math.cos(this.state.lat2)*Math.cos(this.state.long2-this.state.long1)))})
+    event.preventDefault();
+}
+setUnits(event){
+  this.setState({units: event.target.value});
+  if(event.target.value == 0) {
+   this.setState({radius: Number(3958.7613)});
+  } else {
+   this.setState({radius: Number(6371.0088)});
+  }
+}
+toRadians(angle) {
+    return angle * (Math.PI / 180);
+}
   render() {
     /* a simple form with text input and a submit button  */
     return (
@@ -98,35 +129,39 @@ class Calculator extends React.Component {
       <form className="form-inline" onSubmit={this.calc}>
         <p>
         <label>
-          Select Input Format
+
           {/*This is the dropdown menu
              Whichever option is selected, it changes this.state.format to 0 through 3 
           */}
-          <select value={this.state.format} onChange={this.setFormat}>
-            <option disbled>Choose One...</option>
-            <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
-            <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
-            <option value="2">DD [ 40.446° N 79.982° W ]</option>
-            <option value="3">FP [ 40.445 -79.982 ]</option>
-          </select>
+        <div>
+          <p> Select Input Format </p> <p>
+            <select value={this.state.format} onChange={this.setFormat}>
+              <option disbled>Choose One...</option>
+              <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
+              <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
+              <option value="2">DD [ 40.446° N 79.982° W ]</option>
+              <option value="3">FP [ 40.445 -79.982 ]</option>
+            </select> </p>
+          <p> Select Distance Units </p> <p>
+            <select value={this.state.units} onChange={this.setUnits}>
+              <option disbled>Choose One...</option>
+              <option value="0">Miles</option>
+              <option value="1">Kilometers</option>
+            </select> </p>
+        </div>
         </label>
         </p>
         <br />
         <label>
-        Start
-          <input type="text" className="text-right form-control mr-sm-2" 
-            value={this.state.operand1} onChange={this.updateOperand1}/> 
-        
-          <button className="btn btn-secondary mr-sm-2" disabled>to</button>
-        End
-          <input type="text" className="text-right form-control mr-sm-2" 
-            value={this.state.operand2} onChange={this.updateOperand2}/> 
-
-          <button className="btn btn-primary mr-sm-2" type="submit" value="submit" 
-            disabled>=</button>
-
-          <input type="text" className="text-right form-control mr-sm-2" 
-            value={this.state.sum} disabled/>
+        Start:
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand1} onChange={this.updateOperand1}/> 
+        End:
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.operand2} onChange={this.updateOperand2}/> 
+        <button className="btn btn-primary mr-sm-2" enabled>Calculate</button>
+        <input type="text" className="text-right form-control mr-sm-2" 
+          value={this.state.dist} disabled/>
         </label>
       </form>
     )
