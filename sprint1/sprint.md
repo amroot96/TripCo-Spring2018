@@ -42,26 +42,26 @@ Epics planned for this release.
 ## Review
 
 #### Completed user stories (epics) in Sprint Backlog 
-* *user story*:  *comments*
-* 
+* distance calculator: takes two geographaical locations and calculates the distance 
+ 
 
 #### Incomplete user stories / epics in Sprint Backlog 
-* *user story*: *Explanation...*
-*
+* No incomplete stories
 
 #### What went well
-* *something*
-*
+* Communication
+
 
 #### Problems encountered and resolutions
-* *something*
-*
+* Learning js 
+* Sending code around 
+* Different syle of coding 
 
 ## Retrospective
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
 What we will change this time |  |  | 
-What we did well |  |  | 
-What we need to work on |  |  |
-What we will change next time |  |  | 
+What we did well |Communication  | Continously working on it  | 
+What we need to work on |  |Share the code better  | Learn JS better
+What we will change next time |  |Make test throughout process  | Use other things besides Codepen
