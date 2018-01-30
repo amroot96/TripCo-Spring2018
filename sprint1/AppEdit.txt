@@ -27,6 +27,7 @@ class Calculator extends React.Component {
     this.setFormat = this.setFormat.bind(this);
     this.DMS = this.DMS.bind(this);
     this.splitDMS = this.splitDMS.bind(this);
+    this.getSum = this.getSum.bind(this);
   }
 
   updateOperand1(event) {
@@ -35,7 +36,7 @@ class Calculator extends React.Component {
     if(this.state.format==0){
       this.DMS(event, 'true');
     }
-    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})    
+    /*this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})*/    
   }
 
   updateOperand2(event) {   
@@ -44,7 +45,7 @@ class Calculator extends React.Component {
    /* if(this.state.format==0){
       this.DMS(event, 'false');
     }*/
-    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
+    
  }
   
  DMS(event, start){
@@ -87,6 +88,10 @@ class Calculator extends React.Component {
       this.setState({secondsInput: sec});
   }
   
+  getSum(){
+    this.setState({sum : Number(3958.7613 * Math.acos(Math.sin(1)*Math.sin(1) + Math.cos(1)*Math.cos(1)*(1-1)))})
+  }
+  
   setFormat(event){
     this.setState({format: event.target.value});
   }
@@ -112,7 +117,6 @@ class Calculator extends React.Component {
         </label>
         </p>
         <br />
-        <label>
         Start
           <input type="text" className="text-right form-control mr-sm-2" 
             value={this.state.operand1} onChange={this.updateOperand1}/> 
@@ -122,12 +126,10 @@ class Calculator extends React.Component {
           <input type="text" className="text-right form-control mr-sm-2" 
             value={this.state.operand2} onChange={this.updateOperand2}/> 
 
-          <button className="btn btn-primary mr-sm-2" type="submit" value="submit" 
-            disabled>=</button>
+          <button className="btn btn-primary mr-sm-2" type="button" onClick={this.getSum}>=</button>
 
           <input type="text" className="text-right form-control mr-sm-2" 
             value={this.state.sum} disabled/>
-        </label>
       </form>
     )
   } 
