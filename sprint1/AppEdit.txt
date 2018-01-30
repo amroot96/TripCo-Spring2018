@@ -14,18 +14,7 @@ class Calculator extends React.Component {
       long1: "",
       lat2: "",
       long2: "",
-      degreesInput:"",
-      minutesInput:"",
-      secondsInput:"",
-      /* Start Latitude */
-      floatInput1:"",      
-      /* Start Longitude */
-      floatInput2:"",     
-      /* End Latitude */
-      floatInput3:"",
-      /* End Longitude */
-      floatInput4:""
-      
+      test: "",
     };
     /* must bind all functions in constructor */
     this.updateOperand1 = this.updateOperand1.bind(this);
@@ -36,37 +25,44 @@ class Calculator extends React.Component {
     this.calc = this.calc.bind(this);
     this.setUnits = this.setUnits.bind(this);
     this.toRadians = this.toRadians.bind(this);
+    this.splitDD = this.splitDD.bind(this);
   }
 
   updateOperand1(event) {
     /* update the value of operand 1.  needs validation */
     this.setState({operand1 : event.target.value});
-    if(this.state.format == 3) {
-      var [lat, long] = event.target.value.split(' ');
-      this.setState({lat1: this.toRadians(lat)});
-      this.setState({long1: this.toRadians(long)});
-    }
     if(this.state.format==0){
       this.splitDMS(event.target.value,1);
     }
     if(this.state.format==1){
       this.splitDDM(event.target.value,1);
     }
+    if(this.state.format==2){
+      this.splitDD(event.target.value,1);
+    }
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+      this.setState({lat1: this.toRadians(lat)});
+      this.setState({long1: this.toRadians(long)});
+    }
   }
 
   updateOperand2(event) {   
     /* update the value of operand 2.  needs validation */
     this.setState({operand2 : event.target.value});
-    if(this.state.format == 3) {
-      var [lat, long] = event.target.value.split(' ');
-      this.setState({lat2: this.toRadians(lat)});
-      this.setState({long2: this.toRadians(long)});
-    }
     if(this.state.format==0){
       this.splitDMS(event.target.value,2);
     }
     if(this.state.format==1){
       this.splitDDM(event.target.value,2);
+    }
+    if(this.state.format==2){
+      this.splitDD(event.target.value,2);
+    }
+    if(this.state.format == 3) {
+      var [lat, long] = event.target.value.split(' ');
+      this.setState({lat2: this.toRadians(lat)});
+      this.setState({long2: this.toRadians(long)});
     }
  }
     
@@ -74,15 +70,15 @@ class Calculator extends React.Component {
 
       var [deg1, helper, rest] = DMS.split('°'); /* get degrees */
       rest = helper + '°' + rest;
-      var [min1, helper, rest] = rest.split('\''); /* get minutes   */
-      rest = helper + '\'' + rest;
-      var [sec1, helper, rest] = rest.split('\"'); /* get seconds */
-      rest = helper + '"' + rest;
+      var [min1, helper, rest] = rest.split('′'); /* get minutes   */
+      rest = helper + '′' + rest;
+      var [sec1, helper, rest] = rest.split('″'); /* get seconds */
+      rest = helper + '″' + rest;
       var dir1 = rest.substring(1,2);
       rest = rest.substring(2);
       var [deg2, rest] = rest.split('°'); /* get degrees */
-      var [min2, rest] = rest.split('\''); /* get minutes */
-      var [sec2, dir2] = rest.split('\"'); /* get seconds */
+      var [min2, rest] = rest.split('′'); /* get minutes */
+      var [sec2, dir2] = rest.split('″'); /* get seconds */
       if(operand == 2) {
         if(dir1 == "S") {
           this.setState({lat2: Number((-1)*this.toRadians(Number(deg1) + min1/60 + sec1/3600))});
@@ -101,15 +97,14 @@ class Calculator extends React.Component {
 
   }
     splitDDM(DDM,operand){
-
       var [deg1, helper, rest] = DDM.split('°'); /* get degrees */
       rest = helper + '°' + rest;
-      var [min1, helper, rest] = rest.split('\''); /* get minutes   */
-      rest = helper + '\'' + rest;
+      var [min1, helper, rest] = rest.split('′'); /* get minutes   */
+      rest = helper + '′' + rest;
       var dir1 = rest.substring(1,2);
       rest = rest.substring(2);
       var [deg2, rest] = rest.split('°'); /* get degrees */
-      var [min2, dir2] = rest.split('\''); /* get minutes */
+      var [min2, rest] = rest.split('′'); /* get minutes */
      
       if(operand == 2) {
         if(dir1 == "S") {
@@ -126,9 +121,30 @@ class Calculator extends React.Component {
           this.setState({long1: Number((-1)*this.toRadians(Number(deg2) + min2/60))});
         } else { this.setState({long1: Number(this.toRadians(Number(deg2) + min2/60))});}
       }
-
   }
- 
+    splitDD(DD,operand){
+      var [deg1, helper, rest] = DD.split('°'); /* get degrees */
+      rest = helper + '°' + rest;
+      var dir1 = rest.substring(1,2);
+      rest = rest.substring(2);
+      var [deg2, rest] = rest.split('°'); /* get degrees */
+     
+      if(operand == 2) {
+        if(dir1 == "S") {
+          this.setState({lat2: Number((-1)*this.toRadians(Number(deg1)))});
+        } else { this.setState({lat2: Number(this.toRadians(Number(deg1)))});}
+        if(dir2 == "W") {
+          this.setState({long2: Number((-1)*this.toRadians(Number(deg2)))});
+        } else { this.setState({long2: Number(this.toRadians(Number(deg2)))});}
+        } else {
+        if(dir1 == "S") {
+          this.setState({lat1: Number((-1)*this.toRadians(Number(deg1)))});
+        } else { this.setState({lat1: Number(this.toRadians(Number(deg1)))});}
+        if(dir2 == "W") {
+          this.setState({long1: Number((-1)*this.toRadians(Number(deg2)))});
+        } else { this.setState({long1: Number(this.toRadians(Number(deg2)))});}
+      }
+  }
 
   setFormat(event){
     this.setState({format: event.target.value});
