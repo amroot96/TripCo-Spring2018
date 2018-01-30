@@ -7,25 +7,12 @@ class Calculator extends React.Component {
       format: "",
       operand1: "", 
       operand2: "", 
-      start: "",
       radius: "",
       units: "",
       lat1: "",
       long1: "",
       lat2: "",
       long2: "",
-      degreesInput:"",
-      minutesInput:"",
-      secondsInput:"",
-      /* Start Latitude */
-      floatInput1:"",      
-      /* Start Longitude */
-      floatInput2:"",     
-      /* End Latitude */
-      floatInput3:"",
-      /* End Longitude */
-      floatInput4:""
-      
     };
     /* must bind all functions in constructor */
     this.updateOperand1 = this.updateOperand1.bind(this);
@@ -46,8 +33,8 @@ class Calculator extends React.Component {
       this.setState({lat1: this.toRadians(lat)});
       this.setState({long1: this.toRadians(long)});
     }
-    else if(this.state.format==0){
-      this.DMS(event, 'true');
+    if(this.state.format==0){
+      this.splitDMS(event.target.value,1);
     }
   }
 
@@ -59,51 +46,42 @@ class Calculator extends React.Component {
       this.setState({lat2: this.toRadians(lat)});
       this.setState({long2: this.toRadians(long)});
     }
-   /* if(this.state.format==0){
-      this.DMS(event, 'false');
-    }*/
+    if(this.state.format==0){
+      this.splitDMS(event.target.value,2);
+    }
  }
-  
- DMS(event, start){
-    temp_long: "";
-    if(event.target.value.includes('N')){
-      var [lat, long] = event.target.value.split('N');
-      this.setState({temp_long: long});
-      splitDMS(lat);
-      if(start == 'true'){ floatInput1 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
-      else{ floatInput3 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
-      
-    }else if(event.target.value.includes('S')){
-      var [lat, long] = event.target.value.split('S');
-      this.setState({temp_long: long});
-      splitDMS(lat);
-      if(start == 'true'){ floatInput1 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600));}
-      else{ floatInput3 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
-    }
     
-    if(temp_long.includes('W')){
-      splitDMS(temp_long);
-      if(start == 'true'){ floatInput2 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
-      else{ floatInput4 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
-      
-    }else if(temp_long.includes('E')){
-      splitDMS(temp_long);
-      if(start == 'true'){
-        floatInput2 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
-      else{ floatInput4 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
-    }
-    
+  splitDMS(DMS,operand){
+
+      var [deg1, helper, rest] = DMS.split('°'); /* get degrees */
+      rest = helper + '°' + rest;
+      var [min1, helper, rest] = rest.split('\''); /* get minutes   */
+      rest = helper + '\'' + rest;
+      var [sec1, helper, rest] = rest.split('\"'); /* get seconds */
+      rest = helper + '"' + rest;
+      var dir1 = rest.substring(1,2);
+      rest = rest.substring(2);
+      var [deg2, rest] = rest.split('°'); /* get degrees */
+      var [min2, rest] = rest.split('\''); /* get minutes */
+      var [sec2, dir2] = rest.split('\"'); /* get seconds */
+      if(operand == 2) {
+        if(dir1 == "S") {
+          this.setState({lat2: Number((-1)*this.toRadians(Number(deg1) + min1/60 + sec1/3600))});
+        } else { this.setState({lat2: Number(this.toRadians(Number(deg1) + min1/60 + sec1/3600))});}
+        if(dir2 == "W") {
+          this.setState({long2: Number((-1)*this.toRadians(Number(deg2) + min2/60 + sec2/3600))});
+        } else { this.setState({long2: Number(this.toRadians(Number(deg2) + min2/60 + sec2/3600))});}
+        } else {
+        if(dir1 == "S") {
+          this.setState({lat1: Number((-1)*this.toRadians(Number(deg1) + min1/60 + sec1/3600))});
+        } else { this.setState({lat1: Number(this.toRadians(Number(deg1) + min1/60 + sec1/3600))});}
+        if(dir2 == "W") {
+          this.setState({long1: Number((-1)*this.toRadians(Number(deg2) + min2/60 + sec2/3600))});
+        } else { this.setState({long1: Number(this.toRadians(Number(deg2) + min2/60 + sec2/3600))});}
+      }
+
   }
-  
-  splitDMS(DMS){
-      var [deg, rest] = DMS.split('°'); /* get degrees */
-      this.setState({degreesInput: deg});
-      var [min, rest] = rest.split('\''); /* get minutes */
-      this.setState({minutesInput: min});
-      var [sec, dir] = rest.split('"'); /* get seconds */
-      this.setState({secondsInput: sec});
-  }
-  
+
   setFormat(event){
     this.setState({format: event.target.value});
   }
@@ -128,8 +106,6 @@ toRadians(angle) {
       
       <form className="form-inline" onSubmit={this.calc}>
         <p>
-        <label>
-
           {/*This is the dropdown menu
              Whichever option is selected, it changes this.state.format to 0 through 3 
           */}
@@ -149,10 +125,7 @@ toRadians(angle) {
               <option value="1">Kilometers</option>
             </select> </p>
         </div>
-        </label>
         </p>
-        <br />
-        <label>
         Start:
         <input type="text" className="text-right form-control mr-sm-2" 
           value={this.state.operand1} onChange={this.updateOperand1}/> 
@@ -162,7 +135,6 @@ toRadians(angle) {
         <button className="btn btn-primary mr-sm-2" enabled>Calculate</button>
         <input type="text" className="text-right form-control mr-sm-2" 
           value={this.state.dist} disabled/>
-        </label>
       </form>
     )
   } 
