@@ -1,3 +1,4 @@
+
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
@@ -163,35 +164,40 @@ class Calculator extends React.Component {
   render() {
     /* a simple form with text input and a submit button  */
     return (
+      
       <form className="form-inline" onSubmit={this.calc}>
-        <div>
-          <p>
-            Select Input Format
-          </p>
-          <p>
-            <select value={this.state.format} onChange={this.setFormat}>
-              <option disbled>Choose One...</option>
-              <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
-              <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
-              <option value="2">DD [ 40.446° N 79.982° W ]</option>
-              <option value="3">FP [ 40.445 -79.982 ]</option>
-            </select>
-          </p>
-        </div>
+        <p>
+        <label>
+          Select Input Format
+          {/*This is the dropdown menu
+             Whichever option is selected, it changes this.state.format to 0 through 3 
+          */}
+          <select value={this.state.format} onChange={this.setFormat}>
+            <option disbled>Choose One...</option>
+            <option value="0">DMS [ 40° 26′ 46″ N 79° 58′ 56″ W ]</option>
+            <option value="1">DDM [ 40° 26.767′ N 79° 58.933′ W ]</option>
+            <option value="2">DD [ 40.446° N 79.982° W ]</option>
+            <option value="3">FP [ 40.445 -79.982 ]</option>
+          </select>
+        </label>
+        </p>
+        <br />
+        <label>
         Start
-        <input type="text" className="text-right form-control mr-sm-2" 
-          value={this.state.operand1} onChange={this.updateOperand1}/> 
+          <input type="text" className="text-right form-control mr-sm-2" 
+            value={this.state.operand1} onChange={this.updateOperand1}/> 
         
-        <button className="btn btn-secondary mr-sm-2" disabled>to</button>
+          <button className="btn btn-secondary mr-sm-2" disabled>to</button>
         End
-        <input type="text" className="text-right form-control mr-sm-2" 
-          value={this.state.operand2} onChange={this.updateOperand2}/> 
+          <input type="text" className="text-right form-control mr-sm-2" 
+            value={this.state.operand2} onChange={this.updateOperand2}/> 
 
-        <button className="btn btn-primary mr-sm-2" type="submit" value="submit" 
-          disabled>=</button>
+          <button className="btn btn-primary mr-sm-2" type="submit" value="submit" 
+            disabled>=</button>
 
-        <input type="text" className="text-right form-control mr-sm-2" 
-          value={this.state.sum} disabled/>
+          <input type="text" className="text-right form-control mr-sm-2" 
+            value={this.state.sum} disabled/>
+        </label>
       </form>
     )
   } 
