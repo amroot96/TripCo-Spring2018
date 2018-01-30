@@ -7,12 +7,25 @@ class Calculator extends React.Component {
       format: "",
       operand1: "", 
       operand2: "", 
+      start: "",
       radius: "",
       units: "",
       lat1: "",
       long1: "",
       lat2: "",
       long2: "",
+      degreesInput:"",
+      minutesInput:"",
+      secondsInput:"",
+      /* Start Latitude */
+      floatInput1:"",      
+      /* Start Longitude */
+      floatInput2:"",     
+      /* End Latitude */
+      floatInput3:"",
+      /* End Longitude */
+      floatInput4:""
+      
     };
     /* must bind all functions in constructor */
     this.updateOperand1 = this.updateOperand1.bind(this);
@@ -80,6 +93,37 @@ class Calculator extends React.Component {
         } else { this.setState({long1: Number(this.toRadians(Number(deg2) + min2/60 + sec2/3600))});}
       }
 
+  }
+  
+ DMS(event, start){
+    temp_long: "";
+    if(event.target.value.includes('N')){
+      var [lat, long] = event.target.value.split('N');
+      this.setState({temp_long: long});
+      splitDMS(lat);
+      if(start == 'true'){ floatInput1 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+      else{ floatInput3 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+      
+    }else if(event.target.value.includes('S')){
+      var [lat, long] = event.target.value.split('S');
+      this.setState({temp_long: long});
+      splitDMS(lat);
+      if(start == 'true'){ floatInput1 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600));}
+      else{ floatInput3 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
+    }
+    
+    if(temp_long.includes('W')){
+      splitDMS(temp_long);
+      if(start == 'true'){ floatInput2 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
+      else{ floatInput4 = -1 * (degreesInput + (minutesInput/60) + (secondsInput/3600)); }
+      
+    }else if(temp_long.includes('E')){
+      splitDMS(temp_long);
+      if(start == 'true'){
+        floatInput2 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+      else{ floatInput4 = degreesInput + (minutesInput/60) + (secondsInput/3600); }
+    }
+    
   }
 
   setFormat(event){
