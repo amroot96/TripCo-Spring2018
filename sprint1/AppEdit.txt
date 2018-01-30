@@ -25,6 +25,8 @@ class Calculator extends React.Component {
     this.updateOperand1 = this.updateOperand1.bind(this);
     this.updateOperand2 = this.updateOperand2.bind(this);
     this.setFormat = this.setFormat.bind(this);
+    this.DMS = this.DMS.bind(this);
+    this.splitDMS = this.splitDMS.bind(this);
   }
 
   updateOperand1(event) {
