@@ -4,12 +4,12 @@ class Calculator extends React.Component {
     /* state variables */
     this.state = { 
       dist: "",
-      format: "",
+      format: 3,
       operand1: "", 
       operand2: "", 
       start: "",
-      radius: "",
-      units: "",
+      radius: 3958.7613,
+      units: 0,
       lat1: "", 
       long1: "",
       lat2: "",
