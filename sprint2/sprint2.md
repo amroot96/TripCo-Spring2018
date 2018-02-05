@@ -47,8 +47,8 @@ We think the input will be the most troublesome from our experience last split. 
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  21   | 0 
-Story Points |  7  | 0 
+Tasks |  8   | 0 
+Story Points |  14  | 0 
 
 ## Daily Scrums
 
