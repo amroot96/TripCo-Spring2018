@@ -2,6 +2,8 @@
 
 ## Goal
 
+Work together on each issue in zenhub until we're all satasfied with our product. We're planning on working on and completing 7 epics each with many tasks. We'll work together and always have a working version.
+
 ### A mobile, responsive map and itinerary!
 ### Sprint Leader: Scott Magisano
 
@@ -12,7 +14,6 @@
 * Product Increment release `v2.0` created on GitHub with appropriate version number and name, a description based on the Release Notes template, and the arhived files.
 * Version in pom.xml should be `<version>2.0.0</version>`.
 * Javadoc and unit tests for public methods.
-* ~~Coverage at least 50% overall and for each class.~~
 
 ## Policies
 
@@ -30,17 +31,24 @@
 
 Epics planned for this release.
 
-* *## title*
-*
+* *Build a responsive, mobile first web application*
+* *Let the user load a file with a destination*
+* *Plan trips in the state of Colorado*
+* *Show an itinerary of the round trip*
+* *Plan the trip in the destination order the user provided*
+* *Let the user load a file with a destinations*
+* *Show a map of the round trip*
 
 *Include a discussion of planning decisions made based on your velocity from previous sprints.*
+
+We think the input will be the most troublesome from our experience last split. After input is finished we'll be going string and will completely many tasks.
 
 ## Metrics
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  *value*   | *value* 
-Story Points |  *value*  | *value* 
+Tasks |  8   | 0 
+Story Points |  14  | 0 
 
 ## Daily Scrums
 
