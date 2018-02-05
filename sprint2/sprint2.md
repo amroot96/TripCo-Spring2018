@@ -1,9 +1,9 @@
-# Sprint 2 - *your team number* - *your team name*
+# Sprint 2 - 7 - Jackalope
 
 ## Goal
 
 ### A mobile, responsive map and itinerary!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: Scott Magisano
 
 ## Definition of Done
 
@@ -46,10 +46,9 @@ Story Points |  *value*  | *value*
 
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
-*date* | *@task only* | *@task only* | none
+2/4 | planning | none | 
  | | | 
  
-
 ## Review
 
 #### Completed epics in Sprint Backlog 
