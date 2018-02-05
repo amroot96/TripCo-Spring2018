@@ -41,6 +41,8 @@ Epics planned for this release.
 
 *Include a discussion of planning decisions made based on your velocity from previous sprints.*
 
+We think the input will be the most troublesome from our experience last split. After input is finished we'll be going string and will completely many tasks.
+
 ## Metrics
 
 Statistic | Planned | Completed
