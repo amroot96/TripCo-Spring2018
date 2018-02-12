@@ -55,7 +55,8 @@ Story Points |  14  | 0
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
 2/4 | planning | none | 
- | | | 
+2/11 | orientation | parse json inputs | unsure if json.parse works or not.
+ | | |
  
 ## Review
 
