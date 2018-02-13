@@ -38,5 +38,4 @@ public class TestTrip {
     assertEquals(expectedDistances, trip.distances);
   }
 
-
 }
