@@ -19,30 +19,24 @@ class Application extends Component {
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
       }
     };
-    this.updateTrip = this.updateTrip.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
+    this.updateTrip = this.updateTrip.bind(this);
   }
 
-  updateTrip(tffi){
-    let dests = [];
-    let dists = [];
-    let i = 0;
-    for(i=0;i<tffi.length;i++) {
-      dests[i] = tffi[i].name;
-    }
-    for(i=0;i<tffi.length;i++) {
-        dists[i] = tffi[i].elevation;
-    }
+  updateTrip(json){
+      console.log("Update trip called");
     this.setState({
         trip:{
-            type:"test",
-            title: "Title_Test",
-            options : {distance: "miles"},
-            places: dests,
-            distances: dists,
-            map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
+            type:json.type,
+            title: json.title,
+            options : json.options,
+            places: json.places,
+            distances: json.distances,
+            map: json.map
         }});
+    console.log(this.state.trip);
   }
+
 
   updateOptions(options){
     console.log(options);

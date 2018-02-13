@@ -17,17 +17,15 @@ class Destinations extends Component {
   }
 
     loadTFFI(event) {
-        console.log(event.target.files[0].name);
         let json;
         let f = event.target.files[0];
         let reader = new FileReader();
         reader.onload = function (e) {
             try {
                 json = JSON.parse(e.target.result);
-                this.setState({count : json.length});
+                this.setState({count : json.places.length});
                 this.setState({file : json});
                 this.props.updateTrip(json);
-                console.log(json);
             } catch (ex) {
                 alert(ex);
             }
