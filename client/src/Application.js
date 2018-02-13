@@ -24,7 +24,7 @@ class Application extends Component {
   }
 
   updateTrip(json){
-
+      console.log("Update trip called");
     this.setState({
         trip:{
             type:json.type,
@@ -34,7 +34,7 @@ class Application extends Component {
             distances: json.distances,
             map: json.map
         }});
-    console.log(trip);
+    console.log(this.state.trip);
   }
 
 

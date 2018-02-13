@@ -38,8 +38,8 @@ class Trip extends Component {
     //       ]
     //   };
 let requestBody = this.props.trip;
-    console.log(process.env.SERVICE_URL);
-    console.log(requestBody);
+    // console.log(process.env.SERVICE_URL);
+    // console.log(requestBody);
 
     return fetch(process.env.SERVICE_URL + '/plan', {
       method:"POST",
@@ -51,7 +51,7 @@ let requestBody = this.props.trip;
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
-      console.log(tffi);
+      // console.log(tffi);
       this.props.updateTrip(tffi);
     } catch(err) {
       console.error(err);
