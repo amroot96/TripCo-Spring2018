@@ -21,25 +21,25 @@ class Trip extends Component {
    */
   fetchResponse(){
     // need to get the request body from the trip in state object.
-    let requestBody = {
-        "type"    : "trip",
-        "title"   : "PLANNING",
-        "options" : { 
-          "distance":"miles",
-          "optimization":"none"
-        },
-        "places"  : [
-          {"id":"dnvr", "name":"Denver", "latitude": "", "longitude": ""},
-          {"id":"bldr", "name":"Boulder", "latitude": "", "longitude": ""},
-          {"id":"foco", "name":"Fort Collins", "latitude": "", "longitude": ""},
-          {"id":"grly", "name":"Greeley", "latitude": "", "longitude": ""},
-          {"id":"fomo", "name":"Fort Morgan", "latitude": "", "longitude": ""},
-          {"id":"frst", "name":"Firestone", "latitude": "", "longitude": ""}
-          ]
-      };
-
-    console.log(process.env.SERVICE_URL);
-    console.log(requestBody);
+    // let requestBody = {
+    //     "type"    : "trip",
+    //     "title"   : "PLANNING",
+    //     "options" : {
+    //       "distance":"miles",
+    //       "optimization":"none"
+    //     },
+    //     "places"  : [
+    //       {"id":"dnvr", "name":"Denver", "latitude": "", "longitude": ""},
+    //       {"id":"bldr", "name":"Boulder", "latitude": "", "longitude": ""},
+    //       {"id":"foco", "name":"Fort Collins", "latitude": "", "longitude": ""},
+    //       {"id":"grly", "name":"Greeley", "latitude": "", "longitude": ""},
+    //       {"id":"fomo", "name":"Fort Morgan", "latitude": "", "longitude": ""},
+    //       {"id":"frst", "name":"Firestone", "latitude": "", "longitude": ""}
+    //       ]
+    //   };
+let requestBody = this.props.trip;
+    // console.log(process.env.SERVICE_URL);
+    // console.log(requestBody);
 
     return fetch(process.env.SERVICE_URL + '/plan', {
       method:"POST",
@@ -51,7 +51,7 @@ class Trip extends Component {
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
-      console.log(tffi);
+      // console.log(tffi);
       this.props.updateTrip(tffi);
     } catch(err) {
       console.error(err);
@@ -74,6 +74,7 @@ class Trip extends Component {
           </div>
           <div className="card-body">
             <p>Give your trip a title before planning or saving.</p>
+              <Itinerary trip={this.props.trip} />
             <div className="input-group" role="group">
               <span className="input-group-btn">
               <button className="btn btn-primary " onClick={this.plan} type="button">Plan</button>
@@ -84,7 +85,7 @@ class Trip extends Component {
             </span>
             </div>
             <Map trip={this.props.trip} />
-            <Itinerary trip={this.props.trip} />
+
           </div>
         </div>
     )
