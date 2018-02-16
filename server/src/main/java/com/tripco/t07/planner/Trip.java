@@ -65,7 +65,7 @@ public class Trip {
     ArrayList<Integer> dist = new ArrayList<Integer>();
 
     //TODO - change this to not hardcoded
-    if(!this.places.isEmpty()) {
+    if(this.places != null && !this.places.isEmpty()) {
         for (int i = 0; i < this.places.size() - 1; ++i) {
             dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
         }
