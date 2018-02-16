@@ -37,4 +37,8 @@ public class TestTrip {
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
   }
+  @Test
+  public void testBackground(){
+    assertNotEquals(trip.map, "");
+  }
 }
