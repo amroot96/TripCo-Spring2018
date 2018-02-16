@@ -15,8 +15,8 @@ class Itinerary extends Component {
     let dists = [];
     let i = 0;
     for(i=0; i < this.props.trip.places.length; i++) {
-        dests[i] = <td>{this.props.trip.places[i].name}</td>;
-        dists[i] = <td>{this.props.trip.places[i].latitude}</td>;
+        dests[i] = <td key={i}>{this.props.trip.places[i].name}</td>;
+        dists[i] = <td key={i}>{this.props.trip.places[i].latitude}</td>;
     }
     //let dests = this.props.trip.places.map((item) => <td>{item}</td>);
     //let dists = this.props.trip.distances.map((item) => <td>{item}</td>);
