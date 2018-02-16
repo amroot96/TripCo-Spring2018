@@ -10,13 +10,15 @@ class Itinerary extends Component {
   createTable () {
 
       let distance = 0;  // need to sum this from real the trip
+      
     let units = this.props.trip.options.distance;
     let dests = [];
     let dists = [];
     let i = 0;
     for(i=0; i < this.props.trip.places.length; i++) {
         dests[i] = <td key={i}>{this.props.trip.places[i].name}</td>;
-        dists[i] = <td key={i}>{this.props.trip.places[i].latitude}</td>;
+        dists[i] = <td key={i}>{this.props.trip.distances[i]}</td>;
+        distance = this.props.trip.distances[i] + distance;
     }
     //let dests = this.props.trip.places.map((item) => <td>{item}</td>);
     //let dists = this.props.trip.distances.map((item) => <td>{item}</td>);
@@ -38,7 +40,7 @@ class Itinerary extends Component {
             </thead>
             <tbody>
             <tr>
-              <th className="table-info align-middle">Latitude</th>
+              <th className="table-info align-middle">Distances</th>
               {table.dists}
             </tr>
             </tbody>

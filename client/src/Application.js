@@ -23,8 +23,11 @@ class Application extends Component {
     this.updateTrip = this.updateTrip.bind(this);
   }
 
-  updateTrip(json){
+  updateTrip(json,init){
       console.log("Update trip called");
+      if(init === 1) {
+          json.distances = [0,0,0];
+      }
     this.setState({
         trip:{
             type:json.type,
