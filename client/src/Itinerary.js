@@ -20,6 +20,8 @@ class Itinerary extends Component {
         dists[i] = <td key={i}>{this.props.trip.distances[i]}</td>;
         distance = this.props.trip.distances[i] + distance;
     }
+    //let dests = this.props.trip.places.map((item) => <td>{item}</td>);
+    //let dists = this.props.trip.distances.map((item) => <td>{item}</td>);
     return {distance, units, dests, dists};
   }
 
