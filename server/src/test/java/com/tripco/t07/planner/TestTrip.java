@@ -41,4 +41,6 @@ public class TestTrip {
   public void testBackground(){
     assertNotEquals(trip.map, "");
   }
+
+
 }

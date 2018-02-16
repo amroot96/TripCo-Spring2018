@@ -41,12 +41,13 @@ class Application extends Component {
   }
 
 
-  updateOptions(options){
-    console.log(options);
-    //This makes sense to me, maybe too simple
-    this.setState({trip:{options : options}});
-    // update the options in the trip.
+  updateOptions(arg) {
+      let unitChange = Object.assign({}, this.state.trip);
+      unitChange.options.distance = arg;
+      this.setState({trip: unitChange});
+      console.log(this.state.trip.options);
   }
+
 
   render() {
     return(

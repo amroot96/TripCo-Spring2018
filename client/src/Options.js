@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
  * The options reside in the parent object so they may be shared with the Trip object.
@@ -8,13 +9,15 @@ import React, {Component} from 'react';
 class Options extends Component{
     constructor(props) {
         super(props);
+        this.selectedOption = 'miles';
         this.changeOption = this.changeOption.bind(this);
     }
 
     changeOption(arg) {
-        console.log(arg);
-        this.props.updateOptions(arg);
+        console.log("updating distance options to...");
+        this.props.updateOptions(arg.target.id);
     }
+
 
     render() {
         // @todo need to update the options when a button is pressed
@@ -26,11 +29,11 @@ class Options extends Component{
                 <div className="card-body">
                     <p>Highlight the options you wish to use.</p>
                     <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label className="btn btn-outline-dark active">
-                            <input type="radio" id="miles" name="distance" autcomplete="off" defaultChecked/> Miles
+                        <label className="btn btn-primary active">
+                            <input type="radio" id="miles" name="distance" autcomplete="off" onChange={this.changeOption}/> Miles
                         </label>
-                        <label className="btn btn-outline-dark ">
-                            <input type="radio" id="kilometers" name="distance" autcomplete="off"/> Kilometers
+                        <label className="btn btn-primary ">
+                            <input type="radio" id="kilometers" name="distance" autcomplete="off" onChange={this.changeOption}/> Kilometers
                         </label>
                     </div>
                 </div>

@@ -9,4 +9,12 @@ public class Option {
   public String distance;
   public String optimization;
 
+
+  /**
+   * Get distance string
+   */
+  public String getDistance(){
+    return this.distance;
+  }
+
 }
