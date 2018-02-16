@@ -13,7 +13,7 @@ class Options extends Component{
 
     changeOption(arg) {
         console.log(arg);
-        //this.props.updateOptions(arg);
+        this.props.updateOptions(arg);
     }
 
     render() {
@@ -27,10 +27,10 @@ class Options extends Component{
                     <p>Highlight the options you wish to use.</p>
                     <div className="btn-group btn-group-toggle" data-toggle="buttons">
                         <label className="btn btn-outline-dark active">
-                            <input type="radio" id="miles" name="distance" autcomplete="off" defaultChecked/> Miles
+                             <input type="radio"  name="distance" id="miles" autcomplete="off" defaultChecked/> Miles
                         </label>
                         <label className="btn btn-outline-dark ">
-                            <input type="radio" id="kilometers" name="distance" autcomplete="off"/> Kilometers
+                            <input type="radio" name="distance" id="kilometers" autcomplete="off" /> Kilometers
                         </label>
                     </div>
                 </div>

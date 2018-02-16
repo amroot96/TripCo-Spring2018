@@ -42,6 +42,7 @@ class Application extends Component {
     console.log(options);
     //This makes sense to me, maybe too simple
     this.setState({trip:{options : options}});
+
     // update the options in the trip.
   }
 
