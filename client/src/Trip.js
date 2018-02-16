@@ -52,7 +52,7 @@ let requestBody = this.props.trip;
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
       // console.log(tffi);
-      this.props.updateTrip(tffi);
+      this.props.updateTrip(tffi,2);
     } catch(err) {
       console.error(err);
     }

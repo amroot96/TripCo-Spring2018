@@ -25,7 +25,7 @@ class Destinations extends Component {
                 json = JSON.parse(e.target.result);
                 this.setState({count : json.places.length});
                 this.setState({file : json});
-                this.props.updateTrip(json);
+                this.props.updateTrip(json,1);
             } catch (ex) {
                 alert(ex);
             }
