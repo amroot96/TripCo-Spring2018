@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 /* Destinations reside in the parent object so they may be shared
  * with the Trip object.
- * Renders the current destination list.
+ * Renders the current destination list. -- DONE
  * Loads destinations from files. -- DONE
  * Finds destinations in a database???
  * Displays the current number of destinations -- DONE
@@ -31,7 +31,6 @@ class Destinations extends Component {
             }
         }.bind(this);
         reader.readAsText(f);
-        // this.props.updateTrip(??);
     }
   render() {
     // need to clean up the button

@@ -65,6 +65,17 @@ public class Trip {
 
     ArrayList<Integer> dist = new ArrayList<Integer>();
 
+    //TODO - change this to not hardcoded
+    if(!this.places.isEmpty()) {
+        for (int i = 0; i < this.places.size() - 1; ++i) {
+            dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
+        }
+        return dist;
+    }
+    else{
+       // return dist;
+    }
+
     // hardcoded example
     dist.add(12);
     dist.add(23);
@@ -76,4 +87,22 @@ public class Trip {
     return dist;
   }
 
+  /*
+  * Returns the distance between two Places.
+  * @return
+  * */
+  private Integer getDistance(Place p1, Place p2){
+
+      //return different values for either miles or km options selected.
+    //TODO - This is where the conversion will take place based on Miles or Kilometers
+      String s = this.options.getDistance();
+      switch(s.charAt(0)){
+          case 'M': break;
+
+          case 'K': break;
+
+          default: return 0;
+      }
+      return 0;
+  }
 }
