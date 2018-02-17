@@ -32,8 +32,8 @@ public class Trip {
   }
 
   /**
-   * Returns an SVG containing the background and the legs of the trip.
    * @return
+   * Returns an SVG containing the background and the legs of the trip.
    */
   private String svg() {
     InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
@@ -45,26 +45,22 @@ public class Trip {
         line += temp +"\n";
         temp = br.readLine();
       }
-
-
     } catch (IOException e) {
       e.printStackTrace();
     }
-
     return line;
     // return "<svg width=\"1920\" height=\"960\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><!-- Created with SVG-edit - http://svg-edit.googlecode.com/ --> <g> <g id=\"svg_4\"> <svg id=\"svg_1\" height=\"960\" width=\"1920\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_2\"> <title>Layer 1</title> <rect fill=\"rgb(119, 204, 119)\" stroke=\"black\" x=\"0\" y=\"0\" width=\"1920\" height=\"960\" id=\"svg_3\"/> </g> </svg> </g> <g id=\"svg_9\"> <svg id=\"svg_5\" height=\"480\" width=\"960\" y=\"240\" x=\"480\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_6\"> <title>Layer 2</title> <polygon points=\"0,0 960,0 960,480 0,480\" stroke-width=\"12\" stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> <polyline points=\"0,0 960,480 480,0 0,480 960,0 480,480 0,0\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/> </g> </svg> </g> </g> </svg>";
-
-
   }
 
   /**
    * Returns the distances between consecutive places,
    * including the return to the starting point to make a round trip.
    * @return
+   * returns distance vector between each place in colorado
    */
   private ArrayList<Integer> legDistances() {
 
-    ArrayList<Integer> dist = new ArrayList<Integer>();
+    ArrayList<Integer> dist = new ArrayList<>();
 
       if(this.places != null && !this.places.isEmpty()) {
           for (int i =0; i < this.places.size(); i++) {
@@ -72,11 +68,7 @@ public class Trip {
                   this.places.remove(i);
               }
           }
-          System.out.println("SCOTT HELP ");
-          System.out.println(this.places);
-          System.out.println(this.places.get(0));
           this.places.add(this.places.get(0));
-          System.out.println(this.places);
       }
     if(this.places != null && !this.places.isEmpty()) {
         for (int i = 0; i < this.places.size(); ++i) {
@@ -89,47 +81,30 @@ public class Trip {
         }
         return dist;
     }
-    else{
-       // return dist;
-    }
-    // hardcoded example
     dist.add(12);
     dist.add(23);
     dist.add(34);
     dist.add(45);
     dist.add(65);
     dist.add(19);
-
     return dist;
   }
 
   /*
   * Returns the distance between two Places.
   * @return
+  *       //return different values for either miles or km options selected.
   * */
   private Integer getDistance(Place p1, Place p2){
-
-      //return different values for either miles or km options selected.
-    //TODO - This is where the conversion will take place based on Miles or Kilometers
       String s = this.options.getDistance();
-      System.out.println("test");
-      double lat1 = Double.parseDouble(p1.latitude);
-      double lat2 = Double.parseDouble(p2.latitude);
-      double long1 = Double.parseDouble(p1.latitude);
-      double long2 = Double.parseDouble(p2.latitude);
-
-      System.out.println("lat1: " + lat1 + " long1: " + long1);
-      System.out.println("lat2: " + lat2 + " long2: " + long2);
-      lat1 = toRadians(lat1);
-      lat2 = toRadians(lat2);
-      long1 = toRadians(long1);
-      long2 = toRadians(long2);
+      double lat1 = toRadians(Double.parseDouble(p1.latitude));
+      double lat2 = toRadians(Double.parseDouble(p2.latitude));
+      double long1 = toRadians(Double.parseDouble(p1.latitude));
+      double long2 = toRadians(Double.parseDouble(p2.latitude));
       switch(s.charAt(0)){
           case 'm':
-              System.out.println("Case M");
               return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           case 'k':
-              System.out.println("Case K");
               return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           default: return 0;
       }
@@ -138,10 +113,6 @@ public class Trip {
       return angle * (Math.PI / 180);
   }
   public boolean coloradoCheck(double latitude,double longitude) {
-      if (latitude>37 && latitude<41 && longitude<-102.03 && longitude>-109.03) {
-          return true;
-      }
-      else return false;
+      return (latitude>37 && latitude<41 && longitude<-102.03 && longitude>-109.03);
   }
-
 }
