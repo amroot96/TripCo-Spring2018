@@ -68,8 +68,13 @@ public class Trip {
     
     //TODO - change this to not hardcoded
     if(this.places != null && !this.places.isEmpty()) {
-        for (int i = 0; i < this.places.size() - 1; ++i) {
-            dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
+        for (int i = 0; i < this.places.size(); ++i) {
+            if(i == 0) {
+                dist.add(0);
+            }
+            else {
+                dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
+            }
         }
         return dist;
     }
