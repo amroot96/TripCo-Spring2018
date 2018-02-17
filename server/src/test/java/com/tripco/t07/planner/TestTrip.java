@@ -45,5 +45,8 @@ public class TestTrip {
   public void testRadians() {
     assertEquals(trip.toRadians(0),0,0.01);
   }
-
+  @Test
+  public void coloradoBorders() {
+    assertTrue(trip.coloradoCheck(40,-104));
+  }
 }

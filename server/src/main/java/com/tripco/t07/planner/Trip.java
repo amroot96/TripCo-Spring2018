@@ -67,6 +67,13 @@ public class Trip {
     ArrayList<Integer> dist = new ArrayList<Integer>();
     
     //TODO - change this to not hardcoded
+      if(this.places != null && !this.places.isEmpty()) {
+          for (int i =0; i < this.places.size(); i++) {
+              if(!coloradoCheck(Double.parseDouble(this.places.get(i).latitude),Double.parseDouble(this.places.get(i).longitude))) {
+                  this.places.remove(i);
+              }
+          }
+      }
     if(this.places != null && !this.places.isEmpty()) {
         for (int i = 0; i < this.places.size(); ++i) {
             if(i == 0) {
@@ -107,6 +114,7 @@ public class Trip {
       double lat2 = Double.parseDouble(p2.latitude);
       double long1 = Double.parseDouble(p1.latitude);
       double long2 = Double.parseDouble(p2.latitude);
+
       System.out.println("lat1: " + lat1 + " long1: " + long1);
       System.out.println("lat2: " + lat2 + " long2: " + long2);
       lat1 = toRadians(lat1);
@@ -126,4 +134,11 @@ public class Trip {
   public Double toRadians(double angle) {
       return angle * (Math.PI / 180);
   }
+  public boolean coloradoCheck(double latitude,double longitude) {
+      if (latitude>37 && latitude<41 && longitude<-102.03 && longitude>-109.03) {
+          return true;
+      }
+      else return false;
+  }
+
 }
