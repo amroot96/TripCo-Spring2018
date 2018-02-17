@@ -26,7 +26,8 @@ class Application extends Component {
   updateTrip(json,init){
       console.log("Update trip called");
       if(init === 1) {
-          json.distances = [0,0,0];
+          json.distances = new Array(json.places.length).fill(0);
+          //comment
       }
     this.setState({
         trip:{

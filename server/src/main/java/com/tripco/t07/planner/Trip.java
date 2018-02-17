@@ -30,8 +30,7 @@ public class Trip {
     this.distances = legDistances();
 
   }
-//  Plan p;
-//  p.
+
   /**
    * Returns an SVG containing the background and the legs of the trip.
    * @return
@@ -66,20 +65,17 @@ public class Trip {
   private ArrayList<Integer> legDistances() {
 
     ArrayList<Integer> dist = new ArrayList<Integer>();
-
-// <<<<<<< DMS
-// =======
-//     //TODO - change this to not hardcoded
-//     if(!this.places.isEmpty()) {
-//         for (int i = 0; i < this.places.size() - 1; ++i) {
-//             dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
-//         }
-//         return dist;
-//     }
-//     else{
-//        // return dist;
-//     }
-// >>>>>>> master
+    
+    //TODO - change this to not hardcoded
+    if(this.places != null && !this.places.isEmpty()) {
+        for (int i = 0; i < this.places.size() - 1; ++i) {
+            dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
+        }
+        return dist;
+    }
+    else{
+       // return dist;
+    }
 
     // hardcoded example
     dist.add(12);
