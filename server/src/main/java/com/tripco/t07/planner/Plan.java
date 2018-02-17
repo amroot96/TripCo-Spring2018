@@ -34,12 +34,12 @@ public class Plan {
     // convert the body of the request to a Java class.
     Gson gson = new Gson();
     trip = gson.fromJson(requestBody, Trip.class);
-
+    Parser p = new Parser(trip.places);
+    p.iterator();
     // plan the trip.
     trip.plan();
     // log something.
-    Parser p = new Parser(trip.places);
-    p.iterator();
+
   }
 
   /** Handles the response for a Trip object.

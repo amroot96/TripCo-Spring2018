@@ -41,6 +41,9 @@ public class TestTrip {
   public void testBackground(){
     assertNotEquals(trip.map, "");
   }
-
+  @Test
+  public void testRadians() {
+    assertEquals(trip.toRadians(0),0,0.01);
+  }
 
 }
