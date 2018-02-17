@@ -37,9 +37,12 @@ public class Plan {
 
     // plan the trip.
     trip.plan();
-
     // log something.
-    System.out.println(trip.title);
+    Parser p = new Parser(trip.places);
+    p.iterator();
+//    for(int i = 0; i < trip.places.size(); i++){
+//      System.out.print(trip.places.get(i).latitude);
+//    }
   }
 
   /** Handles the response for a Trip object.
