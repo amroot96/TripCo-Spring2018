@@ -8,6 +8,8 @@ public class Parser {
     public float minute;
     public float second;
     String direction;
+    float lat;
+    float longitude;
 
     public Parser(ArrayList<Place> list){
         this.places = list;
@@ -17,23 +19,29 @@ public class Parser {
         for(int i = 0; i < places.size(); i++){
             //Parse Latitude
             if(places.get(i).latitude.contains("\"")){
-                DMS(places.get(i).latitude);
+                places.get(i).latitude = String.valueOf(DMS(places.get(i).latitude));
             }
             else if(places.get(i).latitude.contains("\'")){
-                DDM(places.get(i).latitude);
+                places.get(i).latitude = String.valueOf(DDM(places.get(i).latitude));
             }
             else if(places.get(i).latitude.contains("°")){
-                DD(places.get(i).latitude);
+                places.get(i).latitude = String.valueOf(DD(places.get(i).latitude));
+            }
+            else{
+                places.get(i).latitude = String.valueOf(Float.parseFloat(places.get(i).latitude));
             }
             //Parse Longtitude
             if(places.get(i).longitude.contains("\"")){
-                DMS(places.get(i).longitude);
+                places.get(i).longitude = String.valueOf(DMS(places.get(i).longitude));
             }
             else if(places.get(i).longitude.contains("\'")){
-                DDM(places.get(i).longitude);
+                places.get(i).longitude = String.valueOf(DDM(places.get(i).longitude));
             }
             else if(places.get(i).longitude.contains("°")){
-                DD(places.get(i).longitude);
+                places.get(i).longitude = String.valueOf(DD(places.get(i).longitude));
+            }
+            else {
+                places.get(i).longitude = String.valueOf(Float.parseFloat(places.get(i).longitude));
             }
         }
     }
