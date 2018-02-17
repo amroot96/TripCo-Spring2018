@@ -25,7 +25,7 @@ public class Plan {
    */
   public Plan (Request request) {
     // first print the request
-    System.out.println(HTTP.echoRequest(request));
+    //System.out.println(HTTP.echoRequest(request));
 
     // extract the information from the body of the request.
     JsonParser jsonParser = new JsonParser();
@@ -34,12 +34,13 @@ public class Plan {
     // convert the body of the request to a Java class.
     Gson gson = new Gson();
     trip = gson.fromJson(requestBody, Trip.class);
+
     Parser p = new Parser(trip.places);
     p.iterator();
     // plan the trip.
     trip.plan();
     // log something.
-
+    trip.display();
   }
 
   /** Handles the response for a Trip object.

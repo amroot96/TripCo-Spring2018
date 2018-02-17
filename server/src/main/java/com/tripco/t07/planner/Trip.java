@@ -24,6 +24,16 @@ public class Trip {
    * At this point it just adds the map and distances for the places in order.
    * It might need to reorder the places in the future.
    */
+  public void display() {
+      System.out.println(this.type);
+      System.out.println(this.title);
+      System.out.println(this.options);
+      for (int i = 0; i<this.places.size(); i++) {
+          System.out.println("id: " + this.places.get(i).id + " name: " + this.places.get(i).name +
+          " latitude: " + this.places.get(i).latitude + " longitude: " + this.places.get(i).longitude);
+      }
+      System.out.println(distances);
+  }
   public void plan() {
 
     this.map = svg();
