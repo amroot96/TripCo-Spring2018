@@ -65,14 +65,18 @@ public class Trip {
   private ArrayList<Integer> legDistances() {
 
     ArrayList<Integer> dist = new ArrayList<Integer>();
-    
-    //TODO - change this to not hardcoded
+
       if(this.places != null && !this.places.isEmpty()) {
           for (int i =0; i < this.places.size(); i++) {
               if(!coloradoCheck(Double.parseDouble(this.places.get(i).latitude),Double.parseDouble(this.places.get(i).longitude))) {
                   this.places.remove(i);
               }
           }
+          System.out.println("SCOTT HELP ");
+          System.out.println(this.places);
+          System.out.println(this.places.get(0));
+          this.places.add(this.places.get(0));
+          System.out.println(this.places);
       }
     if(this.places != null && !this.places.isEmpty()) {
         for (int i = 0; i < this.places.size(); ++i) {
@@ -88,7 +92,6 @@ public class Trip {
     else{
        // return dist;
     }
-
     // hardcoded example
     dist.add(12);
     dist.add(23);
