@@ -68,8 +68,13 @@ public class Trip {
     
     //TODO - change this to not hardcoded
     if(this.places != null && !this.places.isEmpty()) {
-        for (int i = 0; i < this.places.size() - 1; ++i) {
-            dist.add(getDistance(this.places.get(i), this.places.get(i+1)));
+        for (int i = 0; i < this.places.size(); ++i) {
+            if(i == 0) {
+                dist.add(0);
+            }
+            else {
+                dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
+            }
         }
         return dist;
     }
@@ -97,13 +102,28 @@ public class Trip {
       //return different values for either miles or km options selected.
     //TODO - This is where the conversion will take place based on Miles or Kilometers
       String s = this.options.getDistance();
+      System.out.println("test");
+      double lat1 = Double.parseDouble(p1.latitude);
+      double lat2 = Double.parseDouble(p2.latitude);
+      double long1 = Double.parseDouble(p1.latitude);
+      double long2 = Double.parseDouble(p2.latitude);
+      System.out.println("lat1: " + lat1 + " long1: " + long1);
+      System.out.println("lat2: " + lat2 + " long2: " + long2);
+      lat1 = toRadians(lat1);
+      lat2 = toRadians(lat2);
+      long1 = toRadians(long1);
+      long2 = toRadians(long2);
       switch(s.charAt(0)){
-          case 'M': break;
-
-          case 'K': break;
-
+          case 'm':
+              System.out.println("Case M");
+              return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
+          case 'k':
+              System.out.println("Case K");
+              return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           default: return 0;
       }
-      return 0;
+  }
+  public Double toRadians(double angle) {
+      return angle * (Math.PI / 180);
   }
 }
