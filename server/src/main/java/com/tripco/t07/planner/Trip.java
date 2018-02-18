@@ -102,24 +102,15 @@ public class Trip {
   * */
   private Integer getDistance(Place p1, Place p2){
       String s = this.options.getDistance();
-    /**Formula from GeoDataSource(TM) product
-     *
-     */
-        double l1 = Double.parseDouble(p1.latitude);
-        double l2 = Double.parseDouble(p2.latitude);
-        double ll1 = Double.parseDouble(p1.longitude);
-        double ll2 = Double.parseDouble(p2.longitude);
-        double theta = ll1-ll2;
-        double dist = Math.sin(Math.toRadians(l1)) * Math.sin(Math.toRadians(l2)) + Math.cos(Math.toRadians(l1)) * Math.cos(Math.toRadians(l2)) * Math.cos(Math.toRadians(theta));
-        dist = Math.acos(dist);
-        dist = Math.toDegrees(dist);
-        dist = dist * 60 * 1.1515;
-
+      double lat1 = toRadians(Double.parseDouble(p1.latitude));
+      double lat2 = toRadians(Double.parseDouble(p2.latitude));
+      double long1 = toRadians(Double.parseDouble(p1.latitude));
+      double long2 = toRadians(Double.parseDouble(p2.latitude));
       switch(s.charAt(0)){
           case 'm':
-            return (int)Math.round(dist);
+              return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           case 'k':
-            return (int)Math.round(dist *1.609344);
+              return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           default: return 0;
       }
   }
