@@ -31,11 +31,46 @@ public class TestTrip {
 
   @Test
   public void testDistances() {
-    trip.plan();
+
+    trip.options = new Option();
+    trip.options.distance = "kilometers";
+
+    Place p1 = new Place();
+    p1.latitude = "39° 44' 31.3548\" N";
+    p1.longitude = "104° 59' 29.5116\" W";
+    p1.id = "denver";
+
+    Place p2 = new Place();
+    p2.latitude = "40° 2' 49.3800\" N";
+    p2.longitude = "105° 16' 19.7328\" W";
+    p2.id = "boulder";
+
+    Place p3 = new Place();
+    p3.latitude = "40° 35' 6.9288\" N";
+    p3.longitude = "105° 5' 3.9084\" W";
+    p3.id = "foco";
+
+    trip.places = new ArrayList<Place>();
+    trip.places.add(p1);
+    trip.places.add(p2);
+    trip.places.add(p3);
+
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 12, 23, 34, 45, 65, 19);
+    Collections.addAll(expectedDistances, 0,42,62,94);
+    trip.plan();
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
+
+    trip.places = new ArrayList<Place>();
+    trip.places.add(p1);
+    trip.places.add(p2);
+    trip.places.add(p3);
+    trip.options.distance = "miles";
+    trip.plan();
+
+    expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0,26,38,58);
+    assertEquals(expectedDistances,trip.distances);
   }
   @Test
   public void testBackground(){

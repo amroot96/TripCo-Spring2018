@@ -37,6 +37,8 @@ public class Trip {
   public void plan() {
 
     this.map = svg();
+    Parser parse = new Parser(this.places);
+    parse.iterator();
     this.distances = legDistances();
 
   }
@@ -79,25 +81,18 @@ public class Trip {
               }
           }
           this.places.add(this.places.get(0));
-      }
-    if(this.places != null && !this.places.isEmpty()) {
-        for (int i = 0; i < this.places.size(); ++i) {
+
+          for (int i = 0; i < this.places.size(); ++i) {
             if(i == 0) {
-                dist.add(0);
+              dist.add(0);
             }
             else {
-                dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
+              dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
             }
-        }
-        return dist;
-    }
-    dist.add(12);
-    dist.add(23);
-    dist.add(34);
-    dist.add(45);
-    dist.add(65);
-    dist.add(19);
-    return dist;
+          }
+      }
+
+      return dist;
   }
 
   /*
@@ -107,15 +102,24 @@ public class Trip {
   * */
   private Integer getDistance(Place p1, Place p2){
       String s = this.options.getDistance();
-      double lat1 = toRadians(Double.parseDouble(p1.latitude));
-      double lat2 = toRadians(Double.parseDouble(p2.latitude));
-      double long1 = toRadians(Double.parseDouble(p1.latitude));
-      double long2 = toRadians(Double.parseDouble(p2.latitude));
+    /**Formula from GeoDataSource(TM) product
+     *
+     */
+        double l1 = Double.parseDouble(p1.latitude);
+        double l2 = Double.parseDouble(p2.latitude);
+        double ll1 = Double.parseDouble(p1.longitude);
+        double ll2 = Double.parseDouble(p2.longitude);
+        double theta = ll1-ll2;
+        double dist = Math.sin(Math.toRadians(l1)) * Math.sin(Math.toRadians(l2)) + Math.cos(Math.toRadians(l1)) * Math.cos(Math.toRadians(l2)) * Math.cos(Math.toRadians(theta));
+        dist = Math.acos(dist);
+        dist = Math.toDegrees(dist);
+        dist = dist * 60 * 1.1515;
+
       switch(s.charAt(0)){
           case 'm':
-              return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
+            return (int)Math.round(dist);
           case 'k':
-              return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
+            return (int)Math.round(dist *1.609344);
           default: return 0;
       }
   }
