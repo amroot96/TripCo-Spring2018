@@ -80,7 +80,9 @@ public class Trip {
                   this.places.remove(i);
               }
           }
-          this.places.add(this.places.get(0));
+          if(this.places.get(0) != this.places.get(this.places.size()-1)) {
+            this.places.add(this.places.get(0));
+          }
 
           for (int i = 0; i < this.places.size(); ++i) {
             if(i == 0) {
