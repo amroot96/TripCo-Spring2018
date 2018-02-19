@@ -9,13 +9,24 @@ import React, {Component} from 'react';
 class Options extends Component{
     constructor(props) {
         super(props);
-        this.selectedOption = 'miles';
+        //this.selectedOption = 'miles';
         this.changeOption = this.changeOption.bind(this);
+        this.button1 = "btn btn-primary active";
+        this.button2 = "btn btn-primary";
     }
 
     changeOption(arg) {
         console.log("updating distance options to...");
         this.props.updateOptions(arg.target.id);
+        if(arg.target.id == "miles"){
+            this.button1 = "btn btn-primary active";
+            this.button2 = "btn btn-primary";
+        }
+        else{
+            this.button2 = "btn btn-primary active";
+            this.button1 = "btn btn-primary";
+        }
+
     }
 
 
@@ -29,10 +40,10 @@ class Options extends Component{
                 <div className="card-body">
                     <p>Highlight the options you wish to use.</p>
                     <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label className="btn btn-primary active">
+                        <label className={this.button1}>
                             <input type="radio" id="miles" name="distance" autcomplete="off" onChange={this.changeOption}/> Miles
                         </label>
-                        <label className="btn btn-primary ">
+                        <label className={this.button2}>
                             <input type="radio" id="kilometers" name="distance" autcomplete="off" onChange={this.changeOption}/> Kilometers
                         </label>
                     </div>
