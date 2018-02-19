@@ -104,17 +104,17 @@ public class Trip {
   * */
   private Integer getDistance(Place p1, Place p2){
       String s = this.options.getDistance();
-      double lat1 = toRadians(Double.parseDouble(p1.latitude));
-      double lat2 = toRadians(Double.parseDouble(p2.latitude));
-      double long1 = toRadians(Double.parseDouble(p1.latitude));
-      double long2 = toRadians(Double.parseDouble(p2.latitude));
-      switch(s.charAt(0)){
-          case 'm':
-              return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
-          case 'k':
-              return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
-          default: return 0;
-      }
+    double lat1 = toRadians(Double.parseDouble(p1.latitude));
+    double lat2 = toRadians(Double.parseDouble(p2.latitude));
+    double long1 = toRadians(Double.parseDouble(p1.latitude));
+    double long2 = toRadians(Double.parseDouble(p2.latitude));
+    switch(s.charAt(0)){
+      case 'm':
+        return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
+      case 'k':
+        return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
+      default: return 0;
+    }
   }
   public Double toRadians(double angle) {
       return angle * (Math.PI / 180);
