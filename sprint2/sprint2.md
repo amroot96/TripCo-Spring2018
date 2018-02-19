@@ -58,8 +58,8 @@ Date | Tasks done  | Tasks in progress | Impediments
 2/11 | orientation | parse json inputs | unsure if json.parse works or not.
 2/13 | Parse file component, render current destinations, load button |get cumulative distance, miles/kilometers | 
 2/15|  |SVG, options button, Itineray | 1 warning on file upload, SVG tests, button problems 
+ 2/18 |Colorado bounds, cumulative distance, leg distance, parser, box, button |Draw lines of locations | lines
  | | |
- 
 ## Review
 
 #### Completed epics in Sprint Backlog 
