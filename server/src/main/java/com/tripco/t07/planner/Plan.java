@@ -35,8 +35,6 @@ public class Plan {
     Gson gson = new Gson();
     trip = gson.fromJson(requestBody, Trip.class);
 
-    Parser p = new Parser(trip.places);
-    p.iterator();
     // plan the trip.
     trip.plan();
     // log something.
