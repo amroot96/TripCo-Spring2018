@@ -9,7 +9,6 @@ import React, {Component} from 'react';
 class Options extends Component{
     constructor(props) {
         super(props);
-        //this.selectedOption = 'miles';
         this.changeOption = this.changeOption.bind(this);
         this.button1 = "btn btn-primary active";
         this.button2 = "btn btn-primary";
@@ -26,7 +25,6 @@ class Options extends Component{
             this.button2 = "btn btn-primary active";
             this.button1 = "btn btn-primary";
         }
-
     }
 
 

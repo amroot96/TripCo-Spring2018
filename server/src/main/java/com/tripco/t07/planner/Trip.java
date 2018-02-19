@@ -80,7 +80,8 @@ public class Trip {
                   this.places.remove(i);
               }
           }
-          if(this.places.get(0) != this.places.get(this.places.size()-1)) {
+          System.out.println(this.places.get(0).id + " " + this.places.get(this.places.size()-1).id);
+          if(!this.places.get(0).id.equals(this.places.get(this.places.size()-1).id)) {
             this.places.add(this.places.get(0));
           }
 
@@ -104,6 +105,7 @@ public class Trip {
   * */
   private Integer getDistance(Place p1, Place p2){
       String s = this.options.getDistance();
+      s = s.toLowerCase();
     double lat1 = toRadians(Double.parseDouble(p1.latitude));
     double lat2 = toRadians(Double.parseDouble(p2.latitude));
     double long1 = toRadians(Double.parseDouble(p1.latitude));
