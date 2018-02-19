@@ -83,7 +83,6 @@ public class Trip {
           if(this.places.get(0) != this.places.get(this.places.size()-1)) {
             this.places.add(this.places.get(0));
           }
-
           for (int i = 0; i < this.places.size(); ++i) {
             if(i == 0) {
               dist.add(0);
@@ -104,10 +103,10 @@ public class Trip {
   * */
   private Integer getDistance(Place p1, Place p2){
       String s = this.options.getDistance();
-      double lat1 = toRadians(Double.parseDouble(p1.latitude));
-      double lat2 = toRadians(Double.parseDouble(p2.latitude));
-      double long1 = toRadians(Double.parseDouble(p1.latitude));
-      double long2 = toRadians(Double.parseDouble(p2.latitude));
+      double lat1 = Math.toRadians(Double.parseDouble(p1.latitude));
+      double lat2 = Math.toRadians(Double.parseDouble(p2.latitude));
+      double long1 = Math.toRadians(Double.parseDouble(p1.longitude));
+      double long2 = Math.toRadians(Double.parseDouble(p2.longitude));
       switch(s.charAt(0)){
           case 'm':
               return (int) Math.round(3958.7613*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
@@ -115,9 +114,6 @@ public class Trip {
               return (int) Math.round(6371.0088*Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(long2-long1)));
           default: return 0;
       }
-  }
-  public Double toRadians(double angle) {
-      return angle * (Math.PI / 180);
   }
   public boolean coloradoCheck(double latitude,double longitude) {
       return (latitude>37 && latitude<41 && longitude<-102.03 && longitude>-109.03);
