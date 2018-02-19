@@ -37,6 +37,8 @@ public class Trip {
   public void plan() {
 
     this.map = svg();
+    Parser parse = new Parser(this.places);
+    parse.iterator();
     this.distances = legDistances();
 
   }
@@ -78,26 +80,21 @@ public class Trip {
                   this.places.remove(i);
               }
           }
-          this.places.add(this.places.get(0));
-      }
-    if(this.places != null && !this.places.isEmpty()) {
-        for (int i = 0; i < this.places.size(); ++i) {
+          if(this.places.get(0) != this.places.get(this.places.size()-1)) {
+            this.places.add(this.places.get(0));
+          }
+
+          for (int i = 0; i < this.places.size(); ++i) {
             if(i == 0) {
-                dist.add(0);
+              dist.add(0);
             }
             else {
-                dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
+              dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
             }
-        }
-        return dist;
-    }
-    dist.add(12);
-    dist.add(23);
-    dist.add(34);
-    dist.add(45);
-    dist.add(65);
-    dist.add(19);
-    return dist;
+          }
+      }
+
+      return dist;
   }
 
   /*
