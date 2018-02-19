@@ -41,10 +41,12 @@ let requestBody = this.props.trip;
     // console.log(process.env.SERVICE_URL);
     // console.log(requestBody);
 
-    return fetch(process.env.SERVICE_URL + '/plan', {
-      method:"POST",
-      body: JSON.stringify(requestBody)
-    });
+      const serverURL = 'http://' + location.host + '/plan';
+      console.log(serverURL);
+      return fetch(serverURL, {
+          method:"POST",
+          body: JSON.stringify(requestBody)
+      });
   }
 
   async plan(){
