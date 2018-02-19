@@ -35,11 +35,12 @@ public class Trip {
       System.out.println(distances);
   }
   public void plan() {
-
+      Parser parse = new Parser(this.places);
+      parse.iterator();
+      this.distances = legDistances();
     this.map = svg();
-    Parser parse = new Parser(this.places);
-    parse.iterator();
-    this.distances = legDistances();
+
+
 
   }
 
@@ -48,20 +49,36 @@ public class Trip {
    * Returns an SVG containing the background and the legs of the trip.
    */
   private String svg() {
-    InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
-    String line = "";
-    try {
-      BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
-      String temp = br.readLine();
-      while(temp != null){
-        line += temp +"\n";
-        temp = br.readLine();
+      InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
+      String line = "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ";
+      try {
+          BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
+          String temp = br.readLine();
+          while(temp != null){
+              line += temp +"\n";
+              temp = br.readLine();
+          }
+      } catch (IOException e) {
+          e.printStackTrace();
       }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return line;
-    // return "<svg width=\"1920\" height=\"960\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><!-- Created with SVG-edit - http://svg-edit.googlecode.com/ --> <g> <g id=\"svg_4\"> <svg id=\"svg_1\" height=\"960\" width=\"1920\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_2\"> <title>Layer 1</title> <rect fill=\"rgb(119, 204, 119)\" stroke=\"black\" x=\"0\" y=\"0\" width=\"1920\" height=\"960\" id=\"svg_3\"/> </g> </svg> </g> <g id=\"svg_9\"> <svg id=\"svg_5\" height=\"480\" width=\"960\" y=\"240\" x=\"480\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_6\"> <title>Layer 2</title> <polygon points=\"0,0 960,0 960,480 0,480\" stroke-width=\"12\" stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> <polyline points=\"0,0 960,480 480,0 0,480 960,0 480,480 0,0\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/> </g> </svg> </g> </g> </svg>";
+      line += "<svg width=\"1066.6073\" height=\"783.0824\">";
+      //line += "<polygon points=\"30,40 1036,40 1036,750 30,750
+      // \" stroke-width=\"12\"
+      // stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> \n" +
+      line+= " <polyline points=\"";
+      for(int i = 0; i < this.places.size(); i++){
+            int x = (int) Math.round(((109+Double.parseDouble(this.places.get(i).longitude))/7)*1006+30);
+            int y = (int) Math.round(((41-Double.parseDouble(this.places.get(i).latitude))/4)*710+40);
+            line += x + "," + y +" ";
+            System.out.println(x + "," + y +" ");
+      }
+
+
+      line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
+              "</svg>\n" +
+              "</svg>";
+     // System.out.println(line);
+      return line;
   }
 
   /**
