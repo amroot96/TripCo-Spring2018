@@ -36,13 +36,13 @@ public class TestTrip {
     trip.options.distance = "kilometers";
 
     Place p1 = new Place();
-    p1.latitude = "39° 44' 31.3548\" N";
-    p1.longitude = "104° 59' 29.5116\" W";
+    p1.latitude = "39.7392° N";
+    p1.longitude = "104.9903° W";
     p1.id = "denver";
 
     Place p2 = new Place();
-    p2.latitude = "40° 2' 49.3800\" N";
-    p2.longitude = "105° 16' 19.7328\" W";
+    p2.latitude = "40.0149900";
+    p2.longitude = "-105.2705500";
     p2.id = "boulder";
 
     Place p3 = new Place();
@@ -56,11 +56,11 @@ public class TestTrip {
     trip.places.add(p3);
 
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,42,62,94);
+    Collections.addAll(expectedDistances, 0,39,65,94);
     trip.plan();
     // Call the equals() method of the first object on the second object.
-    //assertEquals(expectedDistances, trip.distances);
-    assertTrue(true == true);
+    assertEquals(expectedDistances, trip.distances);
+    //assertTrue(true == true);
 
     trip.places = new ArrayList<Place>();
     trip.places.add(p1);
@@ -70,17 +70,13 @@ public class TestTrip {
     trip.plan();
 
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,26,38,58);
-    //assertEquals(expectedDistances,trip.distances);
-    assertTrue(true == true);
+    Collections.addAll(expectedDistances, 0,24,41,59);
+    assertEquals(expectedDistances,trip.distances);
+    //assertTrue(true == true);
   }
   @Test
   public void testBackground(){
     assertNotEquals(trip.map, "");
-  }
-  @Test
-  public void testRadians() {
-    assertEquals(trip.toRadians(0),0,0.01);
   }
   @Test
   public void coloradoBorders() {
