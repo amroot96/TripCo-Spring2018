@@ -35,11 +35,12 @@ public class Trip {
       System.out.println(distances);
   }
   public void plan() {
-
+      Parser parse = new Parser(this.places);
+      parse.iterator();
+      this.distances = legDistances();
     this.map = svg();
-    Parser parse = new Parser(this.places);
-    parse.iterator();
-    this.distances = legDistances();
+
+
 
   }
 
@@ -61,10 +62,22 @@ public class Trip {
           e.printStackTrace();
       }
       line += "<svg width=\"1066.6073\" height=\"783.0824\">";
-      line += "<polygon points=\"30,40 1036,40 1036,750 30,750\" stroke-width=\"12\" stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> \n" +
-              "    <polyline points=\"0,0 960,480 480,0 0,480 960,0 480,480 0,0\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/> ";
-      line += "</svg>\n" +
+      //line += "<polygon points=\"30,40 1036,40 1036,750 30,750
+      // \" stroke-width=\"12\"
+      // stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> \n" +
+      line+= " <polyline points=\"";
+      for(int i = 0; i < this.places.size(); i++){
+            int x = (int) Math.round(((109+Double.parseDouble(this.places.get(i).longitude))/7)*1006+30);
+            int y = (int) Math.round(((41-Double.parseDouble(this.places.get(i).latitude))/4)*710+40);
+            line += x + "," + y +" ";
+            System.out.println(x + "," + y +" ");
+      }
+
+
+      line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
+              "</svg>\n" +
               "</svg>";
+     // System.out.println(line);
       return line;
   }
 
