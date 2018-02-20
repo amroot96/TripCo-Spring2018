@@ -37,6 +37,9 @@ public class Trip {
   public void plan() {
       Parser parse = new Parser(this.places);
       parse.iterator();
+      if(this.distances != null) {
+          this.distances.clear();
+      }
       this.distances = legDistances();
     this.map = svg();
 
@@ -90,27 +93,25 @@ public class Trip {
   private ArrayList<Integer> legDistances() {
 
     ArrayList<Integer> dist = new ArrayList<>();
+        if (this.places != null && !this.places.isEmpty()) {
+            for (int i = 0; i < this.places.size(); i++) {
+                if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude), Double.parseDouble(this.places.get(i).longitude))) {
+                    this.places.remove(i);
 
-      if(this.places != null && !this.places.isEmpty()) {
-          for (int i =0; i < this.places.size(); i++) {
-              if(!coloradoCheck(Double.parseDouble(this.places.get(i).latitude),Double.parseDouble(this.places.get(i).longitude))) {
-                  this.places.remove(i);
-              }
-          }
-          if(this.places.get(0) != this.places.get(this.places.size()-1)) {
-            this.places.add(this.places.get(0));
-          }
-          for (int i = 0; i < this.places.size(); ++i) {
-            if(i == 0) {
-              dist.add(0);
+                }
             }
-            else {
-              dist.add(getDistance(this.places.get(i-1), this.places.get(i)));
+            if (!this.places.get(0).id.equals(this.places.get(this.places.size() - 1).id)) {
+                this.places.add(this.places.get(0));
             }
-          }
-      }
-
-      return dist;
+            for (int i = 0; i < this.places.size(); ++i) {
+                if (i == 0) {
+                    dist.add(0);
+                } else {
+                    dist.add(getDistance(this.places.get(i - 1), this.places.get(i)));
+                }
+            }
+        }
+        return dist;
   }
 
   /*
