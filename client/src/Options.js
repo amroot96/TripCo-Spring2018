@@ -10,20 +10,20 @@ class Options extends Component{
     constructor(props) {
         super(props);
         this.changeOption = this.changeOption.bind(this);
-        this.button1 = "btn btn-primary active";
-        this.button2 = "btn btn-primary";
+        this.button1 = "btn btn-outline-dark active";
+        this.button2 = "btn btn-outline-dark";
     }
 
     changeOption(arg) {
         console.log("updating distance options to...");
         this.props.updateOptions(arg.target.id);
         if(arg.target.id == "miles"){
-            this.button1 = "btn btn-primary active";
-            this.button2 = "btn btn-primary";
+            this.button1 = "btn btn-outline-dark active";
+            this.button2 = "btn btn-outline-dark";
         }
         else{
-            this.button2 = "btn btn-primary active";
-            this.button1 = "btn btn-primary";
+            this.button2 = "btn btn-outline-dark active";
+            this.button1 = "btn btn-outline-dark";
         }
     }
 
@@ -32,7 +32,7 @@ class Options extends Component{
         // @todo need to update the options when a button is pressed
         return(
             <div id="options" className="card">
-                <div className="card-header bg-info text-white">
+                <div className="card-header bg-success text-white">
                     Options
                 </div>
                 <div className="card-body">
