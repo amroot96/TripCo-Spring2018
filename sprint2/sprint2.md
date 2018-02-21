@@ -59,6 +59,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 2/13 | Parse file component, render current destinations, load button |get cumulative distance, miles/kilometers | 
 2/15|  |SVG, options button, Itineray | 1 warning on file upload, SVG tests, button problems 
  2/18 |Colorado bounds, cumulative distance, leg distance, parser, box, button |Draw lines of locations | lines
+ 2/20|Draw map and itinerary lines |bug fixes and style changes | none
  | | |
 ## Review
 
