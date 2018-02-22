@@ -64,26 +64,28 @@ Date | Tasks done  | Tasks in progress | Impediments
 ## Review
 
 #### Completed epics in Sprint Backlog 
-* *user story*:  *comments*
-* 
+* *Build a responsive, mobile first web application*
+* *Let the user load a file with a destination*
+* *Plan trips in the state of Colorado*
+* *Show an itinerary of the round trip*
+* *Plan the trip in the destination order the user provided*
+* *Let the user load a file with a destinations*
+* *Show a map of the round trip*
 
 #### Incomplete epics in Sprint Backlog 
-* *user story*: *explanation...*
-*
-
+* save trip
 #### What went well
-* *something*
-*
+* communication and github
 
 #### Problems encountered and resolutions
-* *something*
-*
+* issues getting started on time
+* Didn't know which epic was optional/required
 
 ## Retrospective
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
-What we will change this time |  |  | 
-What we did well |  |  | 
-What we need to work on |  |  |
-What we will change next time |  |  | 
+What we will change this time |  | Make test throughout process | Use other things besides Codepen
+What we did well |good communication  |   | used most of the tools we were given 
+What we need to work on | distribution of tasks | coding smaller blocks at a time| use zenhub better
+What we will change next time | start on time | work on one epic together |  
