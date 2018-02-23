@@ -1,18 +1,21 @@
-# Sprint 2 - *your team number* - *your team name*
+# Sprint 3 - 07 - Jackalope
 
 ## Goal
+*To allow the user to save their trip. Clean our code and reduce code coverage to less than 50%. 
+*Allow the user to select locations from a list and find an optimal trip. 
+*Allow the user to display what they want when planning a trip.
 
 ### A mobile, responsive map and itinerary!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: Angela Root
 
 ## Definition of Done
 
 * Web application ready for demo and potential customer release.
 * Sprint Review and Restrospectives completed (sprint.md).
-* Product Increment release `v2.0` created on GitHub with appropriate version number and name, a description based on the Release Notes template, and the arhived files.
-* Version in pom.xml should be `<version>2.0.0</version>`.
+* Product Increment release `v3.0` created on GitHub with appropriate version number and name, a description based on the Release Notes template, and the arhived files.
+* Version in pom.xml should be `<version>3.0.0</version>`.
 * Javadoc and unit tests for public methods.
-* ~~Coverage at least 50% overall and for each class.~~
+* Coverage at least 50% overall for the class.
 
 ## Policies
 
@@ -30,8 +33,13 @@
 
 Epics planned for this release.
 
-* *## title*
-*
+* Save the trip.
+* Allow user to find optimal trip.
+* Reverse the order of the trip.
+* Give the user the option to display what they choose on the itinerary.
+* Clean code.
+* Code Coverage
+* Build a trip from existing information.
 
 *Include a discussion of planning decisions made based on your velocity from previous sprints.*
 
@@ -39,14 +47,14 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  *value*   | *value* 
-Story Points |  *value*  | *value* 
+Tasks |  16   | 0
+Story Points |  25  | 0
 
 ## Daily Scrums
 
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
-*date* | *@task only* | *@task only* | none
+2/23 | Planning! | Save button | Jordan was late :(
  | | | 
  
 
