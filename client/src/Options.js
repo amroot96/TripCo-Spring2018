@@ -54,7 +54,7 @@ class Options extends Component {
                             Options
                         </div>
                         <div className="card-body">
-                            <p>Highlight the options you wish to use. {'   '}
+                            <p>Highlight the options you wish to use. {'     '}
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label className={this.button1}>
                                     <input type="radio" id="miles" name="distance" autcomplete="off" onChange={this.changeOption}/> Miles
@@ -74,7 +74,7 @@ class Options extends Component {
                             Optimization
                         </div>
                         <div className="card-body">
-                            <p>Would you like to optimize your trip? {'   '}
+                            <p>Would you like to optimize your trip? {'     '}
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label className={this.button3}>
                                     <input type="radio" id="none" name="optimization" autcomplete="off" onChange={this.changeOption2}/> No
