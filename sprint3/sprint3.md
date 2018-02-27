@@ -1,9 +1,9 @@
 # Sprint 3 - 07 - Jackalope
 
 ## Goal
-*To allow the user to save their trip. Clean our code and reduce code coverage to less than 50%. 
-*Allow the user to select locations from a list and find an optimal trip. 
-*Allow the user to display what they want when planning a trip.
+* To allow the user to save their trip. Clean our code and reduce code coverage to less than 50%. 
+* Allow the user to select locations from a list and find an optimal trip. 
+* Allow the user to display what they want when planning a trip.
 
 ### A mobile, responsive map and itinerary!
 ### Sprint Leader: Angela Root
@@ -47,15 +47,15 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  16   | 0
-Story Points |  25  | 0
+Tasks |  17   | 4
+Story Points |  25  | 3
 
 ## Daily Scrums
 
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
 2/23 | Planning! | Save button | Jordan was late :(
- | | | 
+2/27 | Save button| Optimization, updating tffi| 
  
 
 ## Review
