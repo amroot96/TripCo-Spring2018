@@ -37,18 +37,36 @@ class Destinations extends Component {
     // need to clean up the button
     // need to count the number in the trip -- DONE
     return (
-
-        <div id="destinations" className="card">
-          <div className="card-header bg-success text-white">
-            Destinations
-          </div>
-          <div className="card-body">
-            <p>Load destinations from a file.</p>
-            <div className="form-group" role="group">
-                <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div id="destinations" className="card">
+                        <div className="card-header bg-success text-white">
+                            Destinations
+                        </div>
+                        <div className="card-body">
+                            <p>Load destinations from a file.</p>
+                            <div className="form-group" role="group">
+                            <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
+                            </div>
+                            <h5>There are {this.state.count} destinations. </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div id="destinations" className="card">
+                        <div className="card-header bg-success text-white">
+                            Choose From Destinations
+                        </div>
+                        <div className="card-body">
+                            <p>Add or remove from destination list.</p>
+                            <button className="btn btn-outline-dark " type="button">Add Destination</button>
+                            <div></div>
+                            <button className="btn btn-outline-dark " type="button">Remove Destination</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h5>There are {this.state.count} destinations. </h5>
-          </div>
         </div>
     )
   }
