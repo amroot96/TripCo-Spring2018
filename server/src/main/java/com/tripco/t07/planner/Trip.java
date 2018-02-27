@@ -87,22 +87,29 @@ public class Trip {
   /**
    * Returns the distances between consecutive places,
    * including the return to the starting point to make a round trip.
-   * @return
    * returns distance vector between each place in colorado
    */
+  private void colocheckall() {
+      if (this.places != null && !this.places.isEmpty()) {
+          for (int i = 0; i < this.places.size(); i++) {
+              if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude), Double.parseDouble(this.places.get(i).longitude))) {
+                  this.places.remove(i);
+              }
+          }
+      }
+  }
+  private void roundTrip() {
+      if (this.places != null && !this.places.isEmpty()) {
+          if (!this.places.get(0).id.equals(this.places.get(this.places.size() - 1).id)) {
+              this.places.add(this.places.get(0));
+          }
+      }
+  }
   private ArrayList<Integer> legDistances() {
-
     ArrayList<Integer> dist = new ArrayList<>();
+    colocheckall();
+    roundTrip();
         if (this.places != null && !this.places.isEmpty()) {
-            for (int i = 0; i < this.places.size(); i++) {
-                if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude), Double.parseDouble(this.places.get(i).longitude))) {
-                    this.places.remove(i);
-
-                }
-            }
-            if (!this.places.get(0).id.equals(this.places.get(this.places.size() - 1).id)) {
-                this.places.add(this.places.get(0));
-            }
             for (int i = 0; i < this.places.size(); ++i) {
                 if (i == 0) {
                     dist.add(0);
