@@ -63,6 +63,16 @@ let requestBody = this.props.trip;
   /* Saves the map and itinerary to the local file system.
    */
   saveTFFI(){
+      console.log("save button");
+      var help = this.props.trip.map;
+      this.props.trip.map = "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>";
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.props.trip));
+      var downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.setAttribute("href",     dataStr);
+      downloadAnchorNode.setAttribute("download", 'savedtrip' + ".json");
+      downloadAnchorNode.click();
+      downloadAnchorNode.remove();
+      this.props.trip.map = help;
   }
 
   /* Renders the buttons, map, and itinerary.
