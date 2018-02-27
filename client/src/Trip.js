@@ -20,27 +20,9 @@ class Trip extends Component {
    * state for this object.
    */
   fetchResponse(){
-    // need to get the request body from the trip in state object.
-    // let requestBody = {
-    //     "type"    : "trip",
-    //     "title"   : "PLANNING",
-    //     "options" : {
-    //       "distance":"miles",
-    //       "optimization":"none"
-    //     },
-    //     "places"  : [
-    //       {"id":"dnvr", "name":"Denver", "latitude": "", "longitude": ""},
-    //       {"id":"bldr", "name":"Boulder", "latitude": "", "longitude": ""},
-    //       {"id":"foco", "name":"Fort Collins", "latitude": "", "longitude": ""},
-    //       {"id":"grly", "name":"Greeley", "latitude": "", "longitude": ""},
-    //       {"id":"fomo", "name":"Fort Morgan", "latitude": "", "longitude": ""},
-    //       {"id":"frst", "name":"Firestone", "latitude": "", "longitude": ""}
-    //       ]
-    //   };
-let requestBody = this.props.trip;
-    // console.log(process.env.SERVICE_URL);
-    // console.log(requestBody);
-
+      let requestBody = this.props.trip;
+      // console.log(process.env.SERVICE_URL);
+      // console.log(requestBody);
       const serverURL = 'http://' + location.host + '/plan';
       console.log(serverURL);
       return fetch(serverURL, {
@@ -48,7 +30,6 @@ let requestBody = this.props.trip;
           body: JSON.stringify(requestBody)
       });
   }
-
   async plan(){
     try {
       let serverResponse = await this.fetchResponse();
@@ -64,12 +45,12 @@ let requestBody = this.props.trip;
    */
   saveTFFI(){
       console.log("save button");
-      var help = this.props.trip.map;
+      let help = this.props.trip.map;
       this.props.trip.map = "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>";
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.props.trip));
-      var downloadAnchorNode = document.createElement('a');
+      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.props.trip));
+      let downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href",     dataStr);
-      downloadAnchorNode.setAttribute("download", 'savedtrip' + ".json");
+      downloadAnchorNode.setAttribute("download", this.props.trip.title + ".json");
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
       this.props.trip.map = help;
