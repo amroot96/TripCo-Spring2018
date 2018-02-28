@@ -61,25 +61,30 @@ class Trip extends Component {
    */
   render(){
     return(
-        <div id="trip" className="card">
-          <div className="card-header bg-success text-white">
-            Trip
-          </div>
-          <div className="card-body">
-            <p>Give your trip a title before planning or saving.</p>
-              <Itinerary trip={this.props.trip} />
-            <div className="input-group" role="group">
-              <span className="input-group-btn">
-              <button className="btn btn-info " onClick={this.plan} type="button">Plan</button>
-            </span>
-              <input type="text" className="form-control" placeholder="Trip title..."/>
-              <span className="input-group-btn">
-              <button className="btn btn-info " onClick={this.saveTFFI} type="button">Save</button>
-            </span>
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div id="trip" className="card">
+                        <div className="card-header bg-success text-white">
+                            Trip
+                        </div>
+                        <div className="card-body">
+                            <p>Give your trip a title before planning or saving.</p>
+                            <Itinerary trip={this.props.trip} />
+                            <div className="input-group" role="group">
+                                <span className="input-group-btn">
+                                    <button className="btn btn-info " onClick={this.plan} type="button">Plan</button>
+                                </span>
+                                <input type="text" className="form-control" placeholder="Trip title..."/>
+                                <span className="input-group-btn">
+                                    <button className="btn btn-info " onClick={this.saveTFFI} type="button">Save</button>
+                                </span>
+                            </div>
+                            <Map trip={this.props.trip} />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <Map trip={this.props.trip} />
-
-          </div>
         </div>
     )
   }

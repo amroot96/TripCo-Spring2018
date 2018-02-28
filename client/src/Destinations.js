@@ -37,9 +37,9 @@ class Destinations extends Component {
     // need to clean up the button
     // need to count the number in the trip -- DONE
     return (
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div id="destinations" className="card">
                         <div className="card-header bg-success text-white">
                             Destinations
@@ -53,7 +53,7 @@ class Destinations extends Component {
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div id="destinations" className="card">
                         <div className="card-header bg-success text-white">
                             Choose From Destinations
