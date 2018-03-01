@@ -14,8 +14,10 @@ class Options extends Component {
     this.miles = "btn btn-outline-dark active";
     this.kilometers = "btn btn-outline-dark";
     this.nautical = "btn btn-outline-dark";
-    this.button3 = "btn btn-outline-dark active";
-    this.button4 = "btn btn-outline-dark";
+    this.none = "btn btn-outline-dark active";
+    this.short = "btn btn-outline-dark";
+    this.shorter = "btn btn-outline-dark";
+    this.shortest = "btn btn-outline-dark";
   }
 
   changeOption(arg) {
@@ -42,12 +44,28 @@ class Options extends Component {
     console.log("updating distance options to...");
     this.props.updateOptions(arg.target.id,"optimization");
     if (arg.target.id == "none") {
-      this.button3 = "btn btn-outline-dark active";
-      this.button4 = "btn btn-outline-dark";
+      this.none = "btn btn-outline-dark active";
+      this.short = "btn btn-outline-dark";
+      this.shorter = "btn btn-outline-dark";
+      this.shortest = "btn btn-outline-dark";
+    }
+    else if (arg.target.id == "short"){
+      this.short = "btn btn-outline-dark active";
+      this.none = "btn btn-outline-dark";
+      this.shorter = "btn btn-outline-dark";
+      this.shortest = "btn btn-outline-dark";
+    }
+    else if (arg.target.id == "shorter"){
+      this.shorter = "btn btn-outline-dark active";
+      this.none = "btn btn-outline-dark";
+      this.short = "btn btn-outline-dark";
+      this.shortest = "btn btn-outline-dark";
     }
     else {
-      this.button4 = "btn btn-outline-dark active";
-      this.button3 = "btn btn-outline-dark";
+      this.shortest = "btn btn-outline-dark active";
+      this.none = "btn btn-outline-dark";
+      this.shorter = "btn btn-outline-dark";
+      this.short = "btn btn-outline-dark";
     }
   }
 
@@ -86,12 +104,18 @@ class Options extends Component {
                         <div className="card-body">
                             <p>Would you like to optimize your trip? </p>
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label className={this.button3}>
+                                <label className={this.none}>
                                     <input type="radio" id="none" name="optimization" autoComplete="off" onChange={this.changeOption2}/> No
                                 </label>
-                                <label className={this.button4}>
-                                    <input type="radio" id="Nearest_Neighbor" name="optimization" autoComplete="off" onChange={this.changeOption2}/> Nearest Neighbor
+                                <label className={this.short}>
+                                    <input type="radio" id="short" name="optimization" autoComplete="off" onChange={this.changeOption2}/> Short
                                 </label>
+                              <label className={this.shorter}>
+                                <input type="radio" id="shorter" name="optimization" autoComplete="off" onChange={this.changeOption2}/> Shorter
+                              </label>
+                              <label className={this.shortest}>
+                                <input type="radio" id="shortest" name="optimization" autoComplete="off" onChange={this.changeOption2}/> Shortest
+                              </label>
                             </div>
                         </div>
                     </div>
