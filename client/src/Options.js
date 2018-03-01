@@ -65,13 +65,13 @@ class Options extends Component {
                             <p>Highlight the options you wish to use.</p>
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label className={this.miles}>
-                                    <input type="radio" id="miles" name="distance" autcomplete="off" onChange={this.changeOption}/> Miles
+                                    <input type="radio" id="miles" name="distance" autoComplete="off" onChange={this.changeOption}/> Miles
                                 </label>
                                 <label className={this.kilometers}>
-                                    <input type="radio" id="kilometers" name="distance" autcomplete="off" onChange={this.changeOption}/> Kilometers
+                                    <input type="radio" id="kilometers" name="distance" autoComplete="off" onChange={this.changeOption}/> Kilometers
                                 </label>
                                 <label className={this.nautical}>
-                                    <input type="radio" id="nautical miles" name="distance" autocomplete="off" onChange={this.changeOption}/> Nautical Miles
+                                    <input type="radio" id="nautical miles" name="distance" autoComplete="off" onChange={this.changeOption}/> Nautical Miles
                                 </label>
                             </div>
                             <div></div>
@@ -87,10 +87,10 @@ class Options extends Component {
                             <p>Would you like to optimize your trip? </p>
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label className={this.button3}>
-                                    <input type="radio" id="none" name="optimization" autcomplete="off" onChange={this.changeOption2}/> No
+                                    <input type="radio" id="none" name="optimization" autoComplete="off" onChange={this.changeOption2}/> No
                                 </label>
                                 <label className={this.button4}>
-                                    <input type="radio" id="Nearest_Neighbor" name="optimization" autcomplete="off" onChange={this.changeOption2}/> Nearest Neighbor
+                                    <input type="radio" id="Nearest_Neighbor" name="optimization" autoComplete="off" onChange={this.changeOption2}/> Nearest Neighbor
                                 </label>
                             </div>
                         </div>
