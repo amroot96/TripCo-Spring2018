@@ -11,7 +11,7 @@ class Trip extends Component {
   constructor(props) {
     super(props);
 
-    this.plan = this.plan.bind(this);
+
     this.saveTFFI = this.saveTFFI.bind(this);
   }
 
@@ -19,27 +19,7 @@ class Trip extends Component {
    * Receives a response containing the map and itinerary to update the
    * state for this object.
    */
-  fetchResponse(){
-      let requestBody = this.props.trip;
-      // console.log(process.env.SERVICE_URL);
-      // console.log(requestBody);
-      const serverURL = 'http://' + location.host + '/plan';
-      console.log(serverURL);
-      return fetch(serverURL, {
-          method:"POST",
-          body: JSON.stringify(requestBody)
-      });
-  }
-  async plan(){
-    try {
-      let serverResponse = await this.fetchResponse();
-      let tffi = await serverResponse.json();
-      // console.log(tffi);
-      this.props.updateTrip(tffi,2);
-    } catch(err) {
-      console.error(err);
-    }
-  }
+
 
   /* Saves the map and itinerary to the local file system.
    */
@@ -73,7 +53,7 @@ class Trip extends Component {
                             <Itinerary trip={this.props.trip} />
                             <div className="input-group" role="group">
                                 <span className="input-group-btn">
-                                    <button className="btn btn-info " onClick={this.plan} type="button">Plan</button>
+                                    <button className="btn btn-info " onClick={this.props.plan} type="button">Plan</button>
                                 </span>
                                 <input type="text" className="form-control" placeholder="Trip title..."/>
                                 <span className="input-group-btn">
