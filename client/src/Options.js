@@ -11,8 +11,9 @@ class Options extends Component {
     super(props);
     this.changeOption = this.changeOption.bind(this);
     this.changeOption2 = this.changeOption2.bind(this);
-    this.button1 = "btn btn-outline-dark active";
-    this.button2 = "btn btn-outline-dark";
+    this.miles = "btn btn-outline-dark active";
+    this.kilometers = "btn btn-outline-dark";
+    this.nautical = "btn btn-outline-dark";
     this.button3 = "btn btn-outline-dark active";
     this.button4 = "btn btn-outline-dark";
   }
@@ -21,12 +22,19 @@ class Options extends Component {
     console.log("updating distance options to...");
     this.props.updateOptions(arg.target.id,"distance");
     if (arg.target.id == "miles") {
-      this.button1 = "btn btn-outline-dark active";
-      this.button2 = "btn btn-outline-dark";
+      this.miles = "btn btn-outline-dark active";
+      this.kilometers = "btn btn-outline-dark";
+      this.nautical = "btn btn-outline-dark";
+    }
+    else if (arg.target.id == "kilometers") {
+      this.kilometers = "btn btn-outline-dark active";
+      this.miles = "btn btn-outline-dark";
+      this.nautical = "btn btn-outline-dark";
     }
     else {
-      this.button2 = "btn btn-outline-dark active";
-      this.button1 = "btn btn-outline-dark";
+        this.nautical = "btn btn-outline-dark active";
+        this.miles = "btn btn-outline-dark";
+        this.kilometers = "btn btn-outline-dark";
     }
   }
 
@@ -56,11 +64,14 @@ class Options extends Component {
                         <div className="card-body">
                             <p>Highlight the options you wish to use.</p>
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label className={this.button1}>
+                                <label className={this.miles}>
                                     <input type="radio" id="miles" name="distance" autcomplete="off" onChange={this.changeOption}/> Miles
                                 </label>
-                                <label className={this.button2}>
+                                <label className={this.kilometers}>
                                     <input type="radio" id="kilometers" name="distance" autcomplete="off" onChange={this.changeOption}/> Kilometers
+                                </label>
+                                <label className={this.nautical}>
+                                    <input type="radio" id="nautical miles" name="distance" autocomplete="off" onChange={this.changeOption}/> Nautical Miles
                                 </label>
                             </div>
                             <div></div>

@@ -118,6 +118,8 @@ public class Trip {
         return (int) Math.round(3958.7613 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
       case 'k':
         return (int) Math.round(6371.0088 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
+      case 'n':
+        return (int) Math.round(3440.0695 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
       default:
         return 0;
     }
