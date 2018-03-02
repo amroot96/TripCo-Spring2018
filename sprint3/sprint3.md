@@ -47,8 +47,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  17   | 4
-Story Points |  25  | 3
+Tasks |  27   | 6
+Story Points |  31  | 5
 
 ## Daily Scrums
 
@@ -56,6 +56,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 :--- | :--- | :--- | :--- 
 2/23 | Planning! | Save button | Jordan was late :(
 2/27 | Save button| Optimization, updating tffi| 
+3/1  | Fix auto-updating for unit changes | Branding, updating tffi | Time for working on this with midterms next week
  
 
 ## Review
