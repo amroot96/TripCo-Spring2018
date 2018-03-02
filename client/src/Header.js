@@ -10,6 +10,7 @@ class Header extends Component{
   render() {
     return(
         <div id="header" className="jumbotron">
+          <img className={"img-fluid"}  alt="Responsive image" src={"https://raw.githubusercontent.com/csu314sp18/tripco/setup/sprint3/CSU-Official-wrdmrk-357-617_Rev.png?token=Abgsf1PkOTR0A9RK8uV-N1wwo6z-d3Qrks5aoHjawA%3D%3D"}/>
           {this.title()}
           <p className="lead">"Want to travel far and wide?"</p>
             <ol >
