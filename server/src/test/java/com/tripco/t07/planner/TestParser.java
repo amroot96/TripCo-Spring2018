@@ -22,87 +22,75 @@ public class TestParser {
     //DMS
     @Test
     public void testDMSParseN() {
-        String lat = "40° 35' 6.9288\" N";
-        float f = par.DMS(lat);
+        float f = par.DMS("N", 40,35, (float) 6.9288);
         assertTrue((Math.abs(f-40.58526) < 0.00001));
     }
 
     @Test
     public void testDMSParseW () {
-        String lat = "40° 35' 6.9288\" W";
-        float f = par.DMS(lat);
+        float f = par.DMS("W", 40,35, (float) 6.9288);
         assertTrue((Math.abs(f-(-40.58526)) < 0.00001));
     }
 
     @Test
     public void testDMSParseE() {
-        String lat = "49° 14' 46.6512\" E";
-        float f = par.DMS(lat);
+        float f = par.DMS("E", 49,14, (float) 46.6512);
         assertTrue((Math.abs(f-49.24629) < 0.00001));
     }
 
     @Test
     public void testDMSParseS() {
-        String lat = "49° 14' 46.6512\" S ";
-        float f = par.DMS(lat);
+        float f = par.DMS("S", 49,14, (float) 46.6512);
         assertTrue((Math.abs(f-(-49.24629)) < 0.00001));
     }
 
-    //DDM
+//    //DDM
     @Test
     public void testDDMParseN() {
-        String lat = "40° 26.767\' N";
-        float f = par.DDM(lat);
+        float f = par.DDM("N" , 40, (float)26.767);
         assertTrue((Math.abs(f-40.44612) < 0.00001));
     }
 
     @Test
     public void testDDMParseW () {
-        String lat = "40° 26.767\' W";
-        float f = par.DDM(lat);
+        float f = par.DDM("W" , 40, (float)26.767);
         assertTrue((Math.abs(f-(-40.44612)) < 0.00001));
     }
 
     @Test
     public void testDDMParseE() {
-        String lat = "79° 58.933\' E";
-        float f = par.DDM(lat);
+        float f = par.DDM("E", 79, (float) 58.933);
         assertTrue((Math.abs(f-79.98222) < 0.00001));
     }
 
     @Test
     public void testDDMParseS() {
-        String lat = "79° 58.933\' S";
-        float f = par.DDM(lat);
+        float f = par.DDM("S", 79, (float) 58.933);
         assertTrue((Math.abs(f-(-79.98222)) < 0.00001));
     }
 
     //DD
     @Test
     public void testDDParseN() {
-        String lat = "40.446° N";
-        float f = par.DD(lat);
+        float f = par.DD("N", (float)40.446);
         assertTrue((Math.abs(f-40.446) < 0.00001));
     }
 
     @Test
     public void testDDParseW () {
-        String lat = "40.446° W";
-        float f = par.DD(lat);
+        float f = par.DD("W", (float)40.446);
         assertTrue((Math.abs(f-(-40.446)) < 0.00001));
     }
 
     @Test
     public void testDDParseE() {
-        String lat = "79.982° E";
-        float f = par.DD(lat);
+        float f = par.DD("E", (float) 79.982);
         assertTrue((Math.abs(f-79.982) < 0.00001));
     }
 
     @Test
     public void testDMParseS() {
-        String lat = "79.982° S";
-        float f = par.DD(lat);
+        float f = par.DD("S", (float) 79.982);
         assertTrue((Math.abs(f-(-79.982)) < 0.00001));
     }
 }

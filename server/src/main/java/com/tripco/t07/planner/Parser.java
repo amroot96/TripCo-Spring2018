@@ -4,68 +4,43 @@ import java.util.ArrayList;
 
 public class Parser {
     public ArrayList<Place> places;
-    public float degree;
-    public float minute;
-    public float second;
-    String direction;
-    float lat;
-    float longitude;
 
     public Parser(ArrayList<Place> list){
         this.places = list;
     }
 
     public void iterator(){
+        String[] lat;
+        String[] longi;
         for(int i = 0; i < places.size(); i++){
-            //Parse Latitude
-            if(places.get(i).latitude.contains("\"")){
-                places.get(i).latitude = String.valueOf(DMS(places.get(i).latitude));
-            }
-            else if(places.get(i).latitude.contains("\'")){
-                places.get(i).latitude = String.valueOf(DDM(places.get(i).latitude));
-            }
-            else if(places.get(i).latitude.contains("°")){
-                places.get(i).latitude = String.valueOf(DD(places.get(i).latitude));
-            }
-            else{
-                places.get(i).latitude = String.valueOf(Float.parseFloat(places.get(i).latitude));
-            }
-            //Parse Longtitude
-            if(places.get(i).longitude.contains("\"")){
-                places.get(i).longitude = String.valueOf(DMS(places.get(i).longitude));
-            }
-            else if(places.get(i).longitude.contains("\'")){
-                places.get(i).longitude = String.valueOf(DDM(places.get(i).longitude));
-            }
-            else if(places.get(i).longitude.contains("°")){
-                places.get(i).longitude = String.valueOf(DD(places.get(i).longitude));
-            }
-            else {
-                places.get(i).longitude = String.valueOf(Float.parseFloat(places.get(i).longitude));
-            }
+            lat = places.get(i).latitude.split(" ");
+            longi = places.get(i).longitude.split(" ");
+            places.get(i).latitude = parse(lat);
+            places.get(i).longitude = parse(longi);
         }
     }
 
-    public float DMS(String dms){
-        int sub = 0;
-        //40° 35' 6.9288" N
-        for(int i = 0; i < dms.length(); i++){
-            if(dms.charAt(i) == '°'){
-                degree = Float.parseFloat(dms.substring(sub, i));
-                sub = i+2;
-            }
-            if(dms.charAt(i) == '\''){
-                minute = Float.parseFloat(dms.substring(sub, i));
-                sub = i+2;
-            }
-            if(dms.charAt(i) == '\"'){
-                second = Float.parseFloat(dms.substring(sub, i));
-                sub = i+2;
-            }
-            if(i == dms.length()-1){
-                direction = dms.substring(i);
-            }
+    public String parse(String [] latLong){
+        switch (latLong.length){
+            //40° N
+            case 2:
+                return String.valueOf(DD(latLong[1], Float.parseFloat(latLong[0].substring(0, latLong[0].length()-1))));
+            //40° 35.098'  N
+            case 3:
+                return String.valueOf(DDM(latLong[2], Float.parseFloat(latLong[0].substring(0, latLong[0].length()-1)),
+                                Float.parseFloat(latLong[1].substring(0, latLong[1].length()-1))));
+            //40° 35' 6.9288" N
+            case 4:
+                return String.valueOf(DMS(latLong[3], Float.parseFloat(latLong[0].substring(0, latLong[0].length()-1)),
+                                Float.parseFloat(latLong[1].substring(0, latLong[1].length()-1)),
+                                Float.parseFloat(latLong[2].substring(0, latLong[2].length()-1))));
+            default:
+                break;
         }
+        return latLong[0];
+    }
+
+    public float DMS(String direction, float degree, float minute, float second){
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60 + second/3600;
         }
@@ -74,24 +49,7 @@ public class Parser {
         }
     }
 
-    public float DDM(String ddm){
-
-        int sub = 0;
-        //40° 35.098'  N
-        for(int i = 0; i < ddm.length(); i++){
-            if(ddm.charAt(i) == '°'){
-                degree = Float.parseFloat(ddm.substring(sub, i));
-                sub = i+2;
-            }
-            if(ddm.charAt(i) == '\''){
-                minute = Float.parseFloat(ddm.substring(sub, i));
-                sub = i+2;
-            }
-            if(i == ddm.length()-1){
-                direction = ddm.substring(i);
-            }
-        }
-
+    public float DDM(String direction, float degree, float minute) {
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60;
         }
@@ -100,18 +58,7 @@ public class Parser {
         }
     }
 
-    public float DD(String dd){
-        int sub = 0;
-        //40° N
-        for(int i = 0; i < dd.length(); i++){
-            if(dd.charAt(i) == '°'){
-                degree = Float.parseFloat(dd.substring(sub, i));
-                sub = i+2;
-            }
-            if(i == dd.length()-1){
-                direction = dd.substring(i);
-            }
-        }
+    public float DD(String direction, float degree){
         if(direction.equals("N") || direction.equals("E")){
             return degree;
         }
