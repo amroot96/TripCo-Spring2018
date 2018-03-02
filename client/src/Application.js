@@ -61,6 +61,9 @@ class Application extends Component {
         map: json.map
       }
     });
+    if(init === 1) {
+      this.plan();
+    }
     console.log(this.state.trip);
   }
 
@@ -92,7 +95,6 @@ class Application extends Component {
               <Options options={this.state.trip.options}
                        updateOptions={this.updateOptions}/>
             </div>
-
             <div className="col-12">
               <Trip trip={this.state.trip} plan={this.plan}/>
             </div>
