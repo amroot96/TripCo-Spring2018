@@ -49,7 +49,6 @@ class Trip extends Component {
                             Trip
                         </div>
                         <div className="card-body">
-                            <p>Give your trip a title before planning or saving.</p>
                             <Itinerary trip={this.props.trip} />
                             <div className="input-group" role="group">
                                 <span className="input-group-btn">

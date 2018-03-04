@@ -19,9 +19,57 @@ class Options extends Component {
     this.shorter = "btn btn-outline-dark";
     this.shortest = "btn btn-outline-dark";
   }
-
+  componentWillReceiveProps(nextProps) {
+    console.log("Component will recieve props");
+    console.log(nextProps);
+    console.log(nextProps.options.distance);
+    if(nextProps.options.distance !== this.props.options.distance) {
+      if (nextProps.options.distance === "miles") {
+        this.miles = "btn btn-outline-dark active";
+        this.kilometers = "btn btn-outline-dark";
+        this.nautical = "btn btn-outline-dark";
+      }
+      else if (nextProps.options.distance === "kilometers") {
+        this.kilometers = "btn btn-outline-dark active";
+        this.miles = "btn btn-outline-dark";
+        this.nautical = "btn btn-outline-dark";
+      }
+      else {
+        this.nautical = "btn btn-outline-dark active";
+        this.miles = "btn btn-outline-dark";
+        this.kilometers = "btn btn-outline-dark";
+      }
+    }
+    if(nextProps.options.optimization !== this.props.options.optimization) {
+      if (nextProps.options.optimization == "none") {
+        this.none = "btn btn-outline-dark active";
+        this.short = "btn btn-outline-dark";
+        this.shorter = "btn btn-outline-dark";
+        this.shortest = "btn btn-outline-dark";
+      }
+      else if (nextProps.options.optimization == "short"){
+        this.short = "btn btn-outline-dark active";
+        this.none = "btn btn-outline-dark";
+        this.shorter = "btn btn-outline-dark";
+        this.shortest = "btn btn-outline-dark";
+      }
+      else if (nextProps.options.optimization == "shorter"){
+        this.shorter = "btn btn-outline-dark active";
+        this.none = "btn btn-outline-dark";
+        this.short = "btn btn-outline-dark";
+        this.shortest = "btn btn-outline-dark";
+      }
+      else {
+        this.shortest = "btn btn-outline-dark active";
+        this.none = "btn btn-outline-dark";
+        this.shorter = "btn btn-outline-dark";
+        this.short = "btn btn-outline-dark";
+      }
+    }
+  }
   changeOption(arg) {
     console.log("updating distance options to...");
+    console.log(arg.target.version);
     this.props.updateOptions(arg.target.id,"distance");
     if (arg.target.id == "miles") {
       this.miles = "btn btn-outline-dark active";
