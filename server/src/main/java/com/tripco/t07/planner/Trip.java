@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.tripco.t07.server.HTTP;
+import java.lang.reflect.Array;
 import spark.Request;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.io.*;
  * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
  */
 public class Trip {
+
   // The variables in this class should reflect TFFI.
   public String type;
   public String title;
@@ -20,6 +22,7 @@ public class Trip {
   public ArrayList<Place> places;
   public ArrayList<Integer> distances;
   public String map;
+  private int totalDist;
 
   public void display() {
     System.out.println(this.type);
@@ -27,7 +30,8 @@ public class Trip {
     System.out.println(this.options);
     for (int i = 0; i < this.places.size(); i++) {
       System.out.println("id: " + this.places.get(i).id + " name: " + this.places.get(i).name +
-              " latitude: " + this.places.get(i).latitude + " longitude: " + this.places.get(i).longitude);
+          " latitude: " + this.places.get(i).latitude + " longitude: " + this.places
+          .get(i).longitude);
     }
     System.out.println(distances);
   }
@@ -38,8 +42,109 @@ public class Trip {
     if (this.distances != null) {
       this.distances.clear();
     }
+    opt();
     this.distances = legDistances();
     this.map = svg();
+  }
+
+  //calls the optimization methods
+  public void opt() {
+    String optType = this.options.getOptimization();
+    System.out.println(optType);
+    Place hold = this.places.get(0);
+    if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
+      this.places.remove(this.places.size() - 1);
+    }
+    if (optType.equals("short")) {
+      this.places = optShort();
+    } else if (optType.equals("shorter")) {
+      optShorter();
+    } else if (optType.equals("shortest")) {
+      optShortest();
+    }
+    restoreStart(hold);
+  }
+
+  //restores the original starting location after optimizations
+  private void restoreStart(Place start) {
+    int middle = -1;
+    ArrayList<Place> retlist = new ArrayList<Place>();
+    for (int i = 0; i < this.places.size() - 1; i++) {
+      if (this.places.get(i).name.equals(start.name)) {
+        middle = i;
+      }
+    }
+    for (int i = middle; i < places.size() - 1; i++) {
+      retlist.add(this.places.get(i));
+    }
+    for (int i = 0; i < middle; i++) {
+      retlist.add(this.places.get(i));
+    }
+
+  }
+  private ArrayList<Place> copy(ArrayList<Place> copythis) {
+    ArrayList<Place> retlist = new ArrayList<>();
+    for(Place p:copythis) {
+      retlist.add(p);
+    }
+    return retlist;
+  }
+  //optshort returns the shortest nearest neighbor
+  private ArrayList<Place> optShort() {
+    ArrayList<Place> templist = copy(this.places);
+    ArrayList<Place> testlist = new ArrayList<>();
+    ArrayList<Place> retlist = new ArrayList<>();
+    int minDist = 1000000;
+    int dist = 0;
+    for (int i = 0; i < templist.size() - 1; i++) {
+      testlist.clear();
+      Place help = templist.get(i);
+      testlist = nearNeigh(help);
+      legDistances();
+      if (this.totalDist < minDist) {
+        retlist.clear();
+        retlist = copy(testlist);
+        minDist = this.totalDist;
+      }
+    }
+    return retlist;
+  }
+  //Nearest neighbor given a starting node
+  private ArrayList<Place> nearNeigh(Place help) {
+    ArrayList<Place> retlist = new ArrayList<Place>();
+    retlist.add(help);
+    this.places.remove(help);
+    while (this.places.size() > 0) {
+      help = findnearestPlace(help, this.places);
+      retlist.add(help);
+      this.places.remove(help);
+    }
+    this.places = retlist;
+    return retlist;
+  }
+
+  //Given a starting location and a list of destinations,
+  // this method picks the closest city and returns it.
+  public Place findnearestPlace(Place start, ArrayList<Place> remaining) {
+    Place ret = start;
+    int help = 1000000;
+    int dist = 0;
+    for (int i = 0; i < remaining.size(); i++) {
+      dist = getDistance(start, remaining.get(i));
+      if (help > dist) {
+        help = dist;
+        ret = remaining.get(i);
+      }
+    }
+    return ret;
+  }
+
+  private void optShorter() {
+    System.out.println("shorter TEST TEST TEST");
+  }
+
+  private void optShortest() {
+    System.out.println("shortest TEST TEST TEST");
   }
 
   //Returns an SVG containing the background and the legs of the trip.
@@ -59,13 +164,15 @@ public class Trip {
     line += "<svg width=\"1066.6073\" height=\"783.0824\">";
     line += " <polyline points=\"";
     for (int i = 0; i < this.places.size(); i++) {
-      int x = (int) Math.round(((109 + Double.parseDouble(this.places.get(i).longitude)) / 7) * 1006 + 30);
-      int y = (int) Math.round(((41 - Double.parseDouble(this.places.get(i).latitude)) / 4) * 710 + 40);
-      line += x + "," + y + " ";
+      int xCoord = (int) Math
+          .round(((109 + Double.parseDouble(this.places.get(i).longitude)) / 7) * 1006 + 30);
+      int yCoord = (int) Math
+          .round(((41 - Double.parseDouble(this.places.get(i).latitude)) / 4) * 710 + 40);
+      line += xCoord + "," + yCoord + " ";
     }
     line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
-            "</svg>\n" +
-            "</svg>";
+        "</svg>\n" +
+        "</svg>";
     return line;
   }
 
@@ -74,12 +181,15 @@ public class Trip {
     ArrayList<Integer> dist = new ArrayList<>();
     colocheckall();
     roundTrip();
+    int temp = 0;
     if (this.places != null && !this.places.isEmpty()) {
       for (int i = 0; i < this.places.size(); ++i) {
         if (i == 0) {
           dist.add(0);
         } else {
-          dist.add(getDistance(this.places.get(i - 1), this.places.get(i)));
+          temp = getDistance(this.places.get(i - 1), this.places.get(i));
+          dist.add(temp);
+          this.totalDist = this.totalDist + temp;
         }
       }
     }
@@ -90,7 +200,8 @@ public class Trip {
   private void colocheckall() {
     if (this.places != null && !this.places.isEmpty()) {
       for (int i = 0; i < this.places.size(); i++) {
-        if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude), Double.parseDouble(this.places.get(i).longitude))) {
+        if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude),
+            Double.parseDouble(this.places.get(i).longitude))) {
           this.places.remove(i);
         }
       }
@@ -115,11 +226,17 @@ public class Trip {
     double long2 = Math.toRadians(Double.parseDouble(p2.longitude));
     switch (s.charAt(0)) {
       case 'm':
-        return (int) Math.round(3958.7613 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
+        return (int) Math.round(3958.7613 * Math.acos(
+            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
+                .cos(long2 - long1)));
       case 'k':
-        return (int) Math.round(6371.0088 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
+        return (int) Math.round(6371.0088 * Math.acos(
+            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
+                .cos(long2 - long1)));
       case 'n':
-        return (int) Math.round(3440.0695 * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long2 - long1)));
+        return (int) Math.round(3440.0695 * Math.acos(
+            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
+                .cos(long2 - long1)));
       default:
         return 0;
     }

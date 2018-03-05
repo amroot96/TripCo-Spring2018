@@ -1,5 +1,6 @@
 package com.tripco.t07.planner;
 
+import java.lang.reflect.Array;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,12 +16,40 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestTrip {
+
   Trip trip;
+  Place p1;
+  Place p2;
+  Place p3;
 
   // Setup to be done before every test in TestPlan
   @Before
   public void initialize() {
     trip = new Trip();
+    trip.options = new Option();
+    trip.options.distance = "kilometers";
+    trip.options.optimization = "none";
+    Place p1 = new Place();
+    p1.latitude = "39.7392";
+    p1.longitude = "-104.9903";
+    p1.id = "denver";
+    p1.name = "denver";
+
+    Place p2 = new Place();
+    p2.latitude = "40.0149900";
+    p2.longitude = "-105.2705500";
+    p2.id = "boulder";
+    p2.name = "boulder";
+
+    Place p3 = new Place();
+    p3.latitude = "40.58526";
+    p3.longitude = "-105.08442";
+    p3.id = "foco";
+    p3.name = "fort collins";
+    trip.places = new ArrayList<Place>();
+    trip.places.add(p1);
+    trip.places.add(p2);
+    trip.places.add(p3);
   }
 
   @Test
@@ -31,55 +60,35 @@ public class TestTrip {
 
   @Test
   public void testDistances() {
-
-    trip.options = new Option();
-    trip.options.distance = "kilometers";
-
-    Place p1 = new Place();
-    p1.latitude = "39.7392° N";
-    p1.longitude = "104.9903° W";
-    p1.id = "denver";
-
-    Place p2 = new Place();
-    p2.latitude = "40.0149900";
-    p2.longitude = "-105.2705500";
-    p2.id = "boulder";
-
-    Place p3 = new Place();
-    p3.latitude = "40° 35' 6.9288\" N";
-    p3.longitude = "105° 5' 3.9084\" W";
-    p3.id = "foco";
-
-    trip.places = new ArrayList<Place>();
-    trip.places.add(p1);
-    trip.places.add(p2);
-    trip.places.add(p3);
-
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,39,65,94);
+    Collections.addAll(expectedDistances, 0, 39, 65, 94);
     trip.plan();
-    // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
-    //assertTrue(true == true);
-
-    trip.places = new ArrayList<Place>();
-    trip.places.add(p1);
-    trip.places.add(p2);
-    trip.places.add(p3);
     trip.options.distance = "miles";
     trip.plan();
-
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,24,41,59);
-    assertEquals(expectedDistances,trip.distances);
-    //assertTrue(true == true);
+    Collections.addAll(expectedDistances, 0, 24, 41, 59);
+    assertEquals(expectedDistances, trip.distances);
   }
+
   @Test
-  public void testBackground(){
+  public void nearestNeighbor() {
+    ArrayList<Place> list = new ArrayList<Place>();
+    p1 = trip.places.get(0);
+    p2 = trip.places.get(1);
+    p3 = trip.places.get(2);
+    list.add(p3);
+    list.add(p2);
+    assertEquals("boulder", trip.findnearestPlace(p1, list).name);
+  }
+
+  @Test
+  public void testBackground() {
     assertNotEquals(trip.map, "");
   }
+
   @Test
   public void coloradoBorders() {
-    assertTrue(trip.coloradoCheck(40,-104));
+    assertTrue(trip.coloradoCheck(40, -104));
   }
 }
