@@ -16,10 +16,12 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestTrip {
+
   Trip trip;
   Place p1;
   Place p2;
   Place p3;
+
   // Setup to be done before every test in TestPlan
   @Before
   public void initialize() {
@@ -55,18 +57,20 @@ public class TestTrip {
     // assertTrue checks if a statement is true
     assertTrue(true == true);
   }
+
   @Test
   public void testDistances() {
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,39,65,94);
+    Collections.addAll(expectedDistances, 0, 39, 65, 94);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
     trip.options.distance = "miles";
     trip.plan();
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0,24,41,59);
-    assertEquals(expectedDistances,trip.distances);
+    Collections.addAll(expectedDistances, 0, 24, 41, 59);
+    assertEquals(expectedDistances, trip.distances);
   }
+
   @Test
   public void nearestNeighbor() {
     ArrayList<Place> list = new ArrayList<Place>();
@@ -75,14 +79,16 @@ public class TestTrip {
     p3 = trip.places.get(2);
     list.add(p3);
     list.add(p2);
-    assertEquals("boulder",trip.findnearestPlace(p1,list).name);
+    assertEquals("boulder", trip.findnearestPlace(p1, list).name);
   }
+
   @Test
-  public void testBackground(){
+  public void testBackground() {
     assertNotEquals(trip.map, "");
   }
+
   @Test
   public void coloradoBorders() {
-    assertTrue(trip.coloradoCheck(40,-104));
+    assertTrue(trip.coloradoCheck(40, -104));
   }
 }

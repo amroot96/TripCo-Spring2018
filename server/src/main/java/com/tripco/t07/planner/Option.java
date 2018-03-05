@@ -1,8 +1,8 @@
 package com.tripco.t07.planner;
 
 /**
- * Describes the options to apply when planning a trip in TFFI format.
- * At this point we are only using the values provided.
+ * Describes the options to apply when planning a trip in TFFI format. At this point we are only
+ * using the values provided.
  */
 public class Option {
 
@@ -13,10 +13,11 @@ public class Option {
   /**
    * Get distance string
    */
-  public String getDistance(){
+  public String getDistance() {
     return this.distance;
   }
-  public String getOptimization(){
+
+  public String getOptimization() {
     return this.optimization;
   }
 }
