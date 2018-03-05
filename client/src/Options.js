@@ -15,13 +15,15 @@ class Options extends Component {
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
     this.shortestButton = this.shortestButton.bind(this);
-    this.miles = "btn btn-outline-dark active";
-    this.kilometers = "btn btn-outline-dark";
-    this.nautical = "btn btn-outline-dark";
-    this.none = "btn btn-outline-dark active";
-    this.short = "btn btn-outline-dark";
-    this.shorter = "btn btn-outline-dark";
-    this.shortest = "btn btn-outline-dark";
+    this.on = "btn btn-outline-dark active";
+    this.off = "btn btn-outline-dark";
+    this.miles = this.on;
+    this.kilometers = this.off;
+    this.nautical = this.off;
+    this.none = this.on;
+    this.short = this.off;
+    this.shorter = this.off;
+    this.shortest = this.off;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,55 +56,55 @@ class Options extends Component {
 
   shortestButton() {
     this.props.updateOptions("shortest", "optimization");
-    this.shortest = "btn btn-outline-dark active";
-    this.none = "btn btn-outline-dark";
-    this.shorter = "btn btn-outline-dark";
-    this.short = "btn btn-outline-dark";
+    this.shortest = this.on;
+    this.none = this.off;
+    this.shorter = this.off;
+    this.short = this.off;
   }
 
   shorterButton() {
     this.props.updateOptions("shorter", "optimization");
-    this.shorter = "btn btn-outline-dark active";
-    this.none = "btn btn-outline-dark";
-    this.short = "btn btn-outline-dark";
-    this.shortest = "btn btn-outline-dark";
+    this.shorter = this.on;
+    this.none = this.off;
+    this.short = this.off;
+    this.shortest = this.off;
   }
 
   shortButton() {
     this.props.updateOptions("short", "optimization");
-    this.short = "btn btn-outline-dark active";
-    this.none = "btn btn-outline-dark";
-    this.shorter = "btn btn-outline-dark";
-    this.shortest = "btn btn-outline-dark";
+    this.short = this.on;
+    this.none = this.off;
+    this.shorter = this.off;
+    this.shortest = this.off;
   }
 
   noneButton() {
     this.props.updateOptions("none", "optimization");
-    this.none = "btn btn-outline-dark active";
-    this.short = "btn btn-outline-dark";
-    this.shorter = "btn btn-outline-dark";
-    this.shortest = "btn btn-outline-dark";
+    this.none = this.on;
+    this.short = this.off;
+    this.shorter = this.off;
+    this.shortest = this.off;
   }
 
   milesButton() {
     this.props.updateOptions("miles", "distance");
-    this.miles = "btn btn-outline-dark active";
-    this.kilometers = "btn btn-outline-dark";
-    this.nautical = "btn btn-outline-dark";
+    this.miles = this.on;
+    this.kilometers = this.off;
+    this.nautical = this.off;
   }
 
   nauticalButton() {
     this.props.updateOptions("nautical", "distance");
-    this.nautical = "btn btn-outline-dark active";
-    this.miles = "btn btn-outline-dark";
-    this.kilometers = "btn btn-outline-dark";
+    this.nautical = this.on;
+    this.miles = this.off;
+    this.kilometers = this.off;
   }
 
   kilometerButton() {
     this.props.updateOptions("kilometers", "distance");
-    this.kilometers = "btn btn-outline-dark active";
-    this.miles = "btn btn-outline-dark";
-    this.nautical = "btn btn-outline-dark";
+    this.kilometers = this.on;
+    this.miles = this.off;
+    this.nautical = this.off;
   }
 
   render() {
