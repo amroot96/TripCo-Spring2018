@@ -47,6 +47,7 @@ public class Trip {
     this.map = svg();
   }
 
+  //calls the optimization methods
   public void opt() {
     String optType = this.options.getOptimization();
     System.out.println(optType);
@@ -64,6 +65,7 @@ public class Trip {
     restoreStart(hold);
   }
 
+  //restores the original starting location after optimizations
   private void restoreStart(Place start) {
     if (start.name.equals(this.places.get(0))) {
       return;
@@ -84,6 +86,7 @@ public class Trip {
 
   }
 
+  //optshort is the nearest neighbor algorithm
   private ArrayList<Place> optShort() {
     ArrayList<Place> templist = new ArrayList<>();
     for (Place p : this.places) {
@@ -117,7 +120,8 @@ public class Trip {
     return retlist;
   }
 
-  //Given a starting location and a list of destinations, this method picks the closest city and returns it.
+  //Given a starting location and a list of destinations,
+  // this method picks the closest city and returns it.
   public Place findnearestPlace(Place start, ArrayList<Place> remaining) {
     Place ret = start;
     int help = 1000000;
@@ -157,11 +161,11 @@ public class Trip {
     line += "<svg width=\"1066.6073\" height=\"783.0824\">";
     line += " <polyline points=\"";
     for (int i = 0; i < this.places.size(); i++) {
-      int x = (int) Math
+      int xVar = (int) Math
           .round(((109 + Double.parseDouble(this.places.get(i).longitude)) / 7) * 1006 + 30);
-      int y = (int) Math
+      int yVar = (int) Math
           .round(((41 - Double.parseDouble(this.places.get(i).latitude)) / 4) * 710 + 40);
-      line += x + "," + y + " ";
+      line += xVar + "," + yVar + " ";
     }
     line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
         "</svg>\n" +
