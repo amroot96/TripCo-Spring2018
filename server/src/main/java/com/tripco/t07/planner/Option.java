@@ -16,5 +16,7 @@ public class Option {
   public String getDistance(){
     return this.distance;
   }
-
+  public String getOptimization(){
+    return this.optimization;
+  }
 }
