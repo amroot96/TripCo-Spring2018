@@ -67,9 +67,6 @@ public class Trip {
 
   //restores the original starting location after optimizations
   private void restoreStart(Place start) {
-    if (start.name.equals(this.places.get(0))) {
-      return;
-    }
     int middle = -1;
     ArrayList<Place> retlist = new ArrayList<Place>();
     for (int i = 0; i < this.places.size() - 1; i++) {
@@ -86,7 +83,7 @@ public class Trip {
 
   }
 
-  //optshort is the nearest neighbor algorithm
+  //optshort returns the shortest nearest neighbor
   private ArrayList<Place> optShort() {
     ArrayList<Place> templist = new ArrayList<>();
     for (Place p : this.places) {
@@ -97,17 +94,9 @@ public class Trip {
     int minDist = 1000000;
     int dist = 0;
     for (int i = 0; i < templist.size() - 1; i++) {
-      Place p = templist.get(i);
       testlist.clear();
-      Place help = p;
-      testlist.add(help);
-      this.places.remove(help);
-      while (this.places.size() > 0) {
-        help = findnearestPlace(testlist.get(testlist.size() - 1), this.places);
-        testlist.add(help);
-        this.places.remove(help);
-      }
-      this.places = testlist;
+      Place help = templist.get(i);
+      testlist = nearNeigh(help);
       legDistances();
       if (this.totalDist < minDist) {
         retlist.clear();
@@ -117,6 +106,19 @@ public class Trip {
         minDist = this.totalDist;
       }
     }
+    return retlist;
+  }
+  //Nearest neighbor given a starting node
+  private ArrayList<Place> nearNeigh(Place help) {
+    ArrayList<Place> retlist = new ArrayList<Place>();
+    retlist.add(help);
+    this.places.remove(help);
+    while (this.places.size() > 0) {
+      help = findnearestPlace(help, this.places);
+      retlist.add(help);
+      this.places.remove(help);
+    }
+    this.places = retlist;
     return retlist;
   }
 
@@ -161,11 +163,11 @@ public class Trip {
     line += "<svg width=\"1066.6073\" height=\"783.0824\">";
     line += " <polyline points=\"";
     for (int i = 0; i < this.places.size(); i++) {
-      int xVar = (int) Math
+      int xCoord = (int) Math
           .round(((109 + Double.parseDouble(this.places.get(i).longitude)) / 7) * 1006 + 30);
-      int yVar = (int) Math
+      int yCoord = (int) Math
           .round(((41 - Double.parseDouble(this.places.get(i).latitude)) / 4) * 710 + 40);
-      line += xVar + "," + yVar + " ";
+      line += xCoord + "," + yCoord + " ";
     }
     line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
         "</svg>\n" +
