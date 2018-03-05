@@ -82,15 +82,18 @@ public class Trip {
     }
 
   }
-
+  private ArrayList<Place> copy(ArrayList<Place> copythis) {
+    ArrayList<Place> retlist = new ArrayList<>();
+    for(Place p:copythis) {
+      retlist.add(p);
+    }
+    return retlist;
+  }
   //optshort returns the shortest nearest neighbor
   private ArrayList<Place> optShort() {
-    ArrayList<Place> templist = new ArrayList<>();
-    for (Place p : this.places) {
-      templist.add(p);
-    }
-    ArrayList<Place> testlist = new ArrayList<Place>();
-    ArrayList<Place> retlist = new ArrayList<Place>();
+    ArrayList<Place> templist = copy(this.places);
+    ArrayList<Place> testlist = new ArrayList<>();
+    ArrayList<Place> retlist = new ArrayList<>();
     int minDist = 1000000;
     int dist = 0;
     for (int i = 0; i < templist.size() - 1; i++) {
@@ -100,9 +103,7 @@ public class Trip {
       legDistances();
       if (this.totalDist < minDist) {
         retlist.clear();
-        for (Place c : testlist) {
-          retlist.add(c);
-        }
+        retlist = copy(testlist);
         minDist = this.totalDist;
       }
     }
