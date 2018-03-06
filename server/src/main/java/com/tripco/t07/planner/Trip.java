@@ -48,7 +48,7 @@ public class Trip {
   }
 
   //calls the optimization methods
-  public void opt() {
+  private void opt() {
     String optType = this.options.getOptimization();
     System.out.println(optType);
     Place hold = this.places.get(0);
@@ -56,9 +56,9 @@ public class Trip {
       this.places.remove(this.places.size() - 1);
     }
     if (optType.equals("short")) {
-      this.places = optShort();
+      optShort();
     } else if (optType.equals("shorter")) {
-      optShorter();
+      optShorter(this.places);
     } else if (optType.equals("shortest")) {
       optShortest();
     }
@@ -69,7 +69,7 @@ public class Trip {
   private void restoreStart(Place start) {
     int middle = -1;
     ArrayList<Place> retlist = new ArrayList<Place>();
-    for (int i = 0; i < this.places.size() - 1; i++) {
+    for (int i = 0; i < this.places.size(); i++) {
       if (this.places.get(i).name.equals(start.name)) {
         middle = i;
       }
@@ -82,35 +82,38 @@ public class Trip {
     }
 
   }
+
   private ArrayList<Place> copy(ArrayList<Place> copythis) {
     ArrayList<Place> retlist = new ArrayList<>();
-    for(Place p:copythis) {
+    for (Place p : copythis) {
       retlist.add(p);
     }
     return retlist;
   }
+
   //optshort returns the shortest nearest neighbor
-  private ArrayList<Place> optShort() {
+  private void optShort() {
     ArrayList<Place> templist = copy(this.places);
-    ArrayList<Place> testlist = new ArrayList<>();
     ArrayList<Place> retlist = new ArrayList<>();
     int minDist = 1000000;
-    int dist = 0;
-    for (int i = 0; i < templist.size() - 1; i++) {
-      testlist.clear();
+    for (int i = 0; i < templist.size(); i++) {
       Place help = templist.get(i);
-      testlist = nearNeigh(help);
+      nearNeigh(help);
       legDistances();
+      removeRoundTrip();
+      placeList(this.places);
+      System.out.println(this.totalDist);
       if (this.totalDist < minDist) {
         retlist.clear();
-        retlist = copy(testlist);
         minDist = this.totalDist;
+        retlist = copy(this.places);
       }
     }
-    return retlist;
+    this.places = copy(retlist);
   }
+
   //Nearest neighbor given a starting node
-  private ArrayList<Place> nearNeigh(Place help) {
+  private void nearNeigh(Place help) {
     ArrayList<Place> retlist = new ArrayList<Place>();
     retlist.add(help);
     this.places.remove(help);
@@ -119,13 +122,12 @@ public class Trip {
       retlist.add(help);
       this.places.remove(help);
     }
-    this.places = retlist;
-    return retlist;
+    this.places = copy(retlist);
   }
 
   //Given a starting location and a list of destinations,
   // this method picks the closest city and returns it.
-  public Place findnearestPlace(Place start, ArrayList<Place> remaining) {
+  private Place findnearestPlace(Place start, ArrayList<Place> remaining) {
     Place ret = start;
     int help = 1000000;
     int dist = 0;
@@ -139,9 +141,39 @@ public class Trip {
     return ret;
   }
 
-  private void optShorter() {
-    System.out.println("shorter TEST TEST TEST");
+  private ArrayList<Place> optShorter(ArrayList<Place> opt) {
+    this.distances = legDistances();
+    removeRoundTrip();
+    int bestDist = this.totalDist;
+    ArrayList<Place> retlist = copy(this.places);
+    for (int i = 1; i < retlist.size(); i++) {
+      for (int k = i + 1; k < retlist.size(); k++) {
+        this.places = twooptswap(this.places, i, k);
+        this.distances = legDistances();
+        removeRoundTrip();
+        if (this.totalDist < bestDist) {
+          opt = copy(optShorter(this.places));
+        }
+      }
+    }
+    this.places = copy(opt);
+    return opt;
   }
+
+  private ArrayList<Place> twooptswap(ArrayList<Place> orig, int i, int k) {
+    ArrayList<Place> retlist = new ArrayList<Place>();
+    for (int j = 0; j < i; j++) {
+      retlist.add(orig.get(j));
+    }
+    for (int j = k; j > i - 1; j--) {
+      retlist.add(orig.get(j));
+    }
+    for (int j = k + 1; j < orig.size(); j++) {
+      retlist.add(orig.get(j));
+    }
+    return retlist;
+  }
+
 
   private void optShortest() {
     System.out.println("shortest TEST TEST TEST");
@@ -179,6 +211,7 @@ public class Trip {
   //Computes distances between each place, calls colocheckall and roundtrip;
   private ArrayList<Integer> legDistances() {
     ArrayList<Integer> dist = new ArrayList<>();
+    this.totalDist = 0;
     colocheckall();
     roundTrip();
     int temp = 0;
@@ -217,6 +250,12 @@ public class Trip {
     }
   }
 
+  private void removeRoundTrip() {
+    if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
+      this.places.remove(this.places.size() - 1);
+    }
+  }
+
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
     String s = this.options.getDistance();
@@ -240,6 +279,13 @@ public class Trip {
       default:
         return 0;
     }
+  }
+
+  private void placeList(ArrayList<Place> list) {
+    for (int i = 0; i < list.size(); i++) {
+      System.out.print(list.get(i).name + "  ");
+    }
+    System.out.println();
   }
 
   //Checks if a single place is in Colorado

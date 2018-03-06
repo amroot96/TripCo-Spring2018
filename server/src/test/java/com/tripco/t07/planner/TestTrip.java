@@ -21,6 +21,8 @@ public class TestTrip {
   Place p1;
   Place p2;
   Place p3;
+  Place p4;
+  Place p5;
 
   // Setup to be done before every test in TestPlan
   @Before
@@ -46,10 +48,25 @@ public class TestTrip {
     p3.longitude = "-105.08442";
     p3.id = "foco";
     p3.name = "fort collins";
+
+    Place p4 = new Place();
+    p4.latitude = "37.1695° N";
+    p4.longitude = "104.5005° W";
+    p4.id = "trin";
+    p4.name = "Trinidad";
+
+    Place p5 = new Place();
+    p5.latitude = "37.1695° N";
+    p5.longitude = "105.5005° W";
+    p5.id = "near trin";
+    p5.name = "near trin";
+
     trip.places = new ArrayList<Place>();
     trip.places.add(p1);
     trip.places.add(p2);
     trip.places.add(p3);
+    trip.places.add(p4);
+    trip.places.add(p5);
   }
 
   @Test
@@ -61,27 +78,34 @@ public class TestTrip {
   @Test
   public void testDistances() {
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 39, 65, 94);
+    Collections.addAll(expectedDistances, 0, 39, 65, 383, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
     trip.options.distance = "miles";
     trip.plan();
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 24, 41, 59);
+    Collections.addAll(expectedDistances, 0, 24, 41, 238, 55, 180);
     assertEquals(expectedDistances, trip.distances);
   }
 
   @Test
   public void nearestNeighbor() {
-    ArrayList<Place> list = new ArrayList<Place>();
-    p1 = trip.places.get(0);
-    p2 = trip.places.get(1);
-    p3 = trip.places.get(2);
-    list.add(p3);
-    list.add(p2);
-    assertEquals("boulder", trip.findnearestPlace(p1, list).name);
+    trip.options.optimization = "short";
+
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
   }
 
+  @Test
+  public void twoOpt() {
+    trip.options.optimization = "shorter";
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
   @Test
   public void testBackground() {
     assertNotEquals(trip.map, "");
