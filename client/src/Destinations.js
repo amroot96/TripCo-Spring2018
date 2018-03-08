@@ -36,40 +36,42 @@ class Destinations extends Component {
   render() {
     // need to clean up the button
     // need to count the number in the trip -- DONE
-    return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <div id="destinations" className="card">
-                        <div className="card-header bg-success text-white">
-                            Destinations
-                        </div>
-                        <div className="card-body">
-                            <p>Load destinations from a file.</p>
-                            <div className="form-group" role="group">
-                            <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
-                            </div>
-                            <h5>There are {this.state.count} destinations. </h5>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <div id="destinations" className="card">
-                        <div className="card-header bg-success text-white">
-                            Choose From Destinations
-                        </div>
-                        <div className="card-body">
-                            <p>Add or remove from destination list.</p>
-                            <button className="btn btn-outline-dark " type="button">Add Destination</button>
-                            <div></div>
-                            <button className="btn btn-outline-dark " type="button">Remove Destination</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+      return (
+          <div className="container-fluid">
+              <div className="row">
+                  <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <div id="destinations" className="card">
+                          <div className="card-header bg-success text-white">
+                              Destinations
+                          </div>
+                          <div className="card-body">
+                              <p>Load destinations from a file.</p>
+                              <div className="form-group" role="group">
+                                  <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
+                              </div>
+                              <h5>There are {this.state.count} destinations. </h5>
+                          </div>
+                      </div>
+                  </div>
+                  <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <div id="destinations" className="card">
+                          <div className="card-header bg-success text-white">
+                              Destination Finder
+                          </div>
+                          <div className="card-body">
+                              <p> Search for place or airport code. </p>
+                              <div className="input-group" role="group">
+                                  <input type="txt" className="form-control" placeholder="Search..."/>
+                                  <span className="input-group-btn">
+                                    <button className="btn btn-info" type="button">Search</button>
+                                </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      )
   }
 }
-
 export default Destinations;
