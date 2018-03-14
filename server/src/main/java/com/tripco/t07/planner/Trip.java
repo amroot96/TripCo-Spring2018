@@ -51,18 +51,17 @@ public class Trip {
 
   //calls the optimization methods
   private void opt() {
-    String optType = this.options.getOptimization();
+    double optType = Double.parseDouble(this.options.getOptimization());
     System.out.println(optType);
     Place hold = this.places.get(0);
-    if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
+    if (hold.name.equals(this.places.get(this.places.size() - 1).name)) {
       this.places.remove(this.places.size() - 1);
     }
-    double bound = Double.parseDouble(optType);
-    if (bound >= 0 && bound <= 0.33) {
+    if (optType > 0 && optType <= 0.33) {
       optShort();
-    } else if (bound > 0.33 && bound <= 0.66) {
+    } else if (optType > 0.33 && optType <= 0.66) {
       optShorter(this.places);
-    } else if (bound > 0.66 && bound <=1) {
+    } else if (optType > 0.66 && optType <=1) {
       optShortest();
     }
     restoreStart(hold);
