@@ -57,11 +57,14 @@ public class Trip {
     if (hold.name.equals(this.places.get(this.places.size() - 1).name)) {
       this.places.remove(this.places.size() - 1);
     }
-    if (optType > 0 && optType <= 0.33) {
+    if(optType == 0){
+
+    }
+    else if (optType <= 0.33) {
       optShort();
-    } else if (optType > 0.33 && optType <= 0.66) {
+    } else if (optType <= 0.66) {
       optShorter(this.places);
-    } else if (optType > 0.66 && optType <=1) {
+    } else if (optType <=1) {
       optShortest();
     }
     restoreStart(hold);
