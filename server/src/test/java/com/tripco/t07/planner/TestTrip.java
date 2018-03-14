@@ -78,13 +78,13 @@ public class TestTrip {
   @Test
   public void testDistances() {
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
+    Collections.addAll(expectedDistances, 0, 39, 65, 383, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
     trip.options.distance = "miles";
     trip.plan();
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 24, 41, 237, 55, 180);
+    Collections.addAll(expectedDistances, 0, 24, 41, 238, 55, 180);
     assertEquals(expectedDistances, trip.distances);
   }
 
