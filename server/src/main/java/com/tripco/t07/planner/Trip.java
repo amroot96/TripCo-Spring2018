@@ -57,11 +57,12 @@ public class Trip {
     if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
       this.places.remove(this.places.size() - 1);
     }
-    if (Double.parseDouble(optType) >= 0 && Double.parseDouble(optType) <= 0.33) {
+    double bound = Double.parseDouble(optType);
+    if (bound >= 0 && bound <= 0.33) {
       optShort();
-    } else if (Double.parseDouble(optType) > 0.33 && Double.parseDouble(optType) <= 0.66) {
+    } else if (bound > 0.33 && bound <= 0.66) {
       optShorter(this.places);
-    } else if (Double.parseDouble(optType) > 0.66 && Double.parseDouble(optType) <=1) {
+    } else if (bound > 0.66 && bound <=1) {
       optShortest();
     }
     restoreStart(hold);
