@@ -16,6 +16,7 @@ import java.io.*;
 public class Trip {
 
   // The variables in this class should reflect TFFI.
+  public int version;
   public String type;
   public String title;
   public Option options;
@@ -25,6 +26,7 @@ public class Trip {
   private int totalDist;
 
   public void display() {
+    System.out.println(this.version);
     System.out.println(this.type);
     System.out.println(this.title);
     System.out.println(this.options);
@@ -55,11 +57,11 @@ public class Trip {
     if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
       this.places.remove(this.places.size() - 1);
     }
-    if (optType.equals("short")) {
+    if (Double.parseDouble(optType) >= 0 && Double.parseDouble(optType) <= 0.33) {
       optShort();
-    } else if (optType.equals("shorter")) {
+    } else if (Double.parseDouble(optType) > 0.33 && Double.parseDouble(optType) <= 0.66) {
       optShorter(this.places);
-    } else if (optType.equals("shortest")) {
+    } else if (Double.parseDouble(optType) > 0.66 && Double.parseDouble(optType) <=1) {
       optShortest();
     }
     restoreStart(hold);

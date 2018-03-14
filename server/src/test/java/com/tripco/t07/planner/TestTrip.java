@@ -30,7 +30,7 @@ public class TestTrip {
     trip = new Trip();
     trip.options = new Option();
     trip.options.distance = "kilometers";
-    trip.options.optimization = "none";
+    trip.options.optimization = "0";
     Place p1 = new Place();
     p1.latitude = "39.7392";
     p1.longitude = "-104.9903";
@@ -78,19 +78,19 @@ public class TestTrip {
   @Test
   public void testDistances() {
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 39, 65, 383, 89, 289);
+    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
     trip.options.distance = "miles";
     trip.plan();
     expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 24, 41, 238, 55, 180);
+    Collections.addAll(expectedDistances, 0, 24, 41, 237, 55, 180);
     assertEquals(expectedDistances, trip.distances);
   }
 
   @Test
   public void nearestNeighbor() {
-    trip.options.optimization = "short";
+    trip.options.optimization = "0.2";
 
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
@@ -100,7 +100,7 @@ public class TestTrip {
 
   @Test
   public void twoOpt() {
-    trip.options.optimization = "shorter";
+    trip.options.optimization = "0.4";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
