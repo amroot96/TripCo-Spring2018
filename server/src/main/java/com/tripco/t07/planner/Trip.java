@@ -54,8 +54,9 @@ public class Trip {
     double optType = Double.parseDouble(this.options.getOptimization());
     System.out.println(optType);
     Place hold = this.places.get(0);
-    if (hold.name.equals(this.places.get(this.places.size() - 1).name)) {
-      this.places.remove(this.places.size() - 1);
+    int last = this.places.size()-1;
+    if (hold.name.equals(this.places.get(last).name)) {
+      this.places.remove(last);
     }
 
     if(optType != 0) {
