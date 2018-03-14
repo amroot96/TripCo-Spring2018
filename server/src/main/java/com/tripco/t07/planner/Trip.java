@@ -53,12 +53,7 @@ public class Trip {
   private void opt() {
     double optType = this.options.getOptimization();
     System.out.println(optType);
-    Place hold = this.places.get(0);
-    int last = this.places.size()-1;
-    if (hold.name.equals(this.places.get(last).name)) {
-      this.places.remove(last);
-    }
-
+    removeLast();
     if(optType != 0) {
       if (optType <= 0.33) {
         optShort();
@@ -68,7 +63,15 @@ public class Trip {
         optShortest();
       }
     }
-    restoreStart(hold);
+    restoreStart(this.places.get(0));
+  }
+
+  private void removeLast(){
+    Place hold = this.places.get(0);
+    int last = this.places.size()-1;
+    if (hold.name.equals(this.places.get(last).name)) {
+      this.places.remove(last);
+    }
   }
 
   //restores the original starting location after optimizations
