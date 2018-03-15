@@ -54,6 +54,7 @@ class Application extends Component {
     }
     this.setState({
       trip: {
+        version: json.version,
         type: json.type,
         title: json.title,
         options: json.options,
