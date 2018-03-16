@@ -16,6 +16,14 @@ public class Query {
 
   private Query query;
 
+  //db configuration information
+  private final static String myDriver = "com.mysql.jdbc.Driver";
+  private final static String myUrl    = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+
+  //SQL queries to count the number of records and to retrieve the data
+  private final static String count    = "";
+  private final static String search   = "";
+
   /** Handles database query request, creating a new Query object from the query request.
    * Does the conversion from Json to a Java class before querying the database.
    * @param request a query
