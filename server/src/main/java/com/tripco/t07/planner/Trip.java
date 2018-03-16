@@ -16,6 +16,7 @@ import java.io.*;
 public class Trip {
 
   // The variables in this class should reflect TFFI.
+  public int version;
   public String type;
   public String title;
   public Option options;
@@ -25,6 +26,7 @@ public class Trip {
   private int totalDist;
 
   public void display() {
+    System.out.println(this.version);
     System.out.println(this.type);
     System.out.println(this.title);
     System.out.println(this.options);
@@ -49,20 +51,27 @@ public class Trip {
 
   //calls the optimization methods
   private void opt() {
-    String optType = this.options.getOptimization();
+    double optType = this.options.getOptimization();
     System.out.println(optType);
+    removeLast();
+    if(optType != 0) {
+      if (optType <= 0.33) {
+        optShort();
+      } else if (optType <= 0.66) {
+        optShorter(this.places);
+      } else if (optType <= 1) {
+        optShortest();
+      }
+    }
+    restoreStart(this.places.get(0));
+  }
+
+  private void removeLast(){
     Place hold = this.places.get(0);
-    if (this.places.get(0).name.equals(this.places.get(this.places.size() - 1).name)) {
-      this.places.remove(this.places.size() - 1);
+    int last = this.places.size()-1;
+    if (hold.name.equals(this.places.get(last).name)) {
+      this.places.remove(last);
     }
-    if (optType.equals("short")) {
-      optShort();
-    } else if (optType.equals("shorter")) {
-      optShorter(this.places);
-    } else if (optType.equals("shortest")) {
-      optShortest();
-    }
-    restoreStart(hold);
   }
 
   //restores the original starting location after optimizations

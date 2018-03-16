@@ -17,7 +17,7 @@ public class Option {
     return this.distance;
   }
 
-  public String getOptimization() {
-    return this.optimization;
+  public double getOptimization() {
+    return Double.parseDouble(this.optimization);
   }
 }
