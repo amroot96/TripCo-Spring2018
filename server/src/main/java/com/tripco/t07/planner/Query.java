@@ -18,9 +18,9 @@ public class Query {
 
   /** Handles database query request, creating a new Query object from the query request.
    * Does the conversion from Json to a Java class before querying the database.
-   * @param request
+   * @param request a query
    */
-  public Query (Request request){
+  public Query(Request request){
     // extract the information from the body of the request.
     JsonParser jsonParser = new JsonParser();
     JsonElement requestBody = jsonParser.parse(request.body());
