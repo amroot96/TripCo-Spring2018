@@ -55,7 +55,7 @@ class Options extends Component {
   }
 
   shortestButton() {
-    this.props.updateOptions("shortest", "optimization");
+    this.props.updateOptions("0.75", "optimization");
     this.shortest = this.on;
     this.none = this.off;
     this.shorter = this.off;
@@ -63,7 +63,7 @@ class Options extends Component {
   }
 
   shorterButton() {
-    this.props.updateOptions("shorter", "optimization");
+    this.props.updateOptions("0.5", "optimization");
     this.shorter = this.on;
     this.none = this.off;
     this.short = this.off;
@@ -71,7 +71,7 @@ class Options extends Component {
   }
 
   shortButton() {
-    this.props.updateOptions("short", "optimization");
+    this.props.updateOptions("0.25", "optimization");
     this.short = this.on;
     this.none = this.off;
     this.shorter = this.off;
@@ -79,7 +79,7 @@ class Options extends Component {
   }
 
   noneButton() {
-    this.props.updateOptions("none", "optimization");
+    this.props.updateOptions("0", "optimization");
     this.none = this.on;
     this.short = this.off;
     this.shorter = this.off;
