@@ -31,7 +31,12 @@ class Options extends Component {
      this.distanceButtonSelector(nextProps.options.distance);
     }
     if (nextProps.options.optimization !== this.props.options.optimization) {
-     this.optimizeButtonSelector(nextProps.options.optimization);
+        if(nextProps.version === 1){
+            this.noneButton();
+        }
+        else if(nextProps.version === 2){
+            this.optimizeButtonSelector(nextProps.options.optimization);
+        }
     }
   }
 
