@@ -28,30 +28,35 @@ class Options extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.options.distance !== this.props.options.distance) {
-      if (nextProps.options.distance === "miles") {
-        this.milesButton();
-      }
-      else if (nextProps.options.distance === "kilometers") {
-        this.kilometerButton();
-      }
-      else {
-        this.nauticalButton()
-      }
+     this.distanceButtonSelector(nextProps.options.distance);
     }
     if (nextProps.options.optimization !== this.props.options.optimization) {
-      if (nextProps.options.optimization === "none") {
-        this.noneButton();
-      }
-      else if (nextProps.options.optimization === "short") {
-        this.shortButton();
-      }
-      else if (nextProps.options.optimization === "shorter") {
-        this.shorterButton();
-      }
-      else {
-        this.shortestButton();
-      }
+     this.optimizeButtonSelector(nextProps.options.optimization);
     }
+  }
+
+  distanceButtonSelector(arg){
+      let select = arg;
+      switch(arg){
+          case "miles": this.milesButton();
+                        break;
+          case "kilometers": this.kilometerButton();
+                        break;
+          default: this.nauticalButton();
+      }
+  }
+
+  optimizeButtonSelector(arg){
+      let select = arg;
+      switch(arg){
+          case arg < 0.33: this.shortButton();
+                        break;
+          case arg < 0.66: this.shorterButton();
+                        break;
+          case arg > 0.66: this.shortestButton();
+                        break;
+          default: this.noneButton();
+      }
   }
 
   shortestButton() {
