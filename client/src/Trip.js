@@ -58,9 +58,7 @@ class Trip extends Component {
                                 <span className="input-group-btn">
                                     <button className="btn btn-info " onClick={this.saveTFFI} type="button">Save</button>
                                 </span>
-                            </div>
-                            <Map trip={this.props.trip} />
-                        </div>
+                            </div><Map trip={this.props.trip} /></div>
                     </div>
                 </div>
             </div>
