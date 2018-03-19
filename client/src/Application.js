@@ -39,7 +39,6 @@ class Application extends Component {
   queryResponse(){
       let requestBody = this.state.query;
       const serverURL = 'http://' + location.host + '/database';
-
       return fetch(serverURL, {
           method: "POST",
           body: JSON.stringify(requestBody)
