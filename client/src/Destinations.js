@@ -87,7 +87,7 @@ class Destinations extends Component {
                         {this.destinationsField()}
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        {this.destinationsField()}
+                        {this.destinationFinderField()}
                     </div>
                 </div>
             </div>
