@@ -55,9 +55,7 @@ class Trip extends Component {
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div id="trip" className="card">
-                        <div className="card-header bg-success text-white">
-                            Trip
-                        </div>
+                        <div className="card-header bg-success text-white">Trip</div>
                         <div className="card-body">
                             <Itinerary trip={this.props.trip} />
                             <div className="input-group" role="group">

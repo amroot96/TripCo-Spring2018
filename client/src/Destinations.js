@@ -15,6 +15,7 @@ class Destinations extends Component {
         };
         this.loadTFFI = this.loadTFFI.bind(this);
         this.searchQuery = this.searchQuery.bind(this);
+        this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     }
 
     loadTFFI(event) {
@@ -82,10 +83,10 @@ class Destinations extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div className={this.container}>
                         {this.destinationsField()}
                     </div>
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div className={this.container}>
                         {this.destinationFinderField()}
                     </div>
                 </div>

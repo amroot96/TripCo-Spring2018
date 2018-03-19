@@ -17,6 +17,7 @@ class Options extends Component {
     this.shortestButton = this.shortestButton.bind(this);
     this.on = "btn btn-outline-dark active";
     this.off = "btn btn-outline-dark";
+    this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     this.miles = this.on;
     this.kilometers = this.off;
     this.nautical = this.off;
@@ -164,10 +165,10 @@ class Options extends Component {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div className={this.container}>
                 {this.optionField()}
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div className={this.container}>
                 {this.optimizeField()}
             </div>
           </div>
