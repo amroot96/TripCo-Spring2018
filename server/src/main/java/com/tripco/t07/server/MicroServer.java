@@ -109,6 +109,7 @@ public class MicroServer {
 
     return (new Plan(request)).getTrip();
   }
+
   /** A REST API that returns the team information associated with the server.
    *
    * @param request
