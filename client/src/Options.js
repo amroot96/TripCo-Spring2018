@@ -19,7 +19,6 @@ class Options extends Component {
     this.off = "btn btn-outline-dark";
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     this.id = "\"options\" className=\"card\">";
-    this.class = "\"card-header text-white\" style={{background:'#1E4D2B'}}";
     this.miles = this.on;
     this.kilometers = this.off;
     this.nautical = this.off;
@@ -121,8 +120,8 @@ class Options extends Component {
 
   optionField(){
     return(
-        <div id={this.id}>
-            <div className={this.class}>Options</div>
+        <div id="options" className="card">
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
             <div className="card-body">
                 <p>Highlight the options you wish to use.</p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -143,8 +142,8 @@ class Options extends Component {
 
   optimizeField(){
     return(
-        <div id={this.id}>
-            <div className={this.class}>Optimization</div>
+        <div id="options" className="card">
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimization</div>
             <div className="card-body">
                 <p>Would you like to optimize your trip? </p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
