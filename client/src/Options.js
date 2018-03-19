@@ -117,6 +117,10 @@ class Options extends Component {
     this.nautical = this.off;
   }
 
+optionField(){
+
+}
+
   render() {
     return (
         <div className="container-fluid">
