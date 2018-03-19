@@ -1,13 +1,20 @@
 package com.tripco.t07.planner;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Database  {
     // db configuration information
-    private final static String myDriver = "com.mysql.jdbc.Driver";
-    private final static String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private static final String myDriver = "com.mysql.jdbc.Driver";
+    private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     // SQL queries to count the number of records and to retrieve the data
-    private final static String count = "select count(*) from airports;";
-    private final static String search = "select id,name,municipality,type from airports limit 20;";
+    private static final String count = "select count(*) from airports;";
+    private static final String search = "select id,name,municipality,type from airports limit 20;";
     // Arguments contain the username and password for the database
+
     public static void main(String[] args) {
         try {
             Class.forName(myDriver);
@@ -24,6 +31,7 @@ public class Database  {
             System.err.println("Exception: " + e.getMessage());
         }
     }
+
     private static void printJSON(ResultSet count, ResultSet query) throws SQLException {
         System.out.printf("\n{\n");
         System.out.printf("\"type\": \"find\",\n");
@@ -32,14 +40,18 @@ public class Database  {
 // determine the number of results that match the query
         count.next();
         int results = count.getInt(1);
-        int i = 1;
+        int temp = 1;
 // iterate through query results and print out the airport codes
         while (query.next()) {
-            System.out.printf("%d id: %s Name:%s", i++, query.getString("id"), query.getString("name"));
-            if (--results == 0)
+            System.out.printf("%d id: %s Name:%s", temp++, query.getString("id"));
+            if (--results == 0){
                 System.out.printf("\n");
-            else
+            }
+
+            else{
                 System.out.printf(",\n");
+            }
+
         }
         System.out.printf(" ]\n}\n");
     }

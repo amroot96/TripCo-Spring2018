@@ -40,7 +40,7 @@ public class MicroServer {
     get("/team", this::team);
     // client is sending data, so a HTTP POST is used instead of a GET
     post("/plan", this::plan);
-
+    post("/database", this::database);
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
 
@@ -97,6 +97,18 @@ public class MicroServer {
     return (new Plan(request)).getTrip();
   }
 
+  /** A REST API to support trip planning.
+   *
+   * @param request
+   * @param response
+   * @return
+   */
+  private String database(Request request, Response response) {
+
+    response.type("application/json");
+
+    return (new Plan(request)).getTrip();
+  }
   /** A REST API that returns the team information associated with the server.
    *
    * @param request

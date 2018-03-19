@@ -12,7 +12,6 @@ class Destinations extends Component {
         this.state = {
             count: 0,
             file: "",
-            query: "",
         };
         this.loadTFFI = this.loadTFFI.bind(this);
         this.searchQuery = this.searchQuery.bind(this);
@@ -38,9 +37,9 @@ class Destinations extends Component {
 
     searchQuery(){
         console.log("search")
-        // this.setState({query : this.props.getElementsById("search").value})
+        this.setState({query : document.getElementById("search").value})
         console.log(this.state.query);
-        // this.props.fetchQuery();
+
     }
 
 
