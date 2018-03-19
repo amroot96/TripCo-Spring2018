@@ -18,7 +18,8 @@ class Application extends Component {
         places: [],
         distances: [],
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
-      }
+      },
+      query: "",
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
@@ -35,7 +36,28 @@ class Application extends Component {
     });
   }
 
+  queryResponse(){
+      let requestBody = this.state.query;
+      const serverURL = 'http://' + location.host + '/database';
+      return fetch(serverURL, {
+          method: "POST",
+          body: JSON.stringify(requestBody)
+      });
+  }
+
+  async database() {
+      console.log("Database");
+      try {
+          let serverResponse = await this.queryResponse();
+          let query = await serverResponse.json();
+          console.log(query)
+      } catch (err) {
+          console.error(err);
+      }
+  }
+
   async plan() {
+      console.log("Plan");
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
