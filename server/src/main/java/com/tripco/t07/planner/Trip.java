@@ -47,6 +47,7 @@ public class Trip {
     opt();
     this.distances = legDistances();
     this.map = svg();
+
   }
 
   //calls the optimization methods
@@ -108,8 +109,6 @@ public class Trip {
     for (int i = 0; i < templist.size(); i++) {
       Place help = templist.get(i);
       nearNeigh(help);
-      legDistances();
-      removeRoundTrip();
       placeList(this.places);
       System.out.println(this.totalDist);
       if (this.totalDist < minDist) {
@@ -132,6 +131,8 @@ public class Trip {
       this.places.remove(help);
     }
     this.places = copy(retlist);
+    legDistances();
+    removeRoundTrip();
   }
 
   //Given a starting location and a list of destinations,

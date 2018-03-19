@@ -11,8 +11,14 @@ class Trip extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+        title: "",
+
+      };
+
 
     this.saveTFFI = this.saveTFFI.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
   /* Sends a request to the server with the destinations and options.
@@ -30,10 +36,14 @@ class Trip extends Component {
       let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.props.trip));
       let downloadAnchorNode = document.createElement('a');
       downloadAnchorNode.setAttribute("href",     dataStr);
-      downloadAnchorNode.setAttribute("download", this.props.trip.title + ".json");
+      downloadAnchorNode.setAttribute("download", document.getElementById("titleBox").value + ".json");
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
       this.props.trip.map = help;
+  }
+
+  updateTitle(){
+      this.saveTFFI();
   }
 
   /* Renders the buttons, map, and itinerary.
@@ -54,9 +64,9 @@ class Trip extends Component {
                                 <span className="input-group-btn">
                                     <button className="btn btn-info " onClick={this.props.plan} type="button">Plan</button>
                                 </span>
-                                <input type="text" className="form-control" placeholder="Trip title..."/>
+                                <input id="titleBox" type="text" className="form-control" placeholder="Trip title..."/>
                                 <span className="input-group-btn">
-                                    <button className="btn btn-info " onClick={this.saveTFFI} type="button">Save</button>
+                                    <button className="btn btn-info " onClick={this.updateTitle} type="button">Save</button>
                                 </span>
                             </div><Map trip={this.props.trip} /></div>
                     </div>
