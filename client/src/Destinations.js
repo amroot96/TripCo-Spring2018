@@ -15,7 +15,6 @@ class Destinations extends Component {
         };
         this.loadTFFI = this.loadTFFI.bind(this);
         this.searchQuery = this.searchQuery.bind(this);
-        this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     }
 
     loadTFFI(event) {
@@ -46,9 +45,7 @@ class Destinations extends Component {
     destinationsField(){
         return(
             <div id="destinations" className="card">
-                <div className="card-header text-white" style={{background:'#1E4D2B'}}>
-                    Destinations
-                </div>
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destinations</div>
                 <div className="card-body">
                     <p>Load destinations from a file.</p>
                     <div className="form-group" role="group">
@@ -63,9 +60,7 @@ class Destinations extends Component {
     destinationFinderField(){
         return(
             <div id="destinations" className="card">
-                <div className="card-header text-white" style={{background:'#1E4D2B'}}>
-                    Destination Finder
-                </div>
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
                 <div className="card-body">
                     <p> Search for place or airport code. </p>
                     <div className="input-group" role="group">
@@ -83,10 +78,10 @@ class Destinations extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className={this.container}>
+                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         {this.destinationsField()}
                     </div>
-                    <div className={this.container}>
+                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         {this.destinationFinderField()}
                     </div>
                 </div>
