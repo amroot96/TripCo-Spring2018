@@ -1,7 +1,6 @@
 package com.tripco.t07.server;
 
 import com.tripco.t07.planner.Plan;
-import com.tripco.t07.planner.Query;
 
 import spark.Request;
 import spark.Response;
@@ -39,10 +38,9 @@ public class MicroServer {
     get("/echo", this::echo);
     get("/hello/:name", this::hello);
     get("/team", this::team);
-    get("/query",this::query);
     // client is sending data, so a HTTP POST is used instead of a GET
     post("/plan", this::plan);
-
+    post("/database", this::database);
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
 
@@ -99,16 +97,17 @@ public class MicroServer {
     return (new Plan(request)).getTrip();
   }
 
-  /** A REST API to support database queries.
+  /** A REST API to support trip planning.
    *
    * @param request
    * @param response
    * @return
    */
-  private String query(Request request, Response response){
+  private String database(Request request, Response response) {
+
     response.type("application/json");
 
-    return (new Query(request)).getQuery();
+    return (new Plan(request)).getTrip();
   }
 
   /** A REST API that returns the team information associated with the server.

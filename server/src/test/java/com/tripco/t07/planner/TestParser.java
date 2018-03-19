@@ -93,4 +93,11 @@ public class TestParser {
         float f = par.DD("S", (float) 79.982);
         assertTrue((Math.abs(f-(-79.982)) < 0.00001));
     }
+
+    @Test
+    public void testParse(){
+
+    }
+
+
 }
