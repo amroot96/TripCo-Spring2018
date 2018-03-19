@@ -60,7 +60,7 @@ class Destinations extends Component {
     }
 
     destinationFinderField(){
-        render(
+        return(
             <div id="destinations" className="card">
                 <div className="card-header bg-success text-white">
                     Destination Finder
@@ -70,16 +70,15 @@ class Destinations extends Component {
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/>
                         <span className="input-group-btn">
-                                    <button className="btn btn-info" type="button" onClick={this.searchQuery}>Search</button>
-                                </span>
+                            <button className="btn btn-info" type="button" onClick={this.searchQuery}>Search</button>
+                        </span>
                     </div>
                 </div>
             </div>
         )
     }
+
     render() {
-        // need to clean up the button
-        // need to count the number in the trip -- DONE
         return (
             <div className="container-fluid">
                 <div className="row">
