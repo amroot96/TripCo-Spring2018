@@ -120,7 +120,7 @@ class Options extends Component {
   optionField(){
     return(
         <div id="options" className="card">
-            <div className="card-header bg-success text-white">Options</div>
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
             <div className="card-body">
                 <p>Highlight the options you wish to use.</p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -142,7 +142,7 @@ class Options extends Component {
   optimizeField(){
     return(
         <div id="options" className="card">
-            <div className="card-header bg-success text-white">Optimization</div>
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimization</div>
             <div className="card-body">
                 <p>Would you like to optimize your trip? </p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">

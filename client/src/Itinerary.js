@@ -31,14 +31,14 @@ class Itinerary extends Component {
           <h4>Round trip distance of {table.distance} {table.units}. </h4>
           <table className="table table-responsive table-bordered">
             <thead>
-            <tr className="table-info">
+            <tr className="table-outline-dark">
               <th className="align-middle">Destination</th>
               {table.dests}
             </tr>
             </thead>
             <tbody>
             <tr>
-              <th className="table-info align-middle">Distances</th>
+              <th className="table-outline-dark align-middle">Distances</th>
               {table.dists}
             </tr>
             </tbody>

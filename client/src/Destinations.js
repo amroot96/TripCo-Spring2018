@@ -46,7 +46,7 @@ class Destinations extends Component {
     destinationsField(){
         return(
             <div id="destinations" className="card">
-                <div className="card-header bg-success text-white">
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>
                     Destinations
                 </div>
                 <div className="card-body">
@@ -63,7 +63,7 @@ class Destinations extends Component {
     destinationFinderField(){
         return(
             <div id="destinations" className="card">
-                <div className="card-header bg-success text-white">
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>
                     Destination Finder
                 </div>
                 <div className="card-body">
@@ -71,7 +71,7 @@ class Destinations extends Component {
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/>
                         <span className="input-group-btn">
-                            <button className="btn btn-info" type="button" onClick={this.searchQuery}>Search</button>
+                            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.searchQuery}>Search</button>
                         </span>
                     </div>
                 </div>
