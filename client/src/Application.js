@@ -36,6 +36,7 @@ class Application extends Component {
   }
 
   async plan() {
+      console.log("Plan");
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();

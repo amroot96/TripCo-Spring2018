@@ -12,7 +12,7 @@ class Footer extends Component {
     return (
         <div id="footer" className="jumbotron">
           <h4>© TripCo t{this.props.number} {this.props.name} 2018</h4>
-          <img className={"img-fluid"} alt="Responsive image" height={"100px"} src="http://www.cs.colostate.edu/~cs314/images/CSU-Official-wrdmrk-357-617_Rev.png" />
+          <img className={"img-fluid"} alt="Responsive image" height={"100px"} src="https://raw.githubusercontent.com/csu314sp18/tripco/setup/sprint3/CompSci-NS-CSU-1-Hrev.png?token=Abgsf3eBaZyE1_KYpWDtuhuwefmoXOGVks5aoHl8wA%3D%3D" />
         </div>
     )
   }
