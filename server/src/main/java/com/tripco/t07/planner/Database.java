@@ -17,7 +17,7 @@ public class Database  {
     private static final String search = "select id,name,municipality,type from airports limit 20;";
     // Arguments contain the username and password for the database
 
-    /** Handles the queries from and to the database
+    /** Handles the queries from and to the database.
      */
     public static void main(String[] args) {
         try {
