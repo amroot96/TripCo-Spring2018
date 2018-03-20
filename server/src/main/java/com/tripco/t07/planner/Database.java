@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +21,7 @@ public class Database  {
     // SQL queries to count the number of records and to retrieve the data
     public static String query;
     private static String count = "select count(*) from airports;";
-    private static String search = "select id,name,municipality,type from airports where name like'%"
+    private static String search ="select id,name,municipality,type from airports where name like'%"
             +query +"%' or municipality like '%"+ query +"%' order by name;";
 
     /** Parses the json file.
