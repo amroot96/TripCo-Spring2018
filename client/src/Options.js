@@ -33,7 +33,7 @@ class Options extends Component {
      this.distanceButtonSelector(nextProps.options.distance);
     }
     if (nextProps.options.optimization !== this.props.options.optimization) {
-        if(nextProps.version === 1){
+        if(nextProps.version === undefined || nextProps.version === 1){
             this.noneButton();
         }
         else if(nextProps.version === 2){
@@ -65,63 +65,78 @@ class Options extends Component {
       }
   }
 
+  toggleOptBool(arg){
+      this.none = this.off;
+      this.short = this.off;
+      this.shorter = this.off;
+      this.shortest = this.off;
+
+      switch(arg){
+          case "0": this.none = this.on;
+                    break;
+          case "0.25": this.short = this.on;
+                    break;
+          case "0.5": this.shorter =this.on;
+                    break;
+          case "0.75": this.shortest = this.on;
+                    break;
+          default:
+      }
+  }
+
+  toggleDistBool(arg){
+      this.miles = this.off;
+      this.kilometers = this.off;
+      this.nautical = this.off;
+
+      switch(arg){
+          case "miles": this.miles = this.on;
+                    break;
+          case "kilometers": this.kilometers = this.on;
+                    break;
+          case "nautical": this.nautical = this.on;
+                    break;
+          default:
+      }
+  }
+
   shortestButton() {
     this.props.updateOptions("0.75", "optimization");
-    this.shortest = this.on;
-    this.none = this.off;
-    this.shorter = this.off;
-    this.short = this.off;
+    this.toggleOptBool("0.75");
   }
 
   shorterButton() {
     this.props.updateOptions("0.5", "optimization");
-    this.shorter = this.on;
-    this.none = this.off;
-    this.short = this.off;
-    this.shortest = this.off;
+      this.toggleOptBool("0.50");
   }
 
   shortButton() {
     this.props.updateOptions("0.25", "optimization");
-    this.short = this.on;
-    this.none = this.off;
-    this.shorter = this.off;
-    this.shortest = this.off;
+      this.toggleOptBool("0.25");
   }
 
   noneButton() {
     this.props.updateOptions("0", "optimization");
-    this.none = this.on;
-    this.short = this.off;
-    this.shorter = this.off;
-    this.shortest = this.off;
+      this.toggleOptBool("0");
   }
 
   milesButton() {
     this.props.updateOptions("miles", "distance");
-    this.miles = this.on;
-    this.kilometers = this.off;
-    this.nautical = this.off;
+    this.toggleOptBool("miles");
   }
 
   nauticalButton() {
     this.props.updateOptions("nautical", "distance");
-    this.nautical = this.on;
-    this.miles = this.off;
-    this.kilometers = this.off;
+      this.toggleOptBool("nautical");
   }
 
   kilometerButton() {
     this.props.updateOptions("kilometers", "distance");
-    this.kilometers = this.on;
-    this.miles = this.off;
-    this.nautical = this.off;
+      this.toggleOptBool("kilometers");
   }
 
   optionField(){
     return(
-        <div id="options" className="card">
-            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
             <div className="card-body">
                 <p>Highlight the options you wish to use.</p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -136,14 +151,11 @@ class Options extends Component {
                     </label>
                 </div>
             </div>
-        </div>
     )
   }
 
   optimizeField(){
     return(
-        <div id="options" className="card">
-            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimization</div>
             <div className="card-body">
                 <p>Would you like to optimize your trip? </p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -158,7 +170,6 @@ class Options extends Component {
                     </label>
                 </div>
             </div>
-        </div>
     )
   }
 
@@ -167,10 +178,16 @@ class Options extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className={this.container}>
-                {this.optionField()}
+                <div id="options" className="card">
+                    <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
+                    {this.optionField()}
+                </div>
             </div>
             <div className={this.container}>
-                {this.optimizeField()}
+                <div id="optimize" className="card">
+                    <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimizations</div>
+                    {this.optimizeField()}
+                </div>
             </div>
           </div>
         </div>
