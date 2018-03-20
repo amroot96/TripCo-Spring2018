@@ -10,8 +10,8 @@ public class Query {
     //dbconfigurationinformation
     private static final String myDriver="com.mysql.jdbc.Driver";
     private static final String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
-        //SQLqueriestocountthenumberofrecordsandtoretrievethedata
 
+    //SQLqueriestocountthenumberofrecordsandtoretrievethedata
     public String query = "";
 
     public String[] locations = new String[20];
@@ -44,27 +44,4 @@ public class Query {
     }
 
 
-    private void add(ResultSet count, ResultSet q) throws SQLException {
-//        System.out.printf("\n{\n");
-//        System.out.printf("\"type\": \"find\",\n");
-//        System.out.printf("\"title\": \"%s\",\n", search);
-//        System.out.printf("\"places\": [\n");
-//// determine the number of results that match the query
-//        count.next();
-//        int results = count.getInt(1);
-//        int temp = 1;
-//// iterate through query results and print out the airport codes
-//        while (q.next()) {
-//            System.out.printf("%d id: %s Name:%s", temp++, q.getString("id"), q.getString("name"));
-//            if (--results == 0){
-//                System.out.printf("\n");
-//            }
-//
-//            else{
-//                System.out.printf(",\n");
-//            }
-//
-//        }
-//        System.out.printf(" ]\n}\n");
-    }
 }
