@@ -54,6 +54,7 @@ public class Trip {
   private void opt() {
     double optType = this.options.getOptimization();
     System.out.println(optType);
+    Place hold = this.places.get(0);
     removeLast();
     if(optType != 0) {
       if (optType <= 0.33) {
@@ -64,7 +65,7 @@ public class Trip {
         optShortest();
       }
     }
-    restoreStart(this.places.get(0));
+    restoreStart(hold);
   }
 
   private void removeLast(){
@@ -84,13 +85,13 @@ public class Trip {
         middle = i;
       }
     }
-    for (int i = middle; i < places.size() - 1; i++) {
+    for (int i = middle; i < places.size(); i++) {
       retlist.add(this.places.get(i));
     }
     for (int i = 0; i < middle; i++) {
       retlist.add(this.places.get(i));
     }
-
+    this.places = copy(retlist);
   }
 
   private ArrayList<Place> copy(ArrayList<Place> copythis) {
