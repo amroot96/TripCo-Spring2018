@@ -19,6 +19,14 @@ class Application extends Component {
         distances: [],
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
       },
+        trip1: { // default TFFI
+            type: "trip",
+            title: "",
+            options: {distance: "miles", optimization: "none"},
+            places: [],
+            distances: [],
+            map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
+        }
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
@@ -88,6 +96,8 @@ class Application extends Component {
     }
     this.plan();
   }
+
+
 
   render() {
     return (
