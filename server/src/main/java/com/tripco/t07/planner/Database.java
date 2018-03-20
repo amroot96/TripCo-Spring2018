@@ -42,7 +42,7 @@ public class Database  {
 
     /** Handles the queries from and to the database.
      */
-    public static void query() {
+    public static void main(String[] args) {
         try {
             Class.forName(myDriver);
 // connect to the database and query
