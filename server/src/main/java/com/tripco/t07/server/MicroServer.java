@@ -1,5 +1,6 @@
 package com.tripco.t07.server;
 
+import com.tripco.t07.planner.Database;
 import com.tripco.t07.planner.Plan;
 
 import spark.Request;
@@ -107,7 +108,7 @@ public class MicroServer {
 
     response.type("application/json");
 
-    return (new Plan(request)).getTrip();
+    return (new Database(request)).getQuery();
   }
 
   /** A REST API that returns the team information associated with the server.

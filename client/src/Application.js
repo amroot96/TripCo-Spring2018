@@ -11,7 +11,7 @@ class Application extends Component {
     super(props);
     this.state = {
       trip: { // default TFFI
-        version:2,
+        version: 2,
         type: "trip",
         title: "",
         options: {distance: "miles", optimization: "0"},
@@ -19,11 +19,11 @@ class Application extends Component {
         distances: [],
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
       },
+      query: "",
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
     this.plan = this.plan.bind(this);
-
   }
 
   fetchResponse() {
@@ -35,8 +35,6 @@ class Application extends Component {
       body: JSON.stringify(requestBody)
     });
   }
-
-
 
   async plan() {
       console.log("Plan");
