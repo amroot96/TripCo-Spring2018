@@ -55,16 +55,18 @@ class Trip extends Component {
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div id="trip" className="card">
-                        <div className="card-header text-white" style={{background:'#1E4D2B'}}>Trip</div>
+                        <div className="card-header bg-success text-white">
+                            Trip
+                        </div>
                         <div className="card-body">
                             <Itinerary trip={this.props.trip} />
                             <div className="input-group" role="group">
                                 <span className="input-group-btn">
-                                    <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.props.plan} type="button">Plan</button>
+                                    <button className="btn btn-info " onClick={this.props.plan} type="button">Plan</button>
                                 </span>
                                 <input id="titleBox" type="text" className="form-control" placeholder="Trip title..."/>
                                 <span className="input-group-btn">
-                                    <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.updateTitle} type="button">Save</button>
+                                    <button className="btn btn-info " onClick={this.updateTitle} type="button">Save</button>
                                 </span>
                             </div><Map trip={this.props.trip} /></div>
                     </div>
