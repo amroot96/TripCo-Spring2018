@@ -57,6 +57,7 @@ class Destinations extends Component {
         } catch (err) {
             console.error(err);
         }
+    }
 
     destinationsField(){
         return(
