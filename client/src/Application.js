@@ -13,7 +13,7 @@ class Application extends Component {
       trip: { // default TFFI
         version: 2,
         type: "trip",
-        title: "",
+        title: "Name your trip here...",
         options: {distance: "miles", optimization: "0"},
         places: [],
         distances: [],
