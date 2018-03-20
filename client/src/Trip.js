@@ -62,7 +62,7 @@ class Trip extends Component {
                                 <span className="input-group-btn">
                                     <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.props.plan} type="button">Plan</button>
                                 </span>
-                                <input id="titleBox" type="text" className="form-control" placeholder="Trip title..."/>
+                                <input id="titleBox" type="text" className="form-control" placeholder={this.props.trip.title}/>
                                 <span className="input-group-btn">
                                     <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.updateTitle} type="button">Save</button>
                                 </span>
