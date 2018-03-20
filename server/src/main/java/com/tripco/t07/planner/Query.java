@@ -34,7 +34,8 @@ public class Query {
                  ResultSet rsQuery = stQuery.executeQuery(search);
             ) {
                 for(int i = 0; i < locations.length-1; i++){
-                    locations[i] = "id: " + rsQuery.getString("id")+ "name: " +rsQuery.getString("name");
+                    locations[i] = "id: " + rsQuery.getString("id")
+                            + "name: " +rsQuery.getString("name");
                 }
             }
         } catch (Exception e) {

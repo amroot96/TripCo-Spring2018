@@ -4,16 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-
-
 import spark.Request;
 
 
 
 public class Database  {
-    private Query q;
-
-
+    public Query query;
     /** Parses the json file.
      */
     public Database(Request request) {
@@ -27,9 +23,9 @@ public class Database  {
         System.out.println(requestBody);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
-        Query q =  gson.fromJson(requestBody, Query.class);
-        System.out.println(q.query);
-        q.queryDatabase();
+         query =  gson.fromJson(requestBody, Query.class);
+        System.out.println(query.query);
+        query.queryDatabase();
 
     }
 
@@ -37,7 +33,7 @@ public class Database  {
 
     public String getQuery() {
         Gson gson = new Gson();
-        return gson.toJson(q);
+        return gson.toJson(query);
     }
 
 }
