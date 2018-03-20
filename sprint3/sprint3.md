@@ -47,8 +47,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  27   | 6
-Story Points |  31  | 5
+Tasks |  28   | 16
+Story Points |  32  | 24
 
 ## Daily Scrums
 
@@ -58,6 +58,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 2/27 | Save button| Optimization, updating tffi| 
 3/1  | Fix auto-updating for unit changes | Branding, updating tffi | Time for working on this with midterms next week
 3/8  | traveling salesman, 2 opt | implement a database, branding | Spring break, Scott & Jordan missing from scrum
+3/20 | reverse, branding, version 2, queries | display queries, config |
  
 
 ## Review
