@@ -12,9 +12,11 @@ class Destinations extends Component {
         this.state = {
             count: 0,
             file: "",
+            query: "",
         };
         this.loadTFFI = this.loadTFFI.bind(this);
-        this.searchQuery = this.searchQuery.bind(this);
+      //  this.searchQuery = this.searchQuery.bind(this);
+        this.database = this.database.bind(this);
     }
 
     loadTFFI(event) {
@@ -35,11 +37,26 @@ class Destinations extends Component {
         // this.props.updateTrip(??);
     }
 
-    searchQuery(){
-        console.log("search")
-        this.setState({query : document.getElementById("search").value})
-        console.log(this.state.query);
+    queryResponse(){
+        this.state.query = document.getElementById("search").value;
+        let requestBody = this.state.query;
+        console.log(JSON.stringify(requestBody));
+        const serverURL = 'http://' + location.host + '/database';
+        return fetch(serverURL, {
+            method: "POST",
+            body: JSON.stringify(requestBody)
+        });
+    }
 
+    async database() {
+        console.log("Database");
+        try {
+            let serverResponse = await this.queryResponse();
+            let query = await serverResponse.json();
+            console.log(query)
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     destinationsField(){
@@ -72,6 +89,7 @@ class Destinations extends Component {
                 </div>
             </div>
         )
+
     }
 
     render() {

@@ -1,10 +1,16 @@
 package com.tripco.t07.planner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import spark.Request;
 
 
 
@@ -13,9 +19,28 @@ public class Database  {
     private static final String myDriver = "com.mysql.jdbc.Driver";
     private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     // SQL queries to count the number of records and to retrieve the data
-    private static final String count = "select count(*) from airports;";
-    private static final String search = "select id,name,municipality,type from airports limit 20;";
-    // Arguments contain the username and password for the database
+    public static String query;
+    private static String count = "select count(*) from airports;";
+    private static String search ="select id,name,municipality,type from airports where name like'%"
+            +query +"%' or municipality like '%"+ query +"%' order by name;";
+
+    /** Parses the json file.
+     */
+    public Database(Request request) {
+        // first print the request
+        //System.out.println(HTTP.echoRequest(request));
+
+        // extract the information from the body of the request.
+
+
+        JsonParser jsonParser = new JsonParser();
+        JsonElement requestBody = jsonParser.parse(request.body());
+        System.out.println(requestBody);
+        // convert the body of the request to a Java class.
+        Gson gson = new Gson();
+        gson.fromJson(requestBody, Database.class);
+
+    }
 
     /** Handles the queries from and to the database.
      */
@@ -23,11 +48,11 @@ public class Database  {
         try {
             Class.forName(myDriver);
 // connect to the database and query
-            try (Connection conn = DriverManager.getConnection(myUrl, args[0], args[1]);
+            try (Connection conn = DriverManager.getConnection(myUrl, "amroot", "830291232");
                  Statement stCount = conn.createStatement();
                  Statement stQuery = conn.createStatement();
                  ResultSet rsCount = stCount.executeQuery(count);
-                 ResultSet rsQuery = stQuery.executeQuery(search)
+                 ResultSet rsQuery = stQuery.executeQuery(search);
             ) {
                 printJson(rsCount, rsQuery);
             }
