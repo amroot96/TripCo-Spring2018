@@ -3,7 +3,7 @@ package com.tripco.t07.planner;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import spark.Request;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,20 +11,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import spark.Request;
+
 
 
 public class Database  {
-    private Database d;
     // db configuration information
     private static final String myDriver = "com.mysql.jdbc.Driver";
     private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     // SQL queries to count the number of records and to retrieve the data
     public static String query;
     private static String count = "select count(*) from airports;";
-    private static String search = "select id,name,municipality,type from airports where name like'%"+ query +"%' or municipality like '%"+ query +"%' order by name;";
+    private static String search = "select id,name,municipality,type from airports where name like'%"+
+            query +"%' or municipality like '%"+ query +"%' order by name;";
 
-    // Arguments contain the username and password for the database
-    public Database (Request request) {
+    /** Parses the json file
+     */
+    public Database ( Request request) {
         // first print the request
         //System.out.println(HTTP.echoRequest(request));
 
@@ -36,7 +39,7 @@ public class Database  {
         System.out.println(requestBody);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
-        d = gson.fromJson(requestBody, Database.class);
+        gson.fromJson(requestBody, Database.class);
 
     }
 
