@@ -89,10 +89,28 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
+                    <p></p>
+                    <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>
         )
+    }
 
+    displayQuery(){
+        return(
+                <div className="card-body">
+                    <table className="table table-responsive table-bordered">
+                        <thead>
+                            <tr className="table-outline-dark">
+                                <th id="id" width="25%">ID</th>
+                                <th id="name" width="40%">Name</th>
+                                <th id="lat" width="20%">Latitude</th>
+                                <th id="long" width="20%">Longitude</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+        )
     }
 
     render() {
@@ -104,6 +122,12 @@ class Destinations extends Component {
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                         {this.destinationFinderField()}
+                    </div>
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div id="queries" className="card">
+                            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
+                            {this.displayQuery()}
+                        </div>
                     </div>
                 </div>
             </div>
