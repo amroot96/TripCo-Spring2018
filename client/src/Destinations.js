@@ -12,7 +12,9 @@ class Destinations extends Component {
         this.state = {
             count: 0,
             file: "",
-            query: "",
+            database: {
+               query: "",
+            },
         };
         this.loadTFFI = this.loadTFFI.bind(this);
       //  this.searchQuery = this.searchQuery.bind(this);
@@ -38,14 +40,15 @@ class Destinations extends Component {
     }
 
     queryResponse(){
-        this.state.query = document.getElementById("search").value;
-        let requestBody = this.state.query;
-        console.log(JSON.stringify(requestBody));
+        this.state.database.query = document.getElementById("search").value;
+        let requestBody = this.state.database;
         const serverURL = 'http://' + location.host + '/database';
+        console.log(serverURL);
         return fetch(serverURL, {
             method: "POST",
             body: JSON.stringify(requestBody)
         });
+
     }
 
     async database() {
@@ -83,7 +86,7 @@ class Destinations extends Component {
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/>
                         <span className="input-group-btn">
-                            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.searchQuery}>Search</button>
+                            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
                 </div>
