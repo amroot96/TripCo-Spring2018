@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,12 +23,12 @@ public class Database  {
     // SQL queries to count the number of records and to retrieve the data
     public static String query;
     private static String count = "select count(*) from airports;";
-    private static String search = "select id,name,municipality,type from airports where name like'%"+
-            query +"%' or municipality like '%"+ query +"%' order by name;";
+    private static String search = "select id,name,municipality,type from airports where name like'%"
+            +query +"%' or municipality like '%"+ query +"%' order by name;";
 
-    /** Parses the json file
+    /** Parses the json file.
      */
-    public Database ( Request request) {
+    public Database(Request request) {
         // first print the request
         //System.out.println(HTTP.echoRequest(request));
 
