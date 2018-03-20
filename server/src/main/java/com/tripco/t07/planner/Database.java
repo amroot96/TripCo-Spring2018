@@ -15,11 +15,12 @@ import spark.Request;
 
 
 public class Database  {
+    Database database;
     // db configuration information
     private static final String myDriver = "com.mysql.jdbc.Driver";
     private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     // SQL queries to count the number of records and to retrieve the data
-    public static String query;
+    private static String query;
     private static String count = "select count(*) from airports;";
     private static String search ="select id,name,municipality,type from airports where name like'%"
             +query +"%' or municipality like '%"+ query +"%' order by name;";
@@ -35,10 +36,11 @@ public class Database  {
 
         JsonParser jsonParser = new JsonParser();
         JsonElement requestBody = jsonParser.parse(request.body());
-        System.out.println(requestBody);
+        System.out.println("Query:" + requestBody);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
-        gson.fromJson(requestBody, Database.class);
+        database =  gson.fromJson(requestBody, Database.class);
+
 
     }
 
@@ -85,5 +87,9 @@ public class Database  {
         System.out.printf(" ]\n}\n");
     }
 
+    public String getQuery () {
+        Gson gson = new Gson();
+        return gson.toJson(database);
+    }
 
 }
