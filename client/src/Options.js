@@ -76,7 +76,7 @@ class Options extends Component {
                     break;
           case "0.25": this.short = this.on;
                     break;
-          case "0.5": this.shorter =this.on;
+          case "0.5": this.shorter = this.on;
                     break;
           case "0.75": this.shortest = this.on;
                     break;
@@ -107,7 +107,7 @@ class Options extends Component {
 
   shorterButton() {
     this.props.updateOptions("0.5", "optimization");
-      this.toggleOptBool("0.50");
+      this.toggleOptBool("0.5");
   }
 
   shortButton() {
@@ -122,17 +122,17 @@ class Options extends Component {
 
   milesButton() {
     this.props.updateOptions("miles", "distance");
-    this.toggleOptBool("miles");
+    this.toggleDistBool("miles");
   }
 
   nauticalButton() {
     this.props.updateOptions("nautical", "distance");
-      this.toggleOptBool("nautical");
+      this.toggleDistBool("nautical");
   }
 
   kilometerButton() {
     this.props.updateOptions("kilometers", "distance");
-      this.toggleOptBool("kilometers");
+      this.toggleDistBool("kilometers");
   }
 
   optionField(){
