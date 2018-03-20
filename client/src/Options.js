@@ -120,8 +120,6 @@ class Options extends Component {
 
   optionField(){
     return(
-        <div id="options" className="card">
-            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
             <div className="card-body">
                 <p>Highlight the options you wish to use.</p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -136,14 +134,11 @@ class Options extends Component {
                     </label>
                 </div>
             </div>
-        </div>
     )
   }
 
   optimizeField(){
     return(
-        <div id="options" className="card">
-            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimization</div>
             <div className="card-body">
                 <p>Would you like to optimize your trip? </p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
@@ -158,7 +153,6 @@ class Options extends Component {
                     </label>
                 </div>
             </div>
-        </div>
     )
   }
 
@@ -167,10 +161,16 @@ class Options extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className={this.container}>
-                {this.optionField()}
+                <div id="options" className="card">
+                    <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
+                    {this.optionField()}
+                </div>
             </div>
             <div className={this.container}>
-                {this.optimizeField()}
+                <div id="optimize" className="card">
+                    <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimizations</div>
+                    {this.optimizeField()}
+                </div>
             </div>
           </div>
         </div>
