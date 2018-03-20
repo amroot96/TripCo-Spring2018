@@ -10,6 +10,7 @@ import spark.Request;
 
 public class Database  {
     public Query query;
+
     /** Parses the json file.
      */
     public Database(Request request) {
