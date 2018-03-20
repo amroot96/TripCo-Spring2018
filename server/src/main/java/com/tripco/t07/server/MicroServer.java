@@ -98,7 +98,7 @@ public class MicroServer {
     return (new Plan(request)).getTrip();
   }
 
-  /** A REST API to support trip planning.
+  /** A REST API to support database queries.
    *
    * @param request
    * @param response

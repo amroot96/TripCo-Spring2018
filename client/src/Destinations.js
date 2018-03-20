@@ -14,6 +14,7 @@ class Destinations extends Component {
             file: "",
             database: {
                query: "",
+               locations: [],
             },
         };
         this.loadTFFI = this.loadTFFI.bind(this);
