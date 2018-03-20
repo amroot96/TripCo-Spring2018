@@ -19,6 +19,7 @@ class Trip extends Component {
 
     this.saveTFFI = this.saveTFFI.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.reverseTrip = this.reverseTrip.bind(this);
   }
 
   /* Sends a request to the server with the destinations and options.
@@ -46,6 +47,23 @@ class Trip extends Component {
       this.saveTFFI();
   }
 
+  reverseTrip(){
+      console.log("reverse trip");
+      this.props.trip.places.reverse();
+      this.props.trip.distances.reverse();
+      this.props.plan();
+  }
+
+
+  reverseButton(){
+      return(
+          <div className="input-group-btn">
+              <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.reverseTrip} type="button">Reverse Trip</button>
+              <p></p>
+          </div>
+      )
+  }
+
   /* Renders the buttons, map, and itinerary.
    * The title should be specified before the plan or save buttons are valid.
    */
@@ -58,6 +76,7 @@ class Trip extends Component {
                         <div className="card-header text-white" style={{background:'#1E4D2B'}}>Trip</div>
                         <div className="card-body">
                             <Itinerary trip={this.props.trip} />
+                            {this.reverseButton()}
                             <div className="input-group" role="group">
                                 <span className="input-group-btn">
                                     <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.props.plan} type="button">Plan</button>

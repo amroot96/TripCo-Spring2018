@@ -72,22 +72,20 @@ class Application extends Component {
   }
 
   updateOptions(arg, str) {
-    if (str === "distance") {
-      let unitChange = Object.assign({}, this.state.trip);
-      unitChange.options.distance = arg;
-      this.setState({trip: unitChange});
-      console.log(this.state.trip.options);
-    }
-    else {
-      let unitChange = Object.assign({}, this.state.trip);
-      unitChange.options.optimization = arg;
-      this.setState({trip: unitChange});
-      console.log(this.state.trip.options);
-    }
-    this.plan();
+      if (str === "distance") {
+          let unitChange = Object.assign({}, this.state.trip);
+          unitChange.options.distance = arg;
+          this.setState({trip: unitChange});
+          console.log(this.state.trip.options);
+      }
+      else {
+          let unitChange = Object.assign({}, this.state.trip);
+          unitChange.options.optimization = arg;
+          this.setState({trip: unitChange});
+          console.log(this.state.trip.options);
+      }
+      this.plan();
   }
-
-
 
   render() {
     return (
