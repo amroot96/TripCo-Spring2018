@@ -87,7 +87,7 @@ public class Database  {
         System.out.printf(" ]\n}\n");
     }
 
-    public String getQuery () {
+    public String getQuery() {
         Gson gson = new Gson();
         return gson.toJson(database);
     }
