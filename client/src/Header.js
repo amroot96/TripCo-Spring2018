@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Helmet from 'react';
 
 /* Renders a text heading above the application with useful information.
  */
@@ -9,8 +10,8 @@ class Header extends Component{
 
     render() {
         return(
-            <div id="header" className="jumbotron">
-                <img className={"img-fluid"}  alt="Responsive image" src={"http://www.cs.colostate.edu/~cs314/images/CompSci-NS-CSU-1-Hrev.png"}/>
+            <div id="header" className="jumbotron text-white" style={{background:'#1E4D2B'}}>
+                <img className={"img-fluid"} alt="Responsive image" src={"http://www.cs.colostate.edu/~cs314/images/CompSci-NS-CSU-1-Hrev.png"}/>
                 {this.title()}
                 <p className="lead">"Want to travel far and wide?"</p>
                 <ol >

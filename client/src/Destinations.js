@@ -57,43 +57,49 @@ class Destinations extends Component {
         } catch (err) {
             console.error(err);
         }
+
+    destinationsField(){
+        return(
+            <div id="destinations" className="card">
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destinations</div>
+                <div className="card-body">
+                    <p>Load destinations from a file.</p>
+                    <div className="form-group" role="group">
+                        <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
+                    </div>
+                    <h5>There are {this.state.count} destinations. </h5>
+                </div>
+            </div>
+        )
+    }
+
+    destinationFinderField(){
+        return(
+            <div id="destinations" className="card">
+                <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
+                <div className="card-body">
+                    <p> Search for place or airport code. </p>
+                    <div className="input-group" role="group">
+                        <input type="txt" className="form-control" id="search" placeholder="Search..."/>
+                        <span className="input-group-btn">
+                            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.searchQuery}>Search</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        )
+
     }
 
     render() {
-        // need to clean up the button
-        // need to count the number in the trip -- DONE
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <div id="destinations" className="card">
-                            <div className="card-header bg-success text-white">
-                                Destinations
-                            </div>
-                            <div className="card-body">
-                                <p>Load destinations from a file.</p>
-                                <div className="form-group" role="group">
-                                    <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
-                                </div>
-                                <h5>There are {this.state.count} destinations. </h5>
-                            </div>
-                        </div>
+                        {this.destinationsField()}
                     </div>
                     <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                        <div id="destinations" className="card">
-                            <div className="card-header bg-success text-white">
-                                Destination Finder
-                            </div>
-                            <div className="card-body">
-                                <p> Search for place or airport code. </p>
-                                <div className="input-group" role="group">
-                                    <input type="txt" className="form-control" id="search" placeholder="Search..."/>
-                                    <span className="input-group-btn">
-                                    <button className="btn btn-info" type="button" onClick={this.database}>Search</button>
-                                </span>
-                                </div>
-                            </div>
-                        </div>
+                        {this.destinationFinderField()}
                     </div>
                 </div>
             </div>

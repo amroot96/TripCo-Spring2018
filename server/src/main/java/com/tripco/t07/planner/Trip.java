@@ -47,6 +47,7 @@ public class Trip {
     opt();
     this.distances = legDistances();
     this.map = svg();
+
   }
 
   //calls the optimization methods
@@ -108,8 +109,6 @@ public class Trip {
     for (int i = 0; i < templist.size(); i++) {
       Place help = templist.get(i);
       nearNeigh(help);
-      legDistances();
-      removeRoundTrip();
       placeList(this.places);
       System.out.println(this.totalDist);
       if (this.totalDist < minDist) {
@@ -132,6 +131,8 @@ public class Trip {
       this.places.remove(help);
     }
     this.places = copy(retlist);
+    legDistances();
+    removeRoundTrip();
   }
 
   //Given a starting location and a list of destinations,
@@ -221,18 +222,15 @@ public class Trip {
   private ArrayList<Integer> legDistances() {
     ArrayList<Integer> dist = new ArrayList<>();
     this.totalDist = 0;
+    if (this.places != null && !this.places.isEmpty()) {
     colocheckall();
     roundTrip();
     int temp = 0;
-    if (this.places != null && !this.places.isEmpty()) {
-      for (int i = 0; i < this.places.size(); ++i) {
-        if (i == 0) {
-          dist.add(0);
-        } else {
-          temp = getDistance(this.places.get(i - 1), this.places.get(i));
+      dist.add(0);
+      for (int i = 1; i < this.places.size(); ++i) {
+          temp = getDistance(this.places.get(i -1), this.places.get(i));
           dist.add(temp);
           this.totalDist = this.totalDist + temp;
-        }
       }
     }
     return dist;
@@ -240,14 +238,12 @@ public class Trip {
 
   //Removes all places not in Colorado
   private void colocheckall() {
-    if (this.places != null && !this.places.isEmpty()) {
       for (int i = 0; i < this.places.size(); i++) {
         if (!coloradoCheck(Double.parseDouble(this.places.get(i).latitude),
             Double.parseDouble(this.places.get(i).longitude))) {
           this.places.remove(i);
         }
       }
-    }
   }
 
   //Adds first location to end if necessary.

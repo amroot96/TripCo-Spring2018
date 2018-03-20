@@ -17,6 +17,8 @@ class Options extends Component {
     this.shortestButton = this.shortestButton.bind(this);
     this.on = "btn btn-outline-dark active";
     this.off = "btn btn-outline-dark";
+    this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
+    this.id = "\"options\" className=\"card\">";
     this.miles = this.on;
     this.kilometers = this.off;
     this.nautical = this.off;
@@ -28,30 +30,39 @@ class Options extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.options.distance !== this.props.options.distance) {
-      if (nextProps.options.distance === "miles") {
-        this.milesButton();
-      }
-      else if (nextProps.options.distance === "kilometers") {
-        this.kilometerButton();
-      }
-      else {
-        this.nauticalButton()
-      }
+     this.distanceButtonSelector(nextProps.options.distance);
     }
     if (nextProps.options.optimization !== this.props.options.optimization) {
-      if (nextProps.options.optimization === "none") {
-        this.noneButton();
-      }
-      else if (nextProps.options.optimization === "short") {
-        this.shortButton();
-      }
-      else if (nextProps.options.optimization === "shorter") {
-        this.shorterButton();
-      }
-      else {
-        this.shortestButton();
-      }
+        if(nextProps.version === 1){
+            this.noneButton();
+        }
+        else if(nextProps.version === 2){
+            this.optimizeButtonSelector(nextProps.options.optimization);
+        }
     }
+  }
+
+  distanceButtonSelector(arg){
+      let select = arg;
+      switch(arg){
+          case "miles": this.milesButton();
+                        break;
+          case "kilometers": this.kilometerButton();
+                        break;
+          default: this.nauticalButton();
+      }
+  }
+
+  optimizeButtonSelector(arg){
+      switch(arg){
+          case arg < 0.33: this.shortButton();
+                        break;
+          case arg < 0.66: this.shorterButton();
+                        break;
+          case arg > 0.66: this.shortestButton();
+                        break;
+          default: this.noneButton();
+      }
   }
 
   shortestButton() {
@@ -107,70 +118,59 @@ class Options extends Component {
     this.nautical = this.off;
   }
 
+  optionField(){
+    return(
+        <div id="options" className="card">
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Options</div>
+            <div className="card-body">
+                <p>Highlight the options you wish to use.</p>
+                <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label className={this.miles}>
+                        <input type="radio" id="miles" name="distance" autoComplete="off" onChange={this.milesButton}/> Miles
+                    </label>
+                    <label className={this.kilometers}>
+                        <input type="radio" id="kilometers" name="distance" autoComplete="off" onChange={this.kilometerButton}/> Kilometers
+                    </label>
+                    <label className={this.nautical}>
+                        <input type="radio" id="nautical miles" name="distance" autoComplete="off" onChange={this.nauticalButton}/> Nautical Miles
+                    </label>
+                </div>
+            </div>
+        </div>
+    )
+  }
+
+  optimizeField(){
+    return(
+        <div id="options" className="card">
+            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Optimization</div>
+            <div className="card-body">
+                <p>Would you like to optimize your trip? </p>
+                <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label className={this.none}>
+                        <input type="radio" id="none" name="optimization" autoComplete="off" onChange={this.noneButton}/> No
+                    </label>
+                    <label className={this.short}>
+                        <input type="radio" id="short" name="optimization" autoComplete="off" onChange={this.shortButton}/> Short
+                    </label>
+                    <label className={this.shorter}>
+                        <input type="radio" id="shorter" name="optimization" autoComplete="off" onChange={this.shorterButton}/> Shorter
+                    </label>
+                </div>
+            </div>
+        </div>
+    )
+  }
+
   render() {
     return (
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-              <div id="options" className="card">
-                <div className="card-header bg-success text-white">
-                  Options
-                </div>
-                <div className="card-body">
-                  <p>Highlight the options you wish to use.</p>
-                  <div className="btn-group btn-group-toggle"
-                       data-toggle="buttons">
-                    <label className={this.miles}>
-                      <input type="radio" id="miles" name="distance"
-                             autoComplete="off"
-                             onChange={this.milesButton}/> Miles
-                    </label>
-                    <label className={this.kilometers}>
-                      <input type="radio" id="kilometers" name="distance"
-                             autoComplete="off"
-                             onChange={this.kilometerButton}/> Kilometers
-                    </label>
-                    <label className={this.nautical}>
-                      <input type="radio" id="nautical miles" name="distance"
-                             autoComplete="off"
-                             onChange={this.nauticalButton}/> Nautical Miles
-                    </label>
-                  </div>
-                </div>
-              </div>
+            <div className={this.container}>
+                {this.optionField()}
             </div>
-            <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-              <div id="options" className="card">
-                <div className="card-header bg-success text-white">
-                  Optimization
-                </div>
-                <div className="card-body">
-                  <p>Would you like to optimize your trip? </p>
-                  <div className="btn-group btn-group-toggle"
-                       data-toggle="buttons">
-                    <label className={this.none}>
-                      <input type="radio" id="none" name="optimization"
-                             autoComplete="off"
-                             onChange={this.noneButton}/> No
-                    </label>
-                    <label className={this.short}>
-                      <input type="radio" id="short" name="optimization"
-                             autoComplete="off"
-                             onChange={this.shortButton}/> Short
-                    </label>
-                    <label className={this.shorter}>
-                      <input type="radio" id="shorter" name="optimization"
-                             autoComplete="off"
-                             onChange={this.shorterButton}/> Shorter
-                    </label>
-                    <label className={this.shortest}>
-                      <input type="radio" id="shortest" name="optimization"
-                             autoComplete="off"
-                             onChange={this.shortestButton}/> Shortest
-                    </label>
-                  </div>
-                </div>
-              </div>
+            <div className={this.container}>
+                {this.optimizeField()}
             </div>
           </div>
         </div>
