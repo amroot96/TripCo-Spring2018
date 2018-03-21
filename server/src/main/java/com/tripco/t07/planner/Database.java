@@ -18,14 +18,11 @@ public class Database  {
         //System.out.println(HTTP.echoRequest(request));
 
         // extract the information from the body of the request.
-
         JsonParser jsonParser = new JsonParser();
         JsonElement requestBody = jsonParser.parse(request.body());
-        System.out.println(requestBody);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
-         query =  gson.fromJson(requestBody, Query.class);
-        System.out.println(query.query);
+        query =  gson.fromJson(requestBody, Query.class);
         query.queryDatabase();
 
     }
