@@ -65,15 +65,16 @@ class Destinations extends Component {
 
     createTable(){
         console.log(this.state.database.locations.size);
+        let loc = this.state.database.locations;
         let id = [];
         let name = [];
         let lat = [];
         let long = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
-            id[i] = <td key={i}>{this.state.database.locations[i].id}</td>;
-            name[i] = <td key={i}>{this.state.database.locations[i].name}</td>;
-            lat[i] = <td key={i}>{this.state.database.locations[i].latitude}</td>;
-            long[i] = <td key={i}>{this.state.database.locations[i].longitude}</td>;
+            id[i] = <td key={i}>{loc[i].id}</td>;
+            name[i] = <td key={i}>{loc[i].name}</td>;
+            lat[i] = <td key={i}>{loc[i].latitude}</td>;
+            long[i] = <td key={i}>{loc[i].longitude}</td>;
         }
         return {id, name, lat, long};
     }
