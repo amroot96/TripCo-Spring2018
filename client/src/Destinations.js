@@ -20,6 +20,7 @@ class Destinations extends Component {
         this.loadTFFI = this.loadTFFI.bind(this);
       //  this.searchQuery = this.searchQuery.bind(this);
         this.database = this.database.bind(this);
+        this.createTable = this.createTable.bind(this);
     }
 
     loadTFFI(event) {
@@ -57,7 +58,15 @@ class Destinations extends Component {
         try {
             let serverResponse = await this.queryResponse();
             let query = await serverResponse.json();
-            console.log(query)
+            console.log(query.locations);
+            // this.props.database.locations = new Array(query.locations.length);
+            this.setState({
+                database: {
+                    query: query.query,
+                    locations: query.locations,
+                }
+            });
+            console.log(this.state.database.locations);
         } catch (err) {
             console.error(err);
         }
@@ -66,17 +75,17 @@ class Destinations extends Component {
     createTable(){
         console.log(this.state.database.locations.size);
         let loc = this.state.database.locations;
-        let id = [];
-        let name = [];
-        let lat = [];
-        let long = [];
+        let row = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
-            id[i] = <td key={i}>{loc[i].id}</td>;
-            name[i] = <td key={i}>{loc[i].name}</td>;
-            lat[i] = <td key={i}>{loc[i].latitude}</td>;
-            long[i] = <td key={i}>{loc[i].longitude}</td>;
+            row[i] =
+            <tr>
+                <td key={loc[i].id}>{loc[i].id}</td>
+                <td key={loc[i].name}>{loc[i].name}</td>
+                <td key={loc[i].latitude}>{loc[i].latitude}</td>
+                <td key={loc[i].longitude}>{loc[i].longitude}</td>
+            </tr>;
         }
-        return {id, name, lat, long};
+        return {row};
     }
 
     destinationsField(){
@@ -115,18 +124,21 @@ class Destinations extends Component {
 
     displayQuery(){
         let table = this.createTable();
+        console.log("display query called");
         return(
                 <div className="card-body">
                     <table className="table table-responsive table-bordered">
                         <thead>
                             <tr className="table-outline-dark">
-                                <th id="id" width="25%">ID</th>
-                                <th id="name" width="40%">Name</th>
-                                <th id="lat" width="20%">Latitude</th>
-                                <th id="long" width="20%">Longitude</th>
+                                <th id="id">ID</th>
+                                <th id="name">Name</th>
+                                <th id="lat">Latitude</th>
+                                <th id="long">Longitude</th>
                             </tr>
-                                <tr>{table.id}</tr><tr>{table.name}</tr><tr>{table.lat}</tr><tr>{table.long}</tr>
                         </thead>
+                        <tbody>
+                        {table.row}
+                        </tbody>
                     </table>
                 </div>
         )
