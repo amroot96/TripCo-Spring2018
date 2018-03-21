@@ -18,7 +18,6 @@ class Destinations extends Component {
             },
         };
         this.loadTFFI = this.loadTFFI.bind(this);
-      //  this.searchQuery = this.searchQuery.bind(this);
         this.database = this.database.bind(this);
     }
 
@@ -57,7 +56,15 @@ class Destinations extends Component {
         try {
             let serverResponse = await this.queryResponse();
             let query = await serverResponse.json();
-            console.log(query)
+            console.log(query.locations);
+           // this.props.database.locations = new Array(query.locations.length);
+            this.setState({
+                database: {
+                    query: query.query,
+                    locations: query.locations,
+                }
+            });
+            console.log(this.state.database.locations);
         } catch (err) {
             console.error(err);
         }
