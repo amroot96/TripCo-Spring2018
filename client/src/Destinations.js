@@ -19,6 +19,7 @@ class Destinations extends Component {
         };
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
+        this.createTable = this.createTable.bind(this);
     }
 
     loadTFFI(event) {
@@ -70,6 +71,22 @@ class Destinations extends Component {
         }
     }
 
+    createTable(){
+        console.log(this.state.database.locations.size);
+        let loc = this.state.database.locations;
+        let row = [];
+        for(let i = 0; i < this.state.database.locations.length; i++) {
+            row[i] =
+                <tr>
+                    <td key={loc[i].id}>{loc[i].id}</td>
+                    <td key={loc[i].name}>{loc[i].name}</td>
+                    <td key={loc[i].latitude}>{loc[i].latitude}</td>
+                    <td key={loc[i].longitude}>{loc[i].longitude}</td>
+                </tr>;
+        }
+        return {row};
+    }
+
     destinationsField(){
         return(
             <div id="destinations" className="card">
@@ -105,17 +122,21 @@ class Destinations extends Component {
     }
 
     displayQuery(){
+        let table = this.createTable();
         return(
                 <div className="card-body">
                     <table className="table table-responsive table-bordered">
                         <thead>
                             <tr className="table-outline-dark">
-                                <th id="id" width="25%">ID</th>
-                                <th id="name" width="40%">Name</th>
-                                <th id="lat" width="20%">Latitude</th>
-                                <th id="long" width="20%">Longitude</th>
+                                <th id="id">ID</th>
+                                <th id="name">Name</th>
+                                <th id="lat">Latitude</th>
+                                <th id="long">Longitude</th>
                             </tr>
                         </thead>
+                        <tbody>
+                        {table.row}
+                        </tbody>
                     </table>
                 </div>
         )
