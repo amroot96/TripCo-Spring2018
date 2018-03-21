@@ -63,6 +63,21 @@ class Destinations extends Component {
         }
     }
 
+    createTable(){
+        console.log(this.state.database.locations.size);
+        let id = [];
+        let name = [];
+        let lat = [];
+        let long = [];
+        for(let i = 0; i < this.state.database.locations.length; i++) {
+            id[i] = <td key={i}>{this.state.database.locations[i].id}</td>;
+            name[i] = <td key={i}>{this.state.database.locations[i].name}</td>;
+            lat[i] = <td key={i}>{this.state.database.locations[i].latitude}</td>;
+            long[i] = <td key={i}>{this.state.database.locations[i].longitude}</td>;
+        }
+        return {id, name, lat, long};
+    }
+
     destinationsField(){
         return(
             <div id="destinations" className="card">
@@ -98,6 +113,7 @@ class Destinations extends Component {
     }
 
     displayQuery(){
+        let table = this.createTable();
         return(
                 <div className="card-body">
                     <table className="table table-responsive table-bordered">
@@ -108,6 +124,7 @@ class Destinations extends Component {
                                 <th id="lat" width="20%">Latitude</th>
                                 <th id="long" width="20%">Longitude</th>
                             </tr>
+                                <tr>{table.id}</tr><tr>{table.name}</tr><tr>{table.lat}</tr><tr>{table.long}</tr>
                         </thead>
                     </table>
                 </div>
