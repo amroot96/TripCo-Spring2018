@@ -8,11 +8,17 @@ class App extends Component {
     super(props);
     this.state = {
       number: "07",
-      name: "Jackalope"
+      name: "Jackalope",
+        config: {
+            type: "config",
+            version: 0,
+            optimization: 0
+        },
     }
   }
 
     configResponse(){
+        let requestBody = this.state.config;
         const serverURL = 'http://' + location.host + '/config';
         console.log(serverURL);
         return fetch(serverURL, {
@@ -34,9 +40,9 @@ class App extends Component {
     }
 
   render() {
+        this.config();
     return(
         <div id="tripco">
-            {this.config()}
             <Header number={this.state.number} name={this.state.name}/>
             <Application />
             <Footer number={this.state.number} name={this.state.name}/>
