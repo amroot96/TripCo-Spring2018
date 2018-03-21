@@ -44,6 +44,7 @@ class Trip extends Component {
   }
 
   updateTitle(){
+      this.props.trip.title = document.getElementById("titleBox").value;
       this.saveTFFI();
   }
 
