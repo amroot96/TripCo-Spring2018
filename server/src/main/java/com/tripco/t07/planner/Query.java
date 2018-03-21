@@ -50,8 +50,9 @@ public class Query {
         count.next();
         int results = count.getInt(1);
         int temp = 1;
+        int number = 1;
 // iterate through query results and print out the airport codes
-        while (q.next()) {
+        while (q.next() && number <= 15) {
             System.out.printf("%d id: %s Name:%s", temp++, q.getString("id"), q.getString("name"));
             Place place = new Place();
             place.id = q.getString("id");
@@ -66,7 +67,7 @@ public class Query {
             else{
                 System.out.printf(",\n");
             }
-
+            number++;
         }
         System.out.printf(" ]\n}\n");
     }
