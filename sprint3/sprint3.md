@@ -36,7 +36,6 @@ Epics planned for this release.
 * Save the trip.
 * Allow user to find optimal trip.
 * Reverse the order of the trip.
-* Give the user the option to display what they choose on the itinerary.
 * Clean code.
 * Code Coverage
 * Build a trip from existing information.
@@ -47,8 +46,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  28   | 16
-Story Points |  32  | 24
+Tasks |  28   | 28
+Story Points |  32  | 32
 
 ## Daily Scrums
 
@@ -64,26 +63,31 @@ Date | Tasks done  | Tasks in progress | Impediments
 ## Review
 
 #### Completed epics in Sprint Backlog 
-* *user story*:  *comments*
-* 
+* Code Coverage
+* Save Button
+* Reverse Button
+* Build a trip from existing information
+* Clean code
+* Option to view a shorter trip
+* 2-op
 
 #### Incomplete epics in Sprint Backlog 
-* *user story*: *explanation...*
-*
+* Let user display what information is displayed in itinerary
 
 #### What went well
-* *something*
-*
+* Meeting frequently
+* Using zenhub for planning
 
 #### Problems encountered and resolutions
-* *something*
-*
+* Half finished a lot of things throughout
+* Not done Tuesday instead of wednesday
+* TESTING 
 
 ## Retrospective
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
-What we will change this time |  |  | 
-What we did well |  |  | 
-What we need to work on |  |  |
-What we will change next time |  |  | 
+What we will change this time | | Did not make enought tests throughout | Using intellij
+What we did well | meeting more often. Slack communication | planning was good | Making more commits, travis and code climate.
+What we need to work on |  | More testing | Travis with the database
+What we will change next time | don't take a week off! | taking off the top of the backlog first. finishing tasks completely before starting another. | Increase maintainability
