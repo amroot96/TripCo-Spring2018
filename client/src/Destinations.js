@@ -9,7 +9,7 @@ import React, {Component} from 'react';
 class Destinations extends Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.initialState = {
             count: 0,
             file: "",
             database: {
@@ -17,6 +17,7 @@ class Destinations extends Component {
                locations: [],
             },
         };
+        this.state = this.initialState;
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
         this.createTable = this.createTable.bind(this);
@@ -54,6 +55,7 @@ class Destinations extends Component {
 
     async database() {
         console.log("Database");
+        this.state = this.initialState;
         try {
             let serverResponse = await this.queryResponse();
             let query = await serverResponse.json();
@@ -72,7 +74,7 @@ class Destinations extends Component {
     }
 
     createTable(){
-        console.log(this.state.database.locations.size);
+        console.log("created table");
         let loc = this.state.database.locations;
         let row = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
