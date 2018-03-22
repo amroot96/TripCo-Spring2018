@@ -77,7 +77,6 @@ class Trip extends Component {
                         <div className="card-header text-white" style={{background:'#1E4D2B'}}>Trip</div>
                         <div className="card-body">
                             <Itinerary trip={this.props.trip} />
-                            {this.reverseButton()}
                             <div className="input-group" role="group">
                                 <span className="input-group-btn">
                                     <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.props.plan} type="button">Plan</button>
