@@ -75,7 +75,7 @@ class Destinations extends Component {
     }
 
    handleClick(param) {
-     console.log("add destination clicked");
+      console.log("add destination clicked");
       console.log(this.state.database.locations[param]);
       this.props.trip.places.pop();
       this.props.trip.places.push(this.state.database.locations[param]);
@@ -83,7 +83,6 @@ class Destinations extends Component {
     }
 
     createTable(){
-        console.log(this.state.database.locations.size);
         let loc = this.state.database.locations;
         let row = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
