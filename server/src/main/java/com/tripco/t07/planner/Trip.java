@@ -55,6 +55,9 @@ public class Trip {
 
   //calls the optimization methods
   private void opt() {
+    if(this.places.size() == 1) {
+      return;
+    }
     double optType = this.options.getOptimization();
     System.out.println(optType);
     Place hold = this.places.get(0);

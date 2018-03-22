@@ -29,7 +29,7 @@ public class Query {
         try {
             Class.forName(myDriver);
 // connect to the database and query
-            try (Connection conn = DriverManager.getConnection(myUrl, "cntorres", "830429517");
+            try (Connection conn = DriverManager.getConnection(myUrl, "amroot", "830291232");
                  Statement stCount = conn.createStatement();
                  Statement stQuery = conn.createStatement();
                  ResultSet rsCount = stCount.executeQuery(count);
