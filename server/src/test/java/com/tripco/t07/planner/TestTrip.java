@@ -115,4 +115,12 @@ public class TestTrip {
   public void coloradoBorders() {
     assertTrue(trip.coloradoCheck(40, -104));
   }
+
+  @Test
+  public void TestDisplay(){
+    trip.display();
+    assertTrue(1==1);
+  }
+
+  
 }
