@@ -90,7 +90,7 @@ class Destinations extends Component {
                     <td key={loc[i].name}>{loc[i].name}</td>
                     <td key={loc[i].latitude}>{loc[i].latitude}</td>
                     <td key={loc[i].longitude}>{loc[i].longitude}</td>
-                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>edit</button></td>
+                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
                 </tr>;
         }
         return {row};
