@@ -74,13 +74,19 @@ class Destinations extends Component {
         }
     }
 
-   handleClick(param) {
-      console.log("add destination clicked");
-      console.log(this.state.database.locations[param]);
-      this.props.trip.places.pop();
+  handleClick(param) {
+    if(this.props.trip.places.length < 2) {
       this.props.trip.places.push(this.state.database.locations[param]);
       this.props.plan();
+      return;
     }
+    if (this.props.trip.places[this.props.trip.places.length - 1].name
+        === (this.props.trip.places[0].name)) {
+      this.props.trip.places.pop();
+    }
+    this.props.trip.places.push(this.state.database.locations[param]);
+    this.props.plan();
+  }
 
     createTable(){
         let loc = this.state.database.locations;

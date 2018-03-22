@@ -37,6 +37,7 @@ class Application extends Component {
   }
 
   async plan() {
+    console.log(this.state.trip);
       console.log("Plan");
     try {
       let serverResponse = await this.fetchResponse();
