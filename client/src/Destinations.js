@@ -20,6 +20,7 @@ class Destinations extends Component {
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
         this.createTable = this.createTable.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     loadTFFI(event) {
@@ -70,23 +71,51 @@ class Destinations extends Component {
             console.error(err);
         }
     }
-
+   handleClick(param) {
+     console.log("add destination clicked");
+      console.log(this.state.database.locations[param]);
+      this.props.trip.places.pop();
+      this.props.trip.places.push(this.state.database.locations[param]);
+      this.props.plan();
+    }
     createTable(){
         console.log(this.state.database.locations.size);
         let loc = this.state.database.locations;
         let row = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
+
             row[i] =
                 <tr>
                     <td key={loc[i].id}>{loc[i].id}</td>
                     <td key={loc[i].name}>{loc[i].name}</td>
                     <td key={loc[i].latitude}>{loc[i].latitude}</td>
                     <td key={loc[i].longitude}>{loc[i].longitude}</td>
+                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
                 </tr>;
         }
         return {row};
     }
 
+  displayQuery(){
+    let table = this.createTable();
+    return(
+        <div className="card-body">
+          <table className="table table-responsive table-bordered">
+            <thead>
+            <tr className="table-outline-dark">
+              <th id="id">ID</th>
+              <th id="name">Name</th>
+              <th id="lat">Latitude</th>
+              <th id="long">Longitude</th>
+            </tr>
+            </thead>
+            <tbody>
+            {table.row}
+            </tbody>
+          </table>
+        </div>
+    )
+  }
     destinationsField(){
         return(
             <div id="destinations" className="card">
@@ -121,26 +150,6 @@ class Destinations extends Component {
         )
     }
 
-    displayQuery(){
-        let table = this.createTable();
-        return(
-                <div className="card-body">
-                    <table className="table table-responsive table-bordered">
-                        <thead>
-                            <tr className="table-outline-dark">
-                                <th id="id">ID</th>
-                                <th id="name">Name</th>
-                                <th id="lat">Latitude</th>
-                                <th id="long">Longitude</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {table.row}
-                        </tbody>
-                    </table>
-                </div>
-        )
-    }
 
     render() {
         return (
