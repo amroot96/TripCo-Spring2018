@@ -93,7 +93,7 @@ class Application extends Component {
           <div className="row">
             <div className="col-12">
               <Destinations trip={this.state.trip}
-                            updateTrip={this.updateTrip}/>
+                            updateTrip={this.updateTrip} plan={this.plan}/>
             </div>
             <div className="col-12">
               <Options options={this.state.trip.options}
