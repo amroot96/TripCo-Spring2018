@@ -14,7 +14,12 @@ class Application extends Component {
         version: 2,
         type: "trip",
         title: "Name your trip here...",
-        options: {distance: "miles", optimization: "0"},
+        options: {
+            distance: "miles",
+            userUnit: " ",
+            userRadius: " " ,
+            optimization: "0"
+        },
         places: [],
         distances: [],
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
@@ -28,6 +33,7 @@ class Application extends Component {
 
   fetchResponse() {
     let requestBody = this.state.trip;
+    console.log(requestBody);
     const serverURL = 'http://' + location.host + '/plan';
     console.log(serverURL);
     return fetch(serverURL, {
