@@ -16,6 +16,7 @@ class Options extends Component {
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
     this.shortestButton = this.shortestButton.bind(this);
+    this.labelTag = this.labelTag.bind(this);
     this.on = "btn btn-outline-dark active";
     this.off = "btn btn-outline-dark";
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
@@ -145,23 +146,23 @@ class Options extends Component {
       this.toggleDistBool("user defined");
   }
 
+  labelTag(argClassName,argID,argName,argOnChange,argView){
+      return(
+        <label className={argClassName}>
+            <input type="radio" id={argID} name={argName} autoComplete="off" onChange={argOnChange}/> {argView}
+        </label>
+      )
+  }
+
   optionField(){
     return(
             <div className="card-body">
                 <p>Highlight the options you wish to use.</p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label className={this.miles}>
-                        <input type="radio" id="miles" name="distance" autoComplete="off" onChange={this.milesButton}/> Miles
-                    </label>
-                    <label className={this.kilometers}>
-                        <input type="radio" id="kilometers" name="distance" autoComplete="off" onChange={this.kilometerButton}/> Kilometers
-                    </label>
-                    <label className={this.nautical}>
-                        <input type="radio" id="nautical miles" name="distance" autoComplete="off" onChange={this.nauticalButton}/> Nautical Miles
-                    </label>
-                    <label className={this.userUnit}>
-                        <input type="radio" id="user defined" name="distance" autoComplete="off" onChange={this.userDefinedButton}/> User Defined
-                    </label>
+                    {this.labelTag(this.miles,"miles","distance",this.milesButton,"Miles")}
+                    {this.labelTag(this.kilometers,"kilometers","distance",this.kilometerButton,"Kilometers")}
+                    {this.labelTag(this.nautical,"nautical miles","distance",this.nauticalButton,"Nautical Miles")}
+                    {this.labelTag(this.userUnit,"user defined","distance",this.userDefinedButton,"User Defined")}
                 </div>
             </div>
     )
@@ -172,15 +173,9 @@ class Options extends Component {
             <div className="card-body">
                 <p>Would you like to optimize your trip? </p>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label className={this.none}>
-                        <input type="radio" id="none" name="optimization" autoComplete="off" onChange={this.noneButton}/> No
-                    </label>
-                    <label className={this.short}>
-                        <input type="radio" id="short" name="optimization" autoComplete="off" onChange={this.shortButton}/> Short
-                    </label>
-                    <label className={this.shorter}>
-                        <input type="radio" id="shorter" name="optimization" autoComplete="off" onChange={this.shorterButton}/> Shorter
-                    </label>
+                    {this.labelTag(this.none,"none","optimization",this.noneButton,"None")}
+                    {this.labelTag(this.short,"short","optimization",this.shortButton,"Short")}
+                    {this.labelTag(this.shorter,"shorter","optimization",this.shorterButton,"Shorter")}
                 </div>
             </div>
     )

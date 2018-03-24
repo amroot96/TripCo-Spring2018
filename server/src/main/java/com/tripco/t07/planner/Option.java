@@ -19,9 +19,13 @@ public class Option {
     return this.distance;
   }
 
-  public String getUnit(){return this.userUnit;}
+  public String getUnit(){
+    return this.userUnit;
+  }
 
-  public double getRadius(){return Double.parseDouble(this.userRadius);}
+  public double getRadius(){
+    return Double.parseDouble(this.userRadius);
+  }
 
   public double getOptimization() {
     return Double.parseDouble(this.optimization);
