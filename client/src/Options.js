@@ -11,6 +11,7 @@ class Options extends Component {
     this.kilometerButton = this.kilometerButton.bind(this);
     this.milesButton = this.milesButton.bind(this);
     this.nauticalButton = this.nauticalButton.bind(this);
+    this.userDefinedButton = this.userDefinedButton.bind(this);
     this.noneButton = this.noneButton.bind(this);
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
@@ -20,6 +21,7 @@ class Options extends Component {
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     this.id = "\"options\" className=\"card\">";
     this.miles = this.on;
+    this.userUnit = this.off;
     this.kilometers = this.off;
     this.nautical = this.off;
     this.none = this.on;
@@ -49,7 +51,9 @@ class Options extends Component {
                         break;
           case "kilometers": this.kilometerButton();
                         break;
-          default: this.nauticalButton();
+          case "nautical miles": this.nauticalButton();
+                        break;
+          default: this.userDefinedButton();
       }
   }
 
@@ -88,6 +92,7 @@ class Options extends Component {
       this.miles = this.off;
       this.kilometers = this.off;
       this.nautical = this.off;
+      this.userUnit = this.off;
 
       switch(arg){
           case "miles": this.miles = this.on;
@@ -96,7 +101,7 @@ class Options extends Component {
                     break;
           case "nautical": this.nautical = this.on;
                     break;
-          default:
+          default: this.userUnit = this.on;
       }
   }
 
@@ -135,6 +140,11 @@ class Options extends Component {
       this.toggleDistBool("kilometers");
   }
 
+  userDefinedButton(){
+      this.props.updateOptions("user defined", "distance");
+      this.toggleDistBool("user defined");
+  }
+
   optionField(){
     return(
             <div className="card-body">
@@ -148,6 +158,9 @@ class Options extends Component {
                     </label>
                     <label className={this.nautical}>
                         <input type="radio" id="nautical miles" name="distance" autoComplete="off" onChange={this.nauticalButton}/> Nautical Miles
+                    </label>
+                    <label className={this.userUnit}>
+                        <input type="radio" id="user defined" name="distance" autoComplete="off" onChange={this.userDefinedButton}/> User Defined
                     </label>
                 </div>
             </div>

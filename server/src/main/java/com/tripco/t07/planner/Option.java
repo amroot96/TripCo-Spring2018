@@ -7,6 +7,8 @@ package com.tripco.t07.planner;
 public class Option {
 
   public String distance;
+  public String userUnit;
+  public String userRadius;
   public String optimization;
 
 
@@ -16,6 +18,10 @@ public class Option {
   public String getDistance() {
     return this.distance;
   }
+
+  public String getUnit(){return this.userUnit;}
+
+  public double getRadius(){return Double.parseDouble(this.userRadius);}
 
   public double getOptimization() {
     return Double.parseDouble(this.optimization);
