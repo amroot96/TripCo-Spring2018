@@ -33,7 +33,7 @@ class Application extends Component {
 
   fetchResponse() {
     let requestBody = this.state.trip;
-    consol.log(requestBody);
+    console.log(requestBody);
     const serverURL = 'http://' + location.host + '/plan';
     console.log(serverURL);
     return fetch(serverURL, {

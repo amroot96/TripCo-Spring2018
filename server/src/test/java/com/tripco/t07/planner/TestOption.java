@@ -15,7 +15,7 @@ public class TestOption {
     option = new Option();
     option.distance = "miles";
     option.userUnit = "furlong";
-    option.userRadius = "31705.3408"
+    option.userRadius = "31705.3408";
     option.optimization = "0";
   }
 
@@ -33,14 +33,14 @@ public class TestOption {
 
   @Test
   public void testRadius(){
-    assertEquals(31705.3408, option.getRadius());
+    assertEquals(31705.3408, option.getRadius(),0.0001);
     assertNotEquals("31705.3408", option.getRadius());
   }
 
   @Test
   public void testGetOptimization(){
-    assertEquals(0,(int)option.getOptimization());
-    assertNotEquals("0",(int)option.getOptimization());
+    assertEquals(0.0,option.getOptimization(),0);
+    assertNotEquals("0",option.getOptimization());
   }
 
 
