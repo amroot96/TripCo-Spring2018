@@ -7,12 +7,12 @@
 
 ## Definition of Done
 
-* Web application deployed on the production server (kiwis.cs.colostate.edu).
-* Sprint Review and Restrospectives completed (sprint.md).
-* Product Increment release `v3.0` created on GitHub with appropriate version number and name, a description based on the Release Notes template, and the arhived files.
-* Version in pom.xml should be `<version>3.0</version>`.
-* Javadoc and unit tests for public methods.
-* Coverage at least 50% overall and for each class.
+* Improving the existing responsive web application to handle world travel.
+* Spring Review and Retrospectives completed.
+* Product Increment release v4.0 created on GitHub with appropriate verson number and name, a description based on the Release Notes template, and the archived files.
+* Version in pom.xml should be <version>4.0</version>
+* Javadoc and unit tests for public methods. (java and js)
+* Coverage at least 60%
 
 ## Policies
 
@@ -30,8 +30,14 @@
 
 Epics planned for this release.
 
-* *## title*
-*
+* *## User sets their own distance units*
+* *## Optimize 2-opt so it runs faster*
+* *## Plan trips outside of colorado*
+* *## Add search filter functionality*
+* *## Add map zoom and pan functionality*
+* *## Fix branding*
+* *## Improve user experience*
+* *## Let the user choose a new starting location*
 
 *Include a discussion of planning decisions made based on your velocity from previous sprints.*
 
@@ -39,14 +45,14 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  *value*   | *value* 
-Story Points |  *value*  | *value* 
+Tasks |  27   | 0 
+Story Points |  49  | 0 
 
 ## Daily Scrums
 
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
-*date* | *@task only* | *@task only* | none
+03/24/18 | Planning | Create database tests, Fix tiffi/json, Fix 2-opt | Jordan had minor car troubles
  | | | 
  
 
