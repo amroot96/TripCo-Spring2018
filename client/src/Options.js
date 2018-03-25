@@ -46,6 +46,7 @@ class Options extends Component {
   }
 
   distanceButtonSelector(arg){
+    console.log(arg);
       let select = arg;
       switch(arg){
           case "miles": this.milesButton();
@@ -54,7 +55,7 @@ class Options extends Component {
                         break;
           case "nautical miles": this.nauticalButton();
                         break;
-          default: this.userDefinedButton();
+          default: this.userDefinedButton(arg);
       }
   }
 
@@ -141,8 +142,8 @@ class Options extends Component {
       this.toggleDistBool("kilometers");
   }
 
-  userDefinedButton(){
-      this.props.updateOptions("user defined", "distance");
+  userDefinedButton(arg){
+      this.props.updateOptions(arg, "distance");
       this.toggleDistBool("user defined");
   }
 

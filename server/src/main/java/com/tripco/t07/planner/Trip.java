@@ -26,10 +26,11 @@ public class Trip {
   private int totalDist;
 
   public void display() {
-    System.out.println(this.version);
-    System.out.println(this.type);
-    System.out.println(this.title);
-    System.out.println(this.options);
+    System.out.println("version: " + this.version);
+    System.out.println("type: " + this.type);
+    System.out.println("title: " + this.title);
+    System.out.println("Optimization: " + this.options.getOptimization());
+    System.out.println("Units: " + this.options.getDistance());
     for (int i = 0; i < this.places.size(); i++) {
       System.out.println("id: " + this.places.get(i).id + " name: " + this.places.get(i).name +
           " latitude: " + this.places.get(i).latitude + " longitude: " + this.places
@@ -44,6 +45,7 @@ public class Trip {
     if (this.distances != null) {
       this.distances.clear();
     }
+    this.options.setDistance();
     opt();
     this.distances = legDistances();
     this.map = svg();
@@ -275,22 +277,9 @@ public class Trip {
     double lat2 = Math.toRadians(Double.parseDouble(p2.latitude));
     double long1 = Math.toRadians(Double.parseDouble(p1.longitude));
     double long2 = Math.toRadians(Double.parseDouble(p2.longitude));
-    switch (s.charAt(0)) {
-      case 'm':
-        return (int) Math.round(3958.7613 * Math.acos(
+        return (int) Math.round(this.options.getRadius() * Math.acos(
             Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
                 .cos(long2 - long1)));
-      case 'k':
-        return (int) Math.round(6371.0088 * Math.acos(
-            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
-                .cos(long2 - long1)));
-      case 'n':
-        return (int) Math.round(3440.0695 * Math.acos(
-            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
-                .cos(long2 - long1)));
-      default:
-        return 0;
-    }
   }
 
   private void placeList(ArrayList<Place> list) {

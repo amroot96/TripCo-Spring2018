@@ -43,8 +43,7 @@ class Application extends Component {
   }
 
   async plan() {
-    console.log(this.state.trip);
-      console.log("Plan");
+    console.log("Plan called")
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
@@ -56,7 +55,6 @@ class Application extends Component {
   }
 
   updateTrip(json, init) {
-    console.log("Update trip called");
     if (init === 1) {
       json.distances = new Array(json.places.length);
       //comment
@@ -75,7 +73,6 @@ class Application extends Component {
     if(init === 1) {
       this.plan();
     }
-    console.log(this.state.trip);
   }
 
   updateOptions(arg, str) {
