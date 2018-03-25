@@ -15,7 +15,7 @@ public class TestOption {
     option = new Option();
     option.distance = "miles";
     option.userUnit = "furlong";
-    option.Radius = 31705.3408;
+    option.radius = 31705.3408;
     option.optimization = "0";
   }
 
