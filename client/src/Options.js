@@ -159,8 +159,6 @@ class Options extends Component {
   }
 
   userDefinedButton(arg) {
-    console.log(arg)
-    console.log(typeof arg)
     if (typeof arg !== 'string') {
       arg = "miles";
     }
