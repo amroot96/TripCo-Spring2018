@@ -181,13 +181,13 @@ public class Trip {
 
   private ArrayList<Place> twooptswap(ArrayList<Place> orig, int i, int k) {
     ArrayList<Place> retlist = new ArrayList<Place>();
-    for (int j = 0; j < i; j++) {
+    for (int j = 0; j < i-1; j++) {
       retlist.add(orig.get(j));
     }
-    for (int j = k; j > i - 1; j--) {
+    for (int j = k-1; j > i-2; j--) {
       retlist.add(orig.get(j));
     }
-    for (int j = k + 1; j < orig.size(); j++) {
+    for (int j = k; j < orig.size(); j++) {
       retlist.add(orig.get(j));
     }
     return retlist;
