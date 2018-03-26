@@ -38,14 +38,11 @@ public class Option {
     System.out.println(this.distance.toLowerCase());
     if (this.distance.toLowerCase().equals("miles")) {
       this.radius = 3958.7613;
-    }
-    else if(this.distance.toLowerCase().equals("kilometers")) {
+    } else if (this.distance.toLowerCase().equals("kilometers")) {
       this.radius = 6371.0088;
-    }
-    else if(this.distance.toLowerCase().equals("nautical")) {
+    } else if (this.distance.toLowerCase().equals("nautical")) {
       this.radius = 3440.0695;
-    }
-    else {
+    } else {
       String[] split = this.distance.split(" ");
       this.radius = Double.parseDouble(split[1]);
     }
