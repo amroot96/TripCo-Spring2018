@@ -104,10 +104,39 @@ class Destinations extends Component {
         return {row};
     }
 
+    filterType() {
+        return(
+            <select>
+                <option placeholder="Select Type">Type: </option>
+                <option key="none">Any</option>
+                <option key="small">Small Airport</option>
+                <option key="medium">Medium Airport</option>
+                <option key="large">Large Airport</option>
+                <option key="heliport">Heliport</option>
+                <option key="seaPlaneBase">SeaPlane Base</option>
+                <option key="balloonport">Balloon Port</option>
+                <option key="closed">Closed</option>
+            </select>
+        )
+    }
+
+  filterSearch() {
+        return(
+            <div className="dropdown">
+                <p>Filter search by: </p>
+                <div className="input-group-dropdown">
+                    {this.filterType()}
+                </div>
+            <p></p>
+            </div>
+        )
+  }
+
   displayQuery(){
     let table = this.createTable();
     return(
         <div className="card-body">
+            {this.filterSearch()}
           <table className="table table-responsive table-bordered">
             <thead>
             <tr className="table-outline-dark">
