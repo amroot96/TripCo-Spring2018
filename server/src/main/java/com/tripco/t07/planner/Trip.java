@@ -44,6 +44,7 @@ public class Trip {
       }
     }
   }
+
   private void setPlaces() {
     this.placesArr = new Place[this.places.size()];
     this.distArr = new int[this.places.size() + 1];
@@ -51,6 +52,7 @@ public class Trip {
       this.placesArr[i] = this.places.get(i);
     }
   }
+
   //calls the optimization methods
   private void opt() {
     if (this.places.size() <= 1) {
