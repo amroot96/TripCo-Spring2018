@@ -133,7 +133,7 @@ public class Trip {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
     for (int i = 0; i < this.placesArr.length; i++) {
-      Place[] newarr = NNs(i);
+      Place[] newarr = NearestNs(i);
       int newdist = calctotalDist(newarr);
       if (newdist < bestdist) {
         bestdist = newdist;
@@ -144,18 +144,18 @@ public class Trip {
     this.placesArr = copyPlaces(bestArr);
   }
 
-  private Place[] NNs(int start) {
+  private Place[] NearestNs(int start) {
     Place[] ret = new Place[this.placesArr.length];
     Place[] build = copyPlaces(this.placesArr);
     build[start].name = "<Finished>";
     ret[0] = this.placesArr[start];
     for (int i = 1; i < this.placesArr.length; i++) {
-      ret[i] = NN(build, ret[i - 1]);
+      ret[i] = nearNeigh(build, ret[i - 1]);
     }
     return ret;
   }
 
-  private Place NN(Place[] list, Place start) {
+  private Place nearNeigh(Place[] list, Place start) {
     int bestdist = 999999;
     int bestindex = 0;
     for (int i = 0; i < list.length; i++) {
@@ -231,8 +231,8 @@ public class Trip {
   }
 
   public void display() {
-    System.out.println("version: " + this.version + " type: " + this.type +
-        " title: " + this.title + " Optimization: " + this.options.getOptimization() + " Units: "
+    System.out.println("version: " + this.version + " type: " + this.type
+        + " title: " + this.title + " Optimization: " + this.options.getOptimization() + " Units: "
         + this.options.getDistance());
     for (int i = 0; i < this.places.size(); i++) {
       System.out.println("id: " + this.places.get(i).id + " name: " + this.places.get(i).name +
