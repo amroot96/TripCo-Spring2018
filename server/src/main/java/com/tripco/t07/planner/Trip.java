@@ -35,11 +35,7 @@ public class Trip {
     if (this.places != null && !this.places.isEmpty()) {
       this.options.setDistance();
       removeRoundTrip(this.places);
-      this.placesArr = new Place[this.places.size()];
-      this.distArr = new int[this.places.size() + 1];
-      for (int i = 0; i < this.places.size(); i++) {
-        this.placesArr[i] = this.places.get(i);
-      }
+      setPlaces();
       opt();
       legDistances(this.placesArr);
       this.map = svg();
@@ -48,7 +44,13 @@ public class Trip {
       }
     }
   }
-
+  private void setPlaces() {
+    this.placesArr = new Place[this.places.size()];
+    this.distArr = new int[this.places.size() + 1];
+    for (int i = 0; i < this.places.size(); i++) {
+      this.placesArr[i] = this.places.get(i);
+    }
+  }
   //calls the optimization methods
   private void opt() {
     if (this.places.size() <= 1) {
@@ -133,7 +135,7 @@ public class Trip {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
     for (int i = 0; i < this.placesArr.length; i++) {
-      Place[] newarr = NearestNs(i);
+      Place[] newarr = nearestNs(i);
       int newdist = calctotalDist(newarr);
       if (newdist < bestdist) {
         bestdist = newdist;
@@ -144,7 +146,7 @@ public class Trip {
     this.placesArr = copyPlaces(bestArr);
   }
 
-  private Place[] NearestNs(int start) {
+  private Place[] nearestNs(int start) {
     Place[] ret = new Place[this.placesArr.length];
     Place[] build = copyPlaces(this.placesArr);
     build[start].name = "<Finished>";
