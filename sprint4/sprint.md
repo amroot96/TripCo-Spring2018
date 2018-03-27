@@ -45,7 +45,7 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  27   | 0 
+Tasks |  37   | 0 
 Story Points |  49  | 0 
 
 ## Daily Scrums
@@ -53,7 +53,7 @@ Story Points |  49  | 0
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
 03/24/18 | Planning | Create database tests, Fix tiffi/json, Fix 2-opt | Jordan had minor car troubles
- | | | 
+03/27/18 | Adding filter drop down, user defined units added, config tiffi setup  | Filtering UI, Database test cases, making 2-opt faster | None
  
 
 ## Review
