@@ -26,7 +26,6 @@ public class Trip {
   public ArrayList<Integer> distances;
   public int[] distArr;
   public String map;
-  private int totalDist;
 
 
   public void plan() {
@@ -93,10 +92,7 @@ public class Trip {
 
   private Place[] optShorter(Place[] opt) {
     int bestDist = calctotalDist(opt);
-    System.out.println("Original Distance : " + bestDist);
     Place[] retlist = copyPlaces(opt);
-    System.out.println("retlist original");
-    placeList(retlist);
     for (int i = 1; i < retlist.length; i++) {
       for (int k = i + 1; k < retlist.length; k++) {
         this.placesArr = twooptswap(this.placesArr, i, k);
@@ -111,8 +107,6 @@ public class Trip {
   }
 
   private Place[] twooptswap(Place[] orig, int i, int k) {
-    System.out.println("Orig list i = " + i + " k = " + k);
-    placeList(orig);
     Place[] ret = new Place[orig.length];
     int help = 0;
     for (int j = 0; j < i - 1; j++) {
@@ -127,13 +121,10 @@ public class Trip {
       ret[help] = orig[j];
       help++;
     }
-    System.out.println("Retlist");
-    placeList(ret);
     return ret;
   }
 
   private void optShort() {
-    placeList(this.placesArr);
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
     for (int i = 0; i < this.placesArr.length; i++) {
@@ -144,7 +135,6 @@ public class Trip {
         bestArr = copyPlaces(newarr);
       }
     }
-    System.out.println(bestdist);
     this.placesArr = copyPlaces(bestArr);
   }
 
@@ -206,7 +196,6 @@ public class Trip {
 
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
-    String s = this.options.getDistance();
     double lat1 = Math.toRadians(Double.parseDouble(p1.latitude));
     double lat2 = Math.toRadians(Double.parseDouble(p2.latitude));
     double long1 = Math.toRadians(Double.parseDouble(p1.longitude));

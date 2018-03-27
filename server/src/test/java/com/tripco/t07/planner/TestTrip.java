@@ -100,14 +100,14 @@ public class TestTrip {
     assertEquals(expectedDistances, trip.distances);
   }
 
-//  @Test
-//  public void twoOpt() {
-//    trip.options.optimization = "0.4";
-//    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-//    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
-//    trip.plan();
-//    assertEquals(expectedDistances, trip.distances);
-//  }
+  @Test
+  public void twoOpt() {
+    trip.options.optimization = "0.4";
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
   @Test
   public void testBackground() {
     assertNotEquals(trip.map, "");
