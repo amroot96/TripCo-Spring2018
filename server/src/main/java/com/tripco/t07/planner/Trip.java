@@ -17,14 +17,13 @@ import java.io.*;
 public class Trip {
 
   // The variables in this class should reflect TFFI.
-  public int version;
-  public String type;
-  public String title;
+  private int version;
+  private String type;
+  private String title;
   public Option options;
   public ArrayList<Place> places;
-  public Place[] placesArr;
+  private Place[] placesArr;
   public ArrayList<Integer> distances;
-  public int[] distArr;
   public String map;
 
 
@@ -46,7 +45,6 @@ public class Trip {
 
   private void setPlaces() {
     this.placesArr = new Place[this.places.size()];
-    this.distArr = new int[this.places.size() + 1];
     for (int i = 0; i < this.places.size(); i++) {
       this.placesArr[i] = this.places.get(i);
     }
@@ -58,7 +56,6 @@ public class Trip {
       return;
     }
     double optType = this.options.getOptimization();
-    System.out.println("optimization" + Double.toString(optType));
     String hold = this.places.get(0).name;
     if (optType != 0) {
       if (optType <= 0.33) {
@@ -81,12 +78,8 @@ public class Trip {
       }
     }
     int ml = this.placesArr.length - middle;
-    for (int i = middle; i < this.placesArr.length; i++) {
-      ret[i - middle] = this.placesArr[i];
-    }
-    for (int i = 0; i < middle; i++) {
-      ret[ml + i] = this.placesArr[i];
-    }
+    System.arraycopy(this.placesArr, middle, ret, 0, ml);
+    System.arraycopy(this.placesArr, 0, ret, ml, middle);
     this.placesArr = copyPlaces(ret);
   }
 
@@ -166,8 +159,8 @@ public class Trip {
   }
 
   private void placeList(Place[] list) {
-    for (int i = 0; i < list.length; i++) {
-      System.out.print(list[i].name + "  ");
+    for (Place p : list) {
+      System.out.println(p.name + "  ");
     }
     System.out.println();
   }
@@ -227,10 +220,9 @@ public class Trip {
     System.out.println("version: " + this.version + " type: " + this.type
         + " title: " + this.title + " Optimization: " + this.options.getOptimization() + " Units: "
         + this.options.getDistance());
-    for (int i = 0; i < this.places.size(); i++) {
-      System.out.println("id: " + this.places.get(i).id + " name: " + this.places.get(i).name +
-          " latitude: " + this.places.get(i).latitude + " longitude: " + this.places
-          .get(i).longitude);
+    for (Place p : this.places) {
+      System.out.println("id: " + p.id + " name: " + p.name
+          + " latitude: " + p.latitude + " longitude: " + p.longitude);
     }
     System.out.println(distances);
   }
@@ -239,29 +231,29 @@ public class Trip {
   //Returns an SVG containing the background and the legs of the trip.
   private String svg() {
     InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
-    String line = "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ";
+    StringBuilder lineBuilder = new StringBuilder();
+    lineBuilder.append(
+        "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
     try {
       BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
-      String temp = br.readLine();
-      while (temp != null) {
-        line += temp + "\n";
-        temp = br.readLine();
+      String temp;
+      while((temp = br.readLine()) != null) {
+        lineBuilder.append(temp);
+        lineBuilder.append("\n");
       }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    line += "<svg width=\"1066.6073\" height=\"783.0824\">";
-    line += " <polyline points=\"";
-    for (int i = 0; i < this.places.size(); i++) {
+    } catch (IOException e) { e.printStackTrace(); }
+    lineBuilder.append("<svg width=\"1066.6073\" height=\"783.0824\">");
+    lineBuilder.append(" <polyline points=\"");
+    for (Place p : this.places) {
       int xCoord = (int) Math
-          .round(((109 + Double.parseDouble(this.places.get(i).longitude)) / 7) * 1006 + 30);
+          .round(((109 + Double.parseDouble(p.longitude)) / 7) * 1006 + 30);
       int yCoord = (int) Math
-          .round(((41 - Double.parseDouble(this.places.get(i).latitude)) / 4) * 710 + 40);
-      line += xCoord + "," + yCoord + " ";
+          .round(((41 - Double.parseDouble(p.latitude)) / 4) * 710 + 40);
+      String hold = xCoord + "," + yCoord + " ";
+      lineBuilder.append(hold);
     }
-    line += "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
-        "</svg>\n" +
-        "</svg>";
-    return line;
+    lineBuilder.append(
+        "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n" + "</svg>");
+    return lineBuilder.toString();
   }
 }

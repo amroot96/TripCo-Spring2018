@@ -35,7 +35,6 @@ public class Option {
    * Sets options.distance and options.radius
    */
   public void setDistance() {
-    System.out.println(this.distance.toLowerCase());
     if (this.distance.toLowerCase().equals("miles")) {
       this.radius = 3958.7613;
     } else if (this.distance.toLowerCase().equals("kilometers")) {
