@@ -31,6 +31,8 @@ public class TestTrip {
     trip.options = new Option();
     trip.options.distance = "kilometers";
     trip.options.optimization = "0";
+    trip.distances = new ArrayList<Integer>();
+
     Place p1 = new Place();
     p1.latitude = "39.7392";
     p1.longitude = "-104.9903";
@@ -102,7 +104,7 @@ public class TestTrip {
   public void twoOpt() {
     trip.options.optimization = "0.4";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
+    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
   }
@@ -112,7 +114,10 @@ public class TestTrip {
   }
 
   @Test
-  public void coloradoBorders() {
-    assertTrue(trip.coloradoCheck(40, -104));
+  public void TestDisplay(){
+    trip.display();
+    assertTrue(1==1);
   }
+
+  
 }
