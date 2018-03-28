@@ -31,6 +31,8 @@ public class TestTrip {
     trip.options = new Option();
     trip.options.distance = "kilometers";
     trip.options.optimization = "0";
+    trip.distances = new ArrayList<Integer>();
+
     Place p1 = new Place();
     p1.latitude = "39.7392";
     p1.longitude = "-104.9903";
@@ -109,11 +111,6 @@ public class TestTrip {
   @Test
   public void testBackground() {
     assertNotEquals(trip.map, "");
-  }
-
-  @Test
-  public void coloradoBorders() {
-    assertTrue(trip.coloradoCheck(40, -104));
   }
 
   @Test
