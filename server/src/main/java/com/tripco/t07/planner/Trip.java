@@ -252,7 +252,8 @@ public class Trip {
       String hold = xCoord + "," + yCoord + " ";
       lineBuilder.append(hold);
     }
-    lineBuilder.append("\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n" + "</svg>");
+    lineBuilder.append(
+        "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n" + "</svg>");
     return lineBuilder.toString();
   }
 }
