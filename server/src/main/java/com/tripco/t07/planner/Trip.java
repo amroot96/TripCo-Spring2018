@@ -232,15 +232,13 @@ public class Trip {
   private String svg() {
     InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
     StringBuilder lineBuilder = new StringBuilder();
-    lineBuilder.append(
-        "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
+    lineBuilder.append("<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
     try {
       BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
-      String temp = br.readLine();
-      while (temp != null) {
+      String temp;
+      while((temp = br.readLine()) != null) {
         lineBuilder.append(temp);
         lineBuilder.append("\n");
-        temp = br.readLine();
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -255,9 +253,7 @@ public class Trip {
       String hold = xCoord + "," + yCoord + " ";
       lineBuilder.append(hold);
     }
-    lineBuilder.append("\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" +
-        "</svg>\n" +
-        "</svg>");
+    lineBuilder.append("\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n" + "</svg>");
     return lineBuilder.toString();
   }
 }
