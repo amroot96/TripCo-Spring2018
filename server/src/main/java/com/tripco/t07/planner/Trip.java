@@ -221,8 +221,8 @@ public class Trip {
         + " title: " + this.title + " Optimization: " + this.options.getOptimization() + " Units: "
         + this.options.getDistance());
     for (Place p : this.places) {
-      System.out.println("id: " + p.id + " name: " + p.name +
-          " latitude: " + p.latitude + " longitude: " + p.longitude);
+      System.out.println("id: " + p.id + " name: " + p.name
+          + " latitude: " + p.latitude + " longitude: " + p.longitude);
     }
     System.out.println(distances);
   }
@@ -232,7 +232,8 @@ public class Trip {
   private String svg() {
     InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
     StringBuilder lineBuilder = new StringBuilder();
-    lineBuilder.append("<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
+    lineBuilder.append(
+        "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
     try {
       BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
       String temp;
@@ -240,9 +241,7 @@ public class Trip {
         lineBuilder.append(temp);
         lineBuilder.append("\n");
       }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    } catch (IOException e) { e.printStackTrace(); }
     lineBuilder.append("<svg width=\"1066.6073\" height=\"783.0824\">");
     lineBuilder.append(" <polyline points=\"");
     for (Place p : this.places) {
