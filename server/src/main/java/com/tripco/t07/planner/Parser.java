@@ -13,10 +13,9 @@ public class Parser {
         String[] lat;
         String[] longi;
         for(int i = 0; i < places.size(); i++){
-            lat = places.get(i).latitude.split("[°\'\"\\s]");
-            longi = places.get(i).longitude.split("[°\'\"\\s]");
+            lat = places.get(i).latitude.split("[°\'\"][\\s]*");
+            longi = places.get(i).longitude.split("[°\'\"][\\s]*");
             places.get(i).latitude = parse(lat);
-            System.out.println(places.get(i).latitude);
             places.get(i).longitude = parse(longi);
         }
     }
@@ -51,7 +50,7 @@ public class Parser {
     }
 
     public float DMS(String direction, float degree, float minute, float second){
-        System.out.println("Degree: " + degree + " minute: " + minute + " seconds: " + second + " direction: " + direction);
+        //System.out.println("Degree: " + degree + " minute: " + minute + " seconds: " + second + " direction: " + direction);
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60 + second/3600;
         }
@@ -61,7 +60,7 @@ public class Parser {
     }
 
     public float DDM(String direction, float degree, float minute) {
-        System.out.println("Degree: " + degree + " minute: " + minute +" direction: " + direction);
+        //System.out.println("Degree: " + degree + " minute: " + minute +" direction: " + direction);
 
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60;
@@ -72,7 +71,7 @@ public class Parser {
     }
 
     public float DD(String direction, float degree){
-        System.out.println("Degree: " + degree + " direction: " + direction);
+     //   System.out.println("Degree: " + degree + " direction: " + direction);
 
         if(direction.equals("N") || direction.equals("E")){
             return degree;
