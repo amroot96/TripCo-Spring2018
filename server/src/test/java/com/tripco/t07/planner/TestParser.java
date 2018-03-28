@@ -93,11 +93,14 @@ public class TestParser {
         float f = par.DD("S", (float) 79.982);
         assertTrue((Math.abs(f-(-79.982)) < 0.00001));
     }
-
     @Test
-    public void testParse(){
-
+    public void testNonSpaces() {
+        Place p = new Place();
+        p.longitude = "38.74°N";
+        p.latitude = "106°47'35W";
+        list.add(p);
+        par.iterator();
+        assertTrue(Math.abs(Float.parseFloat(p.longitude)-38.74)< 0.00001);
     }
-
 
 }
