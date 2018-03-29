@@ -22,75 +22,75 @@ public class TestParser {
     //DMS
     @Test
     public void testDMSParseN() {
-        float f = par.DMS("N", 40,35, (float) 6.9288);
+        Double f = par.DMS("N", 40.0,35.0, (Double) 6.9288);
         assertTrue((Math.abs(f-40.58526) < 0.00001));
     }
 
     @Test
     public void testDMSParseW () {
-        float f = par.DMS("W", 40,35, (float) 6.9288);
+        Double f = par.DMS("W", 40.0,35.0, (Double) 6.9288);
         assertTrue((Math.abs(f-(-40.58526)) < 0.00001));
     }
 
     @Test
     public void testDMSParseE() {
-        float f = par.DMS("E", 49,14, (float) 46.6512);
+        Double f = par.DMS("E", 49.0,14.0, (Double) 46.6512);
         assertTrue((Math.abs(f-49.24629) < 0.00001));
     }
 
     @Test
     public void testDMSParseS() {
-        float f = par.DMS("S", 49,14, (float) 46.6512);
+        Double f = par.DMS("S", 49.0,14.0, (Double) 46.6512);
         assertTrue((Math.abs(f-(-49.24629)) < 0.00001));
     }
 
 //    //DDM
     @Test
     public void testDDMParseN() {
-        float f = par.DDM("N" , 40, (float)26.767);
+        Double f = par.DDM("N" , 40.0, (Double)26.767);
         assertTrue((Math.abs(f-40.44612) < 0.00001));
     }
 
     @Test
     public void testDDMParseW () {
-        float f = par.DDM("W" , 40, (float)26.767);
+        Double f = par.DDM("W" , 40.0, (Double)26.767);
         assertTrue((Math.abs(f-(-40.44612)) < 0.00001));
     }
 
     @Test
     public void testDDMParseE() {
-        float f = par.DDM("E", 79, (float) 58.933);
+        Double f = par.DDM("E", 79.0, (Double) 58.933);
         assertTrue((Math.abs(f-79.98222) < 0.00001));
     }
 
     @Test
     public void testDDMParseS() {
-        float f = par.DDM("S", 79, (float) 58.933);
+        Double f = par.DDM("S", 79.0, (Double) 58.933);
         assertTrue((Math.abs(f-(-79.98222)) < 0.00001));
     }
 
     //DD
     @Test
     public void testDDParseN() {
-        float f = par.DD("N", (float)40.446);
+        Double f = par.DD("N", (Double)40.446);
         assertTrue((Math.abs(f-40.446) < 0.00001));
     }
 
     @Test
     public void testDDParseW () {
-        float f = par.DD("W", (float)40.446);
+        Double f = par.DD("W", (Double)40.446);
         assertTrue((Math.abs(f-(-40.446)) < 0.00001));
     }
 
     @Test
     public void testDDParseE() {
-        float f = par.DD("E", (float) 79.982);
+        Double f = par.DD("E", (Double) 79.982);
         assertTrue((Math.abs(f-79.982) < 0.00001));
     }
 
     @Test
     public void testDMParseS() {
-        float f = par.DD("S", (float) 79.982);
+        Double f = par.DD("S", (Double) 79.982);
         assertTrue((Math.abs(f-(-79.982)) < 0.00001));
     }
     @Test
@@ -100,7 +100,7 @@ public class TestParser {
         p.latitude = "106°47'35W";
         list.add(p);
         par.iterator();
-        assertTrue(Math.abs(Float.parseFloat(p.longitude)-38.74)< 0.00001);
+        assertTrue(Math.abs(p.parseLong-0.6761405522226033)< 0.00001);
     }
 
 }

@@ -8,6 +8,9 @@ public class Place {
   public String id;
   public String name;
   public String latitude;
+  public double parseLat;
   public String longitude;
+  public double parseLong;
+
 
 }
