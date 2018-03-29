@@ -45,8 +45,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  37   | 0 
-Story Points |  49  | 0 
+Tasks |  41   | 8 
+Story Points |  33  | 12 
 
 ## Daily Scrums
 
@@ -54,6 +54,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 :--- | :--- | :--- | :--- 
 03/24/18 | Planning | Create database tests, Fix tiffi/json, Fix 2-opt | Jordan had minor car troubles
 03/27/18 | Adding filter drop down, user defined units added, config tiffi setup  | Filtering UI, Database test cases, making 2-opt faster | None
+03/29/18 | removed colorado bounding function, making 2-opt more effecient | Adding filter UI, Handling server side filtering, creating database test cases | Easter weekend (a group member may be out of town)
  
 
 ## Review
