@@ -104,7 +104,7 @@ public class TestTrip {
   public void twoOpt() {
     trip.options.optimization = "0.4";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
+    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
   }
