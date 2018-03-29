@@ -123,11 +123,9 @@ class Destinations extends Component {
   filterSearch() {
         return(
             <div className="dropdown">
-                <p>Filter search by: </p>
                 <div className="input-group-dropdown">
                     {this.filterType()}
                 </div>
-            <p></p>
             </div>
         )
   }
@@ -136,7 +134,6 @@ class Destinations extends Component {
     let table = this.createTable();
     return(
         <div className="card-body">
-            {this.filterSearch()}
           <table className="table table-responsive table-bordered">
             <thead>
             <tr className="table-outline-dark">
@@ -176,6 +173,7 @@ class Destinations extends Component {
                     <p> Search for place or airport code. </p>
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/>
+                        {this.filterSearch()}
                         <span className="input-group-btn">
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
@@ -192,10 +190,10 @@ class Destinations extends Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         {this.destinationsField()}
                     </div>
-                    <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                         {this.destinationFinderField()}
                     </div>
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
