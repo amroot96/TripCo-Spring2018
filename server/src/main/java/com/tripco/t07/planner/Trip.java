@@ -83,38 +83,38 @@ public class Trip {
     this.placesArr = copyPlaces(ret);
   }
 
-  private Place[] optShorter(Place[] opt) {
-    int bestDist = calctotalDist(opt);
-    Place[] retlist = copyPlaces(opt);
-    for (int i = 1; i < retlist.length; i++) {
-      for (int k = i + 1; k < retlist.length; k++) {
-        this.placesArr = twooptswap(this.placesArr, i, k);
-        if (bestDist > calctotalDist(this.placesArr)) {
-          bestDist = calctotalDist(this.placesArr);
-          opt = copyPlaces(optShorter(this.placesArr));
+  private void optShorter(Place[] opt) {
+    boolean improvement = true;
+    while (improvement) {
+      improvement = false;
+      for (int i = 0; i <= this.placesArr.length - 3; i++) {
+        for (int k = i + 2; k <= this.placesArr.length - 1; k++) {
+          int kn = k + 1;
+          if (k + 1 == this.placesArr.length) {
+            kn = 0;
+          }
+          int delta = -getDistance(this.placesArr[i], this.placesArr[i + 1])
+              - getDistance(this.placesArr[k], this.placesArr[kn])
+              + getDistance(this.placesArr[i], this.placesArr[k])
+              + getDistance(this.placesArr[i + 1], this.placesArr[kn]);
+          if (delta < 0) {
+            twooptReverse(i + 1, k);
+            improvement = true;
+          }
         }
       }
     }
     this.placesArr = copyPlaces(opt);
-    return opt;
   }
 
-  private Place[] twooptswap(Place[] orig, int i, int k) {
-    Place[] ret = new Place[orig.length];
-    int help = 0;
-    for (int j = 0; j < i - 1; j++) {
-      ret[help] = orig[j];
-      help++;
+  private void twooptReverse(int i, int k) {
+    while (i < k) {
+      Place temp = this.placesArr[i];
+      this.placesArr[i] = this.placesArr[k];
+      this.placesArr[k] = temp;
+      i++;
+      k--;
     }
-    for (int j = k - 1; j > i - 2; j--) {
-      ret[help] = orig[j];
-      help++;
-    }
-    for (int j = k; j < orig.length; j++) {
-      ret[help] = orig[j];
-      help++;
-    }
-    return ret;
   }
 
   private void optShort() {
@@ -160,7 +160,7 @@ public class Trip {
 
   private void placeList(Place[] list) {
     for (Place p : list) {
-      System.out.println(p.name + "  ");
+      System.out.print(p.name + "  ");
     }
     System.out.println();
   }
@@ -237,11 +237,13 @@ public class Trip {
     try {
       BufferedReader br = new BufferedReader(new InputStreamReader(filePath));
       String temp;
-      while((temp = br.readLine()) != null) {
+      while ((temp = br.readLine()) != null) {
         lineBuilder.append(temp);
         lineBuilder.append("\n");
       }
-    } catch (IOException e) { e.printStackTrace(); }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     lineBuilder.append("<svg width=\"1066.6073\" height=\"783.0824\">");
     lineBuilder.append(" <polyline points=\"");
     for (Place p : this.places) {
@@ -253,7 +255,8 @@ public class Trip {
       lineBuilder.append(hold);
     }
     lineBuilder.append(
-        "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n" + "</svg>");
+        "\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/>" + "</svg>\n"
+            + "</svg>");
     return lineBuilder.toString();
   }
 }
