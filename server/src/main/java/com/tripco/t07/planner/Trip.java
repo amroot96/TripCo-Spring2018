@@ -189,10 +189,10 @@ public class Trip {
 
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
-    double lat1 = Math.toRadians(Double.parseDouble(p1.latitude));
-    double lat2 = Math.toRadians(Double.parseDouble(p2.latitude));
-    double long1 = Math.toRadians(Double.parseDouble(p1.longitude));
-    double long2 = Math.toRadians(Double.parseDouble(p2.longitude));
+    double lat1 = p1.parseLat;
+    double lat2 = p2.parseLat;
+    double long1 = p1.parseLong;
+    double long2 = p2.parseLong;
     return (int) Math.round(this.options.getRadius() * Math.acos(
         Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
             .cos(long2 - long1)));
@@ -212,6 +212,8 @@ public class Trip {
       ret[i].id = list[i].id;
       ret[i].latitude = list[i].latitude;
       ret[i].longitude = list[i].longitude;
+      ret[i].parseLong = list[i].parseLong;
+      ret[i].parseLat = list[i].parseLat;
     }
     return ret;
   }
@@ -248,9 +250,9 @@ public class Trip {
     lineBuilder.append(" <polyline points=\"");
     for (Place p : this.places) {
       int xCoord = (int) Math
-          .round(((109 + Double.parseDouble(p.longitude)) / 7) * 1006 + 30);
+          .round(((109 + p.parseLong) / 7) * 1006 + 30);
       int yCoord = (int) Math
-          .round(((41 - Double.parseDouble(p.latitude)) / 4) * 710 + 40);
+          .round(((41 - p.parseLat) / 4) * 710 + 40);
       String hold = xCoord + "," + yCoord + " ";
       lineBuilder.append(hold);
     }
