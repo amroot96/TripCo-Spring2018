@@ -250,9 +250,9 @@ public class Trip {
     lineBuilder.append(" <polyline points=\"");
     for (Place p : this.places) {
       int xCoord = (int) Math
-          .round(((109 + p.parseLong) / 7) * 1006 + 30);
+          .round(((109 + Math.toDegrees(p.parseLong)) / 7) * 1006 + 30);
       int yCoord = (int) Math
-          .round(((41 - p.parseLat) / 4) * 710 + 40);
+              .round(((41 - Math.toDegrees(p.parseLat)) / 4) * 710 + 40);
       String hold = xCoord + "," + yCoord + " ";
       lineBuilder.append(hold);
     }
