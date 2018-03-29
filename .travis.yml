@@ -17,6 +17,3 @@ after_script:
   - ./cc-test-reporter --debug after-build --exit-code $TRAVIS_TEST_RESULT
 addons:
   mariadb: '10.0'
-before_script:
-  - mysql -u root -e 'CREATE DATABASE testingDatabase;'
-  - mysql -u root -e 'CREATE TABLE testingDatabase.airports()
