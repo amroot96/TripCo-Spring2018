@@ -50,7 +50,8 @@ public class Parser {
     }
 
     public float DMS(String direction, float degree, float minute, float second){
-        //System.out.println("Degree: " + degree + " minute: " + minute + " seconds: " + second + " direction: " + direction);
+        //System.out.println("Degree: " + degree + " minute: " + minute + " seconds: " + second + " direction: "
+        // + direction);
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60 + second/3600;
         }
@@ -60,7 +61,8 @@ public class Parser {
     }
 
     public float DDM(String direction, float degree, float minute) {
-        //System.out.println("Degree: " + degree + " minute: " + minute +" direction: " + direction);
+        //System.out.println("Degree: " + degree + " minute: " + minute +" direction: "
+        // + direction);
 
         if(direction.equals("N") || direction.equals("E")){
             return degree + minute/60;

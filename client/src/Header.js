@@ -10,24 +10,8 @@ class Header extends Component{
 
     render() {
         return(
-            <div id="tripco" className="card">
-                <img className={"img-fluid"} alt="Responsive image" style={{background:'#1E4D2B'}} src={"http://www.cs.colostate.edu/~cs314/images/CompSci-NS-CSU-1-Hrev.png"}/>
-            <div id="header" className="jumbotron">
-                {this.title()}
-                <p className="lead">"Want to travel far and wide?"</p>
-                <ol >
-                    <li>
-                        Choose options for trip planning, information to display about locations,
-                        and how the trip map and itinerary should be saved.</li>
-                    <li>
-                        Choose your destinations by loading existing sets of destinations or
-                        find more in an extensive database of locations worldwide.</li>
-                    <li>
-                        Plan the trip with the options you selected.
-                        Review and revise the trip origin and order.
-                        Save the trip map and itinerary for future reference.</li>
-                </ol>
-            </div>
+            <div id="tripco" className="card" style={{background:'#1E4D2B',height:'200px', width:'auto', marginBottom:'50px'} }>
+                <img className={"img-fluid center"} alt="Responsive image"  style={{height:'200px', width:'800px'}} src={"http://www.cs.colostate.edu/~cs314/images/CompSci-NS-CSU-1-Hrev.png"}/>
             </div>
         )
     }
