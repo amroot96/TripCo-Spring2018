@@ -58,9 +58,9 @@ public class Trip {
     double optType = this.options.getOptimization();
     String hold = this.places.get(0).name;
     if (optType != 0) {
-      if (optType <= 0.33) {
+      if (optType <= 0.5) {
         optShort();
-      } else if (optType <= 0.66) {
+      } else if (optType <= 1) {
         optShorter(this.placesArr);
       }
     }

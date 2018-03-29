@@ -94,11 +94,11 @@ class Destinations extends Component {
         for(let i = 0; i < this.state.database.locations.length; i++) {
             row[i] =
                 <tr>
+                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>+</button></td>
                     <td key={loc[i].id}>{loc[i].id}</td>
                     <td key={loc[i].name}>{loc[i].name}</td>
                     <td key={loc[i].latitude}>{loc[i].latitude}</td>
                     <td key={loc[i].longitude}>{loc[i].longitude}</td>
-                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
                 </tr>;
         }
         return {row};
@@ -137,6 +137,7 @@ class Destinations extends Component {
           <table className="table table-responsive table-bordered">
             <thead>
             <tr className="table-outline-dark">
+                <th id="add"></th>
               <th id="id">ID</th>
               <th id="name">Name</th>
               <th id="lat">Latitude</th>
