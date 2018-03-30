@@ -189,7 +189,8 @@ public class Trip {
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
     return (int) Math.round(this.options.getRadius() * Math.acos(
-        Math.sin(p1.parseLat) * Math.sin(p2.parseLat) + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
+        Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
+            + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
             .cos(p2.parseLong - p1.parseLong)));
   }
 
