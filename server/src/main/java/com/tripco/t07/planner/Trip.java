@@ -61,7 +61,7 @@ public class Trip {
       if (optType <= 0.33) {
         optShort();
       } else if (optType <= 0.66) {
-        optShorter(this.placesArr);
+        optShorter();
       }
     }
     restoreStart(hold);
@@ -83,7 +83,7 @@ public class Trip {
     this.placesArr = copyPlaces(ret);
   }
 
-  private void optShorter(Place[] opt) {
+  private void optShorter() {
     boolean improvement = true;
     while (improvement) {
       improvement = false;
@@ -104,7 +104,6 @@ public class Trip {
         }
       }
     }
-    this.placesArr = copyPlaces(opt);
   }
 
   private void twooptReverse(int i, int k) {
@@ -189,13 +188,10 @@ public class Trip {
 
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
-    double lat1 = p1.parseLat;
-    double lat2 = p2.parseLat;
-    double long1 = p1.parseLong;
-    double long2 = p2.parseLong;
     return (int) Math.round(this.options.getRadius() * Math.acos(
-        Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math
-            .cos(long2 - long1)));
+        Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
+            + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
+            .cos(p2.parseLong - p1.parseLong)));
   }
 
   private void removeRoundTrip(ArrayList<Place> placelist) {
