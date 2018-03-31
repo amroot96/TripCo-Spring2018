@@ -29,6 +29,7 @@ class Application extends Component {
     this.updateOptions = this.updateOptions.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
     this.plan = this.plan.bind(this);
+    this.removePlace = this.removePlace.bind(this);
   }
 
   fetchResponse() {
@@ -90,7 +91,29 @@ class Application extends Component {
       }
       this.plan();
   }
-
+  removePlace(index) {
+    index = index.target.value;
+    let newPlaces = this.state.trip.places;
+    if(index == this.state.trip.places.length-1 || index == 0) {
+      newPlaces.splice(index,1);
+      newPlaces.splice(0,1);
+    }
+    else{
+      newPlaces.splice(index,1);
+    }
+    this.setState({
+      trip: {
+        version: this.state.trip.version,
+        type: this.state.trip.type,
+        title: this.state.trip.title,
+        options: this.state.trip.options,
+        places: newPlaces,
+        distances: this.state.trip.distances,
+        map: this.state.trip.map
+      }
+    });
+    this.plan();
+  }
   render() {
     return (
         <div id="application" className="container">
@@ -104,7 +127,7 @@ class Application extends Component {
                        updateOptions={this.updateOptions}/>
             </div>
             <div className="col-12">
-              <Trip trip={this.state.trip} plan={this.plan}/>
+              <Trip trip={this.state.trip} plan={this.plan} removePlace={this.removePlace}/>
             </div>
           </div>
         </div>
