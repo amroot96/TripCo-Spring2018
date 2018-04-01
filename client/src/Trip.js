@@ -10,13 +10,10 @@ import Itinerary from './Itinerary';
 class Trip extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-        title: "",
+      title: "",
 
-      };
-
-
+    };
     this.saveTFFI = this.saveTFFI.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
     this.reverseTrip = this.reverseTrip.bind(this);
@@ -27,69 +24,82 @@ class Trip extends Component {
    * state for this object.
    */
 
-
   /* Saves the map and itinerary to the local file system.
    */
-  saveTFFI(){
-      console.log("save button");
-      let help = this.props.trip.map;
-      this.props.trip.map = "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>";
-      let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.props.trip));
-      let downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute("href",     dataStr);
-      downloadAnchorNode.setAttribute("download", document.getElementById("titleBox").value + ".json");
-      downloadAnchorNode.click();
-      downloadAnchorNode.remove();
-      this.props.trip.map = help;
+  saveTFFI() {
+    console.log("save button");
+    let help = this.props.trip.map;
+    this.props.trip.map = "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>";
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(
+        JSON.stringify(this.props.trip));
+    let downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", document.getElementById(
+        "titleBox").value + ".json");
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+    this.props.trip.map = help;
   }
 
-  updateTitle(){
-      this.props.trip.title = document.getElementById("titleBox").value;
-      this.saveTFFI();
+  updateTitle() {
+    this.props.trip.title = document.getElementById("titleBox").value;
+    this.saveTFFI();
   }
 
-  reverseTrip(){
-      console.log("reverse trip");
-      this.props.trip.places.reverse();
-      this.props.trip.distances.reverse();
-      this.props.plan();
+  reverseTrip() {
+    console.log("reverse trip");
+    this.props.trip.places.reverse();
+    this.props.trip.distances.reverse();
+    this.props.plan();
   }
 
-
-  reverseButton(){
-      return(
-          <div className="input-group-btn">
-              <button className="btn" style={{background:'#CFB53B'}} onClick={this.reverseTrip} type="button">Reverse Trip</button>
-              <p></p>
-          </div>
-      )
+  reverseButton() {
+    return (
+        <div className="input-group-btn">
+          <button className="btn" style={{background: '#CFB53B'}}
+                  onClick={this.reverseTrip} type="button">Reverse Trip
+          </button>
+          <p></p>
+        </div>
+    )
   }
 
   /* Renders the buttons, map, and itinerary.
    * The title should be specified before the plan or save buttons are valid.
    */
-  render(){
-    return(
+  render() {
+    return (
         <div className="container-fluid">
-            <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div id="trip" className="card">
-                        <div className="card-header text-white" style={{background:'#1E4D2B'}}>Trip</div>
-                        <div className="card-body">
-                            <Itinerary trip={this.props.trip} />
-                            {this.reverseButton()}
-                            <div className="input-group" role="group">
-                                <span className="input-group-btn">
-                                    <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.props.plan} type="button">Plan</button>
-                                </span>
-                                <input id="titleBox" type="text" className="form-control" placeholder={this.props.trip.title}/>
-                                <span className="input-group-btn">
-                                    <button className="btn btn" style={{background:'#CFB53B'}} onClick={this.updateTitle} type="button">Save</button>
-                                </span>
-                            </div><Map trip={this.props.trip} /></div>
-                    </div>
+          <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div id="trip" className="card">
+                <div className="card-header text-white"
+                     style={{background: '#1E4D2B'}}>Trip
                 </div>
+                <div className="card-body">
+                  <Itinerary trip={this.props.trip}
+                             removePlaces={this.props.removePlace}/>
+                  {this.reverseButton()}
+                  <div className="input-group" role="group">
+                                <span className="input-group-btn">
+                                    <button className="btn btn"
+                                            style={{background: '#CFB53B'}}
+                                            onClick={this.props.plan}
+                                            type="button">Plan</button>
+                                </span>
+                    <input id="titleBox" type="text" className="form-control"
+                           placeholder={this.props.trip.title}/>
+                    <span className="input-group-btn">
+                                    <button className="btn btn"
+                                            style={{background: '#CFB53B'}}
+                                            onClick={this.updateTitle}
+                                            type="button">Save</button>
+                                </span>
+                  </div>
+                  <Map trip={this.props.trip}/></div>
+              </div>
             </div>
+          </div>
         </div>
     )
   }
