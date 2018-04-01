@@ -78,7 +78,8 @@ class Trip extends Component {
                 </div>
                 <div className="card-body">
                   <Itinerary trip={this.props.trip}
-                             removePlaces={this.props.removePlace}/>
+                             removePlaces={this.props.removePlace}
+                              makeStart={this.props.makeStart}/>
                   {this.reverseButton()}
                   <div className="input-group" role="group">
                                 <span className="input-group-btn">

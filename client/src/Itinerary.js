@@ -17,7 +17,8 @@ class Itinerary extends Component {
     for (i = 0; i < this.props.trip.places.length; i++) {
       dests[i] = <td key={i}>{this.props.trip.places[i].name}</td>;
       dists[i] = <td key={i}>{this.props.trip.distances[i]}</td>;
-      buts[i] = <td key={i}><button id={i} value={i} className="button" onClick={this.props.removePlaces}>Remove</button></td>;
+      buts[i] = <td key={i}><button id={i} value={i} className="button" onClick={this.props.makeStart}>Start</button>
+        <button id={i} value={i} className="button" onClick={this.props.removePlaces}>Remove</button></td>;
       distance = this.props.trip.distances[i] + distance;
     }
     return {distance, units, dests, dists,buts};
@@ -44,7 +45,7 @@ class Itinerary extends Component {
             </tbody>
             <tbody>
             <tr>
-              <th className="table-outline-dark align-middle">Remove</th>
+              <th className="table-outline-dark align-middle">Options</th>
               {table.buts}
             </tr>
             </tbody>
