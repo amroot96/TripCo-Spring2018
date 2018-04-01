@@ -15,10 +15,10 @@ class Application extends Component {
         type: "trip",
         title: "Name your trip here...",
         options: {
-            distance: "miles",
-            userUnit: " ",
-            userRadius: " " ,
-            optimization: "0"
+          distance: "miles",
+          userUnit: " ",
+          userRadius: " ",
+          optimization: "0"
         },
         places: [],
         distances: [],
@@ -30,6 +30,7 @@ class Application extends Component {
     this.updateTrip = this.updateTrip.bind(this);
     this.plan = this.plan.bind(this);
     this.removePlace = this.removePlace.bind(this);
+    this.makeStart = this.makeStart.bind(this);
   }
 
   fetchResponse() {
@@ -71,35 +72,37 @@ class Application extends Component {
         map: json.map
       }
     });
-    if(init === 1) {
+    if (init === 1) {
       this.plan();
     }
   }
 
   updateOptions(arg, str) {
-      if (str === "distance") {
-          let unitChange = Object.assign({}, this.state.trip);
-          unitChange.options.distance = arg;
-          this.setState({trip: unitChange});
-          console.log(this.state.trip.options);
-      }
-      else {
-          let unitChange = Object.assign({}, this.state.trip);
-          unitChange.options.optimization = arg;
-          this.setState({trip: unitChange});
-          console.log(this.state.trip.options);
-      }
-      this.plan();
+    if (str === "distance") {
+      let unitChange = Object.assign({}, this.state.trip);
+      unitChange.options.distance = arg;
+      this.setState({trip: unitChange});
+      console.log(this.state.trip.options);
+    }
+    else {
+      let unitChange = Object.assign({}, this.state.trip);
+      unitChange.options.optimization = arg;
+      this.setState({trip: unitChange});
+      console.log(this.state.trip.options);
+    }
+    this.plan();
   }
+
   removePlace(index) {
+    console.log("Remove")
     index = index.target.value;
     let newPlaces = this.state.trip.places;
-    if(index == this.state.trip.places.length-1 || index == 0) {
-      newPlaces.splice(index,1);
-      newPlaces.splice(0,1);
+    if (index == this.state.trip.places.length - 1 || index == 0) {
+      newPlaces.splice(index, 1);
+      newPlaces.splice(0, 1);
     }
-    else{
-      newPlaces.splice(index,1);
+    else {
+      newPlaces.splice(index, 1);
     }
     this.setState({
       trip: {
@@ -114,6 +117,32 @@ class Application extends Component {
     });
     this.plan();
   }
+
+  makeStart(index) {
+    console.log("start");
+    index = index.target.value;
+    let newPlaces = this.state.trip.places;
+    if (index == this.state.trip.places.length - 1 || index == 0) {
+      return;
+    }
+    else {
+      newPlaces[0] = newPlaces[index];
+      newPlaces.splice(index, 1);
+    }
+    this.setState({
+      trip: {
+        version: this.state.trip.version,
+        type: this.state.trip.type,
+        title: this.state.trip.title,
+        options: this.state.trip.options,
+        places: newPlaces,
+        distances: this.state.trip.distances,
+        map: this.state.trip.map
+      }
+    });
+    this.plan();
+  }
+
   render() {
     return (
         <div id="application" className="container">
@@ -127,7 +156,8 @@ class Application extends Component {
                        updateOptions={this.updateOptions}/>
             </div>
             <div className="col-12">
-              <Trip trip={this.state.trip} plan={this.plan} removePlace={this.removePlace}/>
+              <Trip trip={this.state.trip} plan={this.plan}
+                    removePlace={this.removePlace} makeStart={this.makeStart}/>
             </div>
           </div>
         </div>
