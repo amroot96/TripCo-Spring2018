@@ -228,7 +228,7 @@ public class Trip {
 
   //Returns an SVG containing the background and the legs of the trip.
   private String svg() {
-    InputStream filePath = this.getClass().getResourceAsStream("/colorado.svg");
+    InputStream filePath = this.getClass().getResourceAsStream("/World2.svg");
     StringBuilder lineBuilder = new StringBuilder();
     lineBuilder.append(
         "<svg width=\"1066.6073\" height=\"783.0824\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> ");
