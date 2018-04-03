@@ -11,12 +11,12 @@ class Options extends Component {
     this.kilometerButton = this.kilometerButton.bind(this);
     this.milesButton = this.milesButton.bind(this);
     this.nauticalButton = this.nauticalButton.bind(this);
-    this.userDefinedButton = this.userDefinedButton.bind(this);
     this.noneButton = this.noneButton.bind(this);
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
     this.shortestButton = this.shortestButton.bind(this);
     this.labelTag = this.labelTag.bind(this);
+    this.enter = this.enter.bind(this);
     this.on = "btn btn-outline-dark active";
     this.off = "btn btn-outline-dark";
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
@@ -59,7 +59,7 @@ class Options extends Component {
         this.nauticalButton();
         break;
       default:
-        this.userDefinedButton(arg);
+        this.milesButton();
     }
   }
 
@@ -158,14 +158,6 @@ class Options extends Component {
     this.toggleDistBool("kilometers");
   }
 
-  userDefinedButton(arg) {
-    if (typeof arg !== 'string') {
-      arg = "miles";
-    }
-    this.props.updateOptions(arg, "distance");
-    this.toggleDistBool("user defined");
-  }
-
   labelTag(argClassName, argID, argName, argOnChange, argView) {
     return (
         <label className={argClassName}>
@@ -175,10 +167,17 @@ class Options extends Component {
     )
   }
 
+  enter(event) {
+    console.log(event.target.value);
+    if (event.which == 13 || event.keyCode == 13) {
+      this.props.updateOptions(event.target.value, "distance");
+    }
+  }
+
   optionField() {
     return (
         <div className="card-body">
-          <p>Highlight the options you wish to use.</p>
+          <p>Highlight the options you wish to use or define your own!.</p>
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             {this.labelTag(this.miles, "miles", "distance", this.milesButton,
                 "Miles")}
@@ -186,8 +185,7 @@ class Options extends Component {
                 this.kilometerButton, "Kilometers")}
             {this.labelTag(this.nautical, "nautical miles", "distance",
                 this.nauticalButton, "Nautical Miles")}
-            {this.labelTag(this.userUnit, "user defined", "distance",
-                this.userDefinedButton, "User Defined")}
+            <input name="userDefined" type="text" id="UD" onKeyDown={this.enter}/>,
           </div>
         </div>
     )
