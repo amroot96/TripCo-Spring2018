@@ -94,7 +94,6 @@ class Application extends Component {
   }
 
   removePlace(index) {
-    console.log("Remove")
     index = index.target.value;
     let newPlaces = this.state.trip.places;
     if (index == this.state.trip.places.length - 1 || index == 0) {
@@ -119,13 +118,9 @@ class Application extends Component {
   }
 
   makeStart(index) {
-    console.log("start");
     index = index.target.value;
     let newPlaces = this.state.trip.places;
-    if (index == this.state.trip.places.length - 1 || index == 0) {
-      return;
-    }
-    else {
+    if (!(index == this.state.trip.places.length - 1 || index == 0)) {
       newPlaces[0] = newPlaces[index];
       newPlaces.splice(index, 1);
     }
@@ -134,7 +129,12 @@ class Application extends Component {
         version: this.state.trip.version,
         type: this.state.trip.type,
         title: this.state.trip.title,
-        options: this.state.trip.options,
+        options: {
+          distance: this.state.trip.options.distance,
+          userUnit: this.state.trip.options.userUnit,
+          userRadius: this.state.trip.options.userRadius,
+          optimization: "0"
+        },
         places: newPlaces,
         distances: this.state.trip.distances,
         map: this.state.trip.map

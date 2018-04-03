@@ -65,6 +65,8 @@ class Options extends Component {
 
   optimizeButtonSelector(arg) {
     switch (arg) {
+      case arg == 0:
+        this.noneButton();
       case arg < 0.33:
         this.shortButton();
         break;
@@ -168,7 +170,6 @@ class Options extends Component {
   }
 
   enter(event) {
-    console.log(event.target.value);
     if (event.which == 13 || event.keyCode == 13) {
       this.props.updateOptions(event.target.value, "distance");
     }
@@ -177,7 +178,7 @@ class Options extends Component {
   optionField() {
     return (
         <div className="card-body">
-          <p>Highlight the options you wish to use or define your own!.</p>
+          <p>Highlight the options you wish to use or define your own!</p>
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             {this.labelTag(this.miles, "miles", "distance", this.milesButton,
                 "Miles")}

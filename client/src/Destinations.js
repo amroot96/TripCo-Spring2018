@@ -55,7 +55,6 @@ class Destinations extends Component {
     }
 
     async database() {
-        console.log("Database");
         this.state = this.initialState;
         try {
             let serverResponse = await this.queryResponse();
@@ -68,7 +67,6 @@ class Destinations extends Component {
                     locations: query.locations,
                 }
             });
-            console.log(this.state.database.locations);
         } catch (err) {
             console.error(err);
         }
@@ -93,12 +91,12 @@ class Destinations extends Component {
         let row = [];
         for(let i = 0; i < this.state.database.locations.length; i++) {
             row[i] =
-                <tr>
+                <tr key={i}>
                     <td key={loc[i].id}>{loc[i].id}</td>
                     <td key={loc[i].name}>{loc[i].name}</td>
                     <td key={loc[i].latitude}>{loc[i].latitude}</td>
                     <td key={loc[i].longitude}>{loc[i].longitude}</td>
-                    <td><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
+                    <td key={i}><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
                 </tr>;
         }
         return {row};
@@ -107,7 +105,7 @@ class Destinations extends Component {
     filterType() {
         return(
             <select>
-                <option placeholder="Select Type">Type: </option>
+                <option key="placeholder" placeholder="Select Type">Type: </option>
                 <option key="none">Any</option>
                 <option key="small">Small Airport</option>
                 <option key="medium">Medium Airport</option>
@@ -137,10 +135,10 @@ class Destinations extends Component {
           <table className="table table-responsive table-bordered">
             <thead>
             <tr className="table-outline-dark">
-              <th id="id">ID</th>
-              <th id="name">Name</th>
-              <th id="lat">Latitude</th>
-              <th id="long">Longitude</th>
+              <th key="id" id="id">ID</th>
+              <th key="name" id="name">Name</th>
+              <th key="lat" id="lat">Latitude</th>
+              <th key="long" id="long">Longitude</th>
             </tr>
             </thead>
             <tbody>
@@ -159,7 +157,7 @@ class Destinations extends Component {
                     <div className="form-group" role="group">
                         <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
                     </div>
-                    <h5>There are {this.state.count} destinations. </h5>
+                    <h5>There are {this.state.count} destinations in this file. </h5>
                 </div>
             </div>
         )
@@ -178,7 +176,6 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
-                    <p></p>
                     <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>

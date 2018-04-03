@@ -182,8 +182,10 @@ public class Trip {
       this.distances.add(getDistance(list[i - 1], list[i]));
       this.places.add(list[i]);
     }
-    this.distances.add(getDistance(list[0], list[list.length - 1]));
-    this.places.add(list[0]);
+    if(list.length>1) {
+      this.distances.add(getDistance(list[0], list[list.length - 1]));
+      this.places.add(list[0]);
+    }
   }
 
   //Returns the distance between two Places.
@@ -195,7 +197,7 @@ public class Trip {
   }
 
   private void removeRoundTrip(ArrayList<Place> placelist) {
-    if (placelist.get(0).name.equals(placelist.get(placelist.size() - 1).name)) {
+    if (placelist.get(0).name.equals(placelist.get(placelist.size() - 1).name) && placelist.size() >1) {
       placelist.remove(placelist.size() - 1);
     }
   }
