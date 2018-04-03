@@ -185,7 +185,7 @@ class Options extends Component {
                 this.kilometerButton, "Kilometers")}
             {this.labelTag(this.nautical, "nautical miles", "distance",
                 this.nauticalButton, "Nautical Miles")}
-            <input name="userDefined" type="text" id="UD" onKeyDown={this.enter}/>,
+            <input name="userDefined" type="text" id="UD" onKeyDown={this.enter}/>
           </div>
         </div>
     )
