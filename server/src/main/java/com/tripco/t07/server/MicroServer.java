@@ -43,7 +43,7 @@ public class MicroServer {
     get("/team", this::team);
     // client is sending data, so a HTTP POST is used instead of a GET
     post("/plan", this::plan);
-    post("/database", this::database);
+    post("/query", this::query);
     post("/config", this::config);
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
@@ -107,7 +107,7 @@ public class MicroServer {
    * @param response
    * @return
    */
-  private String database(Request request, Response response) {
+  private String query(Request request, Response response) {
 
     response.type("application/json");
 
