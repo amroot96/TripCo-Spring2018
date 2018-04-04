@@ -45,7 +45,7 @@ class Destinations extends Component {
     queryResponse(){
         this.state.database.query = document.getElementById("search").value;
         let requestBody = this.state.database;
-        const serverURL = 'http://' + location.host + '/database';
+        const serverURL = 'http://' + location.host + '/query';
         console.log(serverURL);
         return fetch(serverURL, {
             method: "POST",
