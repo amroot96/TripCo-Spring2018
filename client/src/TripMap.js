@@ -28,9 +28,10 @@ class InnerMap extends React.Component {
 
   // Create our markers
   makeMarkers(places) {
-    let markers = places.map(
-        x => <Marker position={{lat: Number(x.latitude), lng: Number(x.longitude)}}/>
-    );
+    let markers = [];
+    for(let i=0;i<places.length;i++) {
+      markers[i] = <Marker key={i} position={{lat: Number(places[i].latitude), lng: Number(places[i].longitude)}}/>
+    }
     return markers;
   }
 
