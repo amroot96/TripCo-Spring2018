@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import TripMap from './TripMap';
 
 /* Map obtains and renders the map for the trip.
  * Might be an SVG or KML contained in the server response.
@@ -15,10 +15,9 @@ class Map extends Component {
       let svgData = this.props.trip.map;
 
       return (
-          <figure className="figure" id="map">
-            <img className="figure-img img-fluid" alt="Map"
-                 src={svgHeader.concat(svgData)}/>
-          </figure>
+          <div>
+            <TripMap trip={this.props.trip}/>
+          </div>
       )
     }
   }
