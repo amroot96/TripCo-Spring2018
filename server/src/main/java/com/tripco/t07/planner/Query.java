@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class Query {
     //dbconfigurationinformation
-    private static final String myDriver="com.mysql.jdbc.Driver";
-    private static final String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private  String myDriver="com.mysql.jdbc.Driver";
+    private  String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
 
     //SQL queries to count the number of records and to retrieve the data
     public String query = "";
