@@ -21,6 +21,9 @@ class Destinations extends Component {
         this.filterRegion = false;
         this.filterCountry = false;
         this.filterContinent = false;
+        this.filterRegionActive = true;
+        this.filterCountryActive = true;
+        this.filterContinentActive = true;
         this.state = this.initialState;
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
@@ -69,6 +72,7 @@ class Destinations extends Component {
                 database: {
                     query: query.query,
                     locations: query.locations,
+                    filters : [],
                 }
             });
         } catch (err) {
@@ -103,6 +107,7 @@ class Destinations extends Component {
                 break;
             default:
         }
+        this.setState(this.state);
     }
 
     createTable(){
@@ -137,6 +142,14 @@ class Destinations extends Component {
         )
     }
 
+    filterBox(arg1, arg2, arg3){
+        if(arg3 === true) {
+            return (
+                <input type="txt" className="form-control" id={arg2} placeholder={arg1}/>
+            )
+        }
+    }
+
   filterSearch() {
         return(
             <div className="dropdown">
@@ -147,12 +160,15 @@ class Destinations extends Component {
         )
   }
 
-    filterChecks(arg1){
-        return(
-            <label>
-                <input type="checkbox" name={arg1} defaultChecked={false} onChange={() => this.handleFilterCheck(arg1)}/> {arg1}
-            </label>
-        )
+    filterChecks(arg1,arg2){
+        if(arg2 ===true) {
+            return (
+                <label>
+                    <input type="checkbox" name={arg1} defaultChecked={false}
+                           onChange={() => this.handleFilterCheck(arg1)}/> {arg1}
+                </label>
+            )
+        }
     }
 
   displayQuery(){
@@ -210,7 +226,10 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
-                    <p>{this.filterChecks("region")} {this.filterChecks("country")} {this.filterChecks("continent")}</p>
+                    <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
+                    {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
+                    {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
+                    {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
                     <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>
