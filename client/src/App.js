@@ -18,18 +18,14 @@ class App extends Component {
   }
 
     configResponse(){
-        let requestBody = this.state.config;
         const serverURL = 'http://' + location.host + '/config';
-        console.log(serverURL);
         return fetch(serverURL, {
             method: "POST",
-            body: JSON.stringify(requestBody)
         });
 
     }
 
     async config() {
-        console.log("Config");
         try {
             let serverResponse = await this.configResponse();
             let conf = await serverResponse.json();
