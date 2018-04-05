@@ -8,6 +8,10 @@ import React, {Component} from 'react';
 class Options extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+        Name : "",
+        Radius : "",
+    };
     this.kilometerButton = this.kilometerButton.bind(this);
     this.milesButton = this.milesButton.bind(this);
     this.nauticalButton = this.nauticalButton.bind(this);
@@ -47,7 +51,6 @@ class Options extends Component {
 
   distanceButtonSelector(arg) {
     console.log(arg);
-    let select = arg;
     switch (arg) {
       case "miles":
         this.milesButton();
@@ -170,8 +173,16 @@ class Options extends Component {
   }
 
   enter(event) {
-    if (event.which == 13 || event.keyCode == 13) {
-      this.props.updateOptions(event.target.value, "distance");
+    if (event.target.name === "Name") {
+      this.setState({Name:event.target.value});
+      if (event.which === 13 || event.keyCode === 13 && this.state.Name !== "" && this.state.Radius !== "") {
+        this.props.updateOptions(event.target.value + " " + this.state.Radius, "distance");
+      }
+    } else {
+      this.setState({Radius:event.target.value});
+      if (event.which === 13 || event.keyCode === 13 && this.state.Name !== "" && this.state.Radius !== "") {
+        this.props.updateOptions(this.state.Name + " " + event.target.value, "distance");
+      }
     }
   }
 
@@ -189,8 +200,8 @@ class Options extends Component {
                 </div>
             <div>OR...</div>
             <div>Enter your own unit name and radius of the Earth:</div>
-            <input name="userDefined" type="text" id="UD" placeholder="Name" onKeyDown={this.enter}/>
-            <input name="userDefined" type="text" id="UD" placeholder="Radius" onKeyDown={this.enter}/>
+            <input name="Name" type="text" id="UD" placeholder="Name" onKeyDown={this.enter}/>
+            <input name="Radius" type="text" id="UD" placeholder="Radius" onKeyDown={this.enter}/>
         </div>
     )
   }
