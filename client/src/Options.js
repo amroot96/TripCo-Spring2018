@@ -178,7 +178,7 @@ class Options extends Component {
   optionField() {
     return (
         <div className="card-body">
-          <p>Highlight the options you wish to use or define your own!</p>
+          <p>Highlight the options you wish to use.</p>
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             {this.labelTag(this.miles, "miles", "distance", this.milesButton,
                 "Miles")}
@@ -186,8 +186,11 @@ class Options extends Component {
                 this.kilometerButton, "Kilometers")}
             {this.labelTag(this.nautical, "nautical miles", "distance",
                 this.nauticalButton, "Nautical Miles")}
-            <input name="userDefined" type="text" id="UD" onKeyDown={this.enter}/>
-          </div>
+                </div>
+            <div>OR...</div>
+            <div>Enter your own unit name and radius of the Earth:</div>
+            <input name="userDefined" type="text" id="UD" placeholder="Name" onKeyDown={this.enter}/>
+            <input name="userDefined" type="text" id="UD" placeholder="Radius" onKeyDown={this.enter}/>
         </div>
     )
   }
