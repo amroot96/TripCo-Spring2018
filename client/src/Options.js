@@ -18,7 +18,6 @@ class Options extends Component {
     this.noneButton = this.noneButton.bind(this);
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
-    this.shortestButton = this.shortestButton.bind(this);
     this.labelTag = this.labelTag.bind(this);
     this.enter = this.enter.bind(this);
     this.on = "btn btn-outline-dark active";
@@ -32,7 +31,6 @@ class Options extends Component {
     this.none = this.on;
     this.short = this.off;
     this.shorter = this.off;
-    this.shortest = this.off;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,14 +68,11 @@ class Options extends Component {
     switch (arg) {
       case arg == 0:
         this.noneButton();
-      case arg < 0.33:
+      case arg < 0.5:
         this.shortButton();
         break;
-      case arg < 0.66:
+      case arg < 1.0:
         this.shorterButton();
-        break;
-      case arg > 0.66:
-        this.shortestButton();
         break;
       default:
         this.noneButton();
@@ -88,20 +83,16 @@ class Options extends Component {
     this.none = this.off;
     this.short = this.off;
     this.shorter = this.off;
-    this.shortest = this.off;
 
     switch (arg) {
       case "0":
         this.none = this.on;
         break;
-      case "0.25":
+      case "0.5":
         this.short = this.on;
         break;
-      case "0.5":
+      case "1.0":
         this.shorter = this.on;
-        break;
-      case "0.75":
-        this.shortest = this.on;
         break;
       default:
     }
@@ -128,19 +119,14 @@ class Options extends Component {
     }
   }
 
-  shortestButton() {
-    this.props.updateOptions("0.75", "optimization");
-    this.toggleOptBool("0.75");
-  }
-
   shorterButton() {
-    this.props.updateOptions("0.5", "optimization");
-    this.toggleOptBool("0.5");
+    this.props.updateOptions("1.0", "optimization");
+    this.toggleOptBool("1.0");
   }
 
   shortButton() {
-    this.props.updateOptions("0.25", "optimization");
-    this.toggleOptBool("0.25");
+    this.props.updateOptions("0.5", "optimization");
+    this.toggleOptBool("0.5");
   }
 
   noneButton() {

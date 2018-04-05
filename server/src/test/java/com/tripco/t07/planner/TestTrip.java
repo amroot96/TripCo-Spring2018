@@ -101,13 +101,42 @@ public class TestTrip {
   }
 
   @Test
+  public void nearestNeighbor2() {
+    trip.options.optimization = "0.5";
+
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
+
+  @Test
   public void twoOpt() {
-    trip.options.optimization = "0.4";
+    trip.options.optimization = "0.6";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
   }
+
+  @Test
+  public void twoOpt2() {
+    trip.options.optimization = "1.0";
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
+
+  @Test
+  public void noOpt() {
+    trip.options.optimization = "0";
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 39, 65, 383, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
+
   @Test
   public void testBackground() {
     assertNotEquals(trip.map, "");
