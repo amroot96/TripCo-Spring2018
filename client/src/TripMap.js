@@ -42,8 +42,8 @@ class InnerMap extends React.Component {
     }
     return (
         <GoogleMap
-            defaultCenter={{lat: 0, lng: 0}}
-            defaultZoom={1}
+            defaultCenter={{lat: 39.3, lng: -105}}
+            defaultZoom={7}
         >
           <Polyline path={this.makePath(places)}
                     options={{strokeColor: 'DeepSkyBlue'}}
