@@ -15,8 +15,12 @@ class Destinations extends Component {
             database: {
                query: "",
                locations: [],
+               filters: [],
             },
         };
+        this.filterRegion = false;
+        this.filterCountry = false;
+        this.filterContinent = false;
         this.state = this.initialState;
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
@@ -86,6 +90,21 @@ class Destinations extends Component {
     this.props.plan();
   }
 
+    handleFilterCheck(arg1){
+        switch(arg1){
+            case "region":
+                this.filterRegion = this.filterRegion === true ? false : true;
+                break;
+            case "country":
+                this.filterCountry = this.filterCountry === true ? false : true;
+                break;
+            case "continent":
+                this.filterContinent = this.filterContinent === true ? false : true;
+                break;
+            default:
+        }
+    }
+
     createTable(){
         let loc = this.state.database.locations;
         let row = [];
@@ -127,6 +146,14 @@ class Destinations extends Component {
             </div>
         )
   }
+
+    filterChecks(arg1){
+        return(
+            <label>
+                <input type="checkbox" name={arg1} defaultChecked={false} onChange={() => this.handleFilterCheck(arg1)}/> {arg1}
+            </label>
+        )
+    }
 
   displayQuery(){
     let table = this.createTable();
@@ -176,6 +203,7 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
+                    <p>{this.filterChecks("region")} {this.filterChecks("country")} {this.filterChecks("continent")}</p>
                     <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>
