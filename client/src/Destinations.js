@@ -156,24 +156,31 @@ class Destinations extends Component {
     }
 
   displayQuery(){
-    let table = this.createTable();
-    return(
-        <div className="card-body">
-          <table className="table table-responsive table-bordered">
-            <thead>
-            <tr className="table-outline-dark">
-              <th key="id" id="id">ID</th>
-              <th key="name" id="name">Name</th>
-              <th key="lat" id="lat">Latitude</th>
-              <th key="long" id="long">Longitude</th>
-            </tr>
-            </thead>
-            <tbody>
-            {table.row}
-            </tbody>
-          </table>
-        </div>
-    )
+        if(this.state.database.locations.length != 0) {
+            let table = this.createTable();
+            return (
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div id="queries" className="card">
+                        <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
+                        <div className="card-body">
+                            <table className="table table-responsive table-bordered">
+                                <thead>
+                                <tr className="table-outline-dark">
+                                    <th key="id" id="id">ID</th>
+                                    <th key="name" id="name">Name</th>
+                                    <th key="lat" id="lat">Latitude</th>
+                                    <th key="long" id="long">Longitude</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {table.row}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
   }
     destinationsField(){
         return(
@@ -221,12 +228,7 @@ class Destinations extends Component {
                     <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                         {this.destinationFinderField()}
                     </div>
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div id="queries" className="card">
-                            <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
-                            {this.displayQuery()}
-                        </div>
-                    </div>
+                    {this.displayQuery()}
                 </div>
             </div>
         )
