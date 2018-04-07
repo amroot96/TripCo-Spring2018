@@ -30,6 +30,7 @@ class Destinations extends Component {
                          }
                         ],
             },
+            error: false,
         };
         this.filterRegion = false;
         this.filterCountry = false;
@@ -57,12 +58,15 @@ class Destinations extends Component {
                 this.setState({file : json});
                 this.props.updateTrip(json,1);
             } catch (ex) {
-                alert(ex);
+                this.setState({error: true});
             }
         }.bind(this);
+
+        this.displayAlert();
         reader.readAsText(f);
         // this.props.updateTrip(??);
     }
+
 
     getFilters(){
         var type = document.getElementById("type").value;
@@ -78,6 +82,19 @@ class Destinations extends Component {
         if(type != "placeholder"){
             this.state.database.filters[0].values = document.getElementById("type").value;
         }
+
+    }
+    displayAlert(){
+        console.log(this.error);
+        if(this.state.error == true){
+            return(
+                <div className="alert alert-danger">
+                    <strong>Error: </strong> Failed to load tiff.
+                </div>
+            )
+        }
+
+
     }
 
     queryResponse(){
@@ -240,6 +257,7 @@ class Destinations extends Component {
                     <div className="form-group" role="group">
                         <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
                     </div>
+                    {this.displayAlert()}
                     <h5>There are {this.state.count} destinations in this file. </h5>
                 </div>
             </div>
