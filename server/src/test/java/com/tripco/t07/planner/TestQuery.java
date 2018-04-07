@@ -32,45 +32,45 @@ public class TestQuery {
         assertEquals(true,true);
     }
 
-    @Test
-    public void testValidQuery(){
-        if((System.getenv("TRAVIS") != null)) {
-            q.queryDatabase();
-            assertEquals("centennial", q.query);
-        }
-    }
-
-    @Test
-    public void testValidName(){
-        if((System.getenv("TRAVIS") != null)){
-            q.queryDatabase();
-            assertEquals("Centennial Airport", q.locations.get(0).name);
-        }
-    }
-
-    @Test
-    public void testValidId(){
-        if((System.getenv("TRAVIS") != null)) {
-            q.queryDatabase();
-            assertEquals("CD06", q.locations.get(1).id);
-        }
-    }
-
-    @Test
-    public void testValidLatitude(){
-        if((System.getenv("TRAVIS") != null)) {
-            q.queryDatabase();
-            assertEquals("39.57009888", q.locations.get(0).latitude);
-        }
-    }
-
-    @Test
-    public void testValidLongitude(){
-        if((System.getenv("TRAVIS") != null)) {
-            q.queryDatabase();
-            assertEquals("-104.822998046875", q.locations.get(1).longitude);
-        }
-    }
+//    @Test
+//    public void testValidQuery(){
+//        if((System.getenv("TRAVIS") != null)) {
+//            q.queryDatabase();
+//            assertEquals("centennial", q.query);
+//        }
+//    }
+//
+//    @Test
+//    public void testValidName(){
+//        if((System.getenv("TRAVIS") != null)){
+//            q.queryDatabase();
+//            assertEquals("Centennial Airport", q.locations.get(0).name);
+//        }
+//    }
+//
+//    @Test
+//    public void testValidId(){
+//        if((System.getenv("TRAVIS") != null)) {
+//            q.queryDatabase();
+//            assertEquals("CD06", q.locations.get(1).id);
+//        }
+//    }
+//
+//    @Test
+//    public void testValidLatitude(){
+//        if((System.getenv("TRAVIS") != null)) {
+//            q.queryDatabase();
+//            assertEquals("39.57009888", q.locations.get(0).latitude);
+//        }
+//    }
+//
+//    @Test
+//    public void testValidLongitude(){
+//        if((System.getenv("TRAVIS") != null)) {
+//            q.queryDatabase();
+//            assertEquals("-104.822998046875", q.locations.get(1).longitude);
+//        }
+//    }
 
 
 }
