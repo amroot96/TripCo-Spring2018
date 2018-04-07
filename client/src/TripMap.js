@@ -35,11 +35,16 @@ class InnerMap extends React.Component {
     return markers;
   }
 
+  findZoom(places) {
+
+  }
+
   render() {
     const places = this.props.trip.places;
     if(places.length == 0) {
       return null;
     }
+    this.findZoom(places);
     return (
         <GoogleMap
             defaultCenter={{lat: 39.3, lng: -105}}
