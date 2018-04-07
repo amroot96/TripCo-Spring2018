@@ -36,8 +36,6 @@ class InnerMap extends React.Component {
   }
 
   findZoom(places) {
-    let lat = 39.3;
-    let long = -105;
     let minlat = 180;
     let maxlat = -180;
     let minlong = 180;
@@ -56,8 +54,8 @@ class InnerMap extends React.Component {
         maxlong = places[i].longitude;
       }
     }
-    lat = Number(minlat) + (Number(maxlat)-Number(minlat))/2;
-    long = Number(minlong) + (Number(maxlong)-Number(minlong))/2;
+    let lat = Number(minlat) + (Number(maxlat)-Number(minlat))/2;
+    let long = Number(minlong) + (Number(maxlong)-Number(minlong))/2;
     let dzoom = Math.abs(Number(maxlat)-Number(minlat)) * Math.abs(Number(minlong)-Number(maxlong));
     if(dzoom <3) {
       dzoom = 9;
