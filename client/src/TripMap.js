@@ -48,7 +48,6 @@ class InnerMap extends React.Component {
           <Polyline path={this.makePath(places)}
                     options={{strokeColor: 'DeepSkyBlue'}}
           />
-          {this.makeMarkers(places)}
         </GoogleMap>
     );
   }

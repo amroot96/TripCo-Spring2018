@@ -35,47 +35,42 @@ class Options extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.options.distance !== this.props.options.distance) {
-      this.distanceButtonSelector(nextProps.options.distance);
+      this.distanceButtonSelector(nextProps.options.distance,2);
     }
     if (nextProps.options.optimization !== this.props.options.optimization) {
-      if (nextProps.version === undefined || nextProps.version === 1) {
-        this.noneButton();
-      }
-      else if (nextProps.version === 2) {
-        this.optimizeButtonSelector(nextProps.options.optimization);
-      }
+      this.optimizeButtonSelector(nextProps.options.optimization,2);
     }
   }
 
-  distanceButtonSelector(arg) {
+  distanceButtonSelector(arg,type) {
     console.log(arg);
     switch (arg) {
       case "miles":
-        this.milesButton();
+        this.milesButton(type);
         break;
       case "kilometers":
-        this.kilometerButton();
+        this.kilometerButton(type);
         break;
       case "nautical miles":
-        this.nauticalButton();
+        this.nauticalButton(type);
         break;
       default:
-        this.milesButton();
+        this.milesButton(type);
     }
   }
 
-  optimizeButtonSelector(arg) {
+  optimizeButtonSelector(arg,type) {
     switch (arg) {
       case arg == 0:
-        this.noneButton();
+        this.noneButton(type);
       case arg < 0.5:
-        this.shortButton();
+        this.shortButton(type);
         break;
       case arg < 1.0:
-        this.shorterButton();
+        this.shorterButton(type);
         break;
       default:
-        this.noneButton();
+        this.noneButton(type);
     }
   }
 
@@ -119,33 +114,45 @@ class Options extends Component {
     }
   }
 
-  shorterButton() {
-    this.props.updateOptions("1.0", "optimization");
+  shorterButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("1.0", "optimization");
+    }
     this.toggleOptBool("1.0");
   }
 
-  shortButton() {
-    this.props.updateOptions("0.5", "optimization");
+  shortButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("0.5", "optimization");
+    }
     this.toggleOptBool("0.5");
   }
 
-  noneButton() {
-    this.props.updateOptions("0", "optimization");
+  noneButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("0", "optimization");
+    }
     this.toggleOptBool("0");
   }
 
-  milesButton() {
-    this.props.updateOptions("miles", "distance");
+  milesButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("miles", "distance");
+    }
     this.toggleDistBool("miles");
   }
 
-  nauticalButton() {
-    this.props.updateOptions("nautical", "distance");
+  nauticalButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("nautical", "distance");
+    }
     this.toggleDistBool("nautical");
   }
 
-  kilometerButton() {
-    this.props.updateOptions("kilometers", "distance");
+  kilometerButton(type) {
+    if(type !== 2) {
+      this.props.updateOptions("kilometers", "distance");
+    }
     this.toggleDistBool("kilometers");
   }
 
