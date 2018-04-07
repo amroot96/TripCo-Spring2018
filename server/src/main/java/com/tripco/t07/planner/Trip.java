@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 import com.tripco.t07.server.HTTP;
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
 import spark.Request;
 
 import java.util.ArrayList;
@@ -58,9 +59,9 @@ public class Trip {
     String hold = this.places.get(0).name;
     if (optType != 0) {
       if (optType <= 0.5) {
-        optShort();
+        optShort(1);
       } else if (optType <= 1.0) {
-        optShorter();
+        optShort(2);
       }
     }
     restoreStart(hold);
@@ -82,22 +83,22 @@ public class Trip {
     this.placesArr = copyPlaces(ret);
   }
 
-  private void optShorter() {
+  private void optShorter(Place[] input) {
     boolean improvement = true;
     while (improvement) {
       improvement = false;
-      for (int i = 0; i <= this.placesArr.length - 3; i++) {
-        for (int k = i + 2; k <= this.placesArr.length - 1; k++) {
+      for (int i = 0; i <= input.length - 3; i++) {
+        for (int k = i + 2; k <= input.length - 1; k++) {
           int kn = k + 1;
-          if (k + 1 == this.placesArr.length) {
+          if (k + 1 == input.length) {
             kn = 0;
           }
-          int delta = -getDistance(this.placesArr[i], this.placesArr[i + 1])
-              - getDistance(this.placesArr[k], this.placesArr[kn])
-              + getDistance(this.placesArr[i], this.placesArr[k])
-              + getDistance(this.placesArr[i + 1], this.placesArr[kn]);
+          int delta = -getDistance(input[i], input[i + 1])
+              - getDistance(input[k], input[kn])
+              + getDistance(input[i], input[k])
+              + getDistance(input[i + 1], input[kn]);
           if (delta < 0) {
-            twooptReverse(i + 1, k);
+            twooptReverse(input,i + 1, k);
             improvement = true;
           }
         }
@@ -105,21 +106,24 @@ public class Trip {
     }
   }
 
-  private void twooptReverse(int i, int k) {
+  private void twooptReverse(Place[] input, int i, int k) {
     while (i < k) {
-      Place temp = this.placesArr[i];
-      this.placesArr[i] = this.placesArr[k];
-      this.placesArr[k] = temp;
+      Place temp = input[i];
+      input[i] = input[k];
+      input[k] = temp;
       i++;
       k--;
     }
   }
 
-  private void optShort() {
+  private void optShort(int type) {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
     for (int i = 0; i < this.placesArr.length; i++) {
       Place[] newarr = nearestNs(i);
+      if(type == 2) {
+        optShorter(newarr);
+      }
       int newdist = calctotalDist(newarr);
       if (newdist < bestdist) {
         bestdist = newdist;
