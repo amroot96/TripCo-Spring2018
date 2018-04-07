@@ -35,19 +35,56 @@ class InnerMap extends React.Component {
     return markers;
   }
 
+  findZoom(places) {
+    let minlat = 180;
+    let maxlat = -180;
+    let minlong = 180;
+    let maxlong = -180;
+    for(let i=0;i<places.length;i++) {
+      if(places[i].latitude<minlat) {
+        minlat = places[i].latitude;
+      }
+      if(places[i].latitude>maxlat) {
+        maxlat = places[i].latitude;
+      }
+      if(places[i].longitude<minlong) {
+        minlong = places[i].longitude;
+      }
+      if(places[i].longitude>maxlong) {
+        maxlong = places[i].longitude;
+      }
+    }
+    let lat = Number(minlat) + (Number(maxlat)-Number(minlat))/2;
+    let long = Number(minlong) + (Number(maxlong)-Number(minlong))/2;
+    let dzoom = Math.abs(Number(maxlat)-Number(minlat)) * Math.abs(Number(minlong)-Number(maxlong));
+    if(dzoom <3) {
+      dzoom = 9;
+    } else if(dzoom < 30) {
+      dzoom = 7;
+    } else if(dzoom < 300) {
+      dzoom = 5;
+    } else{dzoom = 1}
+    return {lat,long,dzoom}
+  }
+
   render() {
     const places = this.props.trip.places;
     if(places.length == 0) {
       return null;
     }
+    let zoom = this.findZoom(places);
+    if(isNaN(zoom.lat) || isNaN(zoom.long)) {
+      return null;
+    }
     return (
         <GoogleMap
-            defaultCenter={{lat: 39.3, lng: -105}}
-            defaultZoom={7}
+            defaultCenter={{lat: zoom.lat, lng: zoom.long}}
+            defaultZoom={zoom.dzoom}
         >
           <Polyline path={this.makePath(places)}
                     options={{strokeColor: 'DeepSkyBlue'}}
           />
+
         </GoogleMap>
     );
   }

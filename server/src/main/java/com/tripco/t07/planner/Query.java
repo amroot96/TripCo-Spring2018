@@ -15,7 +15,7 @@ public class Query {
 
     //SQL queries to count the number of records and to retrieve the data
     public String query = "";
-    public ArrayList<Place> locations;
+    public ArrayList<Place> locations = new ArrayList<Place>();
 
     /** Handles the queries from and to the database.
      */

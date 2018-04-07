@@ -14,8 +14,21 @@ class Destinations extends Component {
             file: "",
             database: {
                query: "",
-               locations: [],
-               filters: [],
+               places: [],
+               filters: [
+                         { attribute : "type",
+                           values : []
+                         },
+                         { attribute : "region",
+                           values : []
+                         },
+                         { attribute : "country",
+                           values : []
+                         },
+                         { attribute : "continent",
+                           values : []
+                         }
+                        ],
             },
             error: "",
         };
@@ -25,11 +38,13 @@ class Destinations extends Component {
         this.filterRegionActive = true;
         this.filterCountryActive = true;
         this.filterContinentActive = true;
+        this.typeOption = " ";
         this.state = this.initialState;
         this.loadTFFI = this.loadTFFI.bind(this);
         this.database = this.database.bind(this);
         this.createTable = this.createTable.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.getFilters = this.getFilters.bind(this);
     }
 
     loadTFFI(event) {
@@ -53,6 +68,23 @@ class Destinations extends Component {
         // this.props.updateTrip(??);
     }
 
+
+    getFilters(){
+        var type = document.getElementById("type").value;
+        if(this.filterRegion){
+            this.state.database.filters[1].values = document.getElementById("region").value.split(",");
+        }
+        if(this.filterCountry){
+            this.state.database.filters[2].values = document.getElementById("country").value.split(",");
+        }
+        if(this.filterContinent){
+            this.state.database.filters[3].values = document.getElementById("continent").value.split(",");
+        }
+        if(type != "placeholder"){
+            this.state.database.filters[0].values = document.getElementById("type").value;
+        }
+
+    }
     displayAlert(){
         if(this.state.error == "false"){
             return(
@@ -69,13 +101,16 @@ class Destinations extends Component {
             )
         }
 
+
     }
 
     queryResponse(){
         this.state.database.query = document.getElementById("search").value;
+        this.getFilters();
         let requestBody = this.state.database;
         const serverURL = 'http://' + location.host + '/query';
         console.log(serverURL);
+        console.log(JSON.stringify(requestBody));
         return fetch(serverURL, {
             method: "POST",
             body: JSON.stringify(requestBody)
@@ -93,8 +128,8 @@ class Destinations extends Component {
             this.setState({
                 database: {
                     query: query.query,
-                    locations: query.locations,
-                    filters : [],
+                    places: query.locations,
+                    filters : query.filters,
                 }
             });
         } catch (err) {
@@ -104,7 +139,7 @@ class Destinations extends Component {
 
   handleClick(param) {
     if(this.props.trip.places.length < 2) {
-      this.props.trip.places.push(this.state.database.locations[param]);
+      this.props.trip.places.push(this.state.database.places[param]);
       this.props.plan();
       return;
     }
@@ -112,7 +147,7 @@ class Destinations extends Component {
         === (this.props.trip.places[0].name)) {
       this.props.trip.places.pop();
     }
-    this.props.trip.places.push(this.state.database.locations[param]);
+    this.props.trip.places.push(this.state.database.places[param]);
     this.props.plan();
   }
 
@@ -133,9 +168,9 @@ class Destinations extends Component {
     }
 
     createTable(){
-        let loc = this.state.database.locations;
+        let loc = this.state.database.places;
         let row = [];
-        for(let i = 0; i < this.state.database.locations.length; i++) {
+        for(let i = 0; i < this.state.database.places.length; i++) {
             row[i] =
                 <tr key={i}>
                     <td key={loc[i].id}>{loc[i].id}</td>
@@ -150,16 +185,16 @@ class Destinations extends Component {
 
     filterType() {
         return(
-            <select>
-                <option key="placeholder" placeholder="Select Type">Type: </option>
-                <option key="none">Any</option>
-                <option key="small">Small Airport</option>
-                <option key="medium">Medium Airport</option>
-                <option key="large">Large Airport</option>
-                <option key="heliport">Heliport</option>
-                <option key="seaPlaneBase">SeaPlane Base</option>
-                <option key="balloonport">Balloon Port</option>
-                <option key="closed">Closed</option>
+            <select id="type">
+                <option value="placeholder" placeholder="Select Type">Type: </option>
+                <option value="none">Any</option>
+                <option value="small airport">Small Airport</option>
+                <option value="medium airport">Medium Airport</option>
+                <option value="large airport">Large Airport</option>
+                <option value="heliport">Heliport</option>
+                <option value="seaPlaneBase">SeaPlane Base</option>
+                <option value="balloonport">Balloon Port</option>
+                <option value="closed">Closed</option>
             </select>
         )
     }
@@ -194,7 +229,7 @@ class Destinations extends Component {
     }
 
   displayQuery(){
-        if(this.state.database.locations.length != 0) {
+        if(this.state.database.places.length != 0) {
             let table = this.createTable();
             return (
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
