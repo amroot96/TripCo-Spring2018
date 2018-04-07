@@ -17,7 +17,7 @@ class Destinations extends Component {
                locations: [],
                filters: [],
             },
-            error: false,
+            error: "",
         };
         this.filterRegion = false;
         this.filterCountry = false;
@@ -42,8 +42,9 @@ class Destinations extends Component {
                 this.setState({count : json.places.length});
                 this.setState({file : json});
                 this.props.updateTrip(json,1);
+                this.setState({error: "false"});
             } catch (ex) {
-                this.setState({error: true});
+                this.setState({error: "true"});
             }
         }.bind(this);
 
@@ -53,11 +54,17 @@ class Destinations extends Component {
     }
 
     displayAlert(){
-        console.log(this.error);
-        if(this.state.error == true){
+        if(this.state.error == "false"){
+            return(
+                <div className="alert alert-success">
+                    <strong>Loaded tffi successfully!</strong> .
+                </div>
+            )
+        }
+        if(this.state.error == "true"){
             return(
                 <div className="alert alert-danger">
-                    <strong>Error: </strong> Failed to load tiff.
+                    <strong>Error: </strong> Failed to load tffi.
                 </div>
             )
         }
