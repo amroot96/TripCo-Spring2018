@@ -16,7 +16,6 @@ import java.io.*;
  */
 public class Trip {
 
-  // The variables in this class should reflect TFFI.
   private int version;
   private String type;
   private String title;
