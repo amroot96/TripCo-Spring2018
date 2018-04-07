@@ -14,7 +14,7 @@ public class Config  {
   private final int optimizaiton = 2;
   private final Optimizations[] optimizations = {new Optimizations("0opt","As planned"),
                                              new Optimizations("1opt","Nearest Neighbor"),
-                                             new Optimizations("2opt","2-opt algorithm applied")};
+                                             new Optimizations("2opt","2-opt algorithm")};
   private final String[] distances = {"miles", "kilometers", "nautical miles", "user defined"};
 
 }
