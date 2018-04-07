@@ -41,10 +41,10 @@ public class MicroServer {
     get("/echo", this::echo);
     get("/hello/:name", this::hello);
     get("/team", this::team);
+    get("/config", this::config);
     // client is sending data, so a HTTP POST is used instead of a GET
     post("/plan", this::plan);
     post("/query", this::query);
-    post("/config", this::config);
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
 

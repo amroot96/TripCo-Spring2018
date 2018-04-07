@@ -10,7 +10,12 @@ import java.util.ArrayList;
 public class Filter {
 
     public String attribute = "";
-    public ArrayList<Place> values;
+    public ArrayList<String> values;
+
+    public Filter(String att, ArrayList<String> val){
+        this.attribute = att;
+        this.values = val;
+    }
 
     public void filterDatabase() {
 
