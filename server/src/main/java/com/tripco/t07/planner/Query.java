@@ -29,7 +29,13 @@ public class Query {
         try {
             Class.forName(myDriver);
 // connect to the database and query
-            try (Connection conn = DriverManager.getConnection(myUrl, "amroot", "830291232");
+            String user = "amroot";
+            String password = "830291232";
+            if (System.getenv("TRAVIS") != null){
+                user = "travis";
+                password = null;
+            }
+            try (Connection conn = DriverManager.getConnection(myUrl, user, password);
                  Statement stCount = conn.createStatement();
                  Statement stQuery = conn.createStatement();
                  ResultSet rsCount = stCount.executeQuery(count);
