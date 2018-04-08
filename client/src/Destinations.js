@@ -236,6 +236,7 @@ class Destinations extends Component {
                     <div id="queries" className="card">
                         <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
                         <div className="card-body">
+                            <div  className="pre-scrollable">
                             <table className="table table-responsive table-bordered">
                                 <thead>
                                 <tr className="table-outline-dark">
@@ -249,6 +250,7 @@ class Destinations extends Component {
                                 {table.row}
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>
