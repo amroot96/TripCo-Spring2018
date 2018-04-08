@@ -16,16 +16,42 @@ public class Query {
     //SQL queries to count the number of records and to retrieve the data
     public String query = "";
     public ArrayList<Place> locations = new ArrayList<Place>();
+    public ArrayList<Filter> filters;
 
     /** Handles the queries from and to the database.
      */
-    public void queryDatabase(){
-        String count= "select count(*) from airports;";
-        String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
-                + query +"%'or municipality like'%"+ query +"%'order by name;";
-        System.out.println(search);
-        System.out.println(count);
+    public void queryDatabase() {
+        if(filters.size() == 0) {
+            String count = "select count(*) from airports;";
+            String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
+                    + query + "%'or municipality like'%" + query + "%'order by name limit 15;";
+            System.out.println(search);
+            System.out.println(count);
+            query(search, count);
+        } else {
+            idLookup();
+        }
+    }
 
+    private void idLookup() {
+        String count = "select count(*) from airports;";
+        String searching =
+                "SELECT  airports.id, airports.name, airports.municipality, airports.type, " +
+                        "airports.latitude, airports.longitude, region.name, country.name, continents.name " +
+                        "FROM continents " +
+                        "INNER JOIN country ON continents.id = country.continent " +
+                        "INNER JOIN region ON country.id = region.iso_country " +
+                        "INNER JOIN airports ON region.id = airports.iso_region " +
+                        "WHERE country.name LIKE '%" +query +
+                        "%' OR region.name LIKE '%" + query +
+                        "%' OR airports.name LIKE '%" + query +
+                        "%' OR airports.municipality LIKE '%" + query +
+                        "%' ORDER BY continents.name, country.name, region.name, airports.municipality, " +
+                        "airports.name ASC LIMIT 15;";
+        query(searching,count);
+    }
+
+    public void query(String search, String count) {
         try {
             Class.forName(myDriver);
 // connect to the database and query

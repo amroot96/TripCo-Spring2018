@@ -24,7 +24,7 @@ public class Trip {
   public ArrayList<Place> places;
   private Place[] placesArr;
   public ArrayList<Integer> distances;
-  public String map;
+  public transient String map;
 
 
   public void plan() {
