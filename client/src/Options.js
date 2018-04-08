@@ -191,8 +191,7 @@ class Options extends Component {
             {this.labelTag(this.nautical, "nautical miles", "distance",
                 this.nauticalButton, "Nautical Miles")}
                 </div>
-            <div>OR...</div>
-            <div>Enter your own unit name and radius of the Earth:</div>
+            <div>Or enter your own unit name and radius of the Earth:</div>
             <input name="Name" type="text" id="UD" placeholder="Name" onKeyDown={this.enter}/>
             <input name="Radius" type="text" id="UD" placeholder="Radius" onKeyDown={this.enter}/>
         </div>

@@ -63,7 +63,7 @@ class InnerMap extends React.Component {
       dzoom = 7;
     } else if(dzoom < 300) {
       dzoom = 5;
-    } else{dzoom = 1}
+    } else{dzoom = 2}
     return {lat,long,dzoom}
   }
 
@@ -82,7 +82,7 @@ class InnerMap extends React.Component {
             defaultZoom={zoom.dzoom}
         >
           <Polyline path={this.makePath(places)}
-                    options={{strokeColor: 'DeepSkyBlue'}}
+                    options={{strokeColor: 'green'}}
           />
 
         </GoogleMap>
@@ -105,7 +105,7 @@ const TripMap = compose(
       '&libraries=geometry,drawing,places',
       loadingElement: <div />,
       containerElement: <div/>,
-      mapElement: <div style={{ height: `60%` }} />
+      mapElement: <div style={{ height: `70%` }} />
     }),
     withScriptjs,
     withGoogleMap,

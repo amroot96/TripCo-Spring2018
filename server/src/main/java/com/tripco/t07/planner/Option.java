@@ -28,7 +28,10 @@ public class Option {
   }
 
   public double getOptimization() {
-    return Double.parseDouble(this.optimization);
+    if(this.optimization!=null) {
+      return Double.parseDouble(this.optimization);
+    }
+    else return 0;
   }
 
   /**
