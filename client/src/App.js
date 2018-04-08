@@ -20,7 +20,7 @@ class App extends Component {
     configResponse(){
         const serverURL = 'http://' + location.host + '/config';
         return fetch(serverURL, {
-            method: "POST",
+            method: "GET",
         });
 
     }
