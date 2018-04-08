@@ -109,8 +109,6 @@ class Destinations extends Component {
         this.getFilters();
         let requestBody = this.state.database;
         const serverURL = 'http://' + location.host + '/query';
-        console.log(serverURL);
-        console.log(JSON.stringify(requestBody));
         return fetch(serverURL, {
             method: "POST",
             body: JSON.stringify(requestBody)

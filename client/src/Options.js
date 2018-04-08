@@ -43,7 +43,6 @@ class Options extends Component {
   }
 
   distanceButtonSelector(arg,type) {
-    console.log(arg);
     switch (arg) {
       case "miles":
         this.milesButton(type);

@@ -45,11 +45,9 @@ class Application extends Component {
   }
 
   async plan() {
-    console.log("Plan called")
     try {
       let serverResponse = await this.fetchResponse();
       let tffi = await serverResponse.json();
-      // console.log(tffi);
       this.updateTrip(tffi, 2);
     } catch (err) {
       console.error(err);
@@ -59,7 +57,6 @@ class Application extends Component {
   updateTrip(json, init) {
     if (init === 1) {
       json.distances = new Array(json.places.length);
-      //comment
     }
     this.setState({
       trip: {
@@ -81,14 +78,13 @@ class Application extends Component {
     if (str === "distance") {
       let unitChange = Object.assign({}, this.state.trip);
       unitChange.options.distance = arg;
+      unitChange.options.optimization = "0";
       this.setState({trip: unitChange});
-      console.log(this.state.trip.options);
     }
     else {
       let unitChange = Object.assign({}, this.state.trip);
       unitChange.options.optimization = arg;
       this.setState({trip: unitChange});
-      console.log(this.state.trip.options);
     }
     this.plan();
   }
