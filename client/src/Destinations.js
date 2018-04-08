@@ -265,7 +265,6 @@ class Destinations extends Component {
                         <input type="file" className="form-control-file" onChange={this.loadTFFI} id="tffifile" />
                     </div>
                     {this.displayAlert()}
-                    <h5>There are {this.state.count} destinations in this file. </h5>
                 </div>
             </div>
         )

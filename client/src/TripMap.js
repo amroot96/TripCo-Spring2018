@@ -82,7 +82,7 @@ class InnerMap extends React.Component {
             defaultZoom={zoom.dzoom}
         >
           <Polyline path={this.makePath(places)}
-                    options={{strokeColor: 'DeepSkyBlue'}}
+                    options={{strokeColor: 'green'}}
           />
 
         </GoogleMap>
@@ -105,7 +105,7 @@ const TripMap = compose(
       '&libraries=geometry,drawing,places',
       loadingElement: <div />,
       containerElement: <div/>,
-      mapElement: <div style={{ height: `100%` }} />
+      mapElement: <div style={{ height: `70%` }} />
     }),
     withScriptjs,
     withGoogleMap,
