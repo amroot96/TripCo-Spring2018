@@ -36,18 +36,18 @@ public class Query {
     private void idLookup() {
         String count = "select count(*) from airports;";
         String searching =
-                "SELECT  airports.id, airports.name, airports.municipality, airports.type, " +
-                        "airports.latitude, airports.longitude, region.name, country.name, continents.name " +
-                        "FROM continents " +
-                        "INNER JOIN country ON continents.id = country.continent " +
-                        "INNER JOIN region ON country.id = region.iso_country " +
-                        "INNER JOIN airports ON region.id = airports.iso_region " +
-                        "WHERE country.name LIKE '%" +query +
-                        "%' OR region.name LIKE '%" + query +
-                        "%' OR airports.name LIKE '%" + query +
-                        "%' OR airports.municipality LIKE '%" + query +
-                        "%' ORDER BY continents.name, country.name, region.name, airports.municipality, " +
-                        "airports.name ASC LIMIT 15;";
+                "SELECT  airports.id, airports.name, airports.municipality, airports.type, "
+                        + "airports.latitude, airports.longitude, region.name, country.name,"
+                        + " continents.name FROM continents "
+                        + "INNER JOIN country ON continents.id = country.continent "
+                        + "INNER JOIN region ON country.id = region.iso_country "
+                        + "INNER JOIN airports ON region.id = airports.iso_region "
+                        + "WHERE country.name LIKE '%" + query
+                        + "%' OR region.name LIKE '%" + query
+                        + "%' OR airports.name LIKE '%" + query
+                        + "%' OR airports.municipality LIKE '%" + query
+                        + "%' ORDER BY continents.name, country.name, region.name, "
+                        + "airports.municipality, airports.name ASC LIMIT 15;";
         query(searching,count);
     }
 
