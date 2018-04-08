@@ -4,8 +4,10 @@
 
 import React, {Component} from 'react'
 import {compose, withProps} from 'recompose'
-import {withScriptjs, withGoogleMap,
-  GoogleMap, Polyline, Marker} from 'react-google-maps'
+import {
+  withScriptjs, withGoogleMap,
+  GoogleMap, Polyline, Marker
+} from 'react-google-maps'
 
 class InnerMap extends React.Component {
   constructor(props) {
@@ -22,15 +24,19 @@ class InnerMap extends React.Component {
     let path = places.map(
         x => ({lat: Number(x.latitude), lng: Number(x.longitude)})
     );
-    path.push({lat: Number(places[0].latitude), lng: Number(places[0].longitude)});
+    path.push(
+        {lat: Number(places[0].latitude), lng: Number(places[0].longitude)});
     return path;
   }
 
   // Create our markers
   makeMarkers(places) {
     let markers = [];
-    for(let i=0;i<places.length;i++) {
-      markers[i] = <Marker key={i} position={{lat: Number(places[i].latitude), lng: Number(places[i].longitude)}}/>
+    for (let i = 0; i < places.length; i++) {
+      markers[i] = <Marker key={i} position={{
+        lat: Number(places[i].latitude),
+        lng: Number(places[i].longitude)
+      }}/>
     }
     return markers;
   }
@@ -40,42 +46,46 @@ class InnerMap extends React.Component {
     let maxlat = -180;
     let minlong = 180;
     let maxlong = -180;
-    for(let i=0;i<places.length;i++) {
-      if(places[i].latitude<minlat) {
+    for (let i = 0; i < places.length; i++) {
+      if (places[i].latitude < minlat) {
         minlat = places[i].latitude;
       }
-      if(places[i].latitude>maxlat) {
+      if (places[i].latitude > maxlat) {
         maxlat = places[i].latitude;
       }
-      if(places[i].longitude<minlong) {
+      if (places[i].longitude < minlong) {
         minlong = places[i].longitude;
       }
-      if(places[i].longitude>maxlong) {
+      if (places[i].longitude > maxlong) {
         maxlong = places[i].longitude;
       }
     }
-    let lat = Number(minlat) + (Number(maxlat)-Number(minlat))/2;
-    let long = Number(minlong) + (Number(maxlong)-Number(minlong))/2;
-    let dzoom = Math.abs(Number(maxlat)-Number(minlat)) * Math.abs(Number(minlong)-Number(maxlong));
-    if(dzoom <3) {
+    let lat = Number(minlat) + (Number(maxlat) - Number(minlat)) / 2;
+    let long = Number(minlong) + (Number(maxlong) - Number(minlong)) / 2;
+    let dzoom = Math.abs(Number(maxlat) - Number(minlat)) * Math.abs(Number(
+        minlong) - Number(maxlong));
+    if (dzoom < 3) {
       dzoom = 9;
-    } else if(dzoom < 30) {
+    } else if (dzoom < 30) {
       dzoom = 7;
-    } else if(dzoom < 300) {
+    } else if (dzoom < 300) {
       dzoom = 5;
-    } else{dzoom = 2}
-    return {lat,long,dzoom}
+    } else {
+      dzoom = 2
+    }
+    return {lat, long, dzoom}
   }
 
   render() {
     const places = this.props.trip.places;
-    if(places.length == 0) {
+    if (places.length === 0) {
       return null;
     }
     let zoom = this.findZoom(places);
-    if(isNaN(zoom.lat) || isNaN(zoom.long)) {
+    if (isNaN(zoom.lat) || isNaN(zoom.long)) {
       return null;
     }
+
     return (
         <GoogleMap
             defaultCenter={{lat: zoom.lat, lng: zoom.long}}
@@ -84,7 +94,6 @@ class InnerMap extends React.Component {
           <Polyline path={this.makePath(places)}
                     options={{strokeColor: 'green'}}
           />
-
         </GoogleMap>
     );
   }
@@ -103,9 +112,9 @@ const TripMap = compose(
       'key=AIzaSyDqtbd69P2PJwKzhXVpmesbNgnEWIjaCsk' +
       '&v=3.exp' +
       '&libraries=geometry,drawing,places',
-      loadingElement: <div />,
+      loadingElement: <div/>,
       containerElement: <div/>,
-      mapElement: <div style={{ height: `70%` }} />
+      mapElement: <div style={{height: `70%`}}/>
     }),
     withScriptjs,
     withGoogleMap,
