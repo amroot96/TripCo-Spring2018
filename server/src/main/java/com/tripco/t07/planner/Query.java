@@ -23,8 +23,7 @@ public class Query {
     /** Handles the queries from and to the database.
      */
     public void queryDatabase() {
-        System.out.println(filters);
-        if(filters.size() == 0) {
+        if(filters.get(0).values.size() == 0 || filters.get(0).values.get(0).equals("none")) {
             String count = "select count(*) from airports;";
             String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
                     + query + "%'or municipality like'%" + query
@@ -42,11 +41,10 @@ public class Query {
         String count = "select count(*) from airports;";
         String searching =
                 "SELECT id, name, municipality, type, latitude, longitude"
-                        + " FROM airports"
-                        + " WHERE (name LIKE '%" + query
+                        + " FROM airports WHERE (name LIKE '%" + query
                         + "%' OR municipality like '%" + query
                         + "%' OR id like '%" + query
-                        + "%') AND type = '" + filters.get(0).toString()
+                        + "%') AND type = '" + filters.get(0).values.get(0)
                         + "' ORDER BY "
                         + "name ASC LIMIT 15;";
         query(searching,count);
