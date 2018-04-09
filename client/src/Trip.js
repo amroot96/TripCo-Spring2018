@@ -77,10 +77,6 @@ class Trip extends Component {
                      style={{background: '#1E4D2B'}}>Trip
                 </div>
                 <div className="card-body">
-                  <Itinerary trip={this.props.trip}
-                             removePlaces={this.props.removePlace}
-                              makeStart={this.props.makeStart}/>
-                  {this.reverseButton()}
                   <div className="input-group" role="group">
                                 <span className="input-group-btn">
                                     <button className="btn btn"
@@ -98,6 +94,10 @@ class Trip extends Component {
                                 </span>
                   </div>
                   <Map trip={this.props.trip}/></div>
+                  <Itinerary trip={this.props.trip}
+                             removePlaces={this.props.removePlace}
+                             makeStart={this.props.makeStart}/>
+                  {this.reverseButton()}
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ class Destinations extends Component {
                filters: [
                          { attribute : "type",
                            values : []
-                         },
+                         }/*,
                          { attribute : "region",
                            values : []
                          },
@@ -27,7 +27,7 @@ class Destinations extends Component {
                          },
                          { attribute : "continent",
                            values : []
-                         }
+                         }*/
                         ],
             },
             error: "",
@@ -81,7 +81,7 @@ class Destinations extends Component {
             this.state.database.filters[3].values = document.getElementById("continent").value.split(",");
         }
         if(type != "placeholder"){
-            this.state.database.filters[0].values = document.getElementById("type").value;
+            this.state.database.filters[0].values = [document.getElementById("type").value];
         }
 
     }
@@ -149,7 +149,7 @@ class Destinations extends Component {
     this.props.plan();
   }
 
-    handleFilterCheck(arg1){
+   /* handleFilterCheck(arg1){
         switch(arg1){
             case "region":
                 this.filterRegion = this.filterRegion === true ? false : true;
@@ -163,7 +163,7 @@ class Destinations extends Component {
             default:
         }
         this.setState(this.state);
-    }
+    } */
 
     createTable(){
         let loc = this.state.database.places;
@@ -186,11 +186,11 @@ class Destinations extends Component {
             <select id="type">
                 <option value="placeholder" placeholder="Select Type">Type: </option>
                 <option value="none">Any</option>
-                <option value="small airport">Small Airport</option>
-                <option value="medium airport">Medium Airport</option>
-                <option value="large airport">Large Airport</option>
+                <option value="small_airport">Small Airport</option>
+                <option value="medium_airport">Medium Airport</option>
+                <option value="large_airport">Large Airport</option>
                 <option value="heliport">Heliport</option>
-                <option value="seaPlaneBase">SeaPlane Base</option>
+                <option value="seaplane_base">SeaPlane Base</option>
                 <option value="balloonport">Balloon Port</option>
                 <option value="closed">Closed</option>
             </select>
@@ -283,15 +283,19 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
-                    <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
-                    {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
-                    {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
-                    {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
                     <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>
         )
     }
+
+    /*tempMethod() {
+        <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
+        {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
+        {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
+        {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
+        <p>
+    }*/
 
 
     render() {

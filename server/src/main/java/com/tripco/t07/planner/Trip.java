@@ -37,7 +37,7 @@ public class Trip {
       opt();
       legDistances(this.placesArr);
       this.map = svg();
-      if (this.version != 2) {
+      if (this.version != 3 || this.version != 2) {
         this.version = 1;
       }
     }
