@@ -6,10 +6,10 @@ public class Config  {
 
   private final String type = "config";
   private final int version = 3;
-  private final Filter[] filters = {new Filter("type",new ArrayList<String>()),
+  private final Filter[] filters = {new Filter("type",new ArrayList<String>())};/*,
                                     new Filter("region",new ArrayList<String>()),
                                     new Filter("country",new ArrayList<String>()),
-                                    new Filter("continent",new ArrayList<String>())};
+                                    new Filter("continent",new ArrayList<String>())};*/
   private final String[] maps = {"svg","kml"};
   private final int optimizaiton = 2;
   private final Optimizations[] optimizations = {new Optimizations("0opt","As planned"),
