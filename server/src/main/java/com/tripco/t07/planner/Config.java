@@ -10,7 +10,7 @@ public class Config  {
                                     new Filter("region",new ArrayList<String>()),
                                     new Filter("country",new ArrayList<String>()),
                                     new Filter("continent",new ArrayList<String>())};*/
-  private final String[] maps = {"svg","kml"};
+  private final String[] maps = {"kml"};
   private final int optimizaiton = 2;
   private final Optimizations[] optimizations = {new Optimizations("0opt","As planned"),
                                               new Optimizations("1opt","Nearest Neighbor"),

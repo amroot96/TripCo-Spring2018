@@ -92,7 +92,7 @@ class InnerMap extends React.Component {
             defaultZoom={zoom.dzoom}
         >
           <Polyline path={this.makePath(places)}
-                    options={{strokeColor: 'green'}}
+                    options={{strokeColor: '#FFA500'}}
           />
         </GoogleMap>
     );
