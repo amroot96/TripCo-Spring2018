@@ -24,13 +24,12 @@ public class Plan {
    * @param request
    */
   public Plan (Request request) {
-    // first print the request
-    //System.out.println(HTTP.echoRequest(request));
-
+    System.out.println(request.body());
     // extract the information from the body of the request.
+
     JsonParser jsonParser = new JsonParser();
     JsonElement requestBody = jsonParser.parse(request.body());
-    //System.out.println(requestBody);
+    System.out.println(requestBody);
 
     // convert the body of the request to a Java class.
     Gson gson = new Gson();
