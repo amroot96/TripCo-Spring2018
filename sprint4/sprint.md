@@ -45,8 +45,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  31   | 18 
-Story Points |  32  | 27 
+Tasks |  31   | 20 
+Story Points |  32  | 31 
 
 ## Daily Scrums
 
@@ -58,6 +58,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 04/03/18 | Update Trip with starting location, Added button for starting location, Added distance filters UI | Update config to handle filters, Create database test cases, Serverside filter handling | Groupmate family in ER
 04/05/18 | Filter Buttons and input UI, Added google map to client, Updated user defined input, Display filter result on search click | Server side filter implementation, Create JS tests, Create database tests, Improve user experience | NONE
 04/07/18 | Improve user Experience, Oprimize 2-opt more, Finish filter ui functionality and communication with server | Server side filtering, Create JS tests, Create databse tests | NONE 
+04/10/18 | Server side filtering on TYPE | create database tests | NONE
  
 
 ## Review
