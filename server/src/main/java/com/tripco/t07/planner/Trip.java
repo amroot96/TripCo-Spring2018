@@ -60,7 +60,7 @@ public class Trip {
     if (optType != 0) {
       if (optType <= 0.5) {
         optShort(1);
-      } else if (optType <= 1.0) {
+      } else if (optType > 0.5) {
         optShort(2);
       }
     }
@@ -177,7 +177,11 @@ public class Trip {
 
   //Correctly fills out distances arraylist;
   private void legDistances(Place[] list) {
-    this.distances.clear();
+    if(this.distances!=null) {
+      this.distances.clear();
+    }else {
+      this.distances = new ArrayList<Integer>();
+    }
     this.places.clear();
     this.distances.add(0);
     this.places.add(list[0]);
@@ -228,6 +232,11 @@ public class Trip {
           + " latitude: " + p.latitude + " longitude: " + p.longitude);
     }
     System.out.println(distances);
+    int sum = 0;
+    for(Integer i: this.distances) {
+      sum+=i;
+    }
+    System.out.println("total distance: " + sum);
   }
 
 
