@@ -21,7 +21,7 @@ public class TestQuery {
     public void initialize() {
         q = new Query();
         q.query = "centennial";
-        q.locations = new ArrayList<Place>();
+        q.places = new ArrayList<Place>();
 
         invalid = new Query();
         invalid.query = "fasf";
