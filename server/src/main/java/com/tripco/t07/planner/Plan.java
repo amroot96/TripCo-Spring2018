@@ -36,6 +36,11 @@ public class Plan {
     trip = gson.fromJson(requestBody, Trip.class);
 
     // plan the trip.
+    if(trip.options == null) {
+      trip.options = new Option();
+      trip.options.distance = "miles";
+      trip.options.optimization = "0.0";
+    }
     trip.plan();
     // log something.
     trip.display();

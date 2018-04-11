@@ -58,6 +58,14 @@ class Application extends Component {
     if (init === 1) {
       json.distances = new Array(json.places.length);
     }
+    if(json.options == null) {
+      json.options = {
+        distance: "miles",
+        userUnit: " ",
+        userRadius: " ",
+        optimization: "0"
+      }
+    }
     this.setState({
       trip: {
         version: json.version,
