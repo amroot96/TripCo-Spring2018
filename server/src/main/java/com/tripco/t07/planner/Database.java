@@ -16,7 +16,7 @@ public class Database  {
     public Database(Request request) {
         // first print the request
         //System.out.println(HTTP.echoRequest(request));
-
+        System.out.println(request.body());
         // extract the information from the body of the request.
         JsonParser jsonParser = new JsonParser();
         JsonElement requestBody = jsonParser.parse(request.body());

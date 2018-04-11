@@ -10,33 +10,51 @@ import java.util.ArrayList;
 
 public class Query {
     //dbconfigurationinformation
-    private  String myDriver="com.mysql.jdbc.Driver";
-    private  String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private transient String myDriver="com.mysql.jdbc.Driver";
+    private transient String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
 
     //SQL queries to count the number of records and to retrieve the data
+    public Integer version;
+    public String type = "";
     public String query = "";
-    public ArrayList<Place> locations = new ArrayList<>();
-    public ArrayList<Filter> filters = new ArrayList<>();
-
+    public ArrayList<Filter> filters;
+    public ArrayList<Place> places = new ArrayList<>();
     public Query() {}
 
     /** Handles the queries from and to the database.
      */
     public void queryDatabase() {
-        if(filters.get(0).values.size() == 0 || filters.get(0).values.get(0).equals("none")) {
-            String count = "select count(*) from airports;";
-            String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
-                    + query + "%'or municipality like'%" + query
-                    + "%' or  id like '%" + query
-                    + "%' order by name limit 15;";
-            System.out.println(search);
-            System.out.println(count);
-            query(search, count);
+        if (version == null) {
+            version = 3;
+        }
+        if (type == null) {
+            type = "query";
+        }
+        if(filters != null) {
+            if(filters.get(0).values.size() == 0 || filters.get(0).values == null) {
+                noneLookup();
+                return;
+            }
+            if(filters.size()==0 || filters.get(0).values.get(0).equals("none")) {
+                noneLookup();
+                return;
+            } else {
+                typeLookup();
+            }
         } else {
-            typeLookup();
+            noneLookup();
         }
     }
-
+    private void noneLookup() {
+        String count = "select count(*) from airports;";
+        String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
+            + query + "%'or municipality like'%" + query
+            + "%' or  id like '%" + query
+            + "%' order by name limit 15;";
+        System.out.println(search);
+        System.out.println(count);
+        query(search, count);
+    }
     private void typeLookup() {
         String count = "select count(*) from airports;";
         String searching =
@@ -74,7 +92,7 @@ public class Query {
     }
     private void printJson(ResultSet count, ResultSet q) throws SQLException {
         System.out.printf("\n{\n");
-        System.out.printf("\"type\": \"find\",\n");
+        System.out.printf("\"type\": \"query\",\n");
         System.out.printf("\"title\": \"%s\",\n", query);
         System.out.printf("\"places\": [\n");
 // determine the number of results that match the query
@@ -90,7 +108,7 @@ public class Query {
             place.name = q.getString("name");
             place.latitude = q.getString("latitude");
             place.longitude = q.getString("longitude");
-            locations.add(place);
+            places.add(place);
             if (--results == 0){
                 System.out.printf("\n");
             }

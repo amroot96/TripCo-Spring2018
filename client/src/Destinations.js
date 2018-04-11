@@ -121,12 +121,12 @@ class Destinations extends Component {
         try {
             let serverResponse = await this.queryResponse();
             let query = await serverResponse.json();
-            console.log(query.locations);
+            console.log(query.places);
            // this.props.database.locations = new Array(query.locations.length);
             this.setState({
                 database: {
                     query: query.query,
-                    places: query.locations,
+                    places: query.places,
                     filters : query.filters,
                 }
             });
