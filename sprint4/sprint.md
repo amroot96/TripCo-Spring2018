@@ -45,8 +45,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  31   | 20 
-Story Points |  32  | 31 
+Tasks |  31   | 31 
+Story Points |  32  | 32 
 
 ## Daily Scrums
 
@@ -64,26 +64,33 @@ Date | Tasks done  | Tasks in progress | Impediments
 ## Review
 
 #### Completed epics in Sprint Backlog 
-* *user story*:  *comments*
-* 
+* New Starting Locaiton
+* Improve The User Experience
+* Branding
+* System Testing
+* Zoom And Pan The Map
+* Filtered Searches
+* Plan Trips Outside Of Colorado
+* Distance Unit Configuration
+* Distance Units
 
 #### Incomplete epics in Sprint Backlog 
-* *user story*: *explanation...*
-*
+* None
 
 #### What went well
-* *something*
-*
+* We planned pretty well, we didn't have to add many more issues
+* We used zenhub as intended, our burndown chart was on track
 
 #### Problems encountered and resolutions
-* *something*
-*
+* We didn't do the first deploy check
+* We break travis at one point
+* We took too long to fix the API Tests
 
 ## Retrospective
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
-What we will change this time |  |  | 
-What we did well |  |  | 
-What we need to work on |  |  |
-What we will change next time |  |  | 
+What we will change this time | N/A | Focus on critical topics first  | N/A
+What we did well | We communicated well | We improved continuously | N/A
+What we need to work on | N/A | Thinking about the user experience | Code Climate optimizaiton
+What we will change next time | N/A | Planning a more detailed zenhub based on our velocity | N/A
