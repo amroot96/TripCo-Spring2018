@@ -1,0 +1,19 @@
+{
+  "version"   : 3,
+  "type"      : "trip",
+  "title"     : "My Trip",
+  "options":    { 
+                "userRadius" : 540,
+                "optimization" : "0"
+                },
+  "places"    : [
+                  {"id":"dnvr", "name":"Denver",       "latitude":"39.7392° N", "longitude":"104.9903° W"},
+                  {"id":"bldr", "name":"Boulder",      "latitude":"40.0149900", "longitude":"-105.2705500"},
+                  {"id":"foco", "name":"Fort Collins", "latitude":"40° 35' 6.9288\" N", "longitude":"105° 5' 3.9084\" W"},
+                  {"id":"aurora", "name": "Aurora",    "latitude":"39.7294° N",
+                  "longitude":"104.8319° W"}
+                ],
+  "distances" : [],
+  "map"       : ""
+}
+
