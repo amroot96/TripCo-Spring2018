@@ -1,17 +1,17 @@
 # Sprint 5 - *t07* - *Jackalope*
 
 ## Goal
-
+Give the user an overall better experience
 ### 
 ### Sprint Leader: *Courtney Torres*
 
 ## Definition of Done
-
-* 
-* 
-* 
-* 
-* 
+* Improving the existing responsive web application to handle world travel.
+* Spring Review and Retrospectives completed.
+* Product Increment release v5.0 created on GitHub with appropriate verson number and name, a description based on the Release Notes template, and the archived files.
+* Version in pom.xml should be <version>5.0</version>
+* Javadoc and unit tests for public methods. (java and js)
+* Coverage at least 60%
 
 ## Policies
 
@@ -29,14 +29,16 @@
 
 Epics planned for this release.
 
-* *## User sets their own distance units*
-* *## Optimize 2-opt so it runs faster*
-* *## Plan trips outside of colorado*
-* *## Add search filter functionality*
-* *## Add map zoom and pan functionality*
-* *## Fix branding*
-* *## Improve user experience*
-* *## Let the user choose a new starting location*
+* *## TFFI Updates*
+* *## Interop*
+* *## Shorter trips #3*
+* *## Staff Page *
+* *## Save my options as default for future use*
+* *## System testing*
+* *## Improve the user experience*
+* *## View trip in other tools*
+* *## Speed up the computation in the server*
+* *## Give the user the option to choose what information to display in the itinerary.*
 
 *Include a discussion of planning decisions made based on your velocity from previous sprints.*
 
@@ -44,14 +46,14 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  31   | 20 
-Story Points |  32  | 31 
+Tasks |  31  | 
+Story Points |  35  |  
 
 ## Daily Scrums
 
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
- |  | | 
+ 04/14/2018|  Planning| Host and port configurations, and staff page| Scott was late
  
 
 ## Review
