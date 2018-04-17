@@ -45,12 +45,12 @@ public class TestQuery {
         q.limit = 0;
         q.queryDatabase();
         assertEquals(50, q.limit, 0);
-    }
+    }*/
 
     @Test
     public void trueEqualTrue(){
         assertEquals(true,true);
-    }*/
+    }
 
 //    @Test
 //    public void testValidQuery(){
