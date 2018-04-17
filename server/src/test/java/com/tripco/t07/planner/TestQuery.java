@@ -27,7 +27,7 @@ public class TestQuery {
         invalid.query = "fasf";
     }
 
-    @Test
+   /* @Test
     public void testNoLimit() {
         q.queryDatabase();
         assertEquals(50, q.limit, 0);
@@ -50,7 +50,7 @@ public class TestQuery {
     @Test
     public void trueEqualTrue(){
         assertEquals(true,true);
-    }
+    }*/
 
 //    @Test
 //    public void testValidQuery(){
