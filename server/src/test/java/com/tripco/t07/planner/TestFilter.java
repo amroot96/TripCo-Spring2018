@@ -18,15 +18,9 @@ public class TestFilter {
     }
 
     @Test
-    public void TestAttr() {
-        System.out.println(F.getAttr());
-        assertEquals("type", F.getAttr());
-    }
+    public void TestAttr() { assertEquals("type", F.getAttr()); }
 
     @Test
-    public void TestVals() {
-        System.out.println(F.getValues().toString());
-        assertEquals("heliport", F.getValues().get(0));
-    }
+    public void TestVals() { assertEquals("heliport", F.getValues().get(0)); }
 
 }
