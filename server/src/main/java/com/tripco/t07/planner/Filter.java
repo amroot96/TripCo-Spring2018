@@ -9,7 +9,7 @@ public class Filter {
 
     public String getAttr() {return this.attribute;}
 
-    public ArrayList<String> getVals() {return this.values;}
+    public ArrayList<String> getValues() {return this.values;}
 
     public Filter(String att, ArrayList<String> val){
         this.attribute = att;

@@ -25,8 +25,8 @@ public class TestFilter {
 
     @Test
     public void TestVals() {
-        System.out.println(F.getVals().toString());
-        assertEquals("heliport", F.getVals().get(0));
+        System.out.println(F.getValues().toString());
+        assertEquals("heliport", F.getValues().get(0));
     }
 
 }
