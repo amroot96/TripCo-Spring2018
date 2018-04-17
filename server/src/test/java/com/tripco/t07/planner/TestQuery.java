@@ -28,6 +28,26 @@ public class TestQuery {
     }
 
     @Test
+    public void testNoLimit() {
+        q.queryDatabase();
+        assertEquals(50, q.limit, 0);
+    }
+
+    @Test
+    public void testGivenLimit() {
+        q.limit = 17;
+        q.queryDatabase();
+        assertEquals(17, q.limit, 0);
+    }
+
+    @Test
+    public void testZeroLimit() {
+        q.limit = 0;
+        q.queryDatabase();
+        assertEquals(50, q.limit, 0);
+    }
+
+    @Test
     public void trueEqualTrue(){
         assertEquals(true,true);
     }

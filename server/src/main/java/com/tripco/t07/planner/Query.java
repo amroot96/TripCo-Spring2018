@@ -24,8 +24,8 @@ public class Query {
 
 
     private void limitCheck() {
-        if(limit == null || limit == 0) {
-            limit = 15;
+        if(limit == null || limit <= 0) {
+            limit = 50;
         }
     }
 
