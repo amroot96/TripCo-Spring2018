@@ -29,6 +29,7 @@ class Destinations extends Component {
                            values : []
                          }*/
                         ],
+                limit: 0,
             },
             error: "",
         };
@@ -89,14 +90,14 @@ class Destinations extends Component {
         if(this.state.error == "false"){
             return(
                 <div className="alert alert-success">
-                    <strong>Loaded tffi successfully!</strong> .
+                    <strong>Loaded file successfully!</strong> .
                 </div>
             )
         }
         if(this.state.error == "true"){
             return(
                 <div className="alert alert-danger">
-                    <strong>Error: </strong> Failed to load tffi.
+                    <strong>Error: </strong> Failed to load file.
                 </div>
             )
         }
@@ -104,9 +105,14 @@ class Destinations extends Component {
 
     }
 
+    limitResponse(){
+        this.state.database.limit = document.getElementById("limit").value;
+    }
+
     queryResponse(){
         this.state.database.query = document.getElementById("search").value;
         this.getFilters();
+        this.limitResponse();
         let requestBody = this.state.database;
         const serverURL = 'http://' + location.host + '/query';
         return fetch(serverURL, {
@@ -128,6 +134,7 @@ class Destinations extends Component {
                     query: query.query,
                     places: query.places,
                     filters : query.filters,
+                    limit: query.limit,
                 }
             });
         } catch (err) {
@@ -168,9 +175,12 @@ class Destinations extends Component {
     createTable(){
         let loc = this.state.database.places;
         let row = [];
+        let count = 0;
         for(let i = 0; i < this.state.database.places.length; i++) {
+            count++;
             row[i] =
                 <tr key={i}>
+                    <td key={count}>{count}</td>
                     <td key={loc[i].id}>{loc[i].id}</td>
                     <td key={loc[i].name}>{loc[i].name}</td>
                     <td key={loc[i].latitude}>{loc[i].latitude}</td>
@@ -183,7 +193,7 @@ class Destinations extends Component {
 
     filterType() {
         return(
-            <select id="type">
+            <select id="type" className="form-control">
                 <option value="placeholder" placeholder="Select Type">Type: </option>
                 <option value="none">Any</option>
                 <option value="small_airport">Small Airport</option>
@@ -238,6 +248,7 @@ class Destinations extends Component {
                             <table className="table table-responsive table-bordered">
                                 <thead>
                                 <tr className="table-outline-dark">
+                                    <th key="count" id="count"></th>
                                     <th key="id" id="id">ID</th>
                                     <th key="name" id="name">Name</th>
                                     <th key="lat" id="lat">Latitude</th>
@@ -277,13 +288,13 @@ class Destinations extends Component {
                 <div className="card-body">
                     <p> Search for place or airport code. </p>
                     <div className="input-group" role="group">
-                        <input type="txt" className="form-control" id="search" placeholder="Search..."/>
+                        <input type="txt" className="form-control" id="search" placeholder="Search..."/><p></p>
+                        <input type="txt" className="form-control" id="limit" placeholder="Limit results to..."/>
                         {this.filterSearch()}
                         <span className="input-group-btn">
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
-                    <p><small>*if no destinations displayed below, no matches found. Please perform a new search.</small></p>
                 </div>
             </div>
         )

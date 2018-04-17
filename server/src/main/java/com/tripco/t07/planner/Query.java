@@ -19,11 +19,20 @@ public class Query {
     public String query = "";
     public ArrayList<Filter> filters;
     public ArrayList<Place> places = new ArrayList<>();
+    public Integer limit;
     public Query() {}
+
+
+    private void limitCheck() {
+        if(limit == null || limit <= 0) {
+            limit = 50;
+        }
+    }
 
     /** Handles the queries from and to the database.
      */
     public void queryDatabase() {
+        limitCheck();
         if (version == null) {
             version = 3;
         }
@@ -50,7 +59,7 @@ public class Query {
         String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
             + query + "%'or municipality like'%" + query
             + "%' or  id like '%" + query
-            + "%' order by name limit 15;";
+            + "%' order by name limit " + limit + ";";
         System.out.println(search);
         System.out.println(count);
         query(search, count);
@@ -64,7 +73,7 @@ public class Query {
                         + "%' OR id like '%" + query
                         + "%') AND type = '" + filters.get(0).values.get(0)
                         + "' ORDER BY "
-                        + "name ASC LIMIT 15;";
+                        + "name ASC LIMIT " + limit + ";";
         query(searching,count);
     }
 
