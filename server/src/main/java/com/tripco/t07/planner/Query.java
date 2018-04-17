@@ -24,7 +24,7 @@ public class Query {
 
 
     private void limitCheck() {
-        if(limit == null || limit <= 0) {
+        if(limit == null) {
             limit = 50;
         }
     }
@@ -59,11 +59,20 @@ public class Query {
         String search = "select id,name,municipality,latitude,longitude,type from airports where name like'%"
             + query + "%'or municipality like'%" + query
             + "%' or  id like '%" + query
-            + "%' order by name limit " + limit + ";";
-        System.out.println(search);
-        System.out.println(count);
-        query(search, count);
+            + "%' order by name ASC";
+        limitOrNot(search, count);
     }
+
+    private void limitOrNot(String search, String count) {
+        if(limit == 0){
+            search += ";";
+            query(search, count);
+        }else {
+            search += " limit " + limit + ";";
+            query(search, count);
+        }
+    }
+
     private void typeLookup() {
         String count = "select count(*) from airports;";
         String searching =
@@ -73,8 +82,8 @@ public class Query {
                         + "%' OR id like '%" + query
                         + "%') AND type = '" + filters.get(0).values.get(0)
                         + "' ORDER BY "
-                        + "name ASC LIMIT " + limit + ";";
-        query(searching,count);
+                        + "name ASC";
+        limitOrNot(searching, count);
     }
 
     public void query(String search, String count) {
@@ -110,7 +119,7 @@ public class Query {
         int temp = 1;
         int number = 1;
 // iterate through query results and print out the airport codes
-        while (q.next() && number <= 15) {
+        while (q.next()) {
             System.out.printf("%d id: %s Name:%s", temp++, q.getString("id"), q.getString("name"));
             Place place = new Place();
             place.id = q.getString("id");

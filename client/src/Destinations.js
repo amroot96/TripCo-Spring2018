@@ -107,6 +107,9 @@ class Destinations extends Component {
 
     limitResponse(){
         this.state.database.limit = document.getElementById("limit").value;
+        if(this.state.database.limit === "")
+            this.state.database.limit = 0;
+        console.log("limit: " + this.state.database.limit);
     }
 
     queryResponse(){
