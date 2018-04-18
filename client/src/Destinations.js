@@ -18,7 +18,7 @@ class Destinations extends Component {
                filters: [
                          { attribute : "type",
                            values : []
-                         }/*,
+                         },
                          { attribute : "region",
                            values : []
                          },
@@ -27,7 +27,7 @@ class Destinations extends Component {
                          },
                          { attribute : "continent",
                            values : []
-                         }*/
+                         }
                         ],
                 limit: 0,
             },
@@ -120,6 +120,7 @@ class Destinations extends Component {
         let requestBody = this.state.database;
         const serverURL = 'http://' + location.host + '/query';
         return fetch(serverURL, {
+            header: {'Access-Control-Allow-Origin':'*'},
             method: "POST",
             body: JSON.stringify(requestBody)
         });
