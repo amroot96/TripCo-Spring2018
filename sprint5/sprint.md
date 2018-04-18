@@ -46,7 +46,7 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  31  | 
+Tasks |  31  | 4
 Story Points |  35  |  
 
 ## Daily Scrums
@@ -54,7 +54,7 @@ Story Points |  35  |
 Date | Tasks done  | Tasks in progress | Impediments 
 :--- | :--- | :--- | :--- 
  04/14/2018|  Planning| Host and port configurations, and staff page| Scott was late
- 
+ 04/17/2018|Create limit button, limit server side, limit client side| Host and port configurations| 
 
 ## Review
 
