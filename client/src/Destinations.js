@@ -46,6 +46,7 @@ class Destinations extends Component {
         this.createTable = this.createTable.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.getFilters = this.getFilters.bind(this);
+        this.filterChecks()
     }
 
     loadTFFI(event) {
@@ -159,7 +160,7 @@ class Destinations extends Component {
     this.props.plan();
   }
 
-   /* handleFilterCheck(arg1){
+    handleFilterCheck(arg1){
         switch(arg1){
             case "region":
                 this.filterRegion = this.filterRegion === true ? false : true;
@@ -173,7 +174,7 @@ class Destinations extends Component {
             default:
         }
         this.setState(this.state);
-    } */
+    }
 
     createTable(){
         let loc = this.state.database.places;
@@ -298,19 +299,17 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
+                    <div>
+                        Additional Filters:
+                        <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
+                        {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
+                        {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
+                        {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
+                    </div>
                 </div>
             </div>
         )
     }
-
-    /*tempMethod() {
-        <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
-        {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
-        {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
-        {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
-        <p>
-    }*/
-
 
     render() {
         return (
