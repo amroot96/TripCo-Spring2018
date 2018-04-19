@@ -57,6 +57,7 @@ public class MicroServer {
   private String about(Request request, Response response) {
 
     response.type("text/html");
+    response.header("Access-Control-Allow-Origin","*");
 
     return "<html><head></head><body><h1>"+name+" Micro-server on port "+port+"</h1></body></html>";
   }
@@ -70,6 +71,7 @@ public class MicroServer {
   private String echo(Request request, Response response) {
 
     response.type("application/json");
+    response.header("Access-Control-Allow-Origin","*");
 
     return HTTP.echoRequest(request);
   }
@@ -83,6 +85,8 @@ public class MicroServer {
   private String hello(Request request, Response response) {
 
     response.type("text/html");
+    response.header("Access-Control-Allow-Origin","*");
+
 
     return Greeting.html(request.params(":name"));
   }
@@ -97,6 +101,8 @@ public class MicroServer {
   private String plan(Request request, Response response) {
 
     response.type("application/json");
+    response.header("Access-Control-Allow-Origin","*");
+
 
     return (new Plan(request)).getTrip();
   }
@@ -110,6 +116,7 @@ public class MicroServer {
   private String query(Request request, Response response) {
 
     response.type("application/json");
+    response.header("Access-Control-Allow-Origin", "*");
 
     return (new Database(request)).getQuery();
   }
@@ -122,6 +129,8 @@ public class MicroServer {
    */
   private String config(Request request, Response response){
     response.type("application/json");
+    response.header("Access-Control-Allow-Origin","*");
+
 
     return (new Setup()).getConfig();
   }
@@ -134,6 +143,8 @@ public class MicroServer {
   private String team(Request request, Response response) {
 
     response.type("text/plain");
+    response.header("Access-Control-Allow-Origin","*");
+
 
     return name;
   }

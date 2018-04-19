@@ -39,6 +39,7 @@ class Application extends Component {
     const serverURL = 'http://' + location.host + '/plan';
     console.log(serverURL);
     return fetch(serverURL, {
+      header: {'Access-Control-Allow-Origin':'*'},
       method: "POST",
       body: JSON.stringify(requestBody)
     });
