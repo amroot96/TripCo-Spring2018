@@ -16,10 +16,10 @@ class Application extends Component {
         type: "trip",
         title: "Name your trip here...",
         options: {
-          distance: cookie.load('distance'),
-          userUnit: cookie.load("userDistance"),
-          userRadius: cookie.load("userRadius"),
-          optimization: cookie.load('optimization'),
+          distance: "miles",
+          userUnit: " ",
+          userRadius: " ",
+          optimization: "0"
         },
         places: [],
         distances: [],
@@ -33,8 +33,29 @@ class Application extends Component {
     this.plan = this.plan.bind(this);
     this.removePlace = this.removePlace.bind(this);
     this.makeStart = this.makeStart.bind(this);
+    this.setOptions = this.setOptions.bind(this);
+    if(cookie.load('options') == "set"){
+        this.setOptions();
+    }
   }
 
+  setOptions(){
+    if(cookie.load('distance')!= ''){
+      this.state.trip.options.distance = cookie.load('distance');
+    }
+
+    if(cookie.load('userUnit')!= ''){
+          this.state.trip.options.userUnit = cookie.load('userUnit');
+    }
+
+    if(cookie.load('userRadius')!= ''){
+          this.state.trip.options.userRadius = cookie.load('userRadius');
+    }
+
+    if(cookie.load('optimization')!= ''){
+          this.state.trip.options.optimization = cookie.load('optimization');
+    }
+  }
 
   fetchResponse() {
     let requestBody = this.state.trip;
@@ -98,6 +119,7 @@ class Application extends Component {
       unitChange.options.optimization = arg;
       this.setState({trip: unitChange});
     }
+    cookie.save('options','set');
     cookie.save('distance',this.state.trip.options.distance);
     cookie.save('optimization',this.state.trip.options.optimization);
     cookie.save('userRadius',this.state.trip.options.userRadius);
