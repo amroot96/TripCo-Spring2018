@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Options from './Options';
 import Destinations from './Destinations';
 import Trip from './Trip';
+import cookie from 'react-cookies';
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -15,16 +16,17 @@ class Application extends Component {
         type: "trip",
         title: "Name your trip here...",
         options: {
-          distance: "miles",
-          userUnit: " ",
-          userRadius: " ",
-          optimization: "0"
+          distance: cookie.load('distance'),
+          userUnit: cookie.load("userDistance"),
+          userRadius: cookie.load("userRadius"),
+          optimization: cookie.load('optimization'),
         },
         places: [],
         distances: [],
         map: "<svg width=\"1920\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><g></g></svg>"
       },
       query: "",
+
     };
     this.updateOptions = this.updateOptions.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
@@ -32,6 +34,7 @@ class Application extends Component {
     this.removePlace = this.removePlace.bind(this);
     this.makeStart = this.makeStart.bind(this);
   }
+
 
   fetchResponse() {
     let requestBody = this.state.trip;
@@ -95,6 +98,14 @@ class Application extends Component {
       unitChange.options.optimization = arg;
       this.setState({trip: unitChange});
     }
+    cookie.save('distance',this.state.trip.options.distance);
+    cookie.save('optimization',this.state.trip.options.optimization);
+    cookie.save('userRadius',this.state.trip.options.userRadius);
+    cookie.save('userUnit',this.state.trip.options.userUnit);
+    console.log("Cookie: "+cookie.load('distance'));
+    console.log("Cookie: "+cookie.load('optimization'));
+    console.log("Cookie: "+cookie.load('userRadius'));
+    console.log("Cookie: "+cookie.load('userUnit'));
     this.plan();
   }
 
