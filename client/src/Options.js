@@ -215,24 +215,19 @@ class Options extends Component {
 
   render() {
     return (
-        <div className="container-fluid">
-          <div className="row">
-            <div className={this.container}>
-              <div id="options" className="card">
-                <div className="card-header text-white"
-                     style={{background: '#1E4D2B'}}>Options
-                </div>
-                {this.optionField()}
-              </div>
+        <div className="card-group">
+          <div className="card">
+            <div className="card-header text-white"
+                 style={{background: '#1E4D2B'}}>Options
             </div>
-            <div className={this.container}>
-              <div id="optimize" className="card">
-                <div className="card-header text-white"
-                     style={{background: '#1E4D2B'}}>Optimizations
-                </div>
-                {this.optimizeField()}
-              </div>
+            {this.optionField()}
+          </div>
+
+          <div className="card">
+            <div className="card-header text-white"
+                 style={{background: '#1E4D2B'}}>Optimizations
             </div>
+            {this.optimizeField()}
           </div>
         </div>
     )

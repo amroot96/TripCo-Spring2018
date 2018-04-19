@@ -290,7 +290,6 @@ class Destinations extends Component {
         return(
             <div id="destinations" className="card">
                 <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
-                <div className="card-body">
                     <p> Search for place or airport code. </p>
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/><p></p>
@@ -300,6 +299,7 @@ class Destinations extends Component {
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
+
                     <div>
                         Additional Filters:
                         <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
@@ -314,16 +314,14 @@ class Destinations extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                        {this.destinationsField()}
-                    </div>
-                    <div className="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                        {this.destinationFinderField()}
-                    </div>
-                    {this.displayQuery()}
+            <div className="card-group">
+                <div className="card">
+                    {this.destinationsField()}
                 </div>
+                <div className="card">
+                    {this.destinationFinderField()}
+                </div>
+                {this.displayQuery()}
             </div>
         )
     }
