@@ -245,6 +245,7 @@ class Destinations extends Component {
         if(this.state.database.places.length != 0) {
             let table = this.createTable();
             return (
+                <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div id="queries" className="card">
                         <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
@@ -268,6 +269,7 @@ class Destinations extends Component {
                         </div>
                     </div>
                 </div>
+                </div>
             )
         }
   }
@@ -290,10 +292,11 @@ class Destinations extends Component {
         return(
             <div id="destinations" className="card">
                 <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
+                <div className="card-body">
                     <p> Search for place or airport code. </p>
                     <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="search" placeholder="Search..."/><p></p>
-                        <input type="txt" className="form-control" id="limit" placeholder="Limit results to..."/>
+                        <input type="txt" className="form-control" id="limit" placeholder="Limit to..."/>
                         {this.filterSearch()}
                         <span className="input-group-btn">
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
