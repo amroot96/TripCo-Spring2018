@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import cookie from 'react-cookies';
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -24,13 +25,17 @@ class Options extends Component {
     this.off = "btn btn-outline-dark";
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     this.id = "\"options\" className=\"card\">";
-    this.miles = this.on;
-    this.userUnit = this.off;
-    this.kilometers = this.off;
-    this.nautical = this.off;
-    this.none = this.on;
-    this.short = this.off;
-    this.shorter = this.off;
+    console.log("Distance: "+ cookie.load("distance"));
+    console.log("Optimization: "+ cookie.load("optimization"));
+      this.miles = this.on;
+      this.userUnit = this.off;
+      this.kilometers = this.off;
+      this.nautical = this.off;
+      this.toggleDistBool(cookie.load('distance'));
+      this.none = this.on;
+      this.short = this.off;
+      this.shorter = this.off;
+      this.toggleOptBool(cookie.load('optimization'));
   }
 
   componentWillReceiveProps(nextProps) {

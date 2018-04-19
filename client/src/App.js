@@ -37,6 +37,7 @@ class App extends Component {
 
   render() {
         this.config();
+
     return(
         <div id="tripco">
             <Header number={this.state.number} name={this.state.name}/>
