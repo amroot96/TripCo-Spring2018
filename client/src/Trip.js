@@ -69,37 +69,27 @@ class Trip extends Component {
    */
   render() {
     return (
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <div id="trip" className="card">
-                <div className="card-header text-white"
-                     style={{background: '#1E4D2B'}}>Trip
-                </div>
-                <div className="card-body">
-                  <div className="input-group" role="group">
-                                <span className="input-group-btn">
-                                    <button className="btn btn"
-                                            style={{background: '#CFB53B'}}
-                                            onClick={this.props.plan}
-                                            type="button">Plan</button>
-                                </span>
-                    <input id="titleBox" type="text" className="form-control"
-                           placeholder={this.props.trip.title}/>
-                    <span className="input-group-btn">
-                                    <button className="btn btn"
-                                            style={{background: '#CFB53B'}}
-                                            onClick={this.updateTitle}
-                                            type="button">Save</button>
-                                </span>
-                  </div>
-                  <Map trip={this.props.trip}/></div>
-                  <Itinerary trip={this.props.trip}
-                             removePlaces={this.props.removePlace}
-                             makeStart={this.props.makeStart}/>
-                  {this.reverseButton()}
-              </div>
-            </div>
+        <div id="trip" className="card">
+          <div className="card-header text-white"
+               style={{background: '#1E4D2B'}}>Trip
           </div>
+          <div className="card-body">
+            <div className="input-group" role="group">
+              <input id="titleBox" type="text" className="form-control"
+                     placeholder={this.props.trip.title}/>
+              <span className="input-group-btn">
+                              <button className="btn btn"
+                                      style={{background: '#CFB53B'}}
+                                      onClick={this.updateTitle}
+                                      type="button">Save</button>
+                          </span>
+            </div>
+            <Map trip={this.props.trip}/></div>
+            <Itinerary trip={this.props.trip}
+                       removePlaces={this.props.removePlace}
+                       makeStart={this.props.makeStart}/>
+            {this.reverseButton()}
+        </div>
     )
   }
 }

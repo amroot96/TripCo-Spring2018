@@ -185,16 +185,16 @@ class Destinations extends Component {
             count++;
             row[i] =
                 <tr key={i}>
-                    <td key={count}>{count}</td>
-                    <td key={loc[i].id}>{loc[i].id}</td>
                     <td key={loc[i].name}>{loc[i].name}</td>
-                    <td key={loc[i].latitude}>{loc[i].latitude}</td>
-                    <td key={loc[i].longitude}>{loc[i].longitude}</td>
+                  <td key={loc[i].id}>{loc[i].id}</td>
+                  <td key={loc[i].latitude}>{loc[i].latitude}</td>
+                  <td key={loc[i].longitude}>{loc[i].longitude}</td>
                     <td key={i}><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
                 </tr>;
         }
         return {row};
     }
+// <td key={count}>{count}</td>
 
     filterType() {
         return(
@@ -245,34 +245,30 @@ class Destinations extends Component {
         if(this.state.database.places.length != 0) {
             let table = this.createTable();
             return (
-                <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div id="queries" className="card">
-                        <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search found the following destinations:</div>
-                        <div className="card-body">
-                            <div  className="pre-scrollable">
-                            <table className="table table-responsive table-bordered">
-                                <thead>
-                                <tr className="table-outline-dark">
-                                    <th key="count" id="count"></th>
-                                    <th key="id" id="id">ID</th>
-                                    <th key="name" id="name">Name</th>
-                                    <th key="lat" id="lat">Latitude</th>
-                                    <th key="long" id="long">Longitude</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {table.row}
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
+              <div id="queries" className="card">
+                  <div className="card-header text-white" style={{background:'#1E4D2B'}}>Search Results:</div>
+                  <div className="card-body">
+                      <div  className="pre-scrollable">
+                      <table className="table table-responsive table-bordered">
+                        <thead>
+                        <tr className="table-outline-dark">
+                          <th key="name" id="name">Name</th>
+                          <th key="id" id="id">ID</th>
+                          <th key="lat" id="lat">Latitude</th>
+                          <th key="long" id="long">Longitude</th>
+                        </tr>
+                        </thead>
+                          <tbody>
+                          {table.row}
+                          </tbody>
+                      </table>
+                      </div>
+                  </div>
+              </div>
             )
         }
   }
+
     destinationsField(){
         return(
             <div id="destinations" className="card">
@@ -293,9 +289,8 @@ class Destinations extends Component {
             <div id="destinations" className="card">
                 <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
                 <div className="card-body">
-                    <p> Search for place or airport code. </p>
+                  <input type="txt" className="form-control" id="search" placeholder="Search..."/>
                     <div className="input-group" role="group">
-                        <input type="txt" className="form-control" id="search" placeholder="Search..."/><p></p>
                         <input type="txt" className="form-control" id="limit" placeholder="Limit to..."/>
                         {this.filterSearch()}
                         <span className="input-group-btn">
@@ -304,7 +299,6 @@ class Destinations extends Component {
                     </div>
 
                     <div>
-                        Additional Filters:
                         <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
                         {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
                         {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
@@ -317,14 +311,16 @@ class Destinations extends Component {
 
     render() {
         return (
-            <div className="card-group">
-                <div className="card">
-                    {this.destinationsField()}
-                </div>
-                <div className="card">
-                    {this.destinationFinderField()}
-                </div>
-                {this.displayQuery()}
+            <div id = "Destinations">
+              <div className="card-group">
+                  <div className="card">
+                      {this.destinationsField()}
+                  </div>
+                  <div className="card">
+                      {this.destinationFinderField()}
+                  </div>
+              </div>
+                  {this.displayQuery()}
             </div>
         )
     }
