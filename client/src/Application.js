@@ -183,21 +183,19 @@ class Application extends Component {
 
   render() {
     return (
-        <div id="application" className="container">
-          <div className="row">
-            <div className="col-12">
+        <div id="application">
+          <div id="Optionsgroup" className="card-group">
+            <div className="card">
               <Destinations trip={this.state.trip}
                             updateTrip={this.updateTrip} plan={this.plan}/>
-            </div>
-            <div className="col-12">
               <Options options={this.state.trip.options}
                        updateOptions={this.updateOptions}/>
             </div>
-            <div className="col-12">
+             <div className="card">
               <Trip trip={this.state.trip} plan={this.plan}
                     removePlace={this.removePlace} makeStart={this.makeStart}/>
-            </div>
           </div>
+        </div>
         </div>
     )
   }
