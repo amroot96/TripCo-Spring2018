@@ -18,15 +18,6 @@ class Destinations extends Component {
                filters: [
                          { attribute : "type",
                            values : []
-                         },
-                         { attribute : "region",
-                           values : []
-                         },
-                         { attribute : "country",
-                           values : []
-                         },
-                         { attribute : "continent",
-                           values : []
                          }
                         ],
                 limit: 0,
@@ -73,15 +64,6 @@ class Destinations extends Component {
 
     getFilters(){
         var type = document.getElementById("type").value;
-        if(this.filterRegion){
-            this.state.database.filters[1].values = document.getElementById("region").value.split(",");
-        }
-        if(this.filterCountry){
-            this.state.database.filters[2].values = document.getElementById("country").value.split(",");
-        }
-        if(this.filterContinent){
-            this.state.database.filters[3].values = document.getElementById("continent").value.split(",");
-        }
         if(type != "placeholder"){
             this.state.database.filters[0].values = [document.getElementById("type").value];
         }
@@ -118,7 +100,7 @@ class Destinations extends Component {
         this.getFilters();
         this.limitResponse();
         let requestBody = this.state.database;
-        const serverURL = 'http://' + location.host + '/query';
+        const serverURL = this.props.serverHost + '/query';
         return fetch(serverURL, {
             header: {'Access-Control-Allow-Origin':'*'},
             method: "POST",
@@ -161,21 +143,6 @@ class Destinations extends Component {
     this.props.plan();
   }
 
-    handleFilterCheck(arg1){
-        switch(arg1){
-            case "region":
-                this.filterRegion = this.filterRegion === true ? false : true;
-                break;
-            case "country":
-                this.filterCountry = this.filterCountry === true ? false : true;
-                break;
-            case "continent":
-                this.filterContinent = this.filterContinent === true ? false : true;
-                break;
-            default:
-        }
-        this.setState(this.state);
-    }
 
     createTable(){
         let loc = this.state.database.places;
@@ -296,13 +263,6 @@ class Destinations extends Component {
                         <span className="input-group-btn">
                             <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
                         </span>
-                    </div>
-
-                    <div>
-                        <p>{this.filterChecks("region",this.filterRegionActive)} {this.filterChecks("country",this.filterCountryActive)} {this.filterChecks("continent",this.filterContinentActive)}</p>
-                        {this.filterBox("Enter Region (Comma separated)","region",this.filterRegion)}
-                        {this.filterBox("Enter Country (Comma separated)","country",this.filterCountry)}
-                        {this.filterBox("Enter Continent (Comma separated)","continent",this.filterContinent)}
                     </div>
                 </div>
             </div>
