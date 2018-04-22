@@ -14,11 +14,15 @@ class App extends Component {
             version: 0,
             optimization: 0
         },
+      serverHost: "http://localhost:31407"
     }
+    this.config = this.config.bind(this);
+    this.configResponse = this.configResponse.bind(this);
+    this.updateServerHost= this.updateServerHost.bind(this);
   }
 
     configResponse(){
-        const serverURL = 'http://' + location.host + '/config';
+        const serverURL = this.state.serverHost + '/config';
         return fetch(serverURL, {
             header: {'Access-Control-Allow-Origin':'*'},
             method: "GET",
@@ -36,13 +40,17 @@ class App extends Component {
         }
     }
 
+    updateServerHost(arg){
+        this.setState({serverHost: 'http://' + arg});
+    }
+
   render() {
         this.config();
 
     return(
         <div id="tripco">
             <Header number={this.state.number} name={this.state.name}/>
-            <Application />
+            <Application updateServer={this.updateServerHost} serverHost={this.state.serverHost}/>
             <Footer number={this.state.number} name={this.state.name}/>
         </div>
     );

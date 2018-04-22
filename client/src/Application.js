@@ -34,6 +34,7 @@ class Application extends Component {
     this.removePlace = this.removePlace.bind(this);
     this.makeStart = this.makeStart.bind(this);
     this.setOptions = this.setOptions.bind(this);
+    this.updateServerHost = this.updateServerHost.bind(this);
     if(cookie.load('options') == "set"){
         this.setOptions();
     }
@@ -60,7 +61,7 @@ class Application extends Component {
   fetchResponse() {
     let requestBody = this.state.trip;
     console.log(requestBody);
-    const serverURL = 'http://' + location.host + '/plan';
+    const serverURL = this.props.serverHost + '/plan';
     console.log(serverURL);
     return fetch(serverURL, {
       header: {'Access-Control-Allow-Origin':'*'},
@@ -181,15 +182,36 @@ class Application extends Component {
     this.plan();
   }
 
+  updateServerHost(){
+    console.log(document.getElementById("server").value)
+    this.props.updateServer(document.getElementById("server").value)
+  }
+
+  serverOptionsUI(){
+    return(
+        <div className="card">
+          <div className="card-header text-white"
+               style={{background: '#1E4D2B'}}>Server Options
+          </div>
+          <div className="card-body"> Input a different server.
+            <input type="txt" className="form-control" id="server" placeholder="Format: <servername:port>"/>
+            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.updateServerHost}>Switch</button>
+          </div>
+        </div>
+    )
+  }
+
   render() {
     return (
         <div id="application">
           <div id="Optionsgroup" className="card-group">
             <div className="card">
               <Destinations trip={this.state.trip}
-                            updateTrip={this.updateTrip} plan={this.plan}/>
+                            updateTrip={this.updateTrip} plan={this.plan}
+                            serverHost={this.props.serverHost}/>
               <Options options={this.state.trip.options}
                        updateOptions={this.updateOptions}/>
+                {this.serverOptionsUI()}
             </div>
              <div className="card">
               <Trip trip={this.state.trip} plan={this.plan}
