@@ -19,23 +19,23 @@ class Options extends Component {
     this.noneButton = this.noneButton.bind(this);
     this.shortButton = this.shortButton.bind(this);
     this.shorterButton = this.shorterButton.bind(this);
+    this.shortestButton = this.shortestButton.bind(this);
     this.labelTag = this.labelTag.bind(this);
     this.enter = this.enter.bind(this);
     this.on = "btn btn-outline-dark active";
     this.off = "btn btn-outline-dark";
     this.container = "col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6";
     this.id = "\"options\" className=\"card\">";
-    console.log("Distance: "+ cookie.load("distance"));
-    console.log("Optimization: "+ cookie.load("optimization"));
-      this.miles = this.on;
-      this.userUnit = this.off;
-      this.kilometers = this.off;
-      this.nautical = this.off;
-      this.toggleDistBool(cookie.load('distance'));
-      this.none = this.on;
-      this.short = this.off;
-      this.shorter = this.off;
-      this.toggleOptBool(cookie.load('optimization'));
+    this.miles = this.on;
+    this.userUnit = this.off;
+    this.kilometers = this.off;
+    this.nautical = this.off;
+    this.toggleDistBool(cookie.load('distance'));
+    this.none = this.on;
+    this.short = this.off;
+    this.shorter = this.off;
+    this.shortest = this.off;
+    this.toggleOptBool(cookie.load('optimization'));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,6 +73,9 @@ class Options extends Component {
       case arg < 1.0:
         this.shorterButton(type);
         break;
+      case arg < 1.5:
+          this.shortestButton(type);
+          break;
       default:
         this.noneButton(type);
     }
@@ -82,6 +85,7 @@ class Options extends Component {
     this.none = this.off;
     this.short = this.off;
     this.shorter = this.off;
+    this.shortest = this.off;
 
     switch (arg) {
       case "0":
@@ -93,6 +97,9 @@ class Options extends Component {
       case "1.0":
         this.shorter = this.on;
         break;
+      case "1.5":
+          this.shortest = this.on;
+          break;
       default:
     }
   }
@@ -118,6 +125,12 @@ class Options extends Component {
     }
   }
 
+  shortestButton(type) {
+      if(type !== 2) {
+          this.props.updateOptions("1.5", "optimization");
+      }
+      this.toggleOptBool("1.5");
+  }
   shorterButton(type) {
     if(type !== 2) {
       this.props.updateOptions("1.0", "optimization");
@@ -213,6 +226,8 @@ class Options extends Component {
                 this.shortButton, "Short")}
             {this.labelTag(this.shorter, "shorter", "optimization",
                 this.shorterButton, "Shorter")}
+            {this.labelTag(this.shortest, "shortest", "optimization",
+                  this.shortestButton, "Shortest")}
           </div>
         </div>
     )
