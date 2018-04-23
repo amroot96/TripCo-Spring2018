@@ -35,6 +35,8 @@ class Application extends Component {
     this.makeStart = this.makeStart.bind(this);
     this.setOptions = this.setOptions.bind(this);
     this.updateServerHost = this.updateServerHost.bind(this);
+    this.currentState = this.state;
+    this.serverHost = this.props.serverHost;
     if(cookie.load('options') == "set"){
         this.setOptions();
     }
@@ -61,7 +63,7 @@ class Application extends Component {
   fetchResponse() {
     let requestBody = this.state.trip;
     console.log(requestBody);
-    const serverURL = this.props.serverHost + '/plan';
+    const serverURL = this.serverHost + '/plan';
     console.log(serverURL);
     return fetch(serverURL, {
       header: {'Access-Control-Allow-Origin':'*'},
@@ -183,8 +185,13 @@ class Application extends Component {
   }
 
   updateServerHost(){
-    console.log(document.getElementById("server").value)
-    this.props.updateServer(document.getElementById("server").value)
+    this.currentState = this.state;
+    console.log(document.getElementById("server").value);
+    this.props.updateServer(document.getElementById("server").value);
+    this.serverHost = 'http://' + document.getElementById("server").value;
+    this.setState(this.currentState);
+    this.plan();
+
   }
 
   serverOptionsUI(){

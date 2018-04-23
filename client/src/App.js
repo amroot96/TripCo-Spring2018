@@ -14,7 +14,7 @@ class App extends Component {
             version: 0,
             optimization: 0
         },
-      serverHost: "http://localhost:31407"
+      serverHost: "http://kiwis.cs.colostate.edu:31407"
     }
     this.config = this.config.bind(this);
     this.configResponse = this.configResponse.bind(this);
@@ -42,6 +42,7 @@ class App extends Component {
 
     updateServerHost(arg){
         this.setState({serverHost: 'http://' + arg});
+        return true;
     }
 
   render() {
