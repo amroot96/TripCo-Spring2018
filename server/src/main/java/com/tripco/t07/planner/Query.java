@@ -26,6 +26,8 @@ public class Query {
     private void limitCheck() {
         if(limit == null) {
             limit = 50;
+        }else if(limit == 0 && query.equals("")){
+            limit = 500;
         }
     }
 
