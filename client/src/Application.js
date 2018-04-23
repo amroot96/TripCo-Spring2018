@@ -127,10 +127,6 @@ class Application extends Component {
     cookie.save('optimization',this.state.trip.options.optimization);
     cookie.save('userRadius',this.state.trip.options.userRadius);
     cookie.save('userUnit',this.state.trip.options.userUnit);
-    console.log("Cookie: "+cookie.load('distance'));
-    console.log("Cookie: "+cookie.load('optimization'));
-    console.log("Cookie: "+cookie.load('userRadius'));
-    console.log("Cookie: "+cookie.load('userUnit'));
     this.plan();
   }
 
