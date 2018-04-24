@@ -42,3 +42,9 @@ file:line | defect | h/m/l | who found | github#
 262-276 | Do we need to have his function anymore? | l | jordan
 280-309 | That is a thick method, can we slim it down? | l | jordan
 all | We need more comments to know what is going on in the optimizations | h | jordan 
+89-127 | Optimization should be a completely seperate class | H  | Courtney
+199-204| Placelist method just prints out the places. What is it need on the server| L | Courtney
+206-212 | Calculate distance should be creating the table as it calculating total distance | M | Courtney
+280-309 | Find a more efficent way to generate the SVG Map | m | Courtney
+184 | Hardcoded value | l | Courtney
+
