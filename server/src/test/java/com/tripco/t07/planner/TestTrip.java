@@ -138,6 +138,14 @@ public class TestTrip {
   }
 
   @Test
+  public void threeOpt1() {
+    trip.options.optimization = "1.5";
+    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
+    trip.plan();
+    assertEquals(expectedDistances, trip.distances);
+  }
+  @Test
   public void testBackground() {
     assertNotEquals(trip.map, "");
   }
