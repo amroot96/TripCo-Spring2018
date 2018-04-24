@@ -27,7 +27,7 @@ file:line | defect | h/m/l | who found | github#
  148 | hard-coded best distance >:( | h | angela |
  163 | method never used | l | angela |
  185 | what if places is already cleared? | l | angela |
- 244 | long method, maybe break it into two? | m | angela |
+ 280 | long method, maybe break it into two? | m | angela |
 31-32 | feels like this could be one line |l | scott
 55 | Could also check if optType is 0 here and return if so |l | scott
 75 | using -1 as a default value isn't smart |l | scott
@@ -42,3 +42,9 @@ file:line | defect | h/m/l | who found | github#
 262-276 | Do we need to have his function anymore? | l | jordan
 280-309 | That is a thick method, can we slim it down? | l | jordan
 all | We need more comments to know what is going on in the optimizations | h | jordan 
+89-127 | Optimization should be a completely seperate class | H  | Courtney
+199-204| Placelist method just prints out the places. What is it need on the server| L | Courtney
+206-212 | Calculate distance should be creating the table as it calculating total distance | M | Courtney
+280-309 | Find a more efficent way to generate the SVG Map | m | Courtney
+184 | Hardcoded value | l | Courtney
+
