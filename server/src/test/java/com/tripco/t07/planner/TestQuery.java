@@ -33,7 +33,7 @@ public class TestQuery {
         q_travis.places = new ArrayList<Place>();
 
         Place place1 = new Place();
-        place1.id = "312231";
+        place1.id = "US-0250";
         place1.name = "Newport Naval Air Facility";
         place1.latitude = "41.53";
         place1.longitude = "-71.345";
@@ -100,7 +100,7 @@ public class TestQuery {
     public void testValidName(){
         if(q_local.travis){
             q_travis.queryDatabase();
-            assertEquals(trip.places.get(0), q_travis.places.get(1).name);
+            assertEquals(trip.places.get(0).name, q_travis.places.get(1).name);
         } else {
             //q_local.queryDatabase();
             //assertEquals("Valley Forge Bicentennial Heliport", q_local.places.get(0).name);
