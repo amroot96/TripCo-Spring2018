@@ -120,7 +120,7 @@ public class Trip {
                     + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
 
               if (distance2(input, i, j, k) < currentDistance) { // case 2
-                  twooptReverse(input, j+1, k);
+                  twooptReverse(input, i+1, k);
                   improvement = true;
                   continue;
               }
