@@ -22,11 +22,12 @@ file:line | defect | h/m/l | who found | github#
  40 | should it always default to version 1? | m | angela | 
  60 / 67 | I don't think we need to restore the start if the opt was 0 | m | angela |
  61 | Should we change the ranges for the opt types to be in 3rds instead? | m | angela |
- 47 / 73 | inconsistent size checking of arrays | m | angela |
- 109 | is there a more efficient way to reverse an array in java | m | angela |
- 148 | hard-coded best distance >:( | h | angela |
- 163 | method never used | l | angela |
- 185 | what if places is already cleared? | l | angela |
+ 47 / 76 | inconsistent size checking of arrays | m | angela |
+ 134 | is there a more efficient way to reverse an array in java | m | angela |
+ 184 | hard-coded best distance >:( | h | angela |
+ 199 | method never used | l | angela |
+ 221 | what if places is already cleared? | l | angela |
+ 222 | extra distance in distance array? | h | angela
  280 | long method, maybe break it into two? | m | angela |
 31-32 | feels like this could be one line |l | scott
 55 | Could also check if optType is 0 here and return if so |l | scott
