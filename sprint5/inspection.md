@@ -28,3 +28,9 @@ file:line | defect | h/m/l | who found | github#
  163 | method never used | l | angela |
  185 | what if places is already cleared? | l | angela |
  244 | long method, maybe break it into two? | m | angela |
+31-32 | feels like this could be one line |l | scott
+55 | Could also check if optType is 0 here and return if so |l | scott
+75 | using -1 as a default value isn't smart |l | scott
+145| terrible naming convention for methods |l | scott
+174 | copying array for every NN |l | scott
+280 | we should probably just delete this whole method now | l | scott
