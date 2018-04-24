@@ -34,3 +34,8 @@ file:line | defect | h/m/l | who found | github#
 145| terrible naming convention for methods |l | scott
 174 | copying array for every NN |l | scott
 280 | we should probably just delete this whole method now | l | scott
+89-127 | Optimization should be a completely seperate class | H  | Courtney
+199-204| Placelist method just prints out the places. What is it need on the server| L | Courtney
+206-212 | Calculate distance should be creating the table as it calculating total distance | M | Courtney
+280-309 | Find a more efficent way to generate the SVG Map | m | Courtney
+184 | Hardcoded value | l | Courtney
