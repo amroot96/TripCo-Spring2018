@@ -34,8 +34,17 @@ file:line | defect | h/m/l | who found | github#
 145| terrible naming convention for methods |l | scott
 174 | copying array for every NN |l | scott
 280 | we should probably just delete this whole method now | l | scott
+32 | parse.iterator() is returning an iterator to nothing | l | jordan
+60-69 | we could clean up the opt conditionals | m | jordan
+95 | I'm not sure what "kn" represents | l | jordan
+147-148 | Do we need to call getDistance 3 times? | m | jordan
+184 | Do we want to use Integer.max_value due to wold trips? | l | jordan
+262-276 | Do we need to have his function anymore? | l | jordan
+280-309 | That is a thick method, can we slim it down? | l | jordan
+all | We need more comments to know what is going on in the optimizations | h | jordan 
 89-127 | Optimization should be a completely seperate class | H  | Courtney
 199-204| Placelist method just prints out the places. What is it need on the server| L | Courtney
 206-212 | Calculate distance should be creating the table as it calculating total distance | M | Courtney
 280-309 | Find a more efficent way to generate the SVG Map | m | Courtney
 184 | Hardcoded value | l | Courtney
+
