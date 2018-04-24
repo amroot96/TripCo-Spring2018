@@ -139,6 +139,4 @@ public class TestQuery {
             //assertEquals("-75.40599822998047", q_local.places.get(0).latitude);
         }
     }
-
-
 }
