@@ -55,8 +55,6 @@ public class Parser {
   }
 
   public Double DMS(String direction, Double degree, Double minute, Double second) {
-    //System.out.println("Degree: " + degree + " minute: " + minute + " seconds: " + second + " direction: "
-    // + direction);
     if (direction.equals("N") || direction.equals("E")) {
       return degree + minute / 60 + second / 3600;
     } else {
@@ -65,9 +63,6 @@ public class Parser {
   }
 
   public Double DDM(String direction, Double degree, Double minute) {
-    //System.out.println("Degree: " + degree + " minute: " + minute +" direction: "
-    // + direction);
-
     if (direction.equals("N") || direction.equals("E")) {
       return degree + minute / 60;
     } else {
@@ -76,8 +71,6 @@ public class Parser {
   }
 
   public Double DD(String direction, Double degree) {
-    //   System.out.println("Degree: " + degree + " direction: " + direction);
-
     if (direction.equals("N") || direction.equals("E")) {
       return degree;
     } else {
