@@ -34,7 +34,7 @@ public class TestQuery {
 
     @Test
     public void testNoLimit() {
-        if(!q_local.TRAVIS) {
+        if(!q_local.travis) {
             q_local.queryDatabase();
             assertEquals(50, q_local.limit, 0);
         }
