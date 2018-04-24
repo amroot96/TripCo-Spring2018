@@ -10,10 +10,6 @@ before_script:
   - mysql -u root -e 'CREATE DATABASE cs314;'
   - for SQL in server/src/test/resources/*.sql; do mysql cs314 < $SQL; done
 
-  - mysql -u root -e 'CREATE DATABASE testingDatabase;'
-  - mysql -u root -e 'CREATE TABLE testingDatabase.airports(id INT(45), name varchar(255), municipality varchar(255),type varchar(255));'
-  - mysql -u root -e 'INSERT INTO testingDatabase.airports VALUES("KAPA", "Centennial Airport" , "Denver", "medium_airport"),("CD06", "Centennial Healthcare Plaza Heliport " , "Englewood", "heliport ");'
-
 script:
   - mvn prepare-package
 cache:

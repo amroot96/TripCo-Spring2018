@@ -19,6 +19,7 @@ public class TestQuery {
     Query q_local = new Query();
     Query invalid = new Query();
     Query q_travis = new Query();
+    Trip trip = new Trip();
 
     @Before
     public void initialize() {
@@ -30,12 +31,23 @@ public class TestQuery {
 
         q_travis.query = "naval";
         q_travis.places = new ArrayList<Place>();
+
+        Place place1 = new Place();
+        place1.id = "312231";
+        place1.name = "Newport Naval Air Facility";
+        place1.latitude = "41.53";
+        place1.longitude = "-71.345";
+        trip.places = new ArrayList<>();
+        trip.places.add(place1);
     }
 
     @Test
     public void testNoLimit() {
-        if(!q_local.travis) {
-            q_local.queryDatabase();
+        if(q_local.travis) {
+            q_travis.queryDatabase();
+            assertEquals(trip.places.get(0).name, q_travis.places.get(0).name);
+        }else {
+            q_local.query(q_local.query, "select count(*) from airports;");
             assertEquals(50, q_local.limit, 0);
         }
     }
