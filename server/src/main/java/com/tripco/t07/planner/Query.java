@@ -24,7 +24,7 @@ public class Query {
     public Query() {}
 
 
-    public final static boolean TRAVIS = System.getenv("TRAVIS") != null;
+    public final boolean TRAVIS = System.getenv("TRAVIS") != null;
 
     private void limitCheck() {
         if(limit == null) {
