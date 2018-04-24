@@ -2,6 +2,7 @@ package com.tripco.t07.planner;
 
 import java.lang.reflect.Array;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -15,24 +16,30 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestQuery {
-    Query q;
-    Query invalid;
+    Query q_local = new Query();
+    Query invalid = new Query();
+    Query q_travis = new Query();
+
     @Before
     public void initialize() {
-        q = new Query();
-        q.query = "centennial";
-        q.places = new ArrayList<Place>();
+        q_local.query = "centennial";
+        q_local.places = new ArrayList<Place>();
 
         invalid = new Query();
         invalid.query = "fasf";
+
+        q_travis.query = "naval";
+        q_travis.places = new ArrayList<Place>();
     }
 
-   /* @Test
+    @Test
     public void testNoLimit() {
-        q.queryDatabase();
-        assertEquals(50, q.limit, 0);
+        if(!q_local.TRAVIS) {
+            q_local.queryDatabase();
+            assertEquals(50, q_local.limit, 0);
+        }
     }
-
+/*
     @Test
     public void testGivenLimit() {
         q.limit = 17;
