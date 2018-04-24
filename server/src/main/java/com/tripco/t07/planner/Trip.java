@@ -60,8 +60,11 @@ public class Trip {
     if (optType != 0) {
       if (optType <= 0.5) {
         optShort(1);
-      } else if (optType > 0.5) {
+      } else if (optType <= 1.0) {
         optShort(2);
+      }
+      else{
+        optShort(3);
       }
     }
     restoreStart(hold);
@@ -106,6 +109,28 @@ public class Trip {
     }
   }
 
+  private void optShortest(Place[] input) {
+    boolean improvement = true;
+    while (improvement) {
+      improvement = false;
+      for (int i = 0; i < input.length - 3; i++) {
+        for (int j = i + 1; j < input.length - 2; j++) {
+          for (int k = j + 1; k < input.length - 1; k++) {
+            int currentDistance = getDistance(input[i],input[i+1]) +
+                    getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
+            if (distance1(input, i, j, k) < currentDistance) { // case 1
+              twooptReverse(input, i+1, k);
+              improvement = true;
+              continue;
+            }
+
+// repeat for cases 2 to 7
+          }
+        }
+      }
+    }
+  }
+
   private void twooptReverse(Place[] input, int i, int k) {
     while (i < k) {
       Place temp = input[i];
@@ -116,6 +141,14 @@ public class Trip {
     }
   }
 
+
+  private int distance1(Place[] input, int i, int j, int k){
+
+    return getDistance(input[i],input[k]) +
+            getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[k+1]);
+
+  }
+
   private void optShort(int type) {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
@@ -123,6 +156,9 @@ public class Trip {
       Place[] newarr = nearestNs(i);
       if(type == 2) {
         optShorter(newarr);
+      }
+      if(type == 3) {
+        optShortest(newarr);
       }
       int newdist = calctotalDist(newarr);
       if (newdist < bestdist) {
