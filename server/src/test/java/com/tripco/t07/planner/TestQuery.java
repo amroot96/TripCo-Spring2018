@@ -2,6 +2,7 @@ package com.tripco.t07.planner;
 
 import java.lang.reflect.Array;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -15,24 +16,42 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestQuery {
-    Query q;
-    Query invalid;
+    Query q_local = new Query();
+    Query invalid = new Query();
+    Query q_travis = new Query();
+    Trip trip = new Trip();
+
     @Before
     public void initialize() {
-        q = new Query();
-        q.query = "centennial";
-        q.places = new ArrayList<Place>();
+        q_local.query = "centennial";
+        q_local.places = new ArrayList<Place>();
 
         invalid = new Query();
         invalid.query = "fasf";
+
+        q_travis.query = "naval";
+        q_travis.places = new ArrayList<Place>();
+
+        Place place1 = new Place();
+        place1.id = "312231";
+        place1.name = "Newport Naval Air Facility";
+        place1.latitude = "41.53";
+        place1.longitude = "-71.345";
+        trip.places = new ArrayList<>();
+        trip.places.add(place1);
     }
 
-   /* @Test
+    @Test
     public void testNoLimit() {
-        q.queryDatabase();
-        assertEquals(50, q.limit, 0);
+        if(q_local.travis) {
+            q_travis.queryDatabase();
+            assertEquals(trip.places.get(0).name, q_travis.places.get(1).name);
+        }else {
+          //  q_local.query(q_local.query, "select count(*) from airports;");
+          //  assertEquals(50, q_local.limit, 0);
+        }
     }
-
+/*
     @Test
     public void testGivenLimit() {
         q.limit = 17;

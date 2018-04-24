@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class Query {
     //dbconfigurationinformation
     private transient String myDriver="com.mysql.jdbc.Driver";
-    private transient String myUrl="jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private transient String localCred="jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private transient String travisCred="jdbc:mysql://localhost/cs314";
 
     //SQL queries to count the number of records and to retrieve the data
     public Integer version;
@@ -23,9 +24,13 @@ public class Query {
     public Query() {}
 
 
+    public final boolean travis = System.getenv("TRAVIS") != null;
+
     private void limitCheck() {
         if(limit == null) {
             limit = 50;
+        }else if(limit == 0 && query.equals("")){
+            limit = 500;
         }
     }
 
@@ -87,6 +92,7 @@ public class Query {
     }
 
     public void query(String search, String count) {
+        String cred = localCred;
         try {
             Class.forName(myDriver);
 // connect to the database and query
@@ -95,8 +101,9 @@ public class Query {
             if (System.getenv("TRAVIS") != null){
                 user = "travis";
                 password = null;
+                cred = travisCred;
             }
-            try (Connection conn = DriverManager.getConnection(myUrl, user, password);
+            try (Connection conn = DriverManager.getConnection(cred, user, password);
                  Statement stCount = conn.createStatement();
                  Statement stQuery = conn.createStatement();
                  ResultSet rsCount = stCount.executeQuery(count);
