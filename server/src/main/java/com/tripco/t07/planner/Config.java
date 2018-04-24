@@ -11,10 +11,10 @@ public class Config  {
                                     new Filter("country",new ArrayList<String>()),
                                     new Filter("continent",new ArrayList<String>())};*/
   private final String[] maps = {"kml"};
-  private final int optimizaiton = 2;
+  private final int optimization = 2;
   private final Optimizations[] optimizations = {new Optimizations("0opt","As planned"),
                                               new Optimizations("1opt","Nearest Neighbor"),
                                               new Optimizations("2opt","2-opt algorithm")};
-  private final String[] distances = {"miles", "kilometers", "nautical miles", "user defined"};
+  private final String[] units = {"miles", "kilometers", "nautical miles", "user defined"};
 
 }
