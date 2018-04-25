@@ -18,11 +18,6 @@ import static org.junit.Assert.*;
 public class TestTrip {
 
   Trip trip;
-  Place p1;
-  Place p2;
-  Place p3;
-  Place p4;
-  Place p5;
 
   // Setup to be done before every test in TestPlan
   @Before
@@ -102,7 +97,7 @@ public class TestTrip {
 
   @Test
   public void nearestNeighbor2() {
-    trip.options.optimization = "0.5";
+    trip.options.optimization = "0.33";
 
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
@@ -121,7 +116,7 @@ public class TestTrip {
 
   @Test
   public void twoOpt2() {
-    trip.options.optimization = "1.0";
+    trip.options.optimization = "0.66";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
@@ -139,7 +134,7 @@ public class TestTrip {
 
   @Test
   public void threeOpt1() {
-    trip.options.optimization = "1.5";
+    trip.options.optimization = "1.0";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
