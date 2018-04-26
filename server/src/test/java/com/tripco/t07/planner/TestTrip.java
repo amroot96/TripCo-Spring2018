@@ -30,7 +30,6 @@ public class TestTrip {
   Place p9;
   Place p10;
 
-
   // Setup to be done before every test in TestPlan
   @Before
   public void initialize() {
@@ -158,7 +157,7 @@ public class TestTrip {
 
   @Test
   public void nearestNeighbor2() {
-    trip.options.optimization = "0.5";
+    trip.options.optimization = "0.33";
 
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 39, 65, 382, 89, 289);
@@ -177,7 +176,7 @@ public class TestTrip {
 
   @Test
   public void twoOpt2() {
-    trip.options.optimization = "1.0";
+    trip.options.optimization = "0.66";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
     trip.plan();
@@ -195,7 +194,7 @@ public class TestTrip {
 
   @Test
   public void threeOpt1() {
-    trip2.options.optimization = "1.5";
+    trip2.options.optimization = "1.0";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 33, 10, 4978, 7944, 6979, 3868, 5283, 55, 180, 24);
     trip2.plan();

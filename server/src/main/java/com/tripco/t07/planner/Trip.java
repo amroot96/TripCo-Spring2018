@@ -37,8 +37,8 @@ public class Trip {
       opt();
       legDistances(this.placesArr);
       this.map = svg();
-      if (this.version != 3 && this.version != 2) {
-        this.version = 1;
+      if (this.version != 3 && this.version != 2 && this.version != 1) {
+        this.version = 4;
       }
     }
   }
@@ -52,20 +52,17 @@ public class Trip {
 
   //calls the optimization methods
   private void opt() {
-    if (this.places.size() <= 1) {
+    if (this.places.size() <= 1 || this.options.getOptimization() == 0) {
       return;
     }
     double optType = this.options.getOptimization();
     String hold = this.places.get(0).name;
-    if (optType != 0) {
-      if (optType <= 0.5) {
-        optShort(1);
-      } else if (optType <= 1.0) {
-        optShort(2);
-      }
-      else{
+    if (optType <= 0.33) {
+      optShort(1);
+    } else if (optType <= 0.66) {
+      optShort(2);
+    } else if (optType <= 1.0){
         optShort(3);
-      }
     }
     restoreStart(hold);
   }
@@ -194,7 +191,7 @@ public class Trip {
   }
 
   private Place nearNeigh(Place[] list, Place start) {
-    int bestdist = 999999;
+    int bestdist = Integer.MAX_VALUE;
     int bestindex = 0;
     for (int i = 0; i < list.length; i++) {
       if (!list[i].name.equals("<Finished>")) {
