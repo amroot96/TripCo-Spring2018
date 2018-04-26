@@ -160,6 +160,15 @@ public class Trip {
       k--;
     }
   }
+  public void swap(Place[] input, int i, int j, int k){
+      Place []temp = new Place[input.length];
+        int pointer = i+1;
+      for(int x = 0; x < k; x++ ){
+          temp[x] = input[j];
+      }
+
+
+  }
 
   private int distance1(Place[] input, int i, int j, int k){
     return getDistance(input[i],input[k])

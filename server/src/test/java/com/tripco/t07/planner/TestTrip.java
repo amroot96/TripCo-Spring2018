@@ -192,7 +192,6 @@ public class TestTrip {
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
   }
-
   @Test
   public void threeOpt1() {
     trip2.options.optimization = "1.5";
