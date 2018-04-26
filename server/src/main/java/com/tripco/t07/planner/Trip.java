@@ -118,21 +118,35 @@ public class Trip {
           for (int k = j + 1; k < input.length - 1; k++) {
             int currentDistance = getDistance(input[i],input[i+1])
                     + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
+              placeList(input);
+
+              if (distance4(input, i, j, k) < currentDistance) { // case 4
+                   System.out.println("Case 4");
+                   // j << i+1 k << j+1 k+1
+                    twooptReverse(input, i+1, j);
+                    twooptReverse(input, j+1, k);
+                    improvement = true;
+                    continue;
+              }
+              if (distance1(input, i, j, k) < currentDistance) { // case 1
+                  System.out.println("Case 1");
+                  twooptReverse(input, i+1, k);
+                  improvement = true;
+                  continue;
+              }
               if (distance3(input, i, j, k) < currentDistance) { // case 3
+                System.out.println("Case 3");
                 twooptReverse(input, j+1, k);
                 improvement = true;
                 continue;
               }
               if (distance2(input, i, j, k) < currentDistance) { // case 2
+                  System.out.println("Case 2");
                   twooptReverse(input, i+1, j);
                   improvement = true;
                   continue;
               }
-              if (distance1(input, i, j, k) < currentDistance) { // case 1
-              twooptReverse(input, i+1, k);
-              improvement = true;
-              continue;
-            }
+
           }
         }
       }
@@ -149,7 +163,6 @@ public class Trip {
     }
   }
 
-
   private int distance1(Place[] input, int i, int j, int k){
     return getDistance(input[i],input[k])
             + getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[k+1]);
@@ -162,6 +175,28 @@ public class Trip {
     return getDistance(input[i],input[i+1])
             + getDistance(input[j],input[k]) + getDistance(input[j+1],input[k+1]);
   }
+  private int distance4(Place[] input, int i, int j, int k){
+      // j << i+1 k << j+1 k+1
+      return getDistance(input[i],input[j])
+              + getDistance(input[i+1],input[k]) + getDistance(input[j+1],input[k+1]);
+  }
+  private int distance5(Place[] input, int i, int j, int k){
+      //k << j+1 i+1 >> j k+1
+        return getDistance(input[i],input[k])
+                + getDistance(input[j+1],input[i+1]) + getDistance(input[j],input[k+1]);
+  }
+  private int distance6(Place[] input, int i, int j, int k){
+      //j+1 >> k j << i+1
+        return getDistance(input[i],input[j+1])
+                + getDistance(input[k],input[j]) + getDistance(input[i+1],input[k+1]);
+    }
+  private int distance7(Place[] input, int i, int j, int k){
+      // j+1 >> k i+1 >> j k+1
+        return getDistance(input[i],input[j+1])
+                + getDistance(input[k],input[i+1]) + getDistance(input[j],input[k+1]);
+    }
+
+
   private void optShort(int type) {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
@@ -207,13 +242,6 @@ public class Trip {
     }
     list[bestindex].name = "<Finished>";
     return this.placesArr[bestindex];
-  }
-
-  private void placeList(Place[] list) {
-    for (Place p : list) {
-      System.out.print(p.name + "  ");
-    }
-    System.out.println();
   }
 
   private int calctotalDist(Place[] list) {
@@ -289,6 +317,12 @@ public class Trip {
   }
 
 
+    private void placeList(Place[] list) {
+        for (Place p : list) {
+            System.out.print(p.name + "  ");
+        }
+        System.out.println();
+    }
   //Returns an SVG containing the background and the legs of the trip.
   private String svg() {
     InputStream filePath = this.getClass().getResourceAsStream("/World2.svg");
