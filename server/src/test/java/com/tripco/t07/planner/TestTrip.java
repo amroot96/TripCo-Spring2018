@@ -194,7 +194,7 @@ public class TestTrip {
 
     @Test
     public void threeOpt2() {
-        trip.options.optimization = "1.5";
+        trip.options.optimization = "1";
         ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
         Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
         trip.plan();
@@ -203,7 +203,7 @@ public class TestTrip {
 
   @Test
   public void threeOpt1() {
-    trip2.options.optimization = "1.0";
+    trip2.options.optimization = "1";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
     Collections.addAll(expectedDistances, 0, 33, 10, 4978, 7944, 6979, 3868, 5283, 55, 180, 24);
     trip2.plan();
