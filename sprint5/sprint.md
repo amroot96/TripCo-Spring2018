@@ -57,6 +57,7 @@ Date | Tasks done  | Tasks in progress | Impediments
  04/17/2018|Create limit button, limit server side, limit client side| Host and port configurations| 
  04/19/2018| cookies, plan button, filters | Host and port configurations, 3-opt, UI| 
  04/24/2018| Host and port Configuration, Staff Page, Travis Testing,3-opt cases1-3| Staff Resumes, 3-opt cases 4-7 | 3-opt infinite loops
+ 04/26/2018| Finalized staff pages| 3-opt cases 4-7, saving KML  | 
  
 ## Review
 
