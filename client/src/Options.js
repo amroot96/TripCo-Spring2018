@@ -67,13 +67,13 @@ class Options extends Component {
     switch (arg) {
       case arg == 0:
         this.noneButton(type);
-      case arg < 0.5:
+      case arg <= 0.33:
         this.shortButton(type);
         break;
-      case arg < 1.0:
+      case arg <= 0.66:
         this.shorterButton(type);
         break;
-      case arg < 1.5:
+      case arg <= 1.0:
           this.shortestButton(type);
           break;
       default:

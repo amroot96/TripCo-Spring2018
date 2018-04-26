@@ -37,8 +37,8 @@ public class Trip {
       opt();
       legDistances(this.placesArr);
       this.map = svg();
-      if (this.version != 3 && this.version != 2) {
-        this.version = 1;
+      if (this.version != 3 && this.version != 2 && this.version != 1) {
+        this.version = 4;
       }
     }
   }
@@ -52,20 +52,17 @@ public class Trip {
 
   //calls the optimization methods
   private void opt() {
-    if (this.places.size() <= 1) {
+    if (this.places.size() <= 1 || this.options.getOptimization() == 0) {
       return;
     }
     double optType = this.options.getOptimization();
     String hold = this.places.get(0).name;
-    if (optType != 0) {
-      if (optType <= 0.5) {
-        optShort(1);
-      } else if (optType <= 1.0) {
-        optShort(2);
-      }
-      else{
+    if (optType <= 0.33) {
+      optShort(1);
+    } else if (optType <= 0.66) {
+      optShort(2);
+    } else if (optType <= 1.0){
         optShort(3);
-      }
     }
     restoreStart(hold);
   }
@@ -116,15 +113,23 @@ public class Trip {
       for (int i = 0; i < input.length - 3; i++) {
         for (int j = i + 1; j < input.length - 2; j++) {
           for (int k = j + 1; k < input.length - 1; k++) {
-            int currentDistance = getDistance(input[i],input[i+1]) +
-                    getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
-            if (distance1(input, i, j, k) < currentDistance) { // case 1
+            int currentDistance = getDistance(input[i],input[i+1])
+                    + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
+              if (distance3(input, i, j, k) < currentDistance) { // case 3
+                twooptReverse(input, j+1, k);
+                improvement = true;
+                continue;
+              }
+              if (distance2(input, i, j, k) < currentDistance) { // case 2
+                  twooptReverse(input, i+1, j);
+                  improvement = true;
+                  continue;
+              }
+              if (distance1(input, i, j, k) < currentDistance) { // case 1
               twooptReverse(input, i+1, k);
               improvement = true;
               continue;
             }
-
-// repeat for cases 2 to 7
           }
         }
       }
@@ -143,12 +148,17 @@ public class Trip {
 
 
   private int distance1(Place[] input, int i, int j, int k){
-
-    return getDistance(input[i],input[k]) +
-            getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[k+1]);
-
+    return getDistance(input[i],input[k])
+            + getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[k+1]);
   }
-
+  private int distance2(Place[] input, int i, int j, int k){
+        return getDistance(input[i],input[j])
+                + getDistance(input[i+1],input[j+1]) + getDistance(input[k],input[k+1]);
+  }
+  private int distance3(Place[] input, int i, int j, int k){
+    return getDistance(input[i],input[i+1])
+            + getDistance(input[j],input[k]) + getDistance(input[j+1],input[k+1]);
+  }
   private void optShort(int type) {
     int bestdist = calctotalDist(this.placesArr);
     Place[] bestArr = copyPlaces(this.placesArr);
@@ -181,7 +191,7 @@ public class Trip {
   }
 
   private Place nearNeigh(Place[] list, Place start) {
-    int bestdist = 999999;
+    int bestdist = Integer.MAX_VALUE;
     int bestindex = 0;
     for (int i = 0; i < list.length; i++) {
       if (!list[i].name.equals("<Finished>")) {
