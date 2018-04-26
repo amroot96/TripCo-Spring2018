@@ -192,6 +192,16 @@ public class TestTrip {
     trip.plan();
     assertEquals(expectedDistances, trip.distances);
   }
+
+    @Test
+    public void threeOpt2() {
+        trip.options.optimization = "1.5";
+        ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+        Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
+        trip.plan();
+        assertEquals(expectedDistances, trip.distances);
+    }
+
   @Test
   public void threeOpt1() {
     trip2.options.optimization = "1.5";
@@ -199,15 +209,6 @@ public class TestTrip {
     Collections.addAll(expectedDistances, 0, 33, 10, 4978, 7944, 6979, 3868, 5283, 55, 180, 24);
     trip2.plan();
     assertEquals(expectedDistances, trip2.distances);
-  }
-
-  @Test
-  public void threeOpt2() {
-    trip.options.optimization = "1.5";
-    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 94, 65, 317, 89, 289);
-    trip.plan();
-    assertEquals(expectedDistances, trip.distances);
   }
 
   @Test
