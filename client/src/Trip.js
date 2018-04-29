@@ -56,7 +56,7 @@ class Trip extends Component {
   reverseButton() {
     return (
         <div className="input-group-btn">
-          <button className="btn" style={{background: '#CFB53B'}}
+          <button className="btn" style={{background: '#C8C372'}}
                   onClick={this.reverseTrip} type="button">Reverse Trip
           </button>
           <p></p>
@@ -79,7 +79,7 @@ class Trip extends Component {
                      placeholder={this.props.trip.title}/>
               <span className="input-group-btn">
                               <button className="btn btn"
-                                      style={{background: '#CFB53B'}}
+                                      style={{background: '#C8C372'}}
                                       onClick={this.updateTitle}
                                       type="button">Save</button>
                           </span>
