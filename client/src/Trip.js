@@ -12,7 +12,7 @@ class Trip extends Component {
     super(props);
     this.state = {
       title: "",
-
+      kmlFile: "",
     };
     this.saveTFFI = this.saveTFFI.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -55,12 +55,9 @@ class Trip extends Component {
 
   reverseButton() {
     return (
-        <div className="input-group-btn">
           <button className="btn" style={{background: '#C8C372'}}
                   onClick={this.reverseTrip} type="button">Reverse Trip
           </button>
-          <p></p>
-        </div>
     )
   }
 
@@ -84,11 +81,13 @@ class Trip extends Component {
                                       type="button">Save</button>
                           </span>
             </div>
-            <Map trip={this.props.trip}/></div>
+            <Map trip={this.props.trip} kmlFile={this.state.kmlFile}/></div>
             <Itinerary trip={this.props.trip}
                        removePlaces={this.props.removePlace}
                        makeStart={this.props.makeStart}/>
-            {this.reverseButton()}
+            <div className="input-group-btn">
+                {this.reverseButton()}
+            </div>
         </div>
     )
   }

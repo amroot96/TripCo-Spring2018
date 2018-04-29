@@ -197,7 +197,7 @@ class Application extends Component {
                style={{background: '#1E4D2B'}}>Server Options
           </div>
           <div className="card-body"> Input a different server.
-            <input type="txt" className="form-control" id="server" placeholder="Format: <servername:port>"/>
+            <input type="txt" className="form-control" id="server" placeholder="Format: <black-bottle.cs.colostate.edu:port>"/>
             <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.updateServerHost}>Switch</button>
           </div>
         </div>
