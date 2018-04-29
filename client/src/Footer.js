@@ -60,7 +60,8 @@ class Footer extends Component {
   Jordan() {
     return (
         <div className="card-body">
-          <h5 className="card-title">Jordan Peterson</h5>
+            <h5 className="card-title">Jordan Peterson</h5>
+                <a href="http://www.cs.colostate.edu/~jordantp/">Resume</a>
         </div>
     )
   }
@@ -68,12 +69,12 @@ class Footer extends Component {
     return (
         <div className="card-body">
           <h5 className="card-title">Angela Root</h5>
+            <a href="http://www.cs.colostate.edu/~amroot/">Resume</a>
         </div>
     )
   }
     displayStaff(event) {
       if(event) {
-        console.log("displaying");
         this.setState({resumes:
           <div className="card-body">
             <div className="card">
@@ -99,7 +100,7 @@ class Footer extends Component {
               <div id="footimage" className="jumbotron text-white" style={{background:'#1E4D2B'}}>
                 <h4>© TripCo t{this.props.number} {this.props.name} 2018
                   <img className={"img-fluid center"} alt="Responsive image" src="http://www.cs.colostate.edu/~cs314/images/CSU-Official-wrdmrk-357-617_Rev.png" />
-                  <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.displayStaff}>Staff Info</button>
+                  <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.displayStaff}>Staff Info</button>
                 </h4>
               </div>
               {this.state.resumes}

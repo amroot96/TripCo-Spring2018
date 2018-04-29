@@ -198,7 +198,7 @@ class Application extends Component {
           </div>
           <div className="card-body"> Input a different server.
             <input type="txt" className="form-control" id="server" placeholder="Format: <black-bottle.cs.colostate.edu:port>"/>
-            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.updateServerHost}>Switch</button>
+            <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.updateServerHost}>Switch</button>
           </div>
         </div>
     )
