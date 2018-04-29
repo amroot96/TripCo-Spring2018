@@ -1,5 +1,6 @@
 /* To use this file we will need to...
  * npm install --save recompose react-google-maps
+ * npm install --save xmlbuilder
 */
 
 import React, {Component} from 'react'
@@ -12,6 +13,8 @@ import {
 class InnerMap extends React.Component {
   constructor(props) {
     super(props);
+    this.pointPath = [];
+    this.kmlFile= "";
   }
 
   // react-google-maps expects all of it's data in the form {lat: x, lng: y}
@@ -26,6 +29,7 @@ class InnerMap extends React.Component {
     );
     path.push(
         {lat: Number(places[0].latitude), lng: Number(places[0].longitude)});
+    this.pointPath = path;
     return path;
   }
 
@@ -76,6 +80,53 @@ class InnerMap extends React.Component {
     return {lat, long, dzoom}
   }
 
+    createKML(){
+      this.kmlFile = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n" +
+          "  <Document>\n" +
+          "    <name>Paths</name>\n" +
+          "    <Style id=\"kmlMap\">\n" +
+          "      <LineStyle>\n" +
+          "        <color>FFA500</color>\n" +
+          "        <width>4</width>\n" +
+          "      </LineStyle>\n" +
+          "    </Style>\n" +
+          "    <Placemark>\n" +
+          "      <name>Absolute Extruded</name>\n" +
+          "      <LineString>\n" +
+          "        <extrude>1</extrude>\n" +
+          "        <tessellate>1</tessellate>\n" +
+          "        <altitudeMode>absolute</altitudeMode>\n" +
+          "        <coordinates>\n";
+        for(let i = 0; i < this.pointPath.length; i++){
+            this.kmlFile = this.kmlFile.concat("\t  " + this.pointPath[i].lng + "," + this.pointPath[i].lat + "\n");
+        }
+        this.kmlFile = this.kmlFile.concat("\t</coordinates>\n" +
+                "      </LineString>\n" +
+                "    </Placemark>\n" +
+                "  </Document>\n" +
+                "</kml>");
+        this.saveKML(this.kmlFile);
+    }
+
+    saveKML(arg){
+        let dataStr = "data:text/xml;charset=utf-8," + encodeURIComponent(
+            arg);
+        let downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "map.xml");
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
+
+    saveKMLButton(){
+        return(
+            <button className="btn" style={{background: '#CFB53B'}}
+                    onClick={() => {this.createKML()}} type="submit">Save Map
+            </button>
+        )
+    }
+
   render() {
     const places = this.props.trip.places;
     if (places.length === 0) {
@@ -85,16 +136,19 @@ class InnerMap extends React.Component {
     if (isNaN(zoom.lat) || isNaN(zoom.long)) {
       return null;
     }
-
+    this.makePath(places);
     return (
+        <div>
         <GoogleMap
             defaultCenter={{lat: 0, lng: 0}}
             defaultZoom={1}
         >
-          <Polyline path={this.makePath(places)}
+          <Polyline path={this.pointPath}
                     options={{strokeColor: '#FFA500'}}
           />
         </GoogleMap>
+            {this.saveKMLButton()}
+        </div>
     );
   }
 }
