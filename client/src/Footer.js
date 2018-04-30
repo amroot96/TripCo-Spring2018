@@ -99,13 +99,13 @@ class Footer extends Component {
     render() {
         return (
             <div id="footer">
+              {this.state.resumes}
               <div id="footimage" className="jumbotron text-white" style={{background:'#1E4D2B'}}>
                 <h4>© TripCo t{this.props.number} {this.props.name} 2018
                   <img className={"img-fluid center"} alt="Responsive image" src="http://www.cs.colostate.edu/~cs314/images/CSU-Official-wrdmrk-357-617_Rev.png" />
                   <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.displayStaff}>Staff Info</button>
                 </h4>
               </div>
-              {this.state.resumes}
             </div>
         )
     }
