@@ -121,7 +121,7 @@ class InnerMap extends React.Component {
 
     saveKMLButton(){
         return(
-            <button className="btn" style={{background: '#CFB53B'}}
+            <button className="btn" style={{background: '#C8C372'}}
                     onClick={() => {this.createKML()}} type="submit">Save Map
             </button>
         )
