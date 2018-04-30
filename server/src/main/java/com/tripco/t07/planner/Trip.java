@@ -116,6 +116,13 @@ public class Trip {
           for (int k = j + 1; k < input.length - 1; k++) {
             int currentDistance = getDistance(input[i],input[i+1])
                     + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
+              if (distance5(input, i, j, k) < currentDistance) { // case 5
+                System.out.println("Case 5");
+                twooptReverse(input, j+1, k);
+                swap(input,i,j,k);
+                improvement = true;
+                continue;
+              }
               if (distance4(input, i, j, k) < currentDistance) { // case 4
                     System.out.println("Case 4");
                     twooptReverse(input, i+1, j);
