@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import spark.Request;
 
+import javax.swing.plaf.synth.SynthEditorPaneUI;
 import java.util.ArrayList;
 import java.io.*;
 
@@ -115,9 +116,8 @@ public class Trip {
           for (int k = j + 1; k < input.length - 1; k++) {
             int currentDistance = getDistance(input[i],input[i+1])
                     + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
-
               if (distance4(input, i, j, k) < currentDistance) { // case 4
-                   System.out.println("Case 4");
+                    System.out.println("Case 4");
                     twooptReverse(input, i+1, j);
                     twooptReverse(input, j+1, k);
                     improvement = true;
@@ -158,11 +158,33 @@ public class Trip {
     }
   }
   public void swap(Place[] input, int i, int j, int k){
-      Place []temp = new Place[input.length];
-        int pointer = i+1;
-      for(int x = 0; x < k; x++ ){
-          temp[x] = input[j];
+      int jToK = (k-(j+1))+1;
+      Place []temp = new Place[jToK];
+      Place []copy = new Place[input.length];
+      for(int c = 0; c<input.length; c++){
+        copy[c]=input[c];
       }
+      int pointer = j+1;
+      for(int x = 0; pointer < k+1; x++ ){
+          temp[x] = input[pointer];
+          pointer++;
+      }
+      pointer = i+1;
+      int tempCounter = 0;
+      for(int x = i+1; x  < k+1 ; x++){
+        if(tempCounter< jToK){
+          input[x] = temp[tempCounter];
+        }
+        else{
+          input[x] = copy[pointer];
+          pointer++;
+        }
+        tempCounter++;
+      }
+
+
+
+
 
 
   }
@@ -278,6 +300,11 @@ public class Trip {
 
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
+//      System.out.println(p1.name +" to " + p2.name+ " " + ((int) Math.round(this.options.getRadius() * Math.acos(
+//                  Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
+//                          + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
+//                          .cos(p2.parseLong - p1.parseLong)))));
+
     return (int) Math.round(this.options.getRadius() * Math.acos(
         Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
             + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
