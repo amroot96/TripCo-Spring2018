@@ -261,7 +261,7 @@ class Destinations extends Component {
                         <input type="txt" className="form-control" id="limit" placeholder="Limit to..."/>
                         {this.filterSearch()}
                         <span className="input-group-btn">
-                            <button className="btn btn" style={{background:'#CFB53B'}} type="button" onClick={this.database}>Search</button>
+                            <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.database}>Search</button>
                         </span>
                     </div>
                 </div>
