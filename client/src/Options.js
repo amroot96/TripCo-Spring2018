@@ -104,6 +104,7 @@ class Options extends Component {
     }
   }
 
+
   toggleDistBool(arg) {
     this.miles = this.off;
     this.kilometers = this.off;
