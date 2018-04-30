@@ -91,13 +91,13 @@ class Options extends Component {
       case "0":
         this.none = this.on;
         break;
-      case "0.5":
+      case "0.33":
         this.short = this.on;
         break;
-      case "1.0":
+      case "0,66":
         this.shorter = this.on;
         break;
-      case "1.5":
+      case "1.0":
           this.shortest = this.on;
           break;
       default:
@@ -127,22 +127,22 @@ class Options extends Component {
 
   shortestButton(type) {
       if(type !== 2) {
-          this.props.updateOptions("1.5", "optimization");
+          this.props.updateOptions("1.0", "optimization");
       }
-      this.toggleOptBool("1.5");
+      this.toggleOptBool("1.0");
   }
   shorterButton(type) {
     if(type !== 2) {
-      this.props.updateOptions("1.0", "optimization");
+      this.props.updateOptions("0.66", "optimization");
     }
-    this.toggleOptBool("1.0");
+    this.toggleOptBool("0.66");
   }
 
   shortButton(type) {
     if(type !== 2) {
-      this.props.updateOptions("0.5", "optimization");
+      this.props.updateOptions("0.33", "optimization");
     }
-    this.toggleOptBool("0.5");
+    this.toggleOptBool("0.33");
   }
 
   noneButton(type) {
