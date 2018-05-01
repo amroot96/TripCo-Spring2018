@@ -121,48 +121,42 @@ public class Trip {
             int currentDistance = getDistance(input[i],input[i+1])
                     + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]); // current trip
 
-
+              if (distance7(input, i, j, k, kn) < currentDistance) { // case 7
+                twooptReverse(input, i+1, j);
+                twooptReverse(input, j+1, k);
+                twooptReverse(input, i+1, k);
+                improvement = true;
+                  continue;
+              }
               if (distance6(input, i, j, k, kn) < currentDistance) { // case 6
-                  System.out.println("Case 6");
-                  System.out.println(distance6(input, i, j, k, kn) );
-                  twooptReverse(input, i+1,j);
-                  swap(input,i,j,k);
-                  System.out.println(getDistance(input[i],input[i+1])
-                        + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]));
+                  twooptReverse(input, j+1,k);
+                  twooptReverse(input, i+1,k);
                   improvement = true;
                   continue;
               }
               if (distance5(input, i, j, k, kn) < currentDistance) { // case 5
-                System.out.println("Case 5");
-                System.out.println(distance5(input, i, j, k, kn) );
-                twooptReverse(input, j+1, k);
-                swap(input,i,j,k);
-                System.out.println(getDistance(input[i],input[i+1])
-                        + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]));
+                twooptReverse(input, i+1, j);
+                twooptReverse(input, i+1, k);
                 improvement = true;
                 continue;
               }
               if (distance4(input, i, j, k, kn) < currentDistance) { // case 4
-                    System.out.println("Case 4");
                     twooptReverse(input, i+1, j);
                     twooptReverse(input, j+1, k);
                     improvement = true;
                     continue;
               }
               if (distance1(input, i, j, k, kn) < currentDistance) { // case 1
-                  System.out.println("Case 1");
                   twooptReverse(input, i+1, k);
                   improvement = true;
                   continue;
               }
               if (distance3(input, i, j, k, kn) < currentDistance) { // case 3
-                System.out.println("Case 3");
                 twooptReverse(input, j+1, k);
                 improvement = true;
                 continue;
               }
               if (distance2(input, i, j, k, kn) < currentDistance) { // case 2
-                  System.out.println("Case 2");
                   twooptReverse(input, i+1, j);
                   improvement = true;
                   continue;
@@ -326,11 +320,6 @@ public class Trip {
 
   //Returns the distance between two Places.
   private Integer getDistance(Place p1, Place p2) {
-//      System.out.println(p1.name +" to " + p2.name+ " " + ((int) Math.round(this.options.getRadius() * Math.acos(
-//                  Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
-//                          + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math
-//                          .cos(p2.parseLong - p1.parseLong)))));
-
     return (int) Math.round(this.options.getRadius() * Math.acos(
         Math.sin(p1.parseLat) * Math.sin(p2.parseLat)
             + Math.cos(p1.parseLat) * Math.cos(p2.parseLat) * Math

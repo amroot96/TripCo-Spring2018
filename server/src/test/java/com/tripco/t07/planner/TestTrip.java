@@ -205,7 +205,7 @@ public class TestTrip {
   public void threeOpt1() {
     trip2.options.optimization = "1";
     ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
-    Collections.addAll(expectedDistances, 0, 33, 10, 4978, 7944, 6979, 3868, 5283, 55, 180, 24);
+    Collections.addAll(expectedDistances, 0, 24, 180, 55, 5283, 3868, 6979, 7944, 4978, 10, 33);
     trip2.plan();
     assertEquals(expectedDistances, trip2.distances);
   }
