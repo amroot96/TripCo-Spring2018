@@ -111,38 +111,57 @@ public class Trip {
     boolean improvement = true;
     while (improvement) {
       improvement = false;
-      for (int i = 0; i < input.length - 3; i++) {
-        for (int j = i + 1; j < input.length - 2; j++) {
-          for (int k = j + 1; k < input.length - 1; k++) {
+      for (int i = 0; i < input.length - 2; i++) {
+        for (int j = i + 1; j < input.length - 1; j++) {
+          for (int k = j + 1; k < input.length - 0; k++) {
+            int kn = k + 1;
+            if (k + 1 == input.length) {
+              kn = 0;
+            }
             int currentDistance = getDistance(input[i],input[i+1])
-                    + getDistance(input[j],input[j+1]) + getDistance(input[k],input[k+1]); // current trip
-              if (distance5(input, i, j, k) < currentDistance) { // case 5
+                    + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]); // current trip
+
+
+              if (distance6(input, i, j, k, kn) < currentDistance) { // case 6
+                  System.out.println("Case 6");
+                  System.out.println(distance6(input, i, j, k, kn) );
+                  twooptReverse(input, i+1,j);
+                  swap(input,i,j,k);
+                  System.out.println(getDistance(input[i],input[i+1])
+                        + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]));
+                  improvement = true;
+                  continue;
+              }
+              if (distance5(input, i, j, k, kn) < currentDistance) { // case 5
                 System.out.println("Case 5");
+                System.out.println(distance5(input, i, j, k, kn) );
                 twooptReverse(input, j+1, k);
                 swap(input,i,j,k);
+                System.out.println(getDistance(input[i],input[i+1])
+                        + getDistance(input[j],input[j+1]) + getDistance(input[k],input[kn]));
                 improvement = true;
                 continue;
               }
-              if (distance4(input, i, j, k) < currentDistance) { // case 4
+              if (distance4(input, i, j, k, kn) < currentDistance) { // case 4
                     System.out.println("Case 4");
                     twooptReverse(input, i+1, j);
                     twooptReverse(input, j+1, k);
                     improvement = true;
                     continue;
               }
-              if (distance1(input, i, j, k) < currentDistance) { // case 1
+              if (distance1(input, i, j, k, kn) < currentDistance) { // case 1
                   System.out.println("Case 1");
                   twooptReverse(input, i+1, k);
                   improvement = true;
                   continue;
               }
-              if (distance3(input, i, j, k) < currentDistance) { // case 3
+              if (distance3(input, i, j, k, kn) < currentDistance) { // case 3
                 System.out.println("Case 3");
                 twooptReverse(input, j+1, k);
                 improvement = true;
                 continue;
               }
-              if (distance2(input, i, j, k) < currentDistance) { // case 2
+              if (distance2(input, i, j, k, kn) < currentDistance) { // case 2
                   System.out.println("Case 2");
                   twooptReverse(input, i+1, j);
                   improvement = true;
@@ -196,37 +215,37 @@ public class Trip {
 
   }
 
-  private int distance1(Place[] input, int i, int j, int k){
+  private int distance1(Place[] input, int i, int j, int k, int kn){
     return getDistance(input[i],input[k])
-            + getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[k+1]);
+            + getDistance(input[j+1],input[j]) + getDistance(input[i+1],input[kn]);
   }
-  private int distance2(Place[] input, int i, int j, int k){
+  private int distance2(Place[] input, int i, int j, int k, int kn){
         return getDistance(input[i],input[j])
-                + getDistance(input[i+1],input[j+1]) + getDistance(input[k],input[k+1]);
+                + getDistance(input[i+1],input[j+1]) + getDistance(input[k],input[kn]);
   }
-  private int distance3(Place[] input, int i, int j, int k){
+  private int distance3(Place[] input, int i, int j, int k, int kn){
     return getDistance(input[i],input[i+1])
-            + getDistance(input[j],input[k]) + getDistance(input[j+1],input[k+1]);
+            + getDistance(input[j],input[k]) + getDistance(input[j+1],input[kn]);
   }
-  private int distance4(Place[] input, int i, int j, int k){
+  private int distance4(Place[] input, int i, int j, int k, int kn){
       // j << i+1 k << j+1 k+1
       return getDistance(input[i],input[j])
-              + getDistance(input[i+1],input[k]) + getDistance(input[j+1],input[k+1]);
+              + getDistance(input[i+1],input[k]) + getDistance(input[j+1],input[kn]);
   }
-  private int distance5(Place[] input, int i, int j, int k){
+  private int distance5(Place[] input, int i, int j, int k, int kn){
       //k << j+1 i+1 >> j k+1
         return getDistance(input[i],input[k])
-                + getDistance(input[j+1],input[i+1]) + getDistance(input[j],input[k+1]);
+                + getDistance(input[j+1],input[i+1]) + getDistance(input[j],input[kn]);
   }
-  private int distance6(Place[] input, int i, int j, int k){
+  private int distance6(Place[] input, int i, int j, int k, int kn){
       //j+1 >> k j << i+1
         return getDistance(input[i],input[j+1])
-                + getDistance(input[k],input[j]) + getDistance(input[i+1],input[k+1]);
+                + getDistance(input[k],input[j]) + getDistance(input[i+1],input[kn]);
     }
-  private int distance7(Place[] input, int i, int j, int k){
+  private int distance7(Place[] input, int i, int j, int k, int kn){
       // j+1 >> k i+1 >> j k+1
         return getDistance(input[i],input[j+1])
-                + getDistance(input[k],input[i+1]) + getDistance(input[j],input[k+1]);
+                + getDistance(input[k],input[i+1]) + getDistance(input[j],input[kn]);
     }
 
 

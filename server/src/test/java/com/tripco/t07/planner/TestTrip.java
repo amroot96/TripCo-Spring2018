@@ -80,7 +80,7 @@ public class TestTrip {
     p6.latitude = "40.4518013";
     p6.longitude = "-105.011001587";
     p6.id = "KFNL";
-    p6.name = "Fort Collins Loveland Municipal Airport";
+    p6.name = "Loveland Municipal Airport";
 
     Place p7 = new Place();
     p7.latitude = "-80.31829833984375";
