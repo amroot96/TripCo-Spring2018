@@ -63,7 +63,7 @@ class Footer extends Component {
     return (
         <div className="card-body">
             <h5 className="card-title">Jordan Peterson</h5>
-                <a href="http://www.cs.colostate.edu/~jordantp/">Resume</a>
+                <a href="http://www.cs.colostate.edu/~jordantp/">Webpage</a>
         </div>
     )
   }

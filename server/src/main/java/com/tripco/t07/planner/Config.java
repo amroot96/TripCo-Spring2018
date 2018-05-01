@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Config  {
 
   private final String type = "config";
-  private final int version = 3;
+  private final int version = 4;
   private final Filter[] filters = {new Filter("type",new ArrayList<String>())};/*,
                                     new Filter("region",new ArrayList<String>()),
                                     new Filter("country",new ArrayList<String>()),

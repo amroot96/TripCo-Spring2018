@@ -14,7 +14,7 @@ class App extends Component {
             version: 0,
             optimization: 0
         },
-      serverHost: "http://black-bottle.cs.colostate.edu:31407"
+      serverHost: "http://localhost:31407"
     }
     this.config = this.config.bind(this);
     this.configResponse = this.configResponse.bind(this);
