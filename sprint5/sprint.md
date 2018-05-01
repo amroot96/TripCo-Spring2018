@@ -46,8 +46,8 @@ Epics planned for this release.
 
 Statistic | Planned | Completed
 --- | ---: | ---:
-Tasks |  31  | 20
-Story Points |  35  |  25
+Tasks |  31  | 23
+Story Points |  35  |  31
 
 ## Daily Scrums
 
@@ -59,6 +59,7 @@ Date | Tasks done  | Tasks in progress | Impediments
  04/24/2018| Host and port Configuration, Staff Page, Travis Testing,3-opt cases1-3| Staff Resumes, 3-opt cases 4-7 | 3-opt infinite loops
  04/26/2018| Finalized staff pages| 3-opt cases 4-7, saving KML  | 
  04/29/2018| saving KML, resumes | 3-opt cases 5-7, concurrency| 
+ 05/01/2018| 3-opt | concurrency| 
 ## Review
 
 #### Completed epics in Sprint Backlog 
