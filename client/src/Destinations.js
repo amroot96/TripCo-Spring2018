@@ -20,7 +20,7 @@ class Destinations extends Component {
                            values : []
                          }
                         ],
-                limit: 0,
+                limit: -1,
             },
             error: "",
         };
@@ -91,8 +91,7 @@ class Destinations extends Component {
     limitResponse(){
         this.state.database.limit = document.getElementById("limit").value;
         if(this.state.database.limit === "")
-            this.state.database.limit = 0;
-        console.log("limit: " + this.state.database.limit);
+            this.state.database.limit = -1;
     }
 
     queryResponse(){
@@ -152,11 +151,11 @@ class Destinations extends Component {
             count++;
             row[i] =
                 <tr key={i}>
-                    <td key={loc[i].name}>{loc[i].name}</td>
-                  <td key={loc[i].id}>{loc[i].id}</td>
-                  <td key={loc[i].latitude}>{loc[i].latitude}</td>
-                  <td key={loc[i].longitude}>{loc[i].longitude}</td>
                     <td key={i}><button className="button" onClick={ () => {this.handleClick(i)}}>Add</button></td>
+                    <td key={loc[i].name}>{loc[i].name}</td>
+                    <td key={loc[i].id}>{loc[i].id}</td>
+                    <td key={loc[i].latitude}>{loc[i].latitude}</td>
+                    <td key={loc[i].longitude}>{loc[i].longitude}</td>
                 </tr>;
         }
         return {row};
@@ -219,6 +218,7 @@ class Destinations extends Component {
                       <table className="table table-responsive table-bordered">
                         <thead>
                         <tr className="table-outline-dark">
+                            <th key="add" id="add"></th>
                           <th key="name" id="name">Name</th>
                           <th key="id" id="id">ID</th>
                           <th key="lat" id="lat">Latitude</th>
@@ -257,13 +257,11 @@ class Destinations extends Component {
                 <div className="card-header text-white" style={{background:'#1E4D2B'}}>Destination Finder</div>
                 <div className="card-body">
                   <input type="txt" className="form-control" id="search" placeholder="Search..."/>
-                    <div className="input-group" role="group">
                         <input type="txt" className="form-control" id="limit" placeholder="Limit to..."/>
                         {this.filterSearch()}
                         <span className="input-group-btn">
                             <button className="btn btn" style={{background:'#C8C372'}} type="button" onClick={this.database}>Search</button>
                         </span>
-                    </div>
                 </div>
             </div>
         )

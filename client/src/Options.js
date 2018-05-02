@@ -201,7 +201,8 @@ class Options extends Component {
     return (
         <div className="card-body">
           <p>Highlight the options you wish to use.</p>
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
+          <div className="text-center">
+          <div className="btn-group-vertical btn-group-toggle" data-toggle="buttons">
             {this.labelTag(this.miles, "miles", "distance", this.milesButton,
                 "Miles")}
             {this.labelTag(this.kilometers, "kilometers", "distance",
@@ -209,6 +210,7 @@ class Options extends Component {
             {this.labelTag(this.nautical, "nautical miles", "distance",
                 this.nauticalButton, "Nautical Miles")}
                 </div>
+          </div>
             <div>Or enter your own unit name and radius of the Earth:</div>
             <input name="Name" type="text" id="UD" placeholder="Name" onKeyDown={this.enter}/>
             <input name="Radius" type="text" id="UD" placeholder="Radius" onKeyDown={this.enter}/>
@@ -220,7 +222,8 @@ class Options extends Component {
     return (
         <div className="card-body">
           <p>Would you like to optimize your trip? </p>
-          <div className="btn-group btn-group-toggle" data-toggle="buttons">
+          <div className="text-center">
+          <div className="btn-group-vertical btn-group-toggle" data-toggle="buttons">
             {this.labelTag(this.none, "none", "optimization", this.noneButton,
                 "None")}
             {this.labelTag(this.short, "short", "optimization",
@@ -229,6 +232,7 @@ class Options extends Component {
                 this.shorterButton, "Shorter")}
             {this.labelTag(this.shortest, "shortest", "optimization",
                   this.shortestButton, "Shortest")}
+          </div>
           </div>
         </div>
     )
