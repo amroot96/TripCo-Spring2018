@@ -225,9 +225,7 @@ class Destinations extends Component {
                           <th key="long" id="long">Longitude</th>
                         </tr>
                         </thead>
-                          <tbody>
-                          {table.row}
-                          </tbody>
+                          <tbody>{table.row}</tbody>
                       </table>
                       </div>
                   </div>
