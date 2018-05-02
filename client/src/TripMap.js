@@ -98,7 +98,7 @@ class InnerMap extends React.Component {
           "        <altitudeMode>absolute</altitudeMode>\n" +
           "        <coordinates>\n";
         for(let i = 0; i < this.pointPath.length; i++){
-            this.kmlFile = this.kmlFile.concat("\t  " + this.pointPath[i].lng + "," + this.pointPath[i].lat + "\n");
+            this.kmlFile = this.kmlFile.concat("\t  " + this.pointPath[i].lng + "," + this.pointPath[i].lat + ",15000\n");
         }
         this.kmlFile = this.kmlFile.concat("\t</coordinates>\n" +
                 "      </LineString>\n" +
