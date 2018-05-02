@@ -27,9 +27,9 @@ public class Query {
     public final boolean travis = System.getenv("TRAVIS") != null;
 
     private void limitCheck() {
-        if(limit == null) {
+        if(limit == null || limit == -1) {
             limit = 50;
-        }else if(limit == 0 && query.equals("")){
+        }else if((limit == 0 && query.equals("")) || (limit == 0)){
             limit = 500;
         }
     }

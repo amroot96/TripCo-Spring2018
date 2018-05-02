@@ -31,6 +31,7 @@ public class TestQuery {
 
         q_travis.query = "naval";
         q_travis.places = new ArrayList<Place>();
+        q_travis.limit = -1;
 
         Place place1 = new Place();
         place1.id = "US-0250";
@@ -88,7 +89,6 @@ public class TestQuery {
     @Test
     public void testValidQuery(){
         if(q_local.travis) {
-            q_travis.queryDatabase();
             assertEquals("naval", q_travis.query);
         } else {
             //q_local.queryDatabase();
