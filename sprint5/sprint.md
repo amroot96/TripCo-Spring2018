@@ -88,7 +88,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
-What we will change this time |Each teammate take on a task that they haven't taken on before  |  | 
+What we will change this time |Each teammate take on a task that they haven't taken on before  |  | Used zenhub effectively
 What we did well | We communicated well |We improved continuously  | 
 What we need to work on | Working on our task earlier |  |
 What we will change next time | Set deadlines for each task to make sure we are staying on track   |  | 
