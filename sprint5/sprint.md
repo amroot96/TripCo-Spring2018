@@ -81,7 +81,7 @@ Date | Tasks done  | Tasks in progress | Impediments
 *
 
 #### Problems encountered and resolutions
-* *3-opt too longer than expected and very slow*
+* *3-opt took longer than expected and very slow*
 * *Ran out of time to complete server side optimization*
 
 ## Retrospective
