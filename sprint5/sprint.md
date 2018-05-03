@@ -63,26 +63,32 @@ Date | Tasks done  | Tasks in progress | Impediments
 ## Review
 
 #### Completed epics in Sprint Backlog 
-* *user story*:  *comments*
-* 
+* *TFFI Updates*:  *
+* *Interop*:
+* *Shorter Trips*:
+* *Staff Page*:
+* *System Testing*:
+* *Improve the user Experience*:
+* *View Trip In Other Tools*:
+* *Give the user the option to choose what information to display in the itinerary*:
 
 #### Incomplete epics in Sprint Backlog 
-* *user story*: *explanation...*
+* *Speed up the computation in the server*: *Ran out of time*
 *
 
 #### What went well
-* *something*
+* *Have a working product *
 *
 
 #### Problems encountered and resolutions
-* *something*
-*
+* *3-opt took longer than expected and very slow*
+* *Ran out of time to complete server side optimization*
 
 ## Retrospective
 
 Topic | Teamwork | Process | Tools
 :--- | :--- | :--- | :---
-What we will change this time |  |  | 
-What we did well |  |  | 
-What we need to work on |  |  |
-What we will change next time |  |  | 
+What we will change this time |Each teammate take on a task that they haven't taken on before  |  | Used zenhub effectively
+What we did well | We communicated well |We improved continuously  | 
+What we need to work on | Working on our task earlier |  |
+What we will change next time | Set deadlines for each task to make sure we are staying on track   |  | 
